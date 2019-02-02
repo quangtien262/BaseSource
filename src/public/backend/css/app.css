@@ -7980,3 +7980,6 @@ textarea.no-resize {
   padding-top: 80px;
   padding-bottom: 80px;
 }
+.col-xs-6 {
+    margin-bottom: 10px
+}

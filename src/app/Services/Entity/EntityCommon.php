@@ -4,7 +4,7 @@ namespace App\Services\Entity;
 
 use Illuminate\Support\Facades\DB;
 
-class ClassTbl {
+class EntityCommon {
     /*
      * get all data of table, leftjoin with table data
      * $tblName: table name

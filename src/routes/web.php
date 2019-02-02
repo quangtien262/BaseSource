@@ -24,9 +24,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/', 'Backend\PagesController@home')->name('adminHome');
 
         //config tbl
-        Route::get('/configtbl', 'Backend\ConfigTblController@index')->name('configTbl');
-        Route::get('/configtbl/edit/{id}', 'Backend\ConfigTblController@formEdit')->name('configTbl_edit');
-        Route::post('/configtbl/edit/{id}', 'Backend\ConfigTblController@postEdit');
+        Route::get('/configtbl', 'Backend\TablesController@index')->name('configTbl');
+        Route::get('/configtbl/edit/{id}', 'Backend\TablesController@formEdit')->name('configTbl_edit');
+        Route::post('/configtbl/edit/{id}', 'Backend\TablesController@postEdit');
     });
 });
 
