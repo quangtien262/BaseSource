@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 31, 2019 at 10:36 AM
+-- Generation Time: Feb 02, 2019 at 06:22 PM
 -- Server version: 8.0.12
 -- PHP Version: 7.1.19
 
@@ -69,7 +69,10 @@ INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
 
 CREATE TABLE `tables` (
   `id` int(15) NOT NULL,
-  `tbl_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `is_edit` int(11) DEFAULT '0',
+  `type_show` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'BASIC, DRAG_DROP',
+  `model_name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` date DEFAULT NULL,
   `updated_at` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -86,10 +89,13 @@ CREATE TABLE `table_field` (
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `type` int(11) DEFAULT NULL,
   `value_default` int(11) DEFAULT NULL,
+  `is_null` tinyint(2) DEFAULT '1',
   `max_length` int(11) DEFAULT NULL,
+  `have_edit` tinyint(1) DEFAULT '1',
+  `type_show` int(11) DEFAULT NULL,
+  `add2search` int(11) DEFAULT NULL,
   `created_at` date DEFAULT NULL,
-  `updated_at` date DEFAULT NULL,
-  `is_edit` int(11) DEFAULT '0'
+  `updated_at` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -164,13 +170,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `tables`
 --
 ALTER TABLE `tables`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `table_field`
 --
 ALTER TABLE `table_field`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
