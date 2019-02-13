@@ -4,7 +4,7 @@
             <em class="ion-close-round"></em>
         </div>
         <a class="sidebar-header-logo" href="#">
-            <img src="img/logo.png" data-svg-replace="img/logo.svg" alt="Logo">
+            <img src="/img/logo.png" data-svg-replace="img/logo.svg" alt="Logo">
             <span class="sidebar-header-logo-text">Centric</span>
         </a>
     </div>

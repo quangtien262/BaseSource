@@ -26,7 +26,8 @@ Route::group(['middleware' => 'auth'], function () {
         //config tbl
         Route::get('/configtbl', 'Backend\TablesController@index')->name('configTbl');
         Route::get('/configtbl/edit/{id}', 'Backend\TablesController@formEdit')->name('configTbl_edit');
-        Route::post('/configtbl/edit/{id}', 'Backend\TablesController@postEdit');
+        Route::post('/configtbl/edit-table/{id}', 'Backend\TablesController@postSbmitFormTable')->name('editTable');
+        Route::post('/configtbl/edit-column', 'Backend\TablesController@postSubmitFormColumn')->name('editColumn');
     });
 });
 
