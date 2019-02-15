@@ -7,22 +7,22 @@ use App\Model\TablesField;
 
 class ClassTables {
 
-    public function getTables() {
+    public function getAllTables() {
         return Tables::all();
     }
-    
+
     public function getTable($id) {
         return Tables::find($id);
     }
-    
+
     public function getColumn($id) {
         return TablesField::find($id);
     }
-    
+
     public function getColumnByTableId($tableId) {
         return TablesField::where('table_id', $tableId)->orderBy('sort_order', 'asc')->get();
     }
-    
+
     public function saveTable($id, $request) {
         if ($id > 0) {
             $tables = Tables::find($id);
@@ -41,6 +41,9 @@ class ClassTables {
         if (!empty($request['model_name'])) {
             $tables->model_name = $request['model_name'];
         }
+        if (!empty($request['display_name'])) {
+            $tables->display_name = $request['display_name'];
+        }
         $tables->save();
         return $tables;
     }
@@ -51,7 +54,6 @@ class ClassTables {
         } else {
             $block = new TablesField;
         }
-        $block->table_id = $tableId;
         if (!empty($request['column_name'])) {
             $block->name = $request['column_name'];
         }
@@ -64,14 +66,46 @@ class ClassTables {
         if (!empty($request['max_length'])) {
             $block->max_length = $request['max_length'];
         }
-        if (!empty($request['type_show'])) {
-            $block->type_show = $request['type_show'];
+        if (!empty($request['type_edit'])) {
+            $block->type_edit = $request['type_edit'];
         }
+        if (!empty($request['display_name'])) {
+            $block->display_name = $request['display_name'];
+        }
+        $block->sort_order = intval($request['sort_order']);
+        $block->show_in_list = $request['show_in_list'];
+        $block->table_id = $request['table_id'];
         $block->is_null = intval($request['is_null']);
         $block->edit = intval($request['edit']);
         $block->add2search = intval($request['add2search']);
         $block->save();
         return $block;
+    }
+
+    public function deleteTable($tableId) {
+        return Tables::find($tableId)->delete();
+    }
+
+    public function deleteColumn($columnId) {
+        return TablesField::find($columnId)->delete();
+    }
+
+    public function getHtmlMenuAdmin() {
+        $html = '';
+        $tables = self::getAllTables();
+        foreach ($tables as $table) {
+            $countData = app('EntityCommon')->getCountData($table->name);
+            $html .= '<li>
+                        <a class="ripple" href="' . route('listDataTbl', [$table->id]) . '">
+                            <span class="pull-right nav-label">
+                                <span class="badge bg-success">' . $countData . '</span> 
+                            </span>
+                            <span class="nav-icon"><em class="ion-gear-b"></em></span>
+                            <span>' . $table->display_name . '</span>
+                        </a>
+                    </li>';
+        }
+        return $html;
     }
 
 }

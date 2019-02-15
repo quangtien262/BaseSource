@@ -5,8 +5,13 @@ namespace App\Services\Entity;
 use Illuminate\Support\Facades\DB;
 
 class EntityCommon {
+
+    public function getCountData($tblName) {
+        return DB::table($tblName)->count();
+    }
+
     /*
-     * get all data of table, leftjoin with table data
+     * get data of table
      * $tblName: table name
      * $conditions: array condition, ex: ['id' => 1,]
      * $limit:  $limit = 0: get all item
@@ -15,27 +20,20 @@ class EntityCommon {
      * $order: sort order
      */
 
-    public function getDatasTblByConditions($tblName, $conditions = [], $limit = 0, $order = ['sort_order', 'asc'], $whereInConditions = []) {
-        $tblData = $tblName . '_data';
-
-        $data = DB::table($tblName)->select([
-            $tblName . ".id as tid",
-            $tblName . ".*",
-            $tblData . ".id as dataId",
-            $tblData . ".*"
-        ]);
+    public function getRowsByConditions($tblName, $conditions, $limit = 0, $order = ['sort_order', 'asc'], $whereInConditions = []) {
+        //select table
+        $data = DB::table($tblName);
+        //where condition if exist conditions
         foreach ($conditions as $colName => $colValue) {
             $data = $data->where($colName, $colValue);
         }
-
+        //wherein conditions if exist conditions
         if (!empty($whereInConditions)) {
             foreach ($whereInConditions as $key => $val) {
                 $data = $data->whereIn($key, $val);
             }
         }
-
-        $data = $data->leftJoin($tblData, $tblData . ".{$tblName}_id", $tblName . ".id")
-                ->orderBy($order[0], $order[1]);
+        //Check for the count of data
         if ($limit == 0) {
             $data = $data->get();
         } else if ($limit == 1) {
@@ -43,30 +41,7 @@ class EntityCommon {
         } else {
             $data = $data->paginate($limit);
         }
-        return $data;
-    }
 
-    /*
-     * get all data of table, leftjoin with table data
-     * $tblName: table name
-     * $conditions: array condition, ex: ['id' => 1,]
-     * $limit:  $limit = 0: get all item
-     *          $limit = 1: get first item
-     *          $limit > 1: get by $limit 
-     * $order: sort order
-     */
-    public function getRowsByConditions($tblName, $conditions, $limit = 0, $order = ['sort_order', 'asc']) {
-        $data = DB::table($tblName);
-        foreach ($conditions as $colName => $colValue) {
-            $data = $data->where($colName, $colValue);
-        }
-        if ($limit == 0) {
-            $data = $data->get();
-        } else if ($limit == 1) {
-            $data = $data->first();
-        } else {
-            $data = $data->paginate($limit);
-        }
         return $data;
     }
 
@@ -135,9 +110,22 @@ class EntityCommon {
         return $result;
     }
 
+    /*
+     * insert
+     * $tblName: table name
+     * $data: data insert, ex: ['column_name' => 'value insert',]
+     */
+
     public function insertData($tblName, $data) {
         $data['created_at'] = date('Y-m-d h:i:s');
+        $data['updated_at'] = $data['created_at'];
         $result = DB::table($tblName)->insert($data);
+        return $result;
+    }
+
+    public function updateData($tblName, $dataId, $data) {
+        $data['updated_at'] = date('Y-m-d h:i:s');
+        $result = DB::table($tblName)->where('id', $dataId)->update($data);
         return $result;
     }
 
@@ -181,7 +169,7 @@ class EntityCommon {
             $htmlList .= '<ol class="dd-list">';
             foreach ($list as $item) {
                 $img = '';
-                
+
                 if ($tblName != \TblName::BLOCK_LANDINGPAGE) {
                     $tblData = DB::table($tblName . '_data')->where($tblName . '_id', $item->id)->get();
                     $name_arr = [];
@@ -189,18 +177,17 @@ class EntityCommon {
                         $name_arr[] = $data->name;
                     }
                     $name = implode(' - ', $name_arr);
-                    
                 } else {
                     $name = $item->name;
-                    $img = '<a href="/img/template/'.$item->landingpage_id.'.png" data-gallery="" title="Block 01"><i data-pack="default" class="ion-image"></i></a>&nbsp;&nbsp;';
+                    $img = '<a href="/img/template/' . $item->landingpage_id . '.png" data-gallery="" title="Block 01"><i data-pack="default" class="ion-image"></i></a>&nbsp;&nbsp;';
                 }
-                
-                if($routeEdit == 'editLandingpage') {
+
+                if ($routeEdit == 'editLandingpage') {
                     $urlEdit = route($routeEdit, [$item->news_id, $item->landingpage_id, $item->id]);
                 } else {
                     $urlEdit = route($routeEdit, [$item->id]);
                 }
-                
+
                 if ($popup == true)
                     $even = ' onclick="loadPopupLarge(\'' . $urlEdit . '\')" data-toggle="modal" data-target=".bs-modal-lg" ';
                 else
