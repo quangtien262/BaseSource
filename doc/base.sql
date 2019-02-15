@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 15, 2019 lúc 11:39 AM
+-- Thời gian đã tạo: Th2 15, 2019 lúc 11:48 AM
 -- Phiên bản máy phục vụ: 10.1.36-MariaDB
 -- Phiên bản PHP: 7.2.11
 
@@ -53,19 +53,22 @@ CREATE TABLE `news` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `title` text COLLATE utf8_unicode_ci NOT NULL
+  `title` text COLLATE utf8_unicode_ci NOT NULL,
+  `select` int(11) DEFAULT NULL,
+  `summoner` text COLLATE utf8_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `news`
 --
 
-INSERT INTO `news` (`id`, `created_at`, `updated_at`, `description`, `title`) VALUES
-(1, '2019-02-14 21:38:57', '2019-02-14 21:38:57', 'Mô tả', 'Tiêu đề'),
-(2, '2019-02-15 00:41:23', '2019-02-15 02:23:36', 'tien test des', 'tien tét tieu de 2'),
-(3, '2019-02-15 00:42:33', '2019-02-15 00:42:33', 'tien test des', 'tien tét tieu de'),
-(4, '2019-02-15 02:16:04', '2019-02-15 02:16:04', 'tien test des 1', 'tien tét tieu de'),
-(5, '2019-02-15 02:16:14', '2019-02-15 02:23:25', 'tien test des 5', 'tien tét tieu de5');
+INSERT INTO `news` (`id`, `created_at`, `updated_at`, `description`, `title`, `select`, `summoner`, `image`) VALUES
+(1, '2019-02-14 21:38:57', '2019-02-14 21:38:57', 'Mô tả', 'Tiêu đề', NULL, '', NULL),
+(2, '2019-02-15 00:41:23', '2019-02-15 02:23:36', 'tien test des', 'tien tét tieu de 2', NULL, '', NULL),
+(3, '2019-02-15 00:42:33', '2019-02-15 00:42:33', 'tien test des', 'tien tét tieu de', NULL, '', NULL),
+(4, '2019-02-15 02:16:04', '2019-02-15 02:16:04', 'tien test des 1', 'tien tét tieu de', NULL, '', NULL),
+(5, '2019-02-15 02:16:14', '2019-02-15 02:23:25', 'tien test des 5', 'tien tét tieu de5', NULL, '', NULL);
 
 -- --------------------------------------------------------
 
@@ -153,9 +156,12 @@ CREATE TABLE `table_field` (
 --
 
 INSERT INTO `table_field` (`id`, `table_id`, `display_name`, `name`, `type`, `value_default`, `is_null`, `max_length`, `edit`, `type_edit`, `add2search`, `show_in_list`, `sort_order`, `created_at`, `updated_at`) VALUES
-(5, 9, 'Mô tả', 'description', 'TEXT', NULL, 1, 255, 1, 'textarea', 1, 1, 1, '2019-02-14', '2019-02-15'),
-(6, 9, 'Tiêu đề', 'title', 'TEXT', NULL, 1, NULL, 1, 'text', 0, 1, 0, '2019-02-14', '2019-02-15'),
-(7, 12, 'name', 'name', 'INT', NULL, 0, NULL, 0, NULL, 0, 0, 0, '2019-02-14', '2019-02-14');
+(5, 9, 'Mô tả', 'description', 'TEXT', NULL, 1, 255, 1, 'textarea', 1, 1, 3, '2019-02-14', '2019-02-15'),
+(6, 9, 'Tiêu đề', 'title', 'TEXT', NULL, 1, NULL, 1, 'text', 0, 1, 2, '2019-02-14', '2019-02-15'),
+(7, 12, 'name', 'name', 'INT', NULL, 0, NULL, 0, NULL, 0, 0, 0, '2019-02-14', '2019-02-14'),
+(8, 9, 'select', 'select', 'INT', NULL, 1, NULL, 1, 'select', 0, 0, 3, '2019-02-15', '2019-02-15'),
+(9, 9, 'summoner', 'summoner', 'TEXT', NULL, 1, NULL, 1, 'summoner', 0, 0, 10, '2019-02-15', '2019-02-15'),
+(10, 9, 'image', 'image', 'VARCHAR', NULL, 0, 254, 1, 'image_laravel', 0, 1, 1, '2019-02-15', '2019-02-15');
 
 -- --------------------------------------------------------
 
@@ -258,7 +264,7 @@ ALTER TABLE `tables`
 -- AUTO_INCREMENT cho bảng `table_field`
 --
 ALTER TABLE `table_field`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
