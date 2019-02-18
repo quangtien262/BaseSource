@@ -57,10 +57,8 @@
     <!-- End Search template-->
     <!-- Settings template-->
     @include('backend.element.setting')
-
-
-
     <!-- Scripts -->
     @include('backend.element.script')
+    @yield('script')
 </body>
 </html>

@@ -60,7 +60,6 @@
                                         <th>Title</th>
                                         <th>Type</th>
                                         <th>Default</th>
-                                        <th>Null</th>
                                         <th>Edit</th>
                                         <th>Search</th>
                                         <th>Type show</th>
@@ -74,7 +73,6 @@
                                         <td></td>
                                         <td>Int 15</td>
                                         <td>None</td>
-                                        <td>Not Null</td>
                                         <td>Not Edit</td>
                                         <td>No</td>
                                         <td>No</td>
@@ -90,7 +88,6 @@
                                         <td>{{ $col->display_name }}</td>
                                         <td>{{ $col->type . ' ' . $col->max_length }}</td>
                                         <td>{{ $col->value_default }}</td>
-                                        <td>{{ empty($col->is_null) ? 'Not Null':'Null' }}</td>
                                         <td>{{ empty($col->edit) ? 'No':'Yes' }}</td>
                                         <td>{{ empty($col->add2search) ? 'No':'Yes' }}</td>
                                         <td>{{ $col->type_edit }}</td>
@@ -138,9 +135,9 @@
                                         <input value="{{ $column->value_default or '' }}" class="form-control" type="text" name="value_default" placeholder="default"/>
                                     </div>
                                     <div class="col-xs-6 col-sm-3">
-                                        <select name="is_null" class="form-control" required="">
-                                            @foreach(unserialize(IS_NULL) as $key => $val)
-                                                <option {{ isset($column->is_null) && $column->is_null == $key ? 'selected="selected"':'' }}  value="{{$key}}">{{$val}}</option>
+                                        <select name="require" class="form-control" required="">
+                                            @foreach(unserialize(IS_REQUIRE) as $key => $val)
+                                                <option {{ isset($column->require) && $column->require == $key ? 'selected="selected"':'' }}  value="{{$key}}">{{$val}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -152,12 +149,7 @@
                                         </select>
                                     </div>
                                     <div class="col-xs-6 col-sm-3">
-                                        <select name="type_edit" class="form-control">
-                                            <option value="">Type show</option>
-                                            @foreach(unserialize(TYPE_EDIT) as $typeValue => $typeName)
-                                                <option {{ isset($column->type_edit) && $column->type_edit == $typeValue ? 'selected="selected"':'' }}  value="{{$typeValue}}">{{$typeName}}</option>
-                                            @endforeach
-                                        </select>
+                                        <input value="{{ $column->sort_order or '' }}" class="form-control" type="number" name="sort_order" placeholder="Sort Order"/>
                                     </div>
                                     <div class="col-xs-6 col-sm-3">
                                         <select name="add2search" class="form-control">
@@ -174,7 +166,19 @@
                                         </select>
                                     </div>
                                     <div class="col-xs-6 col-sm-3">
-                                        <input value="{{ $column->sort_order or '' }}" class="form-control" type="number" name="sort_order" placeholder="Max length"/>
+                                        <select name="type_edit" class="form-control">
+                                            @foreach(unserialize(TYPE_EDIT) as $typeValue => $typeName)
+                                                <option {{ isset($column->type_edit) && $column->type_edit == $typeValue ? 'selected="selected"':'' }}  value="{{$typeValue}}">{{$typeName}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-3">
+                                        <select name="select_table_id" class="form-control">
+                                            <option value="">Please chose table data</option>
+                                            @foreach($tables as $tbl)
+                                                <option {{ isset($column->select_table_id) && $column->select_table_id == $tbl->id ? 'selected="selected"':'' }}  value="{{$tbl->id}}">{{$tbl->name}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="row">

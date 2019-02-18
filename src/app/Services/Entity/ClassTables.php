@@ -3,7 +3,7 @@
 namespace App\Services\Entity;
 
 use App\Model\Tables;
-use App\Model\TablesField;
+use App\Model\TablesColumn;
 
 class ClassTables {
 
@@ -16,11 +16,11 @@ class ClassTables {
     }
 
     public function getColumn($id) {
-        return TablesField::find($id);
+        return TablesColumn::find($id);
     }
 
     public function getColumnByTableId($tableId) {
-        return TablesField::where('table_id', $tableId)->orderBy('sort_order', 'asc')->get();
+        return TablesColumn::where('table_id', $tableId)->orderBy('sort_order', 'asc')->get();
     }
 
     public function saveTable($id, $request) {
@@ -50,9 +50,9 @@ class ClassTables {
 
     public function saveColumn($request) {
         if (!empty($request['column_id'])) {
-            $block = TablesField::find($request['column_id']);
+            $block = TablesColumn::find($request['column_id']);
         } else {
-            $block = new TablesField;
+            $block = new TablesColumn;
         }
         if (!empty($request['column_name'])) {
             $block->name = $request['column_name'];
@@ -72,12 +72,13 @@ class ClassTables {
         if (!empty($request['display_name'])) {
             $block->display_name = $request['display_name'];
         }
+        $block->table_id = intval($request['table_id']);
         $block->sort_order = intval($request['sort_order']);
         $block->show_in_list = $request['show_in_list'];
-        $block->table_id = $request['table_id'];
-        $block->is_null = intval($request['is_null']);
+        $block->require = $request['require'];
         $block->edit = intval($request['edit']);
         $block->add2search = intval($request['add2search']);
+        $block->select_table_id = intval($request['select_table_id']);
         $block->save();
         return $block;
     }
@@ -87,7 +88,7 @@ class ClassTables {
     }
 
     public function deleteColumn($columnId) {
-        return TablesField::find($columnId)->delete();
+        return TablesColumn::find($columnId)->delete();
     }
 
     public function getHtmlMenuAdmin() {
@@ -105,6 +106,26 @@ class ClassTables {
                         </a>
                     </li>';
         }
+        return $html;
+    }
+
+    public function getHtmlSelectForTable($name, $tblDataId, $selectedId = 0, $multiple = false) {
+        if ($multiple) {
+            $html = '<select multiple class="form-control" name="' . $name . '">';
+        } else {
+            $html = '<select class="form-control" name="' . $name . '"><option value="0">Chọn</option>';
+        }
+        $table = self::getTable($tblDataId);
+        $tableData = app('EntityCommon')->getRowsByConditions($table->name, [], 0, $order = ['id', 'asc']);
+//        dd($tableData);
+        foreach ($tableData as $data) {
+            $selected = '';
+            if ($data->id == $selectedId) {
+                $selected = 'selected="selected"';
+            }
+            $html .= '<option ' . $selected . ' value="' . $data->id . '">' . $data->name . '</option>';
+        }
+        $html .= '</select>';
         return $html;
     }
 

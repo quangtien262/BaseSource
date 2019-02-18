@@ -11,19 +11,19 @@ use Illuminate\Database\Migrations\Migration;
 class TablesController extends Controller {
 
     public function index() {
-        //SELECT column_name , data_type ,character_maximum_length FROM information_schema.columns WHERE table_name = 'tables' and (column_name = 'id' or column_name = 'tbl_name')
         $tables = app('ClassTables')->getAllTables();
         return view('backend.tables.index', compact('tables'));
     }
 
     public function formEdit(Request $request, $tableId = 0) {
         $table = app('ClassTables')->getTable($tableId);
+        $tables = app('ClassTables')->getAllTables();
         $columns = app('ClassTables')->getColumnByTableId($tableId);
         if (!empty($request->input('column'))) {
             $column = app('ClassTables')->getColumn($request->input('column'));
         }
 
-        return view('backend.tables.formTables', compact('tableId', 'table', 'columns', 'column'));
+        return view('backend.tables.formTables', compact('tableId', 'table', 'tables', 'columns', 'column'));
     }
 
     public function postSbmitFormTable(Request $request, $tableId = 0) {
@@ -40,6 +40,7 @@ class TablesController extends Controller {
             if ($tableId == 0) {
                 Schema::create($request->input('table_name'), function (Blueprint $table) use ($request) {
                     $table->increments('id');
+                    $table->integer('sort_order')->nullable()->default(0);
                     $table->timestamps();
                     $table->charset = 'utf8';
                     $table->collation = 'utf8_unicode_ci';
@@ -50,8 +51,6 @@ class TablesController extends Controller {
                     Schema::rename($tablePreview->name, $request->input('table_name'));
                 }
             }
-            //delete tbl
-            //Schema::dropIfExists('users');
             \DB::commit();
             return redirect(route('configTbl_edit', [$tables->id]));
         } catch (\Exception $e) {
@@ -137,8 +136,7 @@ class TablesController extends Controller {
     public function formDataTbl(Request $request, $tableId, $dataId) {
         $table = app('ClassTables')->getTable($tableId);
         $columns = app('ClassTables')->getColumnByTableId($tableId);
-        $data = app('EntityCommon')->getDataById($table->name, $dataId);
-        $data = json_decode(json_encode($data), True);
+        $data = json_decode(json_encode(app('EntityCommon')->getDataById($table->name, $dataId)), True);
         return view('backend.tables.editDataTbl', compact('tableId', 'dataId', 'table', 'columns', 'data'));
     }
 
@@ -176,39 +174,19 @@ class TablesController extends Controller {
                 }
                 break;
             case "VARCHAR":
-                if (!empty($isNull)) {
-                    $table->string($fieldName)->default($default);
-                } else {
-                    $table->string($fieldName)->nullable()->default($default);
-                }
+                $table->string($fieldName)->nullable()->default($default);
                 break;
             case "TEXT":
-                if (!empty($isNull)) {
-                    $table->text($fieldName)->default($default);
-                } else {
-                    $table->text($fieldName)->nullable()->default($default);
-                }
+                $table->text($fieldName)->nullable()->default($default);
                 break;
             case "LONGTEXT":
-                if (!empty($isNull)) {
-                    $table->longText($fieldName);
-                } else {
-                    $table->longText($fieldName)->nullable();
-                }
+                $table->longText($fieldName)->nullable();
                 break;
             case "DATE":
-                if (!empty($isNull)) {
-                    $table->date($fieldName);
-                } else {
-                    $table->date($fieldName)->nullable()->default($default);
-                }
+                $table->date($fieldName)->nullable()->default($default);
                 break;
             case "DATETIME":
-                if (!empty($isNull)) {
-                    $table->dateTime($fieldName);
-                } else {
-                    $table->dateTime($fieldName)->nullable();
-                }
+                $table->dateTime($fieldName)->nullable();
                 break;
         }
         return $table;
@@ -217,46 +195,22 @@ class TablesController extends Controller {
     private function changeTypeForColumn($table, $fieldName, $type, $maxlength, $default, $isNull = 1) {
         switch ($type) {
             case "INT":
-                if (!empty($isNull)) {
-                    $table->integer($fieldName)->default($default)->change();
-                } else {
-                    $table->integer($fieldName)->nullable()->default($default)->change();
-                }
+                $table->integer($fieldName)->nullable()->default($default)->change();
                 break;
             case "VARCHAR":
-                if (!empty($isNull)) {
-                    $table->string($fieldName)->default($default)->change();
-                } else {
-                    $table->string($fieldName)->nullable()->default($default)->change();
-                }
+                $table->string($fieldName)->nullable()->default($default)->change();
                 break;
             case "TEXT":
-                if (!empty($isNull)) {
-                    $table->text($fieldName)->default($default);
-                } else {
-                    $table->text($fieldName)->nullable()->default($default)->change();
-                }
+                $table->text($fieldName)->nullable()->default($default)->change();
                 break;
             case "LONGTEXT":
-                if (!empty($isNull)) {
-                    $table->longText($fieldName)->default($default)->change();
-                } else {
-                    $table->longText($fieldName)->nullable()->default($default)->change();
-                }
+                $table->longText($fieldName)->nullable()->default($default)->change();
                 break;
             case "DATE":
-                if (!empty($isNull)) {
-                    $table->date($fieldName)->change();
-                } else {
-                    $table->date($fieldName)->nullable()->change();
-                }
+                $table->date($fieldName)->nullable()->change();
                 break;
             case "DATETIME":
-                if (!empty($isNull)) {
-                    $table->dateTime($fieldName)->change();
-                } else {
-                    $table->dateTime($fieldName)->nullable()->change();
-                }
+                $table->dateTime($fieldName)->nullable()->change();
                 break;
         }
         return $table;

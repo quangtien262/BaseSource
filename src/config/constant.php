@@ -6,24 +6,36 @@ define("RETURN_ERROR", 'error');
 
 
 define("COLUMN_TYPE", serialize(['INT', 'VARCHAR', 'TEXT', 'LONGTEXT', 'DATE', 'DATETIME']));
-define("IS_NULL", serialize(['NOT NULL', 'NULL']));
-define("IS_EDIT", serialize(['NOT EDIT', 'EDIT']));
-define("ADD2SEARCH", serialize(['Not show in form search', 'Add to form search']));
-define("SHOW_IN_LIST", serialize(['Not show in list', 'show in list']));
+define("IS_REQUIRE", serialize([
+    0 => 'NOT REQUIRE',
+    1 => 'REQUIRE'
+]));
+define("IS_EDIT", serialize([
+    1 => 'EDIT',
+    0 => 'NOT EDIT'
+]));
+define("ADD2SEARCH", serialize([
+    1 => 'Add to form search',
+    0 => 'Not show in form search'
+]));
+define("SHOW_IN_LIST", serialize([
+    1 => 'show in list',
+    0 => 'Not show in list'
+    ]));
 define("TYPE_EDIT", serialize([
-    'text' => 'Text', 
+    'text' => 'Text',
     'textarea' => 'Textarea',
-    'select' => 'Select', 
-    'selects' => 'Multiple select', 
-    'select2' => 'Select <Library select2>', 
-    'selects2' => 'Multiple select <Library select2>', 
-    'summoner' => 'Summoner', 
-    'ckeditor' => 'Ckeditor', 
-    'image_laravel' => 'Image <Laravel file manager>', 
+    'select' => 'Select',
+    'selects' => 'Multiple select',
+    'select2' => 'Select <Library select2>',
+    'selects2' => 'Multiple select <Library select2>',
+    'summoner' => 'Summoner',
+    'ckeditor' => 'Ckeditor',
+    'image_laravel' => 'Image <Laravel file manager>',
     'images_laravel' => 'Images <Laravel file manager>',
-    'image' => 'Image', 
+    'image' => 'Image',
     'images' => 'Images',
     'file' => 'File',
     'files' => 'Multiple file'
-    ]));
+]));
 
