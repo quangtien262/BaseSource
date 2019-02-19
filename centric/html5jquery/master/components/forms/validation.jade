@@ -1,0 +1,166 @@
+extends ../core/core.layout
+block pagetitle
+    - pageTitle = 'Forms Validation'
+block content
+    .container-fluid
+        h5.mt0 jQuery Form validation
+        p.mb-lg This jQuery plugin makes simple clientside form validation easy, whilst still offering plenty of customization options. It makes a good choice if you’re building something new from scratch, but also when you’re trying to integrate something into an existing application with lots of existing markup.
+        // START row
+        form.form-validate#form-register(name="registerForm", novalidate='')
+            // START panel
+            .card.card-default
+                .card-heading
+                    small.pull-right * Required fields
+                    .panel-title Form Register
+                .card-body
+                    .mda-form-group
+                        .mda-form-control
+                            input.form-control(type='email', placeholder="mail@example.com", name='email', required='')
+                            .mda-form-control-line
+                            label.control-label Email Address *
+                    .mda-form-group
+                        .mda-form-control
+                            input#id-password.form-control(type='password', name="password1", required='')
+                            .mda-form-control-line
+                            label.control-label Password *
+                    .mda-form-group
+                        .mda-form-control
+                            input.form-control(type='password', name="confirm_match", required='')
+                            .mda-form-control-line
+                            label.control-label Confirm Password *
+                .card-body
+                    .clearfix
+                        .pull-left
+                            .checkbox.c-checkbox
+                                label
+                                    input(type='checkbox', name="agreements", required='')
+                                    span.ion-checkmark-round
+                                    | I agree with the
+                                    a(href="#")  terms
+                        .pull-right.mt-sm
+                            button.btn.btn-primary.btn-flat(type='submit') Register
+            // END panel
+
+        form.form-validate#form-subscribe(name="subscribeForm", novalidate='')
+            // START panel
+            .card.card-default
+                .card-body
+                    .form-group
+                        .mda-input-group.input-group
+                            .mda-form-control
+                                input.form-control(type='email', placeholder="mail@example.com", name='feedemail', required='')
+                                .mda-form-control-line
+                                label.control-label Subscribe
+                            span.mda-input-group-addon
+                                em.ion-email.icon-lg
+                            span.input-group-btn
+                                button.btn.btn-default.btn-circle(type='submit') Go!
+
+        .card
+            .card-body
+                // START row
+                .row
+                    .col-md-12
+                        form.form-validate.form-horizontal#form-example(name="form.formValidate" novalidate="")
+                            fieldset.b0
+                                legend Basics
+                            fieldset
+                                .form-group
+                                    label.col-sm-2.control-label Required Text
+                                    .col-sm-6
+                                        input.form-control(type='text', name='sometext', required='')
+                            fieldset
+                                .form-group
+                                    label.col-sm-2.control-label Email
+                                    .col-sm-6
+                                        input.form-control(type='email', placeholder="mail@example.com", name='email', required='')
+                            fieldset
+                                .form-group
+                                    label.col-sm-2.control-label Checkbox &amp; Radio
+                                    .col-sm-6
+                                        .checkbox.c-checkbox
+                                            label
+                                                input(type='checkbox', required='', name="checkbox")
+                                                span.ion-checkmark-round
+                                                |  Option one
+                                        .radio.c-radio.c-radio-nofont
+                                            label
+                                                input(type='radio', required='', name='radio', value='option1')
+                                                span.ion-record
+                                                |  Option one
+                                        .radio.c-radio.c-radio-nofont
+                                            label
+                                                input(type='radio', required='', name='radio', value='option2')
+                                                span.ion-record
+                                                |  Option two checked
+                            fieldset
+                                .form-group
+                                    label.col-sm-2.control-label Select
+                                    .col-sm-6
+                                        select.form-control(name='select', required="")
+                                            option(value="") Nothing
+                                            option(value="1") Option 1
+                                            option(value="2") Option 2
+                                            option(value="3") Option 3
+                                            option(value="4") Option 4
+                            fieldset
+                                .form-group
+                                    label.col-sm-2.control-label Number
+                                    .col-sm-6
+                                        input.form-control(type='number', name='anumber', required='')
+                            fieldset
+                                .form-group
+                                    label.col-sm-2.control-label Digits
+                                    .col-sm-6
+                                        input.form-control(type='text', name='digits')
+                            fieldset.bb0
+                                .form-group
+                                    label.col-sm-2.control-label Url
+                                    .col-sm-6
+                                        input.form-control(type='url', name='url', placeholder="protocol://")
+                            fieldset.b0
+                                legend Lengths
+                            fieldset
+                                .form-group
+                                    label.col-sm-2.control-label Min
+                                    .col-sm-6
+                                        input.form-control(type='text', name='min')
+                            fieldset
+                                .form-group
+                                    label.col-sm-2.control-label Max
+                                    .col-sm-6
+                                        input.form-control(type='text', name='max')
+                            fieldset
+                                .form-group
+                                    label.col-sm-2.control-label Minlength
+                                    .col-sm-6
+                                        input.form-control(type='text', name='minlength')
+                            fieldset
+                                .form-group
+                                    label.col-sm-2.control-label Maxlength
+                                    .col-sm-6
+                                        input.form-control(type='text', name='maxlength')
+                            fieldset.b0
+                                legend Range
+                            fieldset.b0
+                                .form-group
+                                    label.col-sm-2.control-label Length range
+                                    .col-sm-6
+                                        input.form-control(type='text', name='length')
+                            fieldset.b0
+                                legend Comparison
+                            fieldset.b0
+                                .form-group
+                                    label.col-sm-2.control-label Equal to
+                                    .col-sm-6
+                                        .row
+                                            .col-xs-6
+                                                input.form-control#id-source(type='password', name="match1")
+                                            .col-xs-6
+                                                input.form-control(type='password', name="confirm_match")
+                            hr
+                            .text-center
+                                button.btn.btn-primary(type='submit') Run validation
+                            // END panel
+                // END row
+

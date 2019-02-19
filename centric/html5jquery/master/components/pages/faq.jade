@@ -1,0 +1,93 @@
+extends ../core/core.layout
+block pagetitle
+    - pageTitle = 'FAQ'
+block content
+    .container.container-fluid
+        .card: .card-body
+            .text-center.pb-lg
+                h3.text-bold Frequently Asked Questions
+                p.text-muted Proin non lacinia sapien. Vivamus lorem justo, sollicitudin ac sollicitudin ut, aliquet sed tellus.
+                    br
+                    | Sed venenatis ullamcorper mauris et malesuada. Nunc vel ipsum vitae erat pharetra rhoncus eu eu tellus.
+                br
+                p Have more questions?
+                button(type="button").btn.btn-info Contact with Us
+
+            .row.mt-lg
+                .col-md-6
+                    .panel-group#accordion1
+                        .panel.panel-default.b0
+                            .panel-heading: h4.panel-title: a(data-toggle="collapse", data-parent="#accordion1", href="#acc1collapse1")
+                                small: em.ion-arrow-right-c.text-muted.mr.icon-lg
+                                span What Assets Can I Use In My Items?
+                            #acc1collapse1.panel-collapse.collapse.in
+                                .panel-body
+                                    p Donec congue sagittis mi sit amet tincidunt. Quisque sollicitudin massa vel erat tincidunt blandit. Curabitur quis leo nulla. Phasellus faucibus placerat luctus. Integer fermentum molestie massa at congue. Quisque quis quam dictum diam volutpat adipiscing.
+                                    p Proin ut urna enim. Nam non enim vitae mi semper egestas. Pellentesque convallis mauris eu elit imperdiet quis eleifend quam aliquet.
+                                    .pull-right
+                                        small.text-muted.mr Was this article helpful?
+                                        button(type="button").btn.btn-default.btn-xs: em.ion-chevron-up.text-muted
+                                        button(type="button").btn.btn-default.btn-xs: em.ion-chevron-down.text-muted
+                        .panel.panel-default.b0
+                            .panel-heading: h4.panel-title: a(data-toggle="collapse", data-parent="#accordion1", href="#acc1collapse2")
+                                small: em.ion-arrow-right-c.text-muted.mr.icon-lg
+                                span Where is the Market Terms?
+                            #acc1collapse2.panel-collapse.collapse
+                                .panel-body
+                                    p Donec congue sagittis mi sit amet tincidunt. Quisque sollicitudin massa vel erat tincidunt blandit. Curabitur quis leo nulla. Phasellus faucibus placerat luctus. Integer fermentum molestie massa at congue. Quisque quis quam dictum diam volutpat adipiscing.
+                                    p Proin ut urna enim. Nam non enim vitae mi semper egestas. Pellentesque convallis mauris eu elit imperdiet quis eleifend quam aliquet.
+                                    .pull-right
+                                        small.text-muted.mr Was this article helpful?
+                                        button(type="button").btn.btn-default.btn-xs: em.ion-chevron-up.text-muted
+                                        button(type="button").btn.btn-default.btn-xs: em.ion-chevron-down.text-muted
+                        .panel.panel-default.b0
+                            .panel-heading: h4.panel-title: a(data-toggle="collapse", data-parent="#accordion1", href="#acc1collapse3")
+                                small: em.ion-arrow-right-c.text-muted.mr.icon-lg
+                                span Morbi pretium varius aliquam?
+                            #acc1collapse3.panel-collapse.collapse
+                                .panel-body
+                                    p Donec congue sagittis mi sit amet tincidunt. Quisque sollicitudin massa vel erat tincidunt blandit. Curabitur quis leo nulla. Phasellus faucibus placerat luctus. Integer fermentum molestie massa at congue. Quisque quis quam dictum diam volutpat adipiscing.
+                                    p Proin ut urna enim. Nam non enim vitae mi semper egestas. Pellentesque convallis mauris eu elit imperdiet quis eleifend quam aliquet.
+                                    .pull-right
+                                        small.text-muted.mr Was this article helpful?
+                                        button(type="button").btn.btn-default.btn-xs: em.ion-chevron-up.text-muted
+                                        button(type="button").btn.btn-default.btn-xs: em.ion-chevron-down.text-muted
+                .col-md-6
+                    .panel-group#accordion2
+                        .panel.panel-default.b0
+                            .panel-heading: h4.panel-title: a(data-toggle="collapse", data-parent="#accordion2", href="#acc2collapse1")
+                                small: em.ion-arrow-right-c.text-muted.mr.icon-lg
+                                span How to Contact an Author
+                            #acc2collapse1.panel-collapse.collapse
+                                .panel-body
+                                    p Donec congue sagittis mi sit amet tincidunt. Quisque sollicitudin massa vel erat tincidunt blandit. Curabitur quis leo nulla. Phasellus faucibus placerat luctus. Integer fermentum molestie massa at congue. Quisque quis quam dictum diam volutpat adipiscing.
+                                    p Proin ut urna enim. Nam non enim vitae mi semper egestas. Pellentesque convallis mauris eu elit imperdiet quis eleifend quam aliquet.
+                                    .pull-right
+                                        small.text-muted.mr Was this article helpful?
+                                        button(type="button").btn.btn-default.btn-xs: em.ion-chevron-up.text-muted
+                                        button(type="button").btn.btn-default.btn-xs: em.ion-chevron-down.text-muted
+                        .panel.panel-default.b0
+                            .panel-heading: h4.panel-title: a(data-toggle="collapse", data-parent="#accordion2", href="#acc2collapse2")
+                                small: em.ion-arrow-right-c.text-muted.mr.icon-lg
+                                span What is Item Support?
+                            #acc2collapse2.panel-collapse.collapse.in
+                                .panel-body
+                                    p Donec congue sagittis mi sit amet tincidunt. Quisque sollicitudin massa vel erat tincidunt blandit. Curabitur quis leo nulla. Phasellus faucibus placerat luctus. Integer fermentum molestie massa at congue. Quisque quis quam dictum diam volutpat adipiscing.
+                                    p Proin ut urna enim. Nam non enim vitae mi semper egestas. Pellentesque convallis mauris eu elit imperdiet quis eleifend quam aliquet.
+                                    .pull-right
+                                        small.text-muted.mr Was this article helpful?
+                                        button(type="button").btn.btn-default.btn-xs: em.ion-chevron-up.text-muted
+                                        button(type="button").btn.btn-default.btn-xs: em.ion-chevron-down.text-muted
+                        .panel.panel-default.b0
+                            .panel-heading: h4.panel-title: a(data-toggle="collapse", data-parent="#accordion2", href="#acc2collapse3")
+                                small: em.ion-arrow-right-c.text-muted.mr.icon-lg
+                                span Where Is My Purchase Code?
+                            #acc2collapse3.panel-collapse.collapse
+                                .panel-body
+                                    p Donec congue sagittis mi sit amet tincidunt. Quisque sollicitudin massa vel erat tincidunt blandit. Curabitur quis leo nulla. Phasellus faucibus placerat luctus. Integer fermentum molestie massa at congue. Quisque quis quam dictum diam volutpat adipiscing.
+                                    p Proin ut urna enim. Nam non enim vitae mi semper egestas. Pellentesque convallis mauris eu elit imperdiet quis eleifend quam aliquet.
+                                    .pull-right
+                                        small.text-muted.mr Was this article helpful?
+                                        button(type="button").btn.btn-default.btn-xs: em.ion-chevron-up.text-muted
+                                        button(type="button").btn.btn-default.btn-xs: em.ion-chevron-down.text-muted
+

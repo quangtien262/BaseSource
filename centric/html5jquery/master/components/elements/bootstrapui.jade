@@ -1,0 +1,510 @@
+extends ../core/core.layout
+block pagetitle
+    - pageTitle = 'Bootstrap'
+block content
+    // Breadcrumb next to view title
+    ul.breadcrumb.breadcrumb-lead
+        li
+            a(href='dashboard.html') Home
+        li
+            a(href='dashboard.html') Dashboard
+        li.active
+            span Bootstrap
+
+    .container-fluid
+
+        // START row
+        .row
+            .col-lg-12
+                .jumbotron
+                    .container
+                        h1 Bootstrap Jumbotron
+                        p
+                            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing.
+                        p
+                            a.btn.btn-primary.btn-lg(role='button') Learn more
+        // END row
+
+        // START row
+        .row
+            .col-lg-6
+                // START panel
+                .panel
+                    .panel-heading
+                        | Alert Styles
+                    .panel-body
+                        .alert.alert-success
+                            | Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            a.alert-link(href='#') Alert Link
+                        .alert.alert-info
+                            | Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            a.alert-link(href='#') Alert Link
+                        .alert.alert-danger
+                            | Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            a.alert-link(href='#') Alert Link
+                        .alert.alert-warning
+                            | Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            a.alert-link(href='#') Alert Link
+                // END panel
+
+                // START panel
+                .panel
+                    .panel-heading Progress Bar
+                    .panel-body
+                        h4 Static
+                        .progress
+                            .progress-bar(role='progressbar', aria-valuenow='60', aria-valuemin='0', aria-valuemax='100', style='width: 60%;') 60%
+                        .progress
+                            .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='60', aria-valuemin='0', aria-valuemax='100', style='width: 60%;') 60%
+                        .progress
+                            .progress-bar.progress-bar-danger(role='progressbar', aria-valuenow='60', aria-valuemin='0', aria-valuemax='100', style='width: 60%;') 60%
+
+                        h4 Striped
+                        .progress
+                            .progress-bar.progress-bar-success.progress-bar-striped(role='progressbar', aria-valuenow='40', aria-valuemin='0', aria-valuemax='100', style='width: 40%')
+                                span.sr-only 40% Complete (success)
+                        .progress
+                            .progress-bar.progress-bar-info.progress-bar-striped(role='progressbar', aria-valuenow='20', aria-valuemin='0', aria-valuemax='100', style='width: 20%')
+                                span.sr-only 20% Complete
+                        .progress
+                            .progress-bar.progress-bar-striped.active(role='progressbar', aria-valuenow='45', aria-valuemin='0', aria-valuemax='100', style='width: 45%')
+                                span.sr-only 45% Complete
+
+                        h4 Stacked
+                        .progress
+                            .progress-bar.progress-bar-success(style='width: 35%')
+                                span.sr-only 35% Complete (success)
+                            .progress-bar.progress-bar-warning.progress-bar-striped(style='width: 20%')
+                                span.sr-only 20% Complete (warning)
+                            .progress-bar.progress-bar-danger(style='width: 10%')
+                                span.sr-only 10% Complete (danger)
+
+                // END panel
+                // START panel
+                .panel
+                    .panel-heading Tooltips
+                    .panel-body
+                        div
+                            .form-group
+                                button.btn.btn-default(type='button', data-toggle="tooltip", data-placement='left', title='Tooltip on left') Tooltip on left
+                                button.btn.btn-default(type='button', data-toggle="tooltip", data-placement='top', title='Tooltip on top') Tooltip on top
+                                button.btn.btn-default(type='button', data-toggle="tooltip", data-placement='bottom', title='Tooltip on bottom') Tooltip on bottom
+                                button.btn.btn-default(type='button', data-toggle="tooltip", data-placement='right', title='Tooltip on right') Tooltip on right
+                            p
+                                | Pellentesque
+                                a(href='#', data-toggle="tooltip", title='Some text') eget nunc scelerisque
+                                | ,
+                                | sit amet venenatis urna cursus eget nunc scelerisque viverra mauris, in
+                                | aliquam. Tincidunt lobortis feugiat vivamus at
+                                a(href='#', data-placement='left', data-toggle="tooltip" title='On the Left!') left
+                                | eget
+                                | arcu dictum varius duis at consectetur lorem. Vitae elementum curabitur
+                                a(href='#', data-placement='right', data-toggle="tooltip" title='On the Right!') right
+                                | nunc sed velit dignissim sodales ut eu sem integer vitae. Turpis egestas
+                                a(href='#', data-placement='bottom', data-toggle="tooltip" title='On the Bottom!') bottom
+                                | pharetra convallis posuere morbi leo urna,
+                                a(href='#', data-animation='true', data-toggle="tooltip" title='I don\'t fade. :-(') fading
+                                | at elementum eu, facilisis sed odio morbi quis commodo odio. In cursus
+                                a(href='#', data-delay='1000', data-toggle="tooltip" title='appears with delay') delayed
+                                | turpis massa tincidunt dui ut.
+                            p
+                                | I can even contain HTML.
+                                a(href='#', data-toggle="tooltip" data-html="true" title='<b>Check me bold</b>') Check me out!
+                            form(role='form')
+                                .form-group
+                                    label Or use custom triggers, like focus:
+                                    input.form-control(type='text', value='Click me!', data-toggle="tooltip" data-title='See? Now click away...', data-trigger='focus', data-placement='top')
+                // END panel
+
+            .col-lg-6
+
+                // START panel
+                .panel
+                    .panel-heading
+                        | Modals
+                    .panel-body
+                        // Button trigger modal
+                        button.btn.btn-primary(type='button', data-toggle='modal', data-target='.bs-example-modal-lg') Large modal
+                        button.btn.btn-primary(type='button', data-toggle='modal', data-target='.bs-example-modal-sm') Small modal
+                // END panel
+                // START panel
+                .panel
+                    .panel-heading
+                        | Popovers
+                    .panel-body
+                        h4 Live demo
+                        button.btn.btn-lg.btn-danger(type='button', data-toggle='popover', title='Popover title', data-content="And here's some amazing content. It's very engaging. Right?") Click to toggle popover
+
+                        h4 Positional
+                        button.btn.btn-default(type='button', data-container='body', data-toggle='popover', data-placement='left', data-content='Vivamus sagittis lacus vel augue laoreet rutrum faucibus.')
+                          | Popover on left
+                        button.btn.btn-default(type='button', data-container='body', data-toggle='popover', data-placement='top', data-content='Vivamus sagittis lacus vel augue laoreet rutrum faucibus.')
+                          | Popover on top
+                        button.btn.btn-default(type='button', data-container='body', data-toggle='popover', data-placement='bottom', data-content='Vivamus\
+                        sagittis lacus vel augue laoreet rutrum faucibus.')
+                          | Popover on bottom
+                        button.btn.btn-default(type='button', data-container='body', data-toggle='popover', data-placement='right', data-content='Vivamus sagittis lacus vel augue laoreet rutrum faucibus.')
+                          | Popover on right
+                        h4 Dismiss on next click
+                        a.btn.btn-lg.btn-danger(tabindex='0', role='button', data-toggle='popover', data-trigger='focus', title='Dismissible popover', data-content="And here's some amazing content. It's very engaging. Right?") Dismissible popover
+
+                // END panel
+                // END row
+                .panel
+                    .panel-heading Carousel
+                    .panel-body
+                        #carousel-example-generic.carousel.slide(data-ride='carousel')
+                          // Indicators
+                          ol.carousel-indicators
+                            li.active(data-target='#carousel-example-generic', data-slide-to='0')
+                            li(data-target='#carousel-example-generic', data-slide-to='1')
+                            li(data-target='#carousel-example-generic', data-slide-to='2')
+                          // Wrapper for slides
+                          .carousel-inner(role='listbox')
+                            .item.active
+                              img.fw(src='img/pic1.jpg', alt='Carousel')
+                              .carousel-caption Aliquam interdum, erat et accumsan iaculis, sapien ipsum aliquam tellus, eget posuere arcu ligula ac risus.
+                            .item
+                              img.fw(src='img/pic2.jpg', alt='Carousel')
+                              .carousel-caption Suspendisse aliquam dignissim dictum.
+                            .item
+                              img.fw(src='img/pic3.jpg', alt='Carousel')
+                              .carousel-caption Suspendisse aliquam dignissim dictum.
+                          // Controls
+                          a.left.carousel-control(href='#carousel-example-generic', role='button', data-slide='prev')
+                            span.icon-prev.ion-chevron-left(aria-hidden='true')
+                            span.sr-only Previous
+                          a.right.carousel-control(href='#carousel-example-generic', role='button', data-slide='next')
+                            span.icon-next.ion-chevron-right(aria-hidden='true')
+                            span.sr-only Next
+
+                .panel
+                    .panel-heading List groups
+                    .panel-body
+                        .list-group
+                            a.list-group-item.active(href='#')
+                              span.badge 25
+                              |  Active list item group #100
+                            a.list-group-item(href='#') List item group #120
+                            a.list-group-item.disabled(href='#') Disabled list item group #300
+
+        h4.page-header Panel Styles
+        // START row
+        .row
+            .col-lg-4
+                // START panel
+                #panelDemo7.panel.panel-default
+                    .panel-heading
+                        .panel-title Default Panel
+                    .panel-body
+                        p
+                            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.
+                    .panel-footer
+                        | Panel Footer
+                // END panel
+            .col-lg-4
+                // START panel
+                #panelDemo8.panel.panel-primary
+                    .panel-heading
+                        .panel-title Primary Panel
+                    .panel-body
+                        p
+                            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.
+                    .panel-footer
+                        | Panel Footer
+                // END panel
+            .col-lg-4
+                // START panel
+                #panelDemo9.panel.panel-success
+                    .panel-heading
+                        .panel-title Success Panel
+                    .panel-body
+                        p
+                            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.
+                    .panel-footer
+                        | Panel Footer
+                // END panel
+        // END row
+        // START row
+        .row
+            .col-lg-4
+                // START panel
+                #panelDemo10.panel.panel-info
+                    .panel-heading
+                        .panel-title Info Panel
+                    .panel-body
+                        p
+                            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.
+                    .panel-footer
+                        | Panel Footer
+                // END panel
+            .col-lg-4
+                // START panel
+                #panelDemo11.panel.panel-warning
+                    .panel-heading
+                        .panel-title Warning Panel
+                    .panel-body
+                        p
+                            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.
+                    .panel-footer
+                        | Panel Footer
+                // END panel
+            .col-lg-4
+                // START panel
+                #panelDemo12.panel.panel-danger
+                    .panel-heading
+                        .panel-title Danger Panel
+                    .panel-body
+                        p
+                            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.
+                    .panel-footer
+                        | Panel Footer
+                // END panel
+        // END row
+        // START row
+        .row
+            .col-lg-12
+                // START panel
+                #panelDemo13.panel
+                    .panel-heading
+                        | Collapsible Accordion Panel Group
+                    .panel-body
+                        #accordion.panel-group(role='tablist', aria-multiselectable='true')
+                            .panel.panel-default
+                                #headingOne.panel-heading(role='tab')
+                                    h4.panel-title
+                                        a(role='button', data-toggle='collapse', data-parent='#accordion', href='#collapseOne', aria-expanded='true', aria-controls='collapseOne')
+                                            | Collapsible Group Item #1
+                                #collapseOne.panel-collapse.collapse.in(role='tabpanel', aria-labelledby='headingOne')
+                                    .panel-body
+                                        | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven&apos;t heard of them accusamus labore sustainable VHS.
+                            .panel.panel-default
+                                #headingTwo.panel-heading(role='tab')
+                                    h4.panel-title
+                                        a.collapsed(role='button', data-toggle='collapse', data-parent='#accordion', href='#collapseTwo', aria-expanded='false', aria-controls='collapseTwo')
+                                            | Collapsible Group Item #2
+                                #collapseTwo.panel-collapse.collapse(role='tabpanel', aria-labelledby='headingTwo')
+                                    .panel-body
+                                        | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven&apos;t heard of them accusamus labore sustainable VHS.
+                            .panel.panel-default
+                                #headingThree.panel-heading(role='tab')
+                                    h4.panel-title
+                                        a.collapsed(role='button', data-toggle='collapse', data-parent='#accordion', href='#collapseThree', aria-expanded='false', aria-controls='collapseThree')
+                                            | Collapsible Group Item #3
+                                #collapseThree.panel-collapse.collapse(role='tabpanel', aria-labelledby='headingThree')
+                                    .panel-body
+                                        | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven&apos;t heard of them accusamus labore sustainable VHS.
+
+                // END panel
+        // END row
+        // START row
+        .row
+            .col-lg-6
+                // START panel
+                #panelDemo14.panel
+                    .panel-heading Basic Tabs
+                    .panel-body
+                        div
+                            // Nav tabs
+                            ul.nav.nav-tabs(role='tablist')
+                                li.active(role='presentation')
+                                    a(href='#home', aria-controls='home', role='tab', data-toggle='tab') Home
+                                li(role='presentation')
+                                    a(href='#profile', aria-controls='profile', role='tab', data-toggle='tab') Profile
+                                li(role='presentation')
+                                    a(href='#messages', aria-controls='messages', role='tab', data-toggle='tab') Messages
+                                li(role='presentation')
+                                    a(href='#settings', aria-controls='settings', role='tab', data-toggle='tab') Settings
+                            // Tab panes
+                            .tab-content
+                                #home.tab-pane.active(role='tabpanel') Maecenas elementum, justo in pulvinar bibendum, tellus nulla adipiscing libero, at rutrum velit sapien vel velit. Phasellus hendrerit ullamcorper est eget tincidunt. Aenean non neque a tortor tempor consequat a ut ligula. Mauris eros nibh, adipiscing ac commodo vel, molestie mattis magna. Curabitur adipiscing, tellus ut congue tempus, dui lacus cursus risus, nec pellentesque mi purus eget augue. Fusce ullamcorper placerat tortor, placerat consequat diam cursus posuere.
+                                #profile.tab-pane(role='tabpanel') Nullam eu lacus in nibh rutrum ornare at eget tellus. Nullam rutrum convallis lacus non mattis. Praesent dapibus justo dolor. Duis convallis placerat egestas. Aenean non neque a tortor tempor consequat a ut ligula. Mauris eros nibh, adipiscing ac commodo vel, molestie mattis magna. Curabitur adipiscing, tellus ut congue tempus, dui lacus cursus risus, nec pellentesque mi purus eget augue. Fusce ullamcorper placerat tortor, placerat consequat diam cursus posuere.
+                                #messages.tab-pane(role='tabpanel') Aenean non neque a tortor tempor consequat a ut ligula. Mauris eros nibh, adipiscing ac commodo vel, molestie mattis magna. Curabitur adipiscing, tellus ut congue tempus, dui lacus cursus risus, nec pellentesque mi purus eget augue. Fusce ullamcorper placerat tortor, placerat consequat diam cursus posuere. Aenean non neque a tortor tempor consequat a ut ligula. Mauris eros nibh, adipiscing ac commodo vel, molestie mattis magna. Curabitur adipiscing, tellus ut congue tempus, dui lacus cursus risus, nec pellentesque mi purus eget augue. Fusce ullamcorper placerat tortor, placerat consequat diam cursus posuere.
+                                #settings.tab-pane(role='tabpanel') Sed id lacus enim, sit amet imperdiet orci. Phasellus sed dui massa, vitae dapibus augue. Nam vehicula rhoncus nisl, et ullamcorper augue ullamcorper semper. Aenean non neque a tortor tempor consequat a ut ligula. Mauris eros nibh, adipiscing ac commodo vel, molestie mattis magna. Curabitur adipiscing, tellus ut congue tempus, dui lacus cursus risus, nec pellentesque mi purus eget augue. Fusce ullamcorper placerat tortor, placerat consequat diam cursus posuere.
+
+                // END panel
+            .col-lg-6
+                // START panel
+                #panelDemo15.panel
+                    .panel-heading Pill Tabs
+                    .panel-body
+                        div
+                            // Nav tabs
+                            ul.nav.nav-pills(role='tablist')
+                                li.active(role='presentation')
+                                    a(href='#home1', aria-controls='home', role='tab', data-toggle='tab') Home
+                                li(role='presentation')
+                                    a(href='#profile1', aria-controls='profile', role='tab', data-toggle='tab') Profile
+                                li(role='presentation')
+                                    a(href='#messages1', aria-controls='messages', role='tab', data-toggle='tab') Messages
+                                li(role='presentation')
+                                    a(href='#settings1', aria-controls='settings', role='tab', data-toggle='tab') Settings
+                            // Tab panes
+                            .tab-content
+                                #home1.tab-pane.active(role='tabpanel') Maecenas elementum, justo in pulvinar bibendum, tellus nulla adipiscing libero, at rutrum velit sapien vel velit. Phasellus hendrerit ullamcorper est eget tincidunt. Aenean non neque a tortor tempor consequat a ut ligula. Mauris eros nibh, adipiscing ac commodo vel, molestie mattis magna. Curabitur adipiscing, tellus ut congue tempus, dui lacus cursus risus, nec pellentesque mi purus eget augue. Fusce ullamcorper placerat tortor, placerat consequat diam cursus posuere.
+                                #profile1.tab-pane(role='tabpanel') Nullam eu lacus in nibh rutrum ornare at eget tellus. Nullam rutrum convallis lacus non mattis. Praesent dapibus justo dolor. Duis convallis placerat egestas. Aenean non neque a tortor tempor consequat a ut ligula. Mauris eros nibh, adipiscing ac commodo vel, molestie mattis magna. Curabitur adipiscing, tellus ut congue tempus, dui lacus cursus risus, nec pellentesque mi purus eget augue. Fusce ullamcorper placerat tortor, placerat consequat diam cursus posuere.
+                                #messages1.tab-pane(role='tabpanel') Aenean non neque a tortor tempor consequat a ut ligula. Mauris eros nibh, adipiscing ac commodo vel, molestie mattis magna. Curabitur adipiscing, tellus ut congue tempus, dui lacus cursus risus, nec pellentesque mi purus eget augue. Fusce ullamcorper placerat tortor, placerat consequat diam cursus posuere. Aenean non neque a tortor tempor consequat a ut ligula. Mauris eros nibh, adipiscing ac commodo vel, molestie mattis magna. Curabitur adipiscing, tellus ut congue tempus, dui lacus cursus risus, nec pellentesque mi purus eget augue. Fusce ullamcorper placerat tortor, placerat consequat diam cursus posuere.
+                                #settings1.tab-pane(role='tabpanel') Sed id lacus enim, sit amet imperdiet orci. Phasellus sed dui massa, vitae dapibus augue. Nam vehicula rhoncus nisl, et ullamcorper augue ullamcorper semper. Aenean non neque a tortor tempor consequat a ut ligula. Mauris eros nibh, adipiscing ac commodo vel, molestie mattis magna. Curabitur adipiscing, tellus ut congue tempus, dui lacus cursus risus, nec pellentesque mi purus eget augue. Fusce ullamcorper placerat tortor, placerat consequat diam cursus posuere.
+
+                // END panel
+        // END row
+
+        // START row
+        .row
+            .col-lg-4
+                .well.well-lg
+                    h4.mt0 Large Well
+                    p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.
+            .col-lg-4
+                .well
+                    h4.mt0 Normal Well
+                    p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.
+            .col-lg-4
+                .well.well-sm
+                    h4.mt0 Small Well
+                    p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.
+        // END row
+        // START panel
+        .panel
+          .panel-heading
+            h3.panel-title Pagination
+          .panel-body
+            .row
+                .col-lg-6
+                    nav
+                      ul.pagination
+                        li
+                          a(href='#', aria-label='Previous')
+                            span(aria-hidden='true') &laquo;
+                        li
+                          a(href='#') 1
+                        li
+                          a(href='#') 2
+                        li
+                          a(href='#') 3
+                        li
+                          a(href='#') 4
+                        li
+                          a(href='#') 5
+                        li.disabled
+                          a(href='#', aria-label='Next')
+                            span(aria-hidden='true') &raquo;
+                .col-lg-6
+                    nav
+                      ul.pagination.pagination-lg
+                        li
+                          a(href='#', aria-label='Previous')
+                            span(aria-hidden='true') &laquo;
+                        li
+                          a(href='#') 1
+                        li
+                          a(href='#') 2
+                        li.active
+                          a(href='#') 3
+                        li
+                          a(href='#') 4
+                        li
+                          a(href='#') 5
+                        li
+                          a(href='#', aria-label='Next')
+                            span(aria-hidden='true') &raquo;
+            h5 Rounded buttons
+            .row
+                .col-lg-6
+                    nav
+                      ul.pagination.pagination-rounded
+                        li
+                          a(href='#', aria-label='Previous')
+                            span(aria-hidden='true') &laquo;
+                        li
+                          a(href='#') 1
+                        li
+                          a(href='#') 2
+                        li
+                          a(href='#') 3
+                        li
+                          a(href='#') 4
+                        li
+                          a(href='#') 5
+                        li.disabled
+                          a(href='#', aria-label='Next')
+                            span(aria-hidden='true') &raquo;
+                .col-lg-6
+                    nav
+                      ul.pagination.pagination-lg.pagination-rounded
+                        li
+                          a(href='#', aria-label='Previous')
+                            span(aria-hidden='true') &laquo;
+                        li
+                          a(href='#') 1
+                        li
+                          a(href='#') 2
+                        li.active
+                          a(href='#') 3
+                        li
+                          a(href='#') 4
+                        li
+                          a(href='#') 5
+                        li
+                          a(href='#', aria-label='Next')
+                            span(aria-hidden='true') &raquo;
+            h5 Pager
+            .row
+                .col-lg-4.col-lg-offset-4
+                    nav
+                      ul.pager
+                        li
+                          a(href='#') Previous
+                        li
+                          a(href='#') Next
+                    nav
+                      ul.pager
+                        li.previous
+                          a(href='#')
+                            span(aria-hidden='true') &larr;
+                            |  Older
+                        li.next
+                          a(href='#')
+                            | Newer
+                            span(aria-hidden='true') &rarr;
+                    nav
+                      ul.pager
+                        li.previous.disabled
+                          a(href='#')
+                            span(aria-hidden='true')
+                                em.ion-arrow-left-a
+                        li.next
+                          a(href='#')
+                            em.em.ion-arrow-right-a
+                            span(aria-hidden='true')
+
+            // END row
+        // END panel
+
+
+block bodychild
+    // Modal content for the above example
+    .modal.fade.bs-example-modal-lg(tabindex='-1', role='dialog', aria-labelledby='myLargeModalLabel')
+        .modal-dialog.modal-lg
+            .modal-content
+                .modal-header
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                        span(aria-hidden='true') &times;
+                    h4#myLargeModalLabel.modal-title Large modal
+                .modal-body
+                    p Mauris eu lacus massa, vel condimentum lectus.
+            // /.modal-content
+        // /.modal-dialog
+    // /.modal
+    .modal.fade.bs-example-modal-sm(tabindex='-1', role='dialog', aria-labelledby='mySmallModalLabel')
+        .modal-dialog.modal-sm
+            .modal-content
+                .modal-header
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                        span(aria-hidden='true') &times;
+                    h4#mySmallModalLabel.modal-title Small modal
+                .modal-body
+                    p Vestibulum molestie commodo elit ut feugiat.
+            // /.modal-content
+        // /.modal-dialog
+    // /.modal

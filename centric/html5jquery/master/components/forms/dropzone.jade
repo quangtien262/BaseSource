@@ -1,0 +1,16 @@
+extends ../core/core.layout
+block pagetitle
+    - pageTitle = 'Form Upload'
+block content
+    .container.container-lg
+        h5.text-center Dropzone
+            br
+            small DropzoneJS is an open source library that provides drag&apos;n&apos;drop file uploads with image previews.
+            br
+            small.spr It’s lightweight, doesn’t depend on any other library (like jQuery) and is
+            small: a(href='http://www.dropzonejs.com/', target='_blank') highly customizable
+        form.well#dropzone-area.dropzone(action='#')
+          .dropzone-previews
+          button.btn.btn-primary.pull-right(type='submit') Upload!
+        p This demo does not upload files to any server.
+

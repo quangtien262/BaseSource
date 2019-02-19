@@ -1,0 +1,93 @@
+extends ../core/core.layout
+block pagetitle
+    - pageTitle = 'Nestable'
+block content
+    .container-fluid
+        .js-nestable-action
+            a.btn.btn-default.btn-sm.mr-sm(data-action="expand-all") Expand All
+            a.btn.btn-default.btn-sm(data-action="collapse-all") CollapseAll
+        .row
+            .col-md-6
+                .dd#nestable
+                        ol.dd-list
+                            li.dd-item(data-id='1')
+                                .card.b0.dd-handle
+                                    .mda-list
+                                        .mda-list-item
+                                            .mda-list-item-icon.item-grab
+                                                em.ion-drag.icon-lg
+                                            .mda-list-item-icon.bg-info
+                                                em.ion-coffee.icon-lg
+                                            .mda-list-item-text.mda-2-line
+                                                h3 Cassandra Gutierrez
+                                                h4 Brunch this weekend?
+                            li.dd-item(data-id='2')
+                                .card.b0.dd-handle
+                                    .mda-list
+                                        .mda-list-item
+                                            .mda-list-item-icon.item-grab
+                                                em.ion-drag.icon-lg
+                                            .mda-list-item-icon.bg-info
+                                                em.ion-coffee.icon-lg
+                                            .mda-list-item-text.mda-2-line
+                                                h3 Vincent Morgan
+                                                h4 Brunch this weekend?
+                                ol.dd-list
+                                    li.dd-item(data-id='3')
+                                        .card.b0.dd-handle
+                                            .mda-list
+                                                .mda-list-item
+                                                    .mda-list-item-icon.item-grab
+                                                        em.ion-drag.icon-lg
+                                                    .mda-list-item-icon.bg-info
+                                                        em.ion-coffee.icon-lg
+                                                    .mda-list-item-text.mda-2-line
+                                                        h3 Vivan Jennings
+                                                        h4 Brunch this weekend?
+                                    li.dd-item(data-id='4')
+                                        .card.b0.dd-handle
+                                            .mda-list
+                                                .mda-list-item
+                                                    .mda-list-item-icon.item-grab
+                                                        em.ion-drag.icon-lg
+                                                    .mda-list-item-icon.bg-info
+                                                        em.ion-coffee.icon-lg
+                                                    .mda-list-item-text.mda-2-line
+                                                        h3 Jason Foster
+                                                        h4 Brunch this weekend?
+                                    li.dd-item(data-id='5')
+                                        .card.b0.dd-handle
+                                            .mda-list
+                                                .mda-list-item
+                                                    .mda-list-item-icon.item-grab
+                                                        em.ion-drag.icon-lg
+                                                    .mda-list-item-icon.bg-info
+                                                        em.ion-coffee.icon-lg
+                                                    .mda-list-item-text.mda-2-line
+                                                        h3 Taylor Grant
+                                                        h4 Brunch this weekend?
+                                        ol.dd-list
+                                            li.dd-item(data-id='6')
+                                                .card.b0.dd-handle
+                                                    .mda-list
+                                                        .mda-list-item
+                                                            .mda-list-item-icon.item-grab
+                                                                em.ion-drag.icon-lg
+                                                            .mda-list-item-icon.bg-info
+                                                                em.ion-coffee.icon-lg
+                                                            .mda-list-item-text.mda-2-line
+                                                                h3 Lorraine Cooper
+                                                                h4 Brunch this weekend?
+                            li.dd-item(data-id='11')
+                                .card.b0.dd-handle
+                                    .mda-list
+                                        .mda-list-item
+                                            .mda-list-item-icon.item-grab
+                                                em.ion-drag.icon-lg
+                                            .mda-list-item-icon.bg-info
+                                                em.ion-coffee.icon-lg
+                                            .mda-list-item-text.mda-2-line
+                                                h3 Daryl Flores
+                                                h4 Brunch this weekend?
+                p Output
+                .well#nestable-output

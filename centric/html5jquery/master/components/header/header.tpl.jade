@@ -1,0 +1,37 @@
+block pagetitle
+    - pageTitle = ''
+nav
+    ul.visible-xs.visible-sm
+        li
+            a#sidebar-toggler.menu-link.menu-link-slide(href='#')
+                span: em
+    ul.hidden-xs
+        li
+            a#offcanvas-toggler.menu-link.menu-link-slide(href='#')
+                span: em
+    h2.header-title= pageTitle
+    ul.pull-right
+        li
+            a#header-search.ripple(href='#')
+                em.ion-ios-search-strong
+        li.dropdown
+            a.dropdown-toggle.has-badge.ripple(href='#', data-toggle='dropdown')
+                em.ion-person
+                sup.badge.bg-danger 3
+            ul.dropdown-menu.dropdown-menu-right.md-dropdown-menu
+                li
+                    a(href='profile.html')
+                        em.ion-home.icon-fw
+                        | Profile
+                li
+                    a(href='messages.html')
+                        em.ion-gear-a.icon-fw
+                        | Messages
+                li.divider(role='presentation')
+                li
+                    a(href='user.login.html')
+                        em.ion-log-out.icon-fw
+                        | Logout
+        li
+            a#header-settings.ripple(href='#')
+                em.ion-gear-b

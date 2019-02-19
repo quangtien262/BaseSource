@@ -1,0 +1,195 @@
+doctype html
+html(lang="en")
+
+    head
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+
+        meta(name='description', content='Bootstrap Admin Template')
+        meta(name='keywords', content='app, responsive, jquery, bootstrap, dashboard, admin')
+
+        title Centric - Bootstrap Admin Template
+
+        // Vendor styles
+        // build:css(../app) css/vendor.css
+        // Animate.CSS
+        link(rel='stylesheet', href='vendor/animate.css/animate.css')
+        // Bootstrap
+        link(rel='stylesheet', href='vendor/bootstrap/dist/css/bootstrap.min.css')
+        //- link(rel='stylesheet', href='vendor/bootstrap/dist/css/bootstrap.rtl.css')
+        //- // Font Awesome
+        //- link(rel='stylesheet', href='vendor/font-awesome/css/font-awesome.css')
+        // Ionicons
+        link(rel='stylesheet', href='vendor/ionicons/css/ionicons.css')
+        // Bluimp Gallery
+        link(rel='stylesheet', href='vendor/blueimp-gallery/css/blueimp-gallery.css')
+        link(rel='stylesheet', href='vendor/blueimp-gallery/css/blueimp-gallery-indicator.css')
+        link(rel='stylesheet', href='vendor/blueimp-gallery/css/blueimp-gallery-video.css')
+        // Datepicker
+        link(rel='stylesheet', href='vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css')
+        // Rickshaw
+        link(rel='stylesheet', href='vendor/rickshaw/rickshaw.css')
+        // Select2
+        link(rel='stylesheet', href='vendor/select2/dist/css/select2.css')
+        // Clockpicker
+        link(rel='stylesheet', href='vendor/clockpicker/dist/bootstrap-clockpicker.css')
+        // Range Slider
+        link(rel='stylesheet', href='vendor/nouislider/distribute/nouislider.min.css')
+        // ColorPicker
+        link(rel='stylesheet', href='vendor/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.css')
+        // Summernote
+        link(rel='stylesheet', href='vendor/summernote/dist/summernote.css')
+        // Dropzone
+        link(rel='stylesheet', href='vendor/dropzone/dist/basic.css')
+        link(rel='stylesheet', href='vendor/dropzone/dist/dropzone.css')
+        // Xeditable
+        link(rel='stylesheet', href='vendor/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css')
+        // Bootgrid
+        link(rel='stylesheet', href='vendor/jquery.bootgrid/dist/jquery.bootgrid.css')
+        // Datatables
+        link(rel='stylesheet', href='vendor/datatables/media/css/jquery.dataTables.css')
+        // Sweet Alert
+        link(rel='stylesheet', href='vendor/sweetalert/dist/sweetalert.css')
+        // Loaders.CSS
+        link(rel='stylesheet', href='vendor/loaders.css/loaders.css')
+        // Material Floating Button
+        link(rel='stylesheet', href='vendor/ng-material-floating-button/mfb/dist/mfb.css')
+        // Material Colors
+        link(rel='stylesheet', href='vendor/material-colors/dist/colors.css')
+        // endbuild
+
+        // Application styles
+        link(rel='stylesheet', href='css/app.css')
+        //- link(rel='stylesheet', href='css/app-rtl.css')
+
+    body.theme-1
+
+        .layout-container
+            // top navbar
+            header.header-container
+                include ../header/header.tpl.jade
+
+            // sidebar
+            aside.sidebar-container
+                include ../sidebar/sidebar.tpl.jade
+            .sidebar-layout-obfuscator
+
+            // Main section
+            main.main-container
+
+                // Page content
+                section
+                    block content
+                // Page footer
+                footer
+                    span 2017 - Centric app.
+
+        block bodychild
+
+        // Search template
+        include ../header/header-search.tpl.jade
+        // End Search template
+        // Settings template
+        include ../settings/settings.tpl.jade
+        // End Settings template
+
+        // Google Maps API
+        script(type='text/javascript', src='http://maps.google.com/maps/api/js?key=AIzaSyBNs42Rt_CyxAqdbIBK0a5Ut83QiauESPA')
+
+        // build:js(../app) js/vendor.js
+        // Modernizr
+        script(src="vendor/modernizr/modernizr.custom.js")
+        // jQuery
+        script(src="vendor/jquery/dist/jquery.js")
+        // Bootstrap
+        script(src="vendor/bootstrap/dist/js/bootstrap.js")
+        // jQuery Browser
+        script(src="vendor/jquery.browser/dist/jquery.browser.js")
+        // Material Colors
+        script(src="vendor/material-colors/dist/colors.js")
+        // Bootstrap Filestyle
+        script(src="vendor/bootstrap-filestyle/src/bootstrap-filestyle.js")
+        // Flot charts
+        script(src="vendor/flot/jquery.flot.js")
+        script(src="vendor/flot/jquery.flot.categories.js")
+        script(src="vendor/flot-spline/js/jquery.flot.spline.js")
+        script(src="vendor/flot.tooltip/js/jquery.flot.tooltip.js")
+        script(src="vendor/flot/jquery.flot.resize.js")
+        script(src="vendor/flot/jquery.flot.pie.js")
+        script(src="vendor/flot/jquery.flot.time.js")
+        script(src="vendor/sidebysideimproved/jquery.flot.orderBars.js")
+        // jVector Maps
+        script(src="vendor/ika.jvectormap/jquery-jvectormap-1.2.2.min.js")
+        script(src="vendor/ika.jvectormap/jquery-jvectormap-us-mill-en.js")
+        script(src="vendor/ika.jvectormap/jquery-jvectormap-world-mill-en.js")
+        // Easypie Charts
+        script(src="vendor/jquery.easy-pie-chart/dist/jquery.easypiechart.js")
+        //- script(src="vendor/lodash/lodash.js")
+        // Screenfull
+        script(src="vendor/screenfull/dist/screenfull.js")
+        // Sparkline
+        script(src="vendor/sparkline/index.js")
+        // Datepicker
+        script(src="vendor/bootstrap-datepicker/js/bootstrap-datepicker.js")
+        // jQuery Knob charts
+        script(src="vendor/jquery-knob/js/jquery.knob.js")
+        // Rickshaw
+        script(src="vendor/d3/d3.js")
+        script(src="vendor/rickshaw/rickshaw.js")
+        // jQuery Form Validation
+        script(src="vendor/jquery-validation/dist/jquery.validate.js")
+        script(src="vendor/jquery-validation/dist/additional-methods.js")
+        // JQUERY STEPS
+        script(src='vendor/jquery.steps/build/jquery.steps.js')
+        // Select2
+        script(src="vendor/select2/dist/js/select2.js")
+        // Clockpicker
+        script(src="vendor/clockpicker/dist/bootstrap-clockpicker.js")
+        // Range Slider
+        script(src="vendor/nouislider/distribute/nouislider.js")
+        // ColorPicker
+        script(src="vendor/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.js")
+        // Summernote
+        script(src="vendor/summernote/dist/summernote.js")
+        // Dropzone
+        script(src="vendor/dropzone/dist/dropzone.js")
+        // Xeditable
+        script(src="vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.js")
+        // Momentjs
+        script(src='vendor/moment/min/moment-with-locales.js')
+        // Google Maps
+        script(src='vendor/gmaps/gmaps.js')
+        // Bootgrid
+        script(src='vendor/jquery.bootgrid/dist/jquery.bootgrid.js')
+        script(src='vendor/jquery.bootgrid/dist/jquery.bootgrid.fa.js')
+        // Datatables
+        script(src='vendor/datatables/media/js/jquery.dataTables.js')
+        // Nestable
+        script(src='vendor/nestable/jquery.nestable.js')
+        // Sweet Alert
+        script(src='vendor/sweetalert/dist/sweetalert-dev.js')
+        // Masonry
+        script(src='vendor/masonry/dist/masonry.pkgd.js')
+        // Images Loaded
+        script(src='vendor/imagesloaded/imagesloaded.pkgd.js')
+        // Loaders.CSS
+        script(src='vendor/loaders.css/loaders.css.js')
+        // jQuery Localize
+        script(src='vendor/jquery-localize-i18n/dist/jquery.localize.js')
+        // Blueimp Gallery
+        script(src="vendor/blueimp-gallery/js/blueimp-helper.js")
+        script(src="vendor/blueimp-gallery/js/blueimp-gallery.js")
+        script(src="vendor/blueimp-gallery/js/blueimp-gallery-fullscreen.js")
+        script(src="vendor/blueimp-gallery/js/blueimp-gallery-indicator.js")
+        script(src="vendor/blueimp-gallery/js/blueimp-gallery-video.js")
+        script(src="vendor/blueimp-gallery/js/blueimp-gallery-vimeo.js")
+        script(src="vendor/blueimp-gallery/js/blueimp-gallery-youtube.js")
+        script(src="vendor/blueimp-gallery/js/jquery.blueimp-gallery.js")
+        // Datamaps
+        //- script(src='vendor/d3/d3.min.js')
+        script(src='vendor/topojson/topojson.min.js')
+        script(src='vendor/datamaps/dist/datamaps.all.js')
+        // endbuild
+
+        // App script
+        script(src="js/app.js")

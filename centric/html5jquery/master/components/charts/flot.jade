@@ -1,0 +1,63 @@
+extends ../core/core.layout
+block pagetitle
+    - pageTitle = 'Charts Flot'
+block content
+    .container-fluid
+        // START row
+        .row
+            .col-lg-4
+                .card
+                    .card-heading
+                        .card-title Area
+                    .card-body
+                        #area-flotchart.flot-chart.flot-chart-lg
+            .col-lg-4
+                .card
+                    .card-heading
+                        .card-title Area Spline
+                    .card-body
+                        #spline-flotchart.flot-chart.flot-chart-lg
+            .col-lg-4
+                .card
+                    .card-heading
+                        .card-title Bar
+                    .card-body
+                        #bar-flotchart.flot-chart.flot-chart-lg
+        // END row
+
+        // START row
+        .row
+            .col-lg-4
+                .card
+                    .card-heading
+                        .card-title Pie
+                    .card-body
+                            #pie-flotchart.flot-chart.flot-chart-lg
+            .col-lg-4
+                .card
+                    .card-heading
+                        .card-title Donut
+                    .card-body
+                            #donut-flotchart.flot-chart.flot-chart-lg
+            .col-lg-4
+                .card
+                    .card-heading
+                        .card-title Bar - Stacked
+                    .card-body
+                            #barstacked-flotchart.flot-chart.flot-chart-lg
+        // END row
+        // START row
+        .row
+            .col-lg-6
+                .card
+                    .card-heading
+                        .card-title Real Time
+                    .card-body
+                            #realtime-flotchart.flot-chart.flot-chart-lg
+            .col-lg-6
+                .card
+                    .card-heading
+                        .card-title Line
+                    .card-body
+                            #line-flotchart.flot-chart.flot-chart-lg
+        // END row

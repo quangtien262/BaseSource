@@ -1,0 +1,519 @@
+`1.7 10-May-2017`
+
+- Updated to **Angular 4**
+- Fixed react package versions
+
+    New files:
+
+    A   angular2/ng2centric/e2e/tsconfig.e2e.json
+    A   angular2/ng2centric/src/tsconfig.app.json
+    A   angular2/ng2centric/src/tsconfig.spec.json
+
+    Modified files:
+
+    M   angular2/ng2centric/.angular-cli.json
+    M   angular2/ng2centric/README.md
+    M   angular2/ng2centric/karma.conf.js
+    M   angular2/ng2centric/package.json
+    M   angular2/ng2centric/protractor.conf.js
+    M   angular2/ng2centric/src/app/app.module.ts
+    M   angular2/ng2centric/src/app/core/translator/translator.service.spec.ts
+    M   angular2/ng2centric/src/app/core/translator/translator.service.ts
+    M   angular2/ng2centric/src/app/layout/header/header.component.html
+    M   angular2/ng2centric/src/app/layout/header/header.component.spec.ts
+    M   angular2/ng2centric/src/app/layout/header/header.component.ts
+    M   angular2/ng2centric/src/app/layout/header/search/search.component.spec.ts
+    M   angular2/ng2centric/src/app/layout/header/search/search.component.ts
+    M   angular2/ng2centric/src/app/layout/sidebar/sidebar.component.html
+    M   angular2/ng2centric/src/app/routes/cards/cards/cards.component.html
+    M   angular2/ng2centric/src/app/routes/dashboard/dashboard/dashboard.component.html
+    M   angular2/ng2centric/src/app/routes/elements/bootstrapui/bootstrapui.component.html
+    M   angular2/ng2centric/src/app/routes/elements/bootstrapui/bootstrapui.component.ts
+    M   angular2/ng2centric/src/app/routes/elements/buttons/buttons.component.html
+    M   angular2/ng2centric/src/app/routes/elements/buttons/buttons.component.ts
+    M   angular2/ng2centric/src/app/routes/elements/elements.module.ts
+    M   angular2/ng2centric/src/app/routes/elements/navtree/navtree.component.html
+    M   angular2/ng2centric/src/app/routes/elements/navtree/navtree.component.ts
+    M   angular2/ng2centric/src/app/routes/forms/advanced/advanced.component.ts
+    M   angular2/ng2centric/src/app/routes/forms/classic/classic.component.html
+    M   angular2/ng2centric/src/app/routes/forms/forms.module.ts
+    M   angular2/ng2centric/src/app/routes/forms/material/material.component.ts
+    M   angular2/ng2centric/src/app/routes/maps/google/google.component.html
+    M   angular2/ng2centric/src/app/routes/maps/googlefull/googlefull.component.html
+    M   angular2/ng2centric/src/app/routes/maps/maps.module.ts
+    M   angular2/ng2centric/src/app/routes/pages/contacts/contacts.component.html
+    M   angular2/ng2centric/src/app/routes/pages/messages/messagenew/messagenew.component.ts
+    M   angular2/ng2centric/src/app/routes/pages/messages/messages.component.html
+    M   angular2/ng2centric/src/app/routes/pages/messages/messageview/messageview.component.html
+    M   angular2/ng2centric/src/app/routes/pages/messages/messageview/messageview.component.ts
+    M   angular2/ng2centric/src/app/routes/pages/profile/profile.component.html
+    M   angular2/ng2centric/src/app/routes/pages/profile/profile.component.ts
+    M   angular2/ng2centric/src/app/routes/pages/wall/wall.component.html
+    M   angular2/ng2centric/src/app/shared/settings/settings.component.html
+    M   angular2/ng2centric/src/app/shared/settings/settings.component.ts
+    M   angular2/ng2centric/src/app/shared/shared.module.ts
+    M   angular2/ng2centric/src/environments/environment.ts
+    M   angular2/ng2centric/src/typings.d.ts
+    M   react/package.json
+
+
+`1.6 27-Mar-2017`
+
+- Angular2 project update
+    - Removed barrels
+    - Added lazyload routes and modules
+    - Added support for AOT compilation
+    - Fixed bs-modal backdrop
+    - Update angular-cli to beta32
+    - Update project dependencies
+- Meteor project update
+    - Removed static vendor folder
+    - Use Npm for dependencies
+- Fixed modal location with razon @section (mvc6)
+- Fixed issue with datamaps and deploy process (mvc6)
+- Fixed float label position on lost focus
+- Updated documentation
+
+    New files:
+
+    A   angular2/ng2centric/src/app/routes/cards/cards.module.ts
+    A   angular2/ng2centric/src/app/routes/charts/charts.module.ts
+    A   angular2/ng2centric/src/app/routes/dashboard/dashboard.module.ts
+    A   angular2/ng2centric/src/app/routes/dashboard/dashboard/dashboard.component.scss
+    A   angular2/ng2centric/src/app/routes/elements/elements.module.ts
+    A   angular2/ng2centric/src/app/routes/forms/forms.module.ts
+    A   angular2/ng2centric/src/app/routes/layouts/layouts.module.ts
+    A   angular2/ng2centric/src/app/routes/maps/maps.module.ts
+    A   angular2/ng2centric/src/app/routes/pages/pages.module.ts
+    A   angular2/ng2centric/src/app/routes/tables/datatables/datafilter.pipe.ts
+    A   angular2/ng2centric/src/app/routes/tables/tables.module.ts
+    A   angular2/ng2centric/src/app/routes/user/user.module.ts
+    A   meteor/modernizr-config.json
+    A   meteor/public/modernizr.js
+    A   mvc6/CentricMVC6/src/CentricMVC6/wwwroot/datamaps/*
+
+    Modified files:
+
+    M   angular2/ng2centric/README.md
+    M   angular2/ng2centric/e2e/tsconfig.json
+    M   angular2/ng2centric/karma.conf.js
+    M   angular2/ng2centric/package.json
+    M   angular2/ng2centric/protractor.conf.js
+    M   angular2/ng2centric/src/app/app.module.ts
+    M   angular2/ng2centric/src/app/core/core.module.ts
+    M   angular2/ng2centric/src/app/layout/header/search/search.component.html
+    M   angular2/ng2centric/src/app/layout/sidebar/sidebar.component.html
+    M   angular2/ng2centric/src/app/routes/elements/bootstrapui/bootstrapui.component.html
+    M   angular2/ng2centric/src/app/routes/elements/bootstrapui/bootstrapui.component.ts
+    M   angular2/ng2centric/src/app/routes/menu.ts
+    M   angular2/ng2centric/src/app/routes/pages/messages/messagenew/messagenew.component.html
+    M   angular2/ng2centric/src/app/routes/pages/messages/messagenew/messagenew.component.ts
+    M   angular2/ng2centric/src/app/routes/pages/messages/messageview/messageview.component.html
+    M   angular2/ng2centric/src/app/routes/pages/messages/messageview/messageview.component.ts
+    M   angular2/ng2centric/src/app/routes/routes.module.ts
+    M   angular2/ng2centric/src/app/routes/routes.ts
+    M   angular2/ng2centric/src/app/routes/tables/datatables/datatables.component.ts
+    M   angular2/ng2centric/src/app/shared/settings/settings.component.html
+    M   angular2/ng2centric/src/app/shared/shared.module.ts
+    M   angular2/ng2centric/src/app/shared/styles/common/animate.scss
+    M   angular2/ng2centric/src/app/shared/styles/utils/utils.scss
+    M   angular2/ng2centric/src/main.ts
+    M   angular2/ng2centric/src/polyfills.ts
+    M   angular2/ng2centric/src/test.ts
+    M   angular2/ng2centric/src/tsconfig.json
+    M   angular2/ng2centric/tslint.json
+    M   html5jquery/app/css/app-rtl.css
+    M   html5jquery/app/js/app.js
+    M   html5jquery/master/components/app.js
+    M   meteor/.meteor/.finished-upgraders
+    M   meteor/.meteor/packages
+    M   meteor/.meteor/release
+    M   meteor/.meteor/versions
+    M   meteor/imports/startup/client/vendor.js
+    M   meteor/imports/ui/components/app.js
+    M   meteor/imports/ui/components/bootstrap/reset.scss
+    M   meteor/imports/ui/components/charts/rickshaw.js
+    M   meteor/imports/ui/components/colors/colors.js
+    M   meteor/imports/ui/components/elements/spinners.js
+    M   meteor/imports/ui/components/forms/forms.advanced.js
+    M   meteor/package.json
+    M   mvc6/CentricMVC6/global.json
+    M   mvc6/CentricMVC6/src/CentricMVC6/CentricMVC6.xproj.user
+    M   mvc6/CentricMVC6/src/CentricMVC6/Views/Elements/Bootstrap.cshtml
+    M   mvc6/CentricMVC6/src/CentricMVC6/Views/Shared/_Layout.cshtml
+    M   mvc6/CentricMVC6/src/CentricMVC6/bower.json
+    M   mvc6/CentricMVC6/src/CentricMVC6/project.json
+    M   mvc6/CentricMVC6/src/CentricMVC6/wwwroot/_references.js
+    M   mvc6/CentricMVC6/src/CentricMVC6/wwwroot/components/app.js
+    M   mvc6/CentricMVC6/src/CentricMVC6/wwwroot/components/maps/datamaps.js
+    M   mvc6/CentricMVC6/src/CentricMVC6/wwwroot/js/app.js
+    M   react/app/App.jsx
+
+
+`1.5 2-Jan-2017`
+
+- New **Angular2** project
+- Fixed input float labels not activated
+- Fixed React same route reloads
+- Fixed React router animations
+- Updated documentation
+
+New files:
+
+A   angular2
+A   documentation/angular2/
+
+Modified files:
+
+M   angularjs/app/views/core.layout.html
+M   angularjs/app/views/layouts.columns.html
+M   angularjs/master/components/core/core.layout.jade
+M   html5jquery/app/*.html
+M   html5jquery/app/js/app.js
+M   html5jquery/master/components/app.js
+M   html5jquery/master/components/core/core.layout.jade
+M   meteor/imports/ui/components/app.js
+M   meteor/imports/ui/components/core/core.layout.html
+M   mvc6/CentricMVC6/src/CentricMVC6/Views/Shared/_Footer.cshtml
+M   mvc6/CentricMVC6/src/CentricMVC6/wwwroot/components/app.js
+M   react/app/components/Common/Animate.scss
+M   react/app/components/Core/Core.jsx
+M   react/package.json
+M   react/webpack.common.js
+
+
+`1.4.2 14-Nov-2016`
+
+- Added **Datamaps**
+- Updated to Bootstrap 3.3.7
+- Updated to latest React 15.3.2
+- Updated mvc6 project to **Net.Core**
+- Updated all project vendor dependencies
+
+New files:
+
+A   angularjs/app/views/datamaps.html
+A   angularjs/master/components/maps/datamaps.controller.js
+A   angularjs/master/components/maps/datamaps.jade
+A   html5jquery/app/datamaps.html
+A   html5jquery/master/components/maps/datamaps.jade
+A   html5jquery/master/components/maps/datamaps.js
+A   meteor/imports/ui/components/maps/datamaps.html
+A   meteor/imports/ui/components/maps/datamaps.js
+A   mvc6/CentricMVC6/src/CentricMVC6/Views/Maps/Datamaps.cshtml
+A   mvc6/CentricMVC6/src/CentricMVC6/wwwroot/components/maps/datamaps.js
+A   react/app/components/Maps/Datamaps.jsx
+A   react/app/components/Maps/Datamaps.run.js
+
+Modified files:
+
+M   angularjs/app/js/app.js
+M   angularjs/app/views/bootstrapui.html
+M   angularjs/app/views/dashboard.html
+M   angularjs/app/views/faq.html
+M   angularjs/app/views/forms.advanced.html
+M   angularjs/app/views/validation.html
+M   angularjs/master/bower.json
+M   angularjs/master/components/dashboard/dashboard.jade
+M   angularjs/master/components/elements/bootstrapui.jade
+M   angularjs/master/components/forms/forms.advanced.jade
+M   angularjs/master/components/forms/validation.jade
+M   angularjs/master/components/maps/maps.menu.js
+M   angularjs/master/components/maps/maps.route.js
+M   angularjs/master/components/pages/faq.jade
+M   angularjs/master/components/router/router.constants.js
+M   html5jquery/app/*.html
+M   html5jquery/app/fonts/summernote.eot
+M   html5jquery/app/fonts/summernote.ttf
+M   html5jquery/app/fonts/summernote.woff
+M   html5jquery/app/js/app.js
+M   html5jquery/master/bower.json
+M   html5jquery/master/components/core/core.layout.jade
+M   html5jquery/master/components/forms/forms.advanced.js
+M   html5jquery/master/components/forms/wizard.js
+M   html5jquery/master/components/sidebar/sidebar.tpl.jade
+M   meteor/.meteor/.finished-upgraders
+M   meteor/.meteor/packages
+M   meteor/.meteor/release
+M   meteor/.meteor/versions
+M   meteor/imports/startup/client/routes.js
+M   meteor/imports/ui/components/app.js
+M   meteor/imports/ui/components/forms/forms.advanced.js
+M   meteor/imports/ui/components/sidebar/sidebar.tpl.html
+M   meteor/package.json
+M   mvc6/CentricMVC6/CentricMVC6.sln
+M   mvc6/CentricMVC6/src/CentricMVC6/Controllers/Maps.cs
+M   mvc6/CentricMVC6/src/CentricMVC6/Views/Shared/_Layout.cshtml
+M   mvc6/CentricMVC6/src/CentricMVC6/Views/Shared/_Sidebar.cshtml
+M   mvc6/CentricMVC6/src/CentricMVC6/bower.json
+M   mvc6/CentricMVC6/src/CentricMVC6/wwwroot/_references.js
+M   mvc6/CentricMVC6/src/CentricMVC6/wwwroot/components/forms/forms.advanced.js
+M   mvc6/CentricMVC6/src/CentricMVC6/wwwroot/css/app.css
+M   mvc6/CentricMVC6/src/CentricMVC6/wwwroot/js/app.js
+M   react/app/App.jsx
+M   react/app/components/Bootstrap/Reset.scss
+M   react/app/components/Cards/Cards.jsx
+M   react/app/components/Dashboard/Dashboard.jsx
+M   react/app/components/Forms/FormsAdvanced.jsx
+M   react/app/components/Maps/Maps.jsx
+M   react/app/components/Pages/BlogArticle.jsx
+M   react/app/components/Pages/Messages.jsx
+M   react/app/components/Pages/Profile.jsx
+M   react/app/components/Pages/Wall.jsx
+M   react/app/components/Sidebar/Sidebar.jsx
+M   react/bower.json
+M   react/package.json
+M   react/webpack.common.js
+
+
+`1.4.1 12-Aug-2016`
+
+Update focused on minor changes to ReactJS project:
+
+- Added meta tag for mobiles
+- Added auto close sidebar on route changes
+- Fixed filenames for case sensitive systems
+
+Modified files:
+
+M   react/app/App.jsx
+M   react/app/components/Bootstrap/Reset.scss
+M   react/app/components/Colors/Colors.scss
+M   react/app/components/Ripple/Ripple.scss
+M   react/app/components/Settings/Settings.scss
+M   react/app/index.html
+
+`1.4 08-Aug-2016`
+
+- New **ReactJS** project
+- New page Contacts
+- New page FAQ
+- New page Invoice
+- New page Pricing
+- New page Projects
+- New page Timeline
+- Added Google Maps api key
+- Fix sidebar style breakpoint
+- Fix jQuery menu button media query
+- Fix jQuery modal placement
+- Updated documentation
+
+New files:
+
+A   react/
+A   angularjs/app/views/contacts.html
+A   angularjs/app/views/faq.html
+A   angularjs/app/views/invoice.html
+A   angularjs/app/views/pricing.html
+A   angularjs/app/views/projects.html
+A   angularjs/app/views/timeline.html
+A   angularjs/master/components/pages/contacts.jade
+A   angularjs/master/components/pages/faq.jade
+A   angularjs/master/components/pages/invoice.jade
+A   angularjs/master/components/pages/pricing.jade
+A   angularjs/master/components/pages/projects.jade
+A   angularjs/master/components/pages/timeline.jade
+A   angularjs/master/components/pages/timeline.less
+A   html5jquery/app/contacts.html
+A   html5jquery/app/faq.html
+A   html5jquery/app/invoice.html
+A   html5jquery/app/pricing.html
+A   html5jquery/app/projects.html
+A   html5jquery/app/timeline.html
+A   html5jquery/master/components/pages/contacts.jade
+A   html5jquery/master/components/pages/faq.jade
+A   html5jquery/master/components/pages/invoice.jade
+A   html5jquery/master/components/pages/pricing.jade
+A   html5jquery/master/components/pages/projects.jade
+A   html5jquery/master/components/pages/timeline.jade
+A   html5jquery/master/components/pages/timeline.less
+A   meteor/imports/ui/components/pages/contacts.html
+A   meteor/imports/ui/components/pages/faq.html
+A   meteor/imports/ui/components/pages/invoice.html
+A   meteor/imports/ui/components/pages/pricing.html
+A   meteor/imports/ui/components/pages/projects.html
+A   meteor/imports/ui/components/pages/timeline.html
+A   meteor/imports/ui/components/pages/timeline.scss
+A   mvc6/CentricMVC6/src/CentricMVC6/Views/Pages/Contacts.cshtml
+A   mvc6/CentricMVC6/src/CentricMVC6/Views/Pages/FAQ.cshtml
+A   mvc6/CentricMVC6/src/CentricMVC6/Views/Pages/Invoice.cshtml
+A   mvc6/CentricMVC6/src/CentricMVC6/Views/Pages/Pricing.cshtml
+A   mvc6/CentricMVC6/src/CentricMVC6/Views/Pages/Projects.cshtml
+A   mvc6/CentricMVC6/src/CentricMVC6/Views/Pages/Timeline.cshtml
+A   mvc6/CentricMVC6/src/CentricMVC6/wwwroot/components/pages/timeline.less
+A   sass/angular/components/pages/timeline.scss
+A   sass/html5jquery/components/pages/timeline.scss
+
+Modified files:
+
+M   angularjs/app/css/app-rtl.css
+M   angularjs/app/css/app.css
+M   angularjs/app/js/app.js
+M   angularjs/master/components/common/variables.less
+M   angularjs/master/components/pages/pages.menu.js
+M   angularjs/master/components/pages/pages.route.js
+M   angularjs/master/components/sidebar/sidebar.less
+M   html5jquery/app/css/app-rtl.css
+M   html5jquery/app/css/app.css
+M   html5jquery/app/*.html
+M   html5jquery/master/components/common/variables.less
+M   html5jquery/master/components/core/core.layout.jade
+M   html5jquery/master/components/elements/bootstrapui.jade
+M   html5jquery/master/components/header/header.tpl.jade
+M   html5jquery/master/components/sidebar/sidebar.less
+M   html5jquery/master/components/sidebar/sidebar.tpl.jade
+M   meteor/client/head.html
+M   meteor/imports/startup/client/routes.js
+M   meteor/imports/ui/components/app.js
+M   meteor/imports/ui/components/app.scss
+M   meteor/imports/ui/components/common/variables.scss
+M   meteor/imports/ui/components/sidebar/sidebar.scss
+M   meteor/imports/ui/components/sidebar/sidebar.tpl.html
+M   mvc6/CentricMVC6/src/CentricMVC6/Controllers/Pages.cs
+M   mvc6/CentricMVC6/src/CentricMVC6/Views/Shared/_Layout.cshtml
+M   mvc6/CentricMVC6/src/CentricMVC6/Views/Shared/_Sidebar.cshtml
+M   mvc6/CentricMVC6/src/CentricMVC6/wwwroot/components/common/variables.less
+M   mvc6/CentricMVC6/src/CentricMVC6/wwwroot/components/sidebar/sidebar.less
+M   mvc6/CentricMVC6/src/CentricMVC6/wwwroot/css/app.css
+M   mvc6/CentricMVC6/src/CentricMVC6/wwwroot/js/app.js
+M   sass/angular/components/common/variables.scss
+M   sass/angular/components/sidebar/sidebar.scss
+M   sass/html5jquery/components/common/variables.scss
+M   sass/html5jquery/components/sidebar/sidebar.scss
+
+
+`1.3 11-Jul-2016`
+
+- New **MeteorJS** project
+- Added **SASS** (scss) stylesheets
+- Fix uib-datepicker deprecation warning
+- Fix uiSelect demo geocode url format
+- Updated documentation
+
+New files:
+
+A   meteor/
+A   sass/angular/
+A   sass/html5jquery/
+A   sass/readme.txt
+A   mvc6/CentricMVC6/src/CentricMVC6/gulpfile.sass.js
+
+Modified files:
+
+M   angularjs/app/css/app-rtl.css
+M   angularjs/app/css/app.css
+M   angularjs/app/js/app.js
+M   angularjs/app/views/validation.html
+M   angularjs/master/components/app.less
+M   angularjs/master/components/app.module.js
+M   angularjs/master/components/bootstrap/reset.less
+M   angularjs/master/components/bootstrapui/typeahead.controller.js
+M   angularjs/master/components/common/mixins.less
+M   angularjs/master/components/common/themes.less
+M   angularjs/master/components/forms/uiselect.controller.js
+M   angularjs/master/components/forms/validation.jade
+M   angularjs/master/gulpfile.js
+M   documentation/meteor/index.html
+M   documentation/mvc6/index.html
+M   html5jquery/app/css/app-rtl.css
+M   html5jquery/app/css/app.css
+M   html5jquery/app/js/app.js
+M   html5jquery/master/components/app.js
+M   html5jquery/master/components/app.less
+M   html5jquery/master/components/bootstrap/reset.less
+M   html5jquery/master/components/common/mixins.less
+M   html5jquery/master/components/common/themes.less
+M   html5jquery/master/gulpfile.js
+M   meteor/.meteor/packages
+M   meteor/.meteor/versions
+M   meteor/imports/startup/client/index.js
+M   meteor/imports/ui/components/app.js
+M   mvc6/CentricMVC6/src/CentricMVC6/package.json
+M   mvc6/CentricMVC6/src/CentricMVC6/wwwroot/_references.js
+M   mvc6/CentricMVC6/src/CentricMVC6/wwwroot/components/app.js
+M   mvc6/CentricMVC6/src/CentricMVC6/wwwroot/components/app.less
+M   mvc6/CentricMVC6/src/CentricMVC6/wwwroot/components/common/mixins.less
+M   mvc6/CentricMVC6/src/CentricMVC6/wwwroot/components/common/themes.less
+M   mvc6/CentricMVC6/src/CentricMVC6/wwwroot/css/app.css
+M   mvc6/CentricMVC6/src/CentricMVC6/wwwroot/js/app.js
+
+
+`1.2 01-Jun-2016`
+
+- New **Visual Studio MVC6** project
+- Added Blog view
+- Added Article view
+- Added Wizard to jQuery project
+- Fixed angular datepicker popup
+- Fixed sideabr menu toggler visibility
+- Updated documentation
+
+    New files:
+
+    A   mvc6/
+    A   documentation/mvc6
+    A   angularjs/app/views/blog.article.html
+    A   angularjs/app/views/blog.html
+    A   angularjs/master/components/pages/blog.article.jade
+    A   angularjs/master/components/pages/blog.jade
+    A   html5jquery/app/blog.article.html
+    A   html5jquery/app/blog.html
+    A   html5jquery/app/wizard.html
+    A   html5jquery/master/components/forms/wizard.jade
+    A   html5jquery/master/components/forms/wizard.js
+    A   html5jquery/master/components/forms/wizard.less
+    A   html5jquery/master/components/pages/blog.article.jade
+    A   html5jquery/master/components/pages/blog.jade
+
+    Modified files:
+
+    M   angularjs/app/css/app-rtl.css
+    M   angularjs/app/css/app.css
+    M   angularjs/app/js/app.js
+    M   angularjs/app/views/forms.advanced.html
+    M   angularjs/master/components/app.less
+    M   angularjs/master/components/app.module.js
+    M   angularjs/master/components/forms/forms.advanced.jade
+    M   angularjs/master/components/pages/pages.menu.js
+    M   angularjs/master/components/pages/pages.route.js
+    M   angularjs/master/components/utils/utils.less
+    M   html5jquery/app/css/app-rtl.css
+    M   html5jquery/app/css/app.css
+    M   html5jquery/app/*.html
+    M   html5jquery/master/bower.json
+    M   html5jquery/master/components/app.js
+    M   html5jquery/master/components/app.less
+    M   html5jquery/master/components/common/variables.less
+    M   html5jquery/master/components/core/core.layout.jade
+    M   html5jquery/master/components/sidebar/sidebar.tpl.jade
+    M   html5jquery/master/components/utils/utils.less
+
+`1.1 11-Apr-2016`
+
+- New **HTML5/jQuery** (non angular) project
+- Minor corrections to angularjs project
+- Updated documentation
+
+    New files:
+    A   angularjs/master/components/jquerydemo/jquerydemo.menu.js
+    A   html5jquery/app/bootgrid.html
+    Modified files:
+    M   angularjs/app/css/app-rtl.css
+    M   angularjs/app/css/app.css
+    M   angularjs/app/js/app.js
+    M   angularjs/app/views/bootstrapui.html
+    M   angularjs/app/views/whiteframes.html
+    M   angularjs/master/components/app.less
+    M   angularjs/master/components/app.module.js
+    M   angularjs/master/components/bootstrap/reset.less
+    M   angularjs/master/components/colors/colors.less
+    M   angularjs/master/components/common/mixins.less
+    M   angularjs/master/components/elements/bootstrapui.jade
+    M   angularjs/master/components/elements/whiteframes.jade
+    M   angularjs/master/components/forms/material.less
+    M   angularjs/master/components/sidebar/sidebar.less
+    M   angularjs/master/components/utils/utils.less
+
+`1.0 17-Mar-2016`
+
+- Initial release

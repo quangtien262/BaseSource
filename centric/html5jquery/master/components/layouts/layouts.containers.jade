@@ -1,0 +1,16 @@
+extends ../core/core.layout
+block pagetitle
+    - pageTitle = 'Containers'
+block content
+    .container-fluid.text-center
+        h4 Fluid container
+        p: code .container-fluid
+        .container.container-lg.b
+            h4.text-center Large container
+            p: code .container.container-lg
+            .container.container-md.b
+                h4.text-center Medium container
+                p: code .container.container-md
+                .container.container-sm.b
+                    h4.text-center Small container
+                    p: code .container.container-sm

@@ -1,0 +1,23 @@
+extends user.layout
+block content
+    .container-full
+        .container.container-xs
+            .text-center.mv-lg
+                img.img-circle.mb.block-center.img-responsive.thumb64(src="img/user/01.jpg")
+                p Brian Walker
+            form.card.form-validate#user-lock(name="loginForm", novalidate='')
+                .card-heading
+                    p.text-center Type your password to unlock terminal
+                .card-offset.pb0
+                    .card-offset-item.text-right.ng-fadeInLeftShort
+                        button.btn.btn-success.btn-circle.btn-lg(type="submit")
+                            em.ion-checkmark-round
+                .card-body
+                    .mda-form-group.float-label.mda-input-group
+                        .mda-form-control
+                            input.form-control(type='password', name="accountPassword",required="")
+                            .mda-form-control-line
+                            label Password
+                        a.mda-form-msg.right(href="login.html") Not you?
+                        span.mda-input-group-addon
+                            em.ion-ios-locked-outline.icon-lg

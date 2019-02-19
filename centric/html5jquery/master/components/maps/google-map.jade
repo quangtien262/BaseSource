@@ -1,0 +1,21 @@
+extends ../core/core.layout
+block pagetitle
+    - pageTitle = 'Google Maps'
+block content
+    .container-fluid
+        .row
+            .col-md-6
+                .card.card-default
+                    .card-heading Basic
+                    .card-body
+                        #map.gmap
+            .col-md-6
+                .card.card-default
+                    .card-heading Markers
+                    .card-body
+                        #map-markers.gmap
+
+        .card.card-default
+            .card-heading Panorama
+            .card-body
+                #panorama.gmap

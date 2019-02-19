@@ -1,0 +1,138 @@
+.modal-settings.modal.modal-right.fade(tabindex='-1', role='dialog')
+    .modal-dialog.modal-lg
+        .modal-content
+            .modal-header
+                .pull-right.clickable(data-dismiss='modal')
+                    em.ion-close-round.text-soft
+                h4.modal-title
+                    span Settings
+            .modal-body
+                .clearfix.mb
+                    .pull-left.wd-tiny.mb
+                        .setting-color
+                            label.preview-theme-1
+                                input(type='radio', checked="checked", name='setting-theme', value='0')
+                                span.ion-checkmark-round
+                                .t-grid: .t-row
+                                    .t-col.preview-header
+                                    .t-col.preview-sidebar
+                                    .t-col.preview-content
+                    .pull-left.wd-tiny.mb
+                        .setting-color
+                            label.preview-theme-2
+                                input(type='radio', name='setting-theme', value='1')
+                                span.ion-checkmark-round
+                                .t-grid: .t-row
+                                    .t-col.preview-header
+                                    .t-col.preview-sidebar
+                                    .t-col.preview-content
+                    .pull-left.wd-tiny.mb
+                        .setting-color
+                            label.preview-theme-3
+                                input(type='radio', name='setting-theme', value='2')
+                                span.ion-checkmark-round
+                                .t-grid: .t-row
+                                    .t-col.preview-header
+                                    .t-col.preview-sidebar
+                                    .t-col.preview-content
+                    .pull-left.wd-tiny.mb
+                        .setting-color
+                            label.preview-theme-4
+                                input(type='radio', name='setting-theme', value='3')
+                                span.ion-checkmark-round
+                                .t-grid: .t-row
+                                    .t-col.preview-header
+                                    .t-col.preview-sidebar
+                                    .t-col.preview-content
+                    .pull-left.wd-tiny.mb
+                        .setting-color
+                            label.preview-theme-5
+                                input(type='radio', name='setting-theme', value='4')
+                                span.ion-checkmark-round
+                                .t-grid: .t-row
+                                    .t-col.preview-header
+                                    .t-col.preview-sidebar
+                                    .t-col.preview-content
+                    .pull-left.wd-tiny.mb
+                        .setting-color
+                            label.preview-theme-6
+                                input(type='radio', name='setting-theme', value='5')
+                                span.ion-checkmark-round
+                                .t-grid: .t-row
+                                    .t-col.preview-header
+                                    .t-col.preview-sidebar
+                                    .t-col.preview-content
+                    .pull-left.wd-tiny.mb
+                        .setting-color
+                            label.preview-theme-7
+                                input(type='radio', name='setting-theme', value='6')
+                                span.ion-checkmark-round
+                                .t-grid: .t-row
+                                    .t-col.preview-header
+                                    .t-col.preview-sidebar
+                                    .t-col.preview-content
+                    .pull-left.wd-tiny.mb
+                        .setting-color
+                            label.preview-theme-8
+                                input(type='radio', name='setting-theme', value='7')
+                                span.ion-checkmark-round
+                                .t-grid: .t-row
+                                    .t-col.preview-header
+                                    .t-col.preview-sidebar
+                                    .t-col.preview-content
+                    .pull-left.wd-tiny.mb
+                        .setting-color
+                            label.preview-theme-9
+                                input(type='radio', name='setting-theme', value='8')
+                                span.ion-checkmark-round
+                                .t-grid: .t-row
+                                    .t-col.preview-header
+                                    .t-col.preview-sidebar
+                                    .t-col.preview-content
+
+                hr
+                p
+                    label.mda-checkbox
+                        input#sidebar-showheader(type='checkbox', checked="")
+                        em.bg-indigo-500
+                        | Sidebar header
+                p
+                    label.mda-checkbox
+                        input#sidebar-showtoolbar(type='checkbox', checked="")
+                        em.bg-indigo-500
+                        | Sidebar toolbar
+                p
+                    label.mda-checkbox
+                        input#sidebar-offcanvas(type='checkbox')
+                        em.bg-indigo-500
+                        | Sidebar offcanvas
+                hr
+                p Navigation icon
+                p
+                    label.mda-radio
+                        input(type='radio', name="headerMenulink", value="menu-link-close")
+                        em.bg-indigo-500
+                        | Close icon
+                p
+                    label.mda-radio
+                        input(type='radio', checked="", name="headerMenulink", value="menu-link-slide")
+                        em.bg-indigo-500
+                        | Slide arrow
+                p
+                    label.mda-radio
+                        input(type='radio', name="headerMenulink", value="menu-link-arrow")
+                        em.bg-indigo-500
+                        | Big arrow
+                hr
+                button.btn.btn-default.btn-raised(type="button", data-toggle-fullscreen="") Toggle fullscreen
+                hr
+                p Change language
+                // START Language list
+                .btn-group
+                    button.btn.btn-default.btn-block.btn-raised(type='button', data-toggle="dropdown") English
+                    ul.dropdown-menu.dropdown-menu-right.animated.fadeInUpShort(role='menu')
+                        li
+                            a(href='#', data-set-lang="en") English
+                        li
+                            a(href='#', data-set-lang="es") Spanish
+                // END Language list
