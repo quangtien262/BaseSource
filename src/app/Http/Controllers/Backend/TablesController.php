@@ -130,7 +130,12 @@ class TablesController extends Controller {
         $datas = app('EntityCommon')->getRowsByConditions($table->name, $conditions, 0, ['id', 'desc']);
         //convert object 2 array
         $datas = json_decode(json_encode($datas), True);
-        return view('backend.tables.listDataTbl', compact('tableId', 'table', 'columns', 'datas'));
+        
+        if ($table->type_show == 'BASIC') {
+            return view('backend.tables.listBasic', compact('tableId', 'table', 'columns', 'datas'));
+        } elseif ($table->type_show == 'DRAG_DROP') {
+            return view('backend.tables.listDragDrop', compact('tableId', 'table', 'columns', 'datas'));
+        }
     }
 
     public function formDataTbl(Request $request, $tableId, $dataId) {
