@@ -116,16 +116,48 @@ class ClassTables {
             $html = '<select class="form-control" name="' . $name . '"><option value="0">Chọn</option>';
         }
         $table = self::getTable($tblDataId);
-        $tableData = app('EntityCommon')->getRowsByConditions($table->name, [], 0, $order = ['id', 'asc']);
-//        dd($tableData);
-        foreach ($tableData as $data) {
-            $selected = '';
-            if ($data->id == $selectedId) {
-                $selected = 'selected="selected"';
+        if (!empty($table)) {
+            $tableData = app('EntityCommon')->getRowsByConditions($table->name, [], 0, $order = ['id', 'asc']);
+            foreach ($tableData as $data) {
+                $selected = '';
+                if ($data->id == $selectedId) {
+                    $selected = 'selected="selected"';
+                }
+                $html .= '<option ' . $selected . ' value="' . $data->id . '">' . $data->name . '</option>';
             }
-            $html .= '<option ' . $selected . ' value="' . $data->id . '">' . $data->name . '</option>';
         }
         $html .= '</select>';
+        return $html;
+    }
+
+    public function getHtmlListDragDrop($table, $columns, $parentId) {
+        $html = '<ol class="dd-list">';
+        $conditions = [];
+        $conditions['parent_id'] = 0;
+        $order = ['sort_order', 'asc'];
+        $tableData = app('EntityCommon')->getRowsByConditions($table->name, $conditions, $limit = 0, $order);
+
+        foreach ($tableData as $td) {
+
+            $html .= '<li class="dd-item" data-id="'.$td->id.'">
+                            <div class="card b0 dd-handle">
+                                <div class="mda-list">
+                                    <div class="mda-list-item">
+                                        <div class="mda-list-item-icon item-grab"><em class="ion-drag icon-lg"></em></div>
+                                        <div class="mda-list-item-icon bg-info"><em class="ion-coffee icon-lg"></em></div>
+                                        <div class="mda-list-item-text mda-2-line">
+                                            <h3>'.$td->name.'</h3>
+                                            <h4>description</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>';
+            if ($table->type_show == 2) { 
+                
+            }
+            $html .= '</li>';
+        }
+        $html .= '</ol>';
         return $html;
     }
 

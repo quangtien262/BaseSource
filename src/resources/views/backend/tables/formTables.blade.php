@@ -29,15 +29,17 @@
                                     </div>
                                     <div class="col-xs-6 col-sm-3">
                                         <select name="table_edit" class="form-control">
-                                            <option value="1">EDIT</option>
-                                            <option value="0">NOT EDIT</option>
+                                            @foreach(unserialize(IS_EDIT) as $keyEdit => $valEdit)
+                                                <option {{ isset($table->is_edit) && $table->is_edit == $keyEdit ? 'selected="selected"':'' }}  value="{{$keyEdit}}">{{$valEdit}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="col-xs-6 col-sm-3">
                                         <select name="table_type_show" class="form-control">
                                             <option value="">Type show</option>
-                                            <option {{ !empty($table->type_show) && $table->type_show == 'BASIC' ? 'selected="selected"':'' }} value="BASIC">Table basic</option>
-                                            <option {{ !empty($table->type_show) && $table->type_show == 'DRAG_DROP' ? 'selected="selected"':'' }} value="DRAG_DROP">Drag and Drop</option>
+                                            @foreach(unserialize(TABLE_TYPE_SHOW) as $keyType => $valType)
+                                                <option {{ isset($table->type_show) && $table->type_show == $keyType ? 'selected="selected"':'' }}  value="{{$keyType}}">{{$valType}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="col-xs-6 col-sm-3">

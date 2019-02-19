@@ -39,3 +39,9 @@ define("TYPE_EDIT", serialize([
     'files' => 'Multiple file'
 ]));
 
+define("TABLE_TYPE_SHOW", serialize([
+    0 => 'Table basic',
+    1 => 'Drag and Drop <Single level>',
+    2 => 'Drag and Drop <Multiple level>'
+]));
+
