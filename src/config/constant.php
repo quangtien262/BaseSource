@@ -36,7 +36,9 @@ define("TYPE_EDIT", serialize([
     'image' => 'Image',
     'images' => 'Images',
     'file' => 'File',
-    'files' => 'Multiple file'
+    'files' => 'Multiple file',
+    'password' => 'Password',
+    'encryption' => 'Password <Encryption>',
 ]));
 
 define("TABLE_TYPE_SHOW", serialize([
