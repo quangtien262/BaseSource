@@ -126,11 +126,17 @@ class TablesController extends Controller {
     public function listDataTbl(Request $request, $tableId) {
         $table = app('ClassTables')->getTable($tableId);
         $columns = app('ClassTables')->getColumnByTableId($tableId);
-        $conditions = [];
-        $datas = app('EntityCommon')->getRowsByConditions($table->name, $conditions, 0, ['id', 'desc']);
-        //convert object 2 array
-        $datas = json_decode(json_encode($datas), True);
-        return view('backend.tables.listDataTbl', compact('tableId', 'table', 'columns', 'datas'));
+
+        if ($table->type_show == 0) {
+            $conditions = [];
+            $datas = app('EntityCommon')->getRowsByConditions($table->name, $conditions, 0, ['id', 'desc']);
+            //convert object 2 array
+            $datas = json_decode(json_encode($datas), True);
+            return view('backend.tables.listBasic', compact('tableId', 'table', 'columns', 'datas'));
+        } elseif ($table->type_show == 1 || $table->type_show == 2) {
+            $htmlListDragDrop = app('ClassTables')->getHtmlListDragDrop($table, $columns, 0);
+            return view('backend.tables.listDragDrop', compact('tableId', 'table', 'columns', 'datas', 'htmlListDragDrop'));
+        }
     }
 
     public function formDataTbl(Request $request, $tableId, $dataId) {

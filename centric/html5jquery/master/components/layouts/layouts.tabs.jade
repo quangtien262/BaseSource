@@ -1,0 +1,19 @@
+extends ../core/core.layout
+block pagetitle
+    - pageTitle = 'Tabs Layout'
+block content
+    ul#myTabs.nav.nav-tabs.nav-justified(role='tablist')
+        li.active(role='presentation')
+                a#home-tab(href='#home', role='tab', data-toggle='tab', aria-controls='home', aria-expanded='true') Home
+        li(role='presentation')
+                a#profile-tab(href='#profile', role='tab', data-toggle='tab', aria-controls='profile') Profile
+        li.dropdown(role='presentation')
+                a#profile-tab(href='#messages', role='tab', data-toggle='tab', aria-controls='messages') Messages
+
+    #myTabContent.tab-content.text-center
+        #home.tab-pane.fade.in.active(role='tabpanel', aria-labelledby='home-tab')
+            h4 Home view
+        #profile.tab-pane.fade(role='tabpanel', aria-labelledby='profile-tab')
+            h4 Profile view
+        #messages.tab-pane.fade(role='tabpanel', aria-labelledby='messages-tab')
+            h4 Messages view

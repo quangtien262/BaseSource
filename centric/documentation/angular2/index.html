@@ -1,0 +1,434 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>Centric Docs</title><link rel="stylesheet" href="assets/styles.css"></head><body><div class="inf-header-wrapper"><header class="inf-header"><h1 class="title"><a href="http://themicon.co/centric">Centric Docs</a></h1><div class="support"><a href="https://wrapbootstrap.com/user/themicon#contact" class="btn-support">Contact support</a></div></header></div><div class="inf-wrapper"><nav class="inf-menu"><ul><li><a href="#introduction">Introduction</a></li><li><a href="#structure">Structure</a></li><li><a href="#build">Build</a></li><li><a href="#usage">Usage</a></li><li><a href="#credits">Credits</a></li></ul><div class="inf-menu-meta"><span>By:</span><a href="https://twitter.com/themicon_co">@themicon</a><br><span>Created:</span><span>2016-12-29</span><br><span>Updated:</span><span>2017-01-02</span></div></nav><div class="inf-content"><div class="inf-item-header"><h1>Centric<small>Bootstrap Admin Template + Angular2</small></h1><p>Thank you for purchasing Centric - Bootstrap Admin Template + Angular2.<br>If you have any question about this product and beyond the scope of this help file, please feel free to write us using the support button.</p><br><p><strong>Thanks so much!</strong></p></div><section class="inf-section"><article id="introduction"><h2 class="title">Introduction</h2><div class="content"><p>This document aims to explain the best way to work with the product and its components.</p>
+<p><strong>- <em>All the best and enjoy coding.</em></strong></p>
+<h4 id="getting-started-tips">Getting started tips</h4>
+<ul>
+<li>Do not start from scratch, use an existing asset and modify it to learn how it works.</li>
+<li>Explore the sources for ideas and sample code.</li>
+<li>Use Firebug or Chrome Developer Tools to find bugs on your website. Using one of those tools will help you to save time analyzing the site and finding elements structure, like classes, id or tags<ul>
+<li>Quick tip: open your site with Chrome, press F12 and go to console tab, reload your page and if something goes wrong you will see your page errors in red text.</li>
+</ul>
+</li>
+<li>In case of errors, someone might have seen it too, you can try a Google search for a quick fix.</li>
+</ul>
+<blockquote>
+<p><strong>Important</strong> Opening the index.html with a double click (i.e. using file:// protocol) will show you only a blank page because there’s no server that response to the requests made for each view in order to display the app interface.</p>
+</blockquote>
+<h4 id="technologies-used">Technologies used</h4>
+<p>This template is based on the following technologies. Follow the links for each one of them in order to get more information:</p>
+<ul>
+<li><p>The project is based on <a href="https://angular.io/">Angular2</a></p>
+</li>
+<li><p>The enviroment was created using <a href="https://cli.angular.io/">angular-cli</a> tool </p>
+</li>
+<li><p>Language used: <a href="https://www.typescriptlang.org/">TypeScript</a>, <a href="http://sass-lang.com/">SCSS</a> and raw HTML </p>
+</li>
+<li><p>Bootstrap support by <a href="https://valor-software.com/ng2-bootstrap/#/">ng2Bootstrap</a></p>
+</li>
+<li><p><a href="https://angular.io/styleguide">Angular2 style guide</a> has been followed for better practices.</p>
+</li>
+</ul>
+</div></article><article id="structure"><h2 class="title">Structure</h2><div class="content"><p>Before starting to customize the template, here is the project files organization structure:</p>
+<pre><code class="lang-css">ng2centric
+    +---dist
+    +---e2e
+    \---src
+        +---app
+        |   +---core
+        |   |   +---colors
+        |   |   +---menu
+        |   |   +---pagetitle
+        |   |   +---preloader
+        |   |   \---translator
+        |   +---layout
+        |   |   +---header
+        |   |   |   \---search
+        |   |   \---sidebar
+        |   +---routes
+        |   |   +---cards
+        |   |   +---charts
+        |   |   |   +---flot
+        |   |   |   \---radial
+        |   |   +---dashboard
+        |   |   +---elements
+        |   |   |   +---bootstrapui
+        |   |   |   +---buttons
+        |   |   |   +---colors
+        |   |   |   +---grid
+        |   |   |   +---icons
+        |   |   |   +---lists
+        |   |   |   +---navtree
+        |   |   |   +---nestable
+        |   |   |   +---spinners
+        |   |   |   +---sweetalert
+        |   |   |   +---typography
+        |   |   |   +---utilities
+        |   |   |   \---whiteframes
+        |   |   +---forms
+        |   |   |   +---advanced
+        |   |   |   +---classic
+        |   |   |   +---editors
+        |   |   |   +---material
+        |   |   |   +---upload
+        |   |   |   \---validation
+        |   |   +---layouts
+        |   |   |   +---boxed
+        |   |   |   +---columns
+        |   |   |   +---containers
+        |   |   |   +---overlap
+        |   |   |   \---tabs
+        |   |   |       +---tabhome
+        |   |   |       +---tabmessage
+        |   |   |       \---tabprofile
+        |   |   +---maps
+        |   |   |   +---google
+        |   |   |   +---googlefull
+        |   |   |   \---vector
+        |   |   +---pages
+        |   |   |   +---article
+        |   |   |   +---blog
+        |   |   |   +---contacts
+        |   |   |   +---faq
+        |   |   |   +---gallery
+        |   |   |   +---invoice
+        |   |   |   +---messages
+        |   |   |   |   +---messagenew
+        |   |   |   |   \---messageview
+        |   |   |   +---pricing
+        |   |   |   +---profile
+        |   |   |   +---projects
+        |   |   |   +---search
+        |   |   |   +---timeline
+        |   |   |   \---wall
+        |   |   +---tables
+        |   |   |   +---classic
+        |   |   |   \---datatables
+        |   |   \---user
+        |   |       +---lock
+        |   |       +---login
+        |   |       +---recover
+        |   |       \---signup
+        |   \---shared
+        |       +---directives
+        |       |   +---easypiechart
+        |       |   +---flot
+        |       |   +---knob
+        |       |   +---ripple
+        |       |   +---sparkline
+        |       |   +---svgreplace
+        |       |   \---vectormap
+        |       +---settings
+        |       \---styles
+        |           +---bootstrap
+        |           |   \---mixins
+        |           +---bootstrapui
+        |           +---cards
+        |           +---colors
+        |           +---common
+        |           +---floatbutton
+        |           +---material
+        |           +---ripple
+        |           +---settings
+        |           \---utils
+        +---assets
+        |   +---chart
+        |   +---i18n
+        |   \---img
+        |       +---icons
+        |       +---preloader
+        |       \---user
+        \---environments
+</code></pre>
+<p>There are more files in the structure, we will list the main files in order to describe the application workflow based on the order they are imported.  </p>
+<p>The application is bootstrapped in file <strong>main.ts</strong>, this file imports the <strong>AppModule</strong>, among other things.  </p>
+<p>The file <strong>app.module.ts</strong> is where the main <strong>AppModule</strong> is defined, here is also imported the rest of the modules we have defined according to each responsibility.</p>
+<p>Those modules are</p>
+<ul>
+<li><strong>CoreModule</strong>: this module includes core features like menu, translation, settings and themes. Note that in this module there are service that must be instantiated only once.</li>
+<li><strong>LayoutModule</strong>: this module includes all necessary to build the layout like header, sidebar and content. Here is also defined the router mount point for each component.</li>
+<li><strong>SharedModule</strong>: this module contains whatever should be considered as shared accross the entire application, like the CommonModule, FormsModule, Ng2BootstrapModule, etc. Here is also included the application styles that are imported in file app.component.ts</li>
+<li><strong>RoutesModule</strong>: this modules contains all components that related specically with accessible route in the application. </li>
+</ul>
+<p>The file <strong>app.component.ts</strong> is the responsible for declaring the root element of the application. The styles imported via the file <strong>app.component.scss</strong> applies to the entire application due to property ViewEncapsulation.None used.  </p>
+<p>Finally, the assets folder contains static files like images, json files with translation definition, etc.</p>
+</div></article><article id="build"><h2 class="title">Build</h2><div class="content"><h4 id="installing-tools">Installing tools</h4>
+<p>The following steps are intended to be an orientation guide, if you are not experienced with this you will need to learn a bit more about it from Google :)</p>
+<ul>
+<li>To install node and npm, go to <a href="http://nodejs.org/" title="http://nodejs.org/">http://nodejs.org/</a></li>
+<li>Download and install GIT for your platform from <a href="http://git-scm.com/downloads">http://git-scm.com/downloads</a></li>
+</ul>
+<p>Once you have all tools installed</p>
+<ul>
+<li><p>Open a console/terminal and run <code>npm install -g angular-cli</code> to install angular client to manage the application</p>
+</li>
+<li><p>Move to the project folder, there run the following command to install all node dependencies    <code>npm install</code>. </p>
+</li>
+<li><p>Finally run <code>ng serve</code> to start the application.</p>
+</li>
+</ul>
+<p>If everything goes fine, you should see the messages in the terminal telling you the application has been compiled and the server is running. </p>
+<p>Open your browser and go to <strong><a href="http://localhost:4200">http://localhost:4200</a></strong></p>
+<blockquote>
+<p>Learn more about ng command from it official site: <a href="https://github.com/angular/angular-cli#usage">https://github.com/angular/angular-cli#usage</a></p>
+</blockquote>
+</div></article><article id="usage"><h2 class="title">Usage</h2><div class="content"><h4 id="adding-new-components">Adding new components</h4>
+<p>You can add new components with the following command</p>
+<pre><code>ng g component name
+</code></pre><p>where &#39;g&#39; is an alias for &#39;generate&#39; and name is the name of the new component. This command will create a folder with the same name provided and the necessary files in the location src/app/name</p>
+<p>Now you can import your component into the application in the corresponding module with the syntax</p>
+<pre><code class="lang-javascript">import { ComponentName } from &#39;./path/to/component&#39;;
+</code></pre>
+<p>A similar command can be used to generate service, pipe, etc. See more <a href="https://github.com/angular/angular-cli#generating-components-directives-pipes-and-services">here</a></p>
+<h4 id="adding-new-routes">Adding new routes</h4>
+<p>You can generate a component for the RoutesModule specifying the path in the component generation, like:</p>
+<pre><code>ng g component routes/name
+</code></pre><p>Then, you can import the component using the file <strong>src/app/routes/routes.module.ts</strong><br>Example</p>
+<pre><code class="lang-javascript">import { SomeComponent } from &#39;./name/name.component&#39;;
+
+@NgModule({
+    imports: [ ... ],
+    declarations: [
+        SomeComponent
+    ],
+    exports: [
+        SomeComponent
+    ]
+})
+</code></pre>
+<p>Note that you have to add it to &#39;<strong>declarations</strong>&#39; and &#39;<strong>exports</strong>&#39; entries in order to make it available for the application.</p>
+<p>Once you have the component created, you need to declare the path for the route using file src/app/routes/routes.ts
+The following example shows the basic route structure in angular2</p>
+<pre><code class="lang-javascript">import { SomeComponent } from &#39;./name/name.component&#39;;
+
+const routes = [
+
+    // routes loaded using the application layout (with sidebar, header, etc)
+    {
+        path: &#39;&#39;,
+        component: LayoutComponent,
+        children: [
+            { path: &#39;path&#39;, component: SomeComponent },
+            ...
+        ]
+    }
+
+    // Pages displayed without sidebar, header, etc.
+    { path: &#39;path&#39;, component: SomeComponent },
+    ...
+
+]
+
+export default routes;
+</code></pre>
+<h4 id="menu">Menu</h4>
+<p>The MenuService provides access to the application menu from one place (src/app/core/menu/menu.service.ts)</p>
+<p>Edit the file <strong>app/routes/menu.ts</strong> and add there a menu entry following the provided structure.</p>
+<pre><code class="lang-javascript">const Item = {
+    name: &#39;Item&#39;,
+    link: &#39;/Item&#39;,
+    // iconclass: &#39;ion-aperture&#39;,
+    imgpath: &#39;assets/img/icons/aperture.svg&#39;,
+    order: 1,
+    label: {
+        count: 2,
+        classname: &#39;badge bg-success&#39;
+    }
+};
+
+export default [Item, ...];
+</code></pre>
+<p>As you can see, this file only declares objects with each menu entry and exports an Array with all menu entries decalred. This file is imported from into the RoutesModule to initialize the menu that is later accessed from the SidebarComponent</p>
+<p>The order is used to change the position of an item without reordering the exported array.</p>
+<h4 id="vendor-assets">Vendor assets</h4>
+<p>Vendor assets can be installed using the Node Package Manager (npm). The following command shows how to install a package so it becomes part of the project</p>
+<pre><code>npm install package-name --save
+</code></pre><p>If you don&#39;t add the --save flag, the package won&#39;t be saved as a dependency in package.json and it will be only available in your local project.</p>
+<p>Once the command ends, files will be available in the node_modules folder and ready to be imported into your application code.</p>
+<p><strong>Global</strong></p>
+<p>If the package must be used globally (not component based), you have the following options</p>
+<ul>
+<li>You can add them in the following files</li>
+</ul>
+<p><strong>src/styles.scss</strong>: @import here any css or scss file</p>
+<p><strong>src/vendor.ts</strong>: import here the new package name</p>
+<ul>
+<li>Add the paths to the angular-cli.json file, in the &quot;apps&quot; section like follows</li>
+</ul>
+<pre><code class="lang-javascript">&quot;styles&quot;: [
+    &quot;../node_modules/some-package/some-package.css&quot;,
+    &quot;styles.scss&quot;
+  ],
+  &quot;scripts&quot;: [
+    &quot;../node_modules/some-package/some-package.js&quot;,
+    &quot;vendor.ts&quot;
+  ],
+</code></pre>
+<p>Everything included here is like if you put it in the head section of the page</p>
+<blockquote>
+<p>We suggest you to use the first option when possible to avoid bloating the angular-cli.json. Also, by using the external files you can add comments to each declaration for self reference. In some cases this may be not possible due to how the plugin works and only is possible to be included via angula-cli.json.</p>
+</blockquote>
+<p><strong>Local</strong></p>
+<p>To use a package locally in your new component, you can import the files directly into the code as follows</p>
+<p><strong>For styles</strong>, use the file somename.component.scss and @import the styles from node_modules/path</p>
+<p><strong>For scripts</strong>, import them using the es6 import syntax</p>
+<p>Import paths are always relative to the file where the import is declared.</p>
+<h4 id="note-about-jquery">Note about jQuery</h4>
+<p>If a component uses jQuery you must add the following before the use:</p>
+<pre><code class="lang-javascript">declare var $: any;
+</code></pre>
+<h4 id="translation">Translation</h4>
+<p>The translation system uses the Angular2 Translate module.<br>This feature is managed by the TranslatorService defined in file src/app/core/translator/traslator.service.ts</p>
+<p>This modules simplifies the translation system by loading translate references from a JSON file and replacing the content where the reference has been used.</p>
+<p>Examples</p>
+<pre><code class="lang-markup">&lt;div [innerHTML]=&quot;&#39;reference.NAME&#39; | translate&quot;&gt;Text that will be replaced&lt;/div&gt;
+
+&lt;div&gt;{{ &#39;reference.NAME&#39; | translate }}&lt;/div&gt;
+
+&lt;a href=&quot;#&quot; title=&quot;{{ &#39;reference.NAME&#39; | translate }}&quot;&gt;Link&lt;/a&gt;
+</code></pre>
+<p>The JSON files with translation references are located in the folder app/i18n</p>
+<h4 id="preloader">Preloader</h4>
+<p>The preloader files can be found in folder src/app/core/preloader/</p>
+<p>It enabled by adding the following markup to the index file like follows</p>
+<pre><code class="lang-markup">&lt;div class=&quot;preloader&quot;&gt;
+    &lt;div class=&quot;preloader-progress&quot;&gt;
+        &lt;div class=&quot;preloader-progress-bar&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<h5 id="image-logo">Image logo</h5>
+<p>To generate the loading effect with text we use two images that are the same but one fully colored and the other with a little opacity.<br>Both images can be found and replaced in the following paths</p>
+<pre><code>src/assets/img/preloader/preloader.empty.png
+src/assets/img/preloader/preloader.full.png
+</code></pre><p>If you change this images, try to respect the original size. Otherwise, you will need to change a bit of the styles to make the new size matches with the real one.</p>
+<p><strong>Note</strong>: While the preloader is included within the structure of the application, it works independently and is even required independently because it must be available from as soon as possible to show the loading screen while the angular2 application is starting.</p>
+</div></article><article id="credits"><h2 class="title">Credits</h2><div class="content"><table>
+<thead>
+<tr>
+<th>Name</th>
+<th style="text-align:center">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>angular2</td>
+<td style="text-align:center"><a href="https://angular.io/">https://angular.io/</a></td>
+</tr>
+<tr>
+<td>angular-cli</td>
+<td style="text-align:center"><a href="https://cli.angular.io/">https://cli.angular.io/</a></td>
+</tr>
+<tr>
+<td>angular2-color-picker</td>
+<td style="text-align:center"><a href="https://github.com/Alberplz/angular2-color-picker">https://github.com/Alberplz/angular2-color-picker</a></td>
+</tr>
+<tr>
+<td>angular2-datatable</td>
+<td style="text-align:center"><a href="https://github.com/mariuszfoltak/angular2-datatable">https://github.com/mariuszfoltak/angular2-datatable</a></td>
+</tr>
+<tr>
+<td>angular2-google-maps</td>
+<td style="text-align:center"><a href="https://github.com/SebastianM/angular2-google-maps">https://github.com/SebastianM/angular2-google-maps</a></td>
+</tr>
+<tr>
+<td>angular2-tree-component</td>
+<td style="text-align:center"><a href="https://angular2-tree.readme.io/docs">https://angular2-tree.readme.io/docs</a></td>
+</tr>
+<tr>
+<td>blueimp-gallery</td>
+<td style="text-align:center"><a href="https://blueimp.github.io/Gallery/">https://blueimp.github.io/Gallery/</a></td>
+</tr>
+<tr>
+<td>bootstrap</td>
+<td style="text-align:center"><a href="http://getbootstrap.com/">http://getbootstrap.com/</a></td>
+</tr>
+<tr>
+<td>easy-pie-chart</td>
+<td style="text-align:center"><a href="https://rendro.github.io/easy-pie-chart/">https://rendro.github.io/easy-pie-chart/</a></td>
+</tr>
+<tr>
+<td>flot</td>
+<td style="text-align:center"><a href="http://www.flotcharts.org/">http://www.flotcharts.org/</a></td>
+</tr>
+<tr>
+<td>ionicons</td>
+<td style="text-align:center"><a href="http://ionicons.com/">http://ionicons.com/</a></td>
+</tr>
+<tr>
+<td>jquery</td>
+<td style="text-align:center"><a href="https://jquery.com/">https://jquery.com/</a></td>
+</tr>
+<tr>
+<td>jquery-knob</td>
+<td style="text-align:center"><a href="http://anthonyterrien.com/knob/">http://anthonyterrien.com/knob/</a></td>
+</tr>
+<tr>
+<td>jquery-sparkline</td>
+<td style="text-align:center"><a href="http://omnipotent.net/jquery.sparkline/">http://omnipotent.net/jquery.sparkline/</a></td>
+</tr>
+<tr>
+<td>jquery.browser</td>
+<td style="text-align:center"><a href="https://github.com/gabceb/jquery-browser-plugin">https://github.com/gabceb/jquery-browser-plugin</a></td>
+</tr>
+<tr>
+<td>jquery.flot.tooltip</td>
+<td style="text-align:center"><a href="https://github.com/krzysu/flot.tooltip">https://github.com/krzysu/flot.tooltip</a></td>
+</tr>
+<tr>
+<td>loaders.css</td>
+<td style="text-align:center"><a href="https://connoratherton.com/loaders">https://connoratherton.com/loaders</a></td>
+</tr>
+<tr>
+<td>lodash</td>
+<td style="text-align:center"><a href="https://lodash.com/">https://lodash.com/</a></td>
+</tr>
+<tr>
+<td>material-colors</td>
+<td style="text-align:center"><a href="https://github.com/shuhei/material-colors">https://github.com/shuhei/material-colors</a></td>
+</tr>
+<tr>
+<td>modernizr</td>
+<td style="text-align:center"><a href="https://modernizr.com/">https://modernizr.com/</a></td>
+</tr>
+<tr>
+<td>ng-material-floating-button</td>
+<td style="text-align:center"><a href="https://github.com/nobitagit/ng-material-floating-button">https://github.com/nobitagit/ng-material-floating-button</a></td>
+</tr>
+<tr>
+<td>ng2-bootstrap</td>
+<td style="text-align:center"><a href="https://github.com/valor-software/ng2-bootstrap">https://github.com/valor-software/ng2-bootstrap</a></td>
+</tr>
+<tr>
+<td>ng2-file-upload</td>
+<td style="text-align:center"><a href="http://valor-software.com/ng2-file-upload/">http://valor-software.com/ng2-file-upload/</a></td>
+</tr>
+<tr>
+<td>ng2-select</td>
+<td style="text-align:center"><a href="https://github.com/valor-software/ng2-select">https://github.com/valor-software/ng2-select</a></td>
+</tr>
+<tr>
+<td>ng2-translate</td>
+<td style="text-align:center"><a href="https://github.com/ocombe/ng2-translate">https://github.com/ocombe/ng2-translate</a></td>
+</tr>
+<tr>
+<td>ng2-validation</td>
+<td style="text-align:center"><a href="https://github.com/yuyang041060120/ng2-validation">https://github.com/yuyang041060120/ng2-validation</a></td>
+</tr>
+<tr>
+<td>screenfull</td>
+<td style="text-align:center"><a href="https://sindresorhus.com/screenfull.js/">https://sindresorhus.com/screenfull.js/</a></td>
+</tr>
+<tr>
+<td>summernote</td>
+<td style="text-align:center"><a href="http://summernote.org/">http://summernote.org/</a></td>
+</tr>
+<tr>
+<td>sweetalert</td>
+<td style="text-align:center"><a href="http://t4t5.github.io/sweetalert/">http://t4t5.github.io/sweetalert/</a></td>
+</tr>
+<tr>
+<td>ika.jvectormap</td>
+<td style="text-align:center"><a href="http://jvectormap.com/">http://jvectormap.com/</a></td>
+</tr>
+</tbody>
+</table>
+</div></article></section></div></div><script src="assets/scripts.js"></script></body></html>

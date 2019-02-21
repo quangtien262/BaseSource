@@ -1,0 +1,20 @@
+extends ../core/core.layout
+block pagetitle
+    - pageTitle = 'Charts Rickshaw'
+block content
+    .container-fluid
+        .card
+            .card-heading Area graph
+            .card-body
+                #rickshaw-chart1
+        .row
+            .col-md-6
+                .card
+                    .card-heading Bar graph
+                    .card-body
+                      #rickshaw-chart2
+            .col-md-6
+                .card
+                    .card-heading Scatterplot graph
+                    .card-body
+                      #rickshaw-chart3

@@ -1,0 +1,28 @@
+extends ../core/core.layout
+block pagetitle
+    - pageTitle = 'Fullsize Google Maps'
+block content
+    .container-full
+        .row.fh.bg-white
+            .col-md-3.fh.hidden-sm.hidden-xs.pr0
+                .p-lg
+                    h5.text-center Places
+                    p.text-center Click on each item to focus a marker in the map
+                .list-group.list-group-unstyle#markers-list
+                    a.list-group-item(data-panto-marker="0")
+                        em.pull-right.ion-ios-arrow-forward
+                        | Canada
+                    a.list-group-item(data-panto-marker="1")
+                        em.pull-right.ion-ios-arrow-forward
+                        | New York
+                    a.list-group-item(data-panto-marker="2")
+                        em.pull-right.ion-ios-arrow-forward
+                        | Toronto
+                    a.list-group-item(data-panto-marker="3")
+                        em.pull-right.ion-ios-arrow-forward
+                        | San Francisco
+                    a.list-group-item(data-panto-marker="4")
+                        em.pull-right.ion-ios-arrow-forward
+                        | Utah
+            .col-md-9.fh.pl0
+                #mapfull-markers.gmap.fh

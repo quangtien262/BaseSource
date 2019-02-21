@@ -1,0 +1,499 @@
+extends ../core/core.layout
+block pagetitle
+    - pageTitle = 'Messages Board'
+block content
+    .container.container-md
+        p.ph Today
+        .card
+            table.table.table-hover.table-fixed.va-middle
+                tbody
+                    tr.msg-display.clickable
+                        td.wd-xxs
+                            .initial32.bg-indigo-500 E
+                        td.text-ellipsis.wd-sm Erin Alvarez
+                        td.text-ellipsis Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras nunc velit, bibendum vel imperdiet eget, posuere nec diam.
+                        td.wd-xxs
+                            // START dropdown
+                            .pull-right.dropdown
+                                button.btn.btn-default.btn-flat.btn-flat-icon(type='button', data-toggle='dropdown')
+                                    em.ion-android-more-vertical
+                                ul.dropdown-menu.md-dropdown-menu.dropdown-menu-right(role='menu')
+                                    li: a(href='#')
+                                        em.ion-reply.icon-fw
+                                        | Reply
+                                    li: a(href='#')
+                                        em.ion-forward.icon-fw
+                                        | Forward
+                                    li: a(href='#')
+                                        em.ion-trash-a.icon-fw
+                                        | Spam
+                            // END dropdown
+                    tr.msg-display.clickable
+                        td
+                            img.img-circle.thumb32(src="img/user/04.jpg", alt="user")
+                        td.text-ellipsis Nathan Richardson
+                        td.text-ellipsis Praesent leo quam, faucibus at facilisis id, rhoncus sit amet metus. Sed pretium malesuada leo sit amet convallis. Phasellus dolor velit, dictum a pulvinar eu, convallis a ante.
+                        td
+                            // START dropdown
+                            .pull-right.dropdown
+                                button.btn.btn-default.btn-flat.btn-flat-icon(type='button', data-toggle='dropdown')
+                                    em.ion-android-more-vertical
+                                ul.dropdown-menu.md-dropdown-menu.dropdown-menu-right(role='menu')
+                                    li: a(href='#')
+                                        em.ion-reply.icon-fw
+                                        | Reply
+                                    li: a(href='#')
+                                        em.ion-forward.icon-fw
+                                        | Forward
+                                    li: a(href='#')
+                                        em.ion-trash-a.icon-fw
+                                        | Spam
+                            // END dropdown
+                    tr.msg-display.clickable
+                        td
+                            .initial32.bg-green-500 K
+                        td.text-ellipsis Kelly Hernandez
+                        td.text-ellipsis Integer sit amet vulputate mauris. Praesent nulla est, molestie at auctor vulputate, semper eu sapien. Fusce dolor lacus, interdum eu tincidunt sed, aliquet vel turpis.
+                        td
+                            // START dropdown
+                            .pull-right.dropdown
+                                button.btn.btn-default.btn-flat.btn-flat-icon(type='button', data-toggle='dropdown')
+                                    em.ion-android-more-vertical
+                                ul.dropdown-menu.md-dropdown-menu.dropdown-menu-right(role='menu')
+                                    li: a(href='#')
+                                        em.ion-reply.icon-fw
+                                        | Reply
+                                    li: a(href='#')
+                                        em.ion-forward.icon-fw
+                                        | Forward
+                                    li: a(href='#')
+                                        em.ion-trash-a.icon-fw
+                                        | Spam
+                            // END dropdown
+                    tr.msg-display.clickable
+                        td
+                            img.img-circle.thumb32(src="img/user/06.jpg", alt="user")
+                        td.text-ellipsis Nathan Richardson
+                        td.text-ellipsis Praesent leo quam, faucibus at facilisis id, rhoncus sit amet metus. Sed pretium malesuada leo sit amet convallis. Phasellus dolor velit, dictum a pulvinar eu, convallis a ante.
+                        td
+                            // START dropdown
+                            .pull-right.dropdown
+                                button.btn.btn-default.btn-flat.btn-flat-icon(type='button', data-toggle='dropdown')
+                                    em.ion-android-more-vertical
+                                ul.dropdown-menu.md-dropdown-menu.dropdown-menu-right(role='menu')
+                                    li: a(href='#')
+                                        em.ion-reply.icon-fw
+                                        | Reply
+                                    li: a(href='#')
+                                        em.ion-forward.icon-fw
+                                        | Forward
+                                    li: a(href='#')
+                                        em.ion-trash-a.icon-fw
+                                        | Spam
+                            // END dropdown
+                    tr.msg-display.clickable
+                        td
+                            img.img-circle.thumb32(src="img/user/05.jpg", alt="user")
+                        td.text-ellipsis Oscar Stanley
+                        td.text-ellipsis Praesent leo quam, faucibus at facilisis id, rhoncus sit amet metus. Sed pretium malesuada leo sit amet convallis. Phasellus dolor velit, dictum a pulvinar eu, convallis a ante.
+                        td
+                            // START dropdown
+                            .pull-right.dropdown
+                                button.btn.btn-default.btn-flat.btn-flat-icon(type='button', data-toggle='dropdown')
+                                    em.ion-android-more-vertical
+                                ul.dropdown-menu.md-dropdown-menu.dropdown-menu-right(role='menu')
+                                    li: a(href='#')
+                                        em.ion-reply.icon-fw
+                                        | Reply
+                                    li: a(href='#')
+                                        em.ion-forward.icon-fw
+                                        | Forward
+                                    li: a(href='#')
+                                        em.ion-trash-a.icon-fw
+                                        | Spam
+                            // END dropdown
+
+        p.ph Yesterday
+        .card
+            table.table.table-hover.table-fixed.va-middle
+                tbody
+                    tr.msg-display.clickable
+                        td.wd-xxs
+                            .initial32.bg-blue-500 T
+                        td.text-ellipsis.wd-sm Timmothy Terry
+                        td.text-ellipsis Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris hendrerit nibh eu nisi congue dapibus.
+                        td.wd-xxs
+                            // START dropdown
+                            .pull-right.dropdown
+                                button.btn.btn-default.btn-flat.btn-flat-icon(type='button', data-toggle='dropdown')
+                                    em.ion-android-more-vertical
+                                ul.dropdown-menu.md-dropdown-menu.dropdown-menu-right(role='menu')
+                                    li: a(href='#')
+                                        em.ion-reply.icon-fw
+                                        | Reply
+                                    li: a(href='#')
+                                        em.ion-forward.icon-fw
+                                        | Forward
+                                    li: a(href='#')
+                                        em.ion-trash-a.icon-fw
+                                        | Spam
+                            // END dropdown
+                    tr.msg-display.clickable
+                        td
+                            img.img-circle.thumb32(src="img/user/01.jpg", alt="user")
+                        td.text-ellipsis Nathan Richardson
+                        td.text-ellipsis Praesent leo quam, faucibus at facilisis id, rhoncus sit amet metus. Sed pretium malesuada leo sit amet convallis. Phasellus dolor velit, dictum a pulvinar eu, convallis a ante.
+                        td
+                            // START dropdown
+                            .pull-right.dropdown
+                                button.btn.btn-default.btn-flat.btn-flat-icon(type='button', data-toggle='dropdown')
+                                    em.ion-android-more-vertical
+                                ul.dropdown-menu.md-dropdown-menu.dropdown-menu-right(role='menu')
+                                    li: a(href='#')
+                                        em.ion-reply.icon-fw
+                                        | Reply
+                                    li: a(href='#')
+                                        em.ion-forward.icon-fw
+                                        | Forward
+                                    li: a(href='#')
+                                        em.ion-trash-a.icon-fw
+                                        | Spam
+                            // END dropdown
+                    tr.msg-display.clickable
+                        td
+                            .initial32.bg-green-500 N
+                        td.text-ellipsis Nina Brown
+                        td.text-ellipsis Etiam eu ipsum dui, et tincidunt orci. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                        td
+                            // START dropdown
+                            .pull-right.dropdown
+                                button.btn.btn-default.btn-flat.btn-flat-icon(type='button', data-toggle='dropdown')
+                                    em.ion-android-more-vertical
+                                ul.dropdown-menu.md-dropdown-menu.dropdown-menu-right(role='menu')
+                                    li: a(href='#')
+                                        em.ion-reply.icon-fw
+                                        | Reply
+                                    li: a(href='#')
+                                        em.ion-forward.icon-fw
+                                        | Forward
+                                    li: a(href='#')
+                                        em.ion-trash-a.icon-fw
+                                        | Spam
+                            // END dropdown
+                    tr.msg-display.clickable
+                        td
+                            img.img-circle.thumb32(src="img/user/06.jpg", alt="user")
+                        td.text-ellipsis Nathan Richardson
+                        td.text-ellipsis Praesent leo quam, faucibus at facilisis id, rhoncus sit amet metus. Sed pretium malesuada leo sit amet convallis. Phasellus dolor velit, dictum a pulvinar eu, convallis a ante.
+                        td
+                            // START dropdown
+                            .pull-right.dropdown
+                                button.btn.btn-default.btn-flat.btn-flat-icon(type='button', data-toggle='dropdown')
+                                    em.ion-android-more-vertical
+                                ul.dropdown-menu.md-dropdown-menu.dropdown-menu-right(role='menu')
+                                    li: a(href='#')
+                                        em.ion-reply.icon-fw
+                                        | Reply
+                                    li: a(href='#')
+                                        em.ion-forward.icon-fw
+                                        | Forward
+                                    li: a(href='#')
+                                        em.ion-trash-a.icon-fw
+                                        | Spam
+                            // END dropdown
+                    tr.msg-display.clickable
+                        td
+                            img.img-circle.thumb32(src="img/user/03.jpg", alt="user")
+                        td.text-ellipsis Myrtle James
+                        td.text-ellipsis Praesent leo quam, faucibus at facilisis id, rhoncus sit amet metus. Sed pretium malesuada leo sit amet convallis. Phasellus dolor velit, dictum a pulvinar eu, convallis a ante.
+                        td
+                            // START dropdown
+                            .pull-right.dropdown
+                                button.btn.btn-default.btn-flat.btn-flat-icon(type='button', data-toggle='dropdown')
+                                    em.ion-android-more-vertical
+                                ul.dropdown-menu.md-dropdown-menu.dropdown-menu-right(role='menu')
+                                    li: a(href='#')
+                                        em.ion-reply.icon-fw
+                                        | Reply
+                                    li: a(href='#')
+                                        em.ion-forward.icon-fw
+                                        | Forward
+                                    li: a(href='#')
+                                        em.ion-trash-a.icon-fw
+                                        | Spam
+                            // END dropdown
+                    tr.msg-display.clickable
+                        td
+                            .initial32.bg-amber-500 T
+                        td.text-ellipsis Ted Vasquez
+                        td.text-ellipsis Praesent vel nisi nibh.Integer imperdiet, turpis nec viverra egestas, magna sapien convallis velit, nec vestibulum turpis dui vel dui.
+                        td
+                            // START dropdown
+                            .pull-right.dropdown
+                                button.btn.btn-default.btn-flat.btn-flat-icon(type='button', data-toggle='dropdown')
+                                    em.ion-android-more-vertical
+                                ul.dropdown-menu.md-dropdown-menu.dropdown-menu-right(role='menu')
+                                    li: a(href='#')
+                                        em.ion-reply.icon-fw
+                                        | Reply
+                                    li: a(href='#')
+                                        em.ion-forward.icon-fw
+                                        | Forward
+                                    li: a(href='#')
+                                        em.ion-trash-a.icon-fw
+                                        | Spam
+                            // END dropdown
+                    tr.msg-display.clickable
+                        td
+                            .initial32.bg-pink-500 L
+                        td.text-ellipsis Lillian Snyder
+                        td.text-ellipsis Praesent vel nisi nibh.Integer imperdiet, turpis nec viverra egestas, magna sapien convallis velit, nec vestibulum turpis dui vel dui.
+                        td
+                            // START dropdown
+                            .pull-right.dropdown
+                                button.btn.btn-default.btn-flat.btn-flat-icon(type='button', data-toggle='dropdown')
+                                    em.ion-android-more-vertical
+                                ul.dropdown-menu.md-dropdown-menu.dropdown-menu-right(role='menu')
+                                    li: a(href='#')
+                                        em.ion-reply.icon-fw
+                                        | Reply
+                                    li: a(href='#')
+                                        em.ion-forward.icon-fw
+                                        | Forward
+                                    li: a(href='#')
+                                        em.ion-trash-a.icon-fw
+                                        | Spam
+                            // END dropdown
+
+        p.ph 2 days ago
+        .card
+            table.table.table-hover.table-fixed.va-middle
+                tbody
+                    tr.msg-display.clickable
+                        td.wd-xxs
+                            .initial32.bg-blue-500 T
+                        td.text-ellipsis.wd-sm Timmothy Terry
+                        td.text-ellipsis Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris hendrerit nibh eu nisi congue dapibus.
+                        td.wd-xxs
+                            // START dropdown
+                            .pull-right.dropdown
+                                button.btn.btn-default.btn-flat.btn-flat-icon(type='button', data-toggle='dropdown')
+                                    em.ion-android-more-vertical
+                                ul.dropdown-menu.md-dropdown-menu.dropdown-menu-right(role='menu')
+                                    li: a(href='#')
+                                        em.ion-reply.icon-fw
+                                        | Reply
+                                    li: a(href='#')
+                                        em.ion-forward.icon-fw
+                                        | Forward
+                                    li: a(href='#')
+                                        em.ion-trash-a.icon-fw
+                                        | Spam
+                            // END dropdown
+                    tr.msg-display.clickable
+                        td
+                            img.img-circle.thumb32(src="img/user/01.jpg", alt="user")
+                        td.text-ellipsis Nathan Richardson
+                        td.text-ellipsis Praesent leo quam, faucibus at facilisis id, rhoncus sit amet metus. Sed pretium malesuada leo sit amet convallis. Phasellus dolor velit, dictum a pulvinar eu, convallis a ante.
+                        td
+                            // START dropdown
+                            .pull-right.dropdown
+                                button.btn.btn-default.btn-flat.btn-flat-icon(type='button', data-toggle='dropdown')
+                                    em.ion-android-more-vertical
+                                ul.dropdown-menu.md-dropdown-menu.dropdown-menu-right(role='menu')
+                                    li: a(href='#')
+                                        em.ion-reply.icon-fw
+                                        | Reply
+                                    li: a(href='#')
+                                        em.ion-forward.icon-fw
+                                        | Forward
+                                    li: a(href='#')
+                                        em.ion-trash-a.icon-fw
+                                        | Spam
+                            // END dropdown
+                    tr.msg-display.clickable
+                        td
+                            .initial32.bg-green-500 N
+                        td.text-ellipsis Nina Brown
+                        td.text-ellipsis Etiam eu ipsum dui, et tincidunt orci. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                        td
+                            // START dropdown
+                            .pull-right.dropdown
+                                button.btn.btn-default.btn-flat.btn-flat-icon(type='button', data-toggle='dropdown')
+                                    em.ion-android-more-vertical
+                                ul.dropdown-menu.md-dropdown-menu.dropdown-menu-right(role='menu')
+                                    li: a(href='#')
+                                        em.ion-reply.icon-fw
+                                        | Reply
+                                    li: a(href='#')
+                                        em.ion-forward.icon-fw
+                                        | Forward
+                                    li: a(href='#')
+                                        em.ion-trash-a.icon-fw
+                                        | Spam
+                            // END dropdown
+                    tr.msg-display.clickable
+                        td
+                            img.img-circle.thumb32(src="img/user/06.jpg", alt="user")
+                        td.text-ellipsis Nathan Richardson
+                        td.text-ellipsis Praesent leo quam, faucibus at facilisis id, rhoncus sit amet metus. Sed pretium malesuada leo sit amet convallis. Phasellus dolor velit, dictum a pulvinar eu, convallis a ante.
+                        td
+                            // START dropdown
+                            .pull-right.dropdown
+                                button.btn.btn-default.btn-flat.btn-flat-icon(type='button', data-toggle='dropdown')
+                                    em.ion-android-more-vertical
+                                ul.dropdown-menu.md-dropdown-menu.dropdown-menu-right(role='menu')
+                                    li: a(href='#')
+                                        em.ion-reply.icon-fw
+                                        | Reply
+                                    li: a(href='#')
+                                        em.ion-forward.icon-fw
+                                        | Forward
+                                    li: a(href='#')
+                                        em.ion-trash-a.icon-fw
+                                        | Spam
+                            // END dropdown
+                    tr.msg-display.clickable
+                        td
+                            img.img-circle.thumb32(src="img/user/03.jpg", alt="user")
+                        td.text-ellipsis Myrtle James
+                        td.text-ellipsis Praesent leo quam, faucibus at facilisis id, rhoncus sit amet metus. Sed pretium malesuada leo sit amet convallis. Phasellus dolor velit, dictum a pulvinar eu, convallis a ante.
+                        td
+                            // START dropdown
+                            .pull-right.dropdown
+                                button.btn.btn-default.btn-flat.btn-flat-icon(type='button', data-toggle='dropdown')
+                                    em.ion-android-more-vertical
+                                ul.dropdown-menu.md-dropdown-menu.dropdown-menu-right(role='menu')
+                                    li: a(href='#')
+                                        em.ion-reply.icon-fw
+                                        | Reply
+                                    li: a(href='#')
+                                        em.ion-forward.icon-fw
+                                        | Forward
+                                    li: a(href='#')
+                                        em.ion-trash-a.icon-fw
+                                        | Spam
+                            // END dropdown
+                    tr.msg-display.clickable
+                        td
+                            .initial32.bg-amber-500 T
+                        td.text-ellipsis Ted Vasquez
+                        td.text-ellipsis Praesent vel nisi nibh.Integer imperdiet, turpis nec viverra egestas, magna sapien convallis velit, nec vestibulum turpis dui vel dui.
+                        td
+                            // START dropdown
+                            .pull-right.dropdown
+                                button.btn.btn-default.btn-flat.btn-flat-icon(type='button', data-toggle='dropdown')
+                                    em.ion-android-more-vertical
+                                ul.dropdown-menu.md-dropdown-menu.dropdown-menu-right(role='menu')
+                                    li: a(href='#')
+                                        em.ion-reply.icon-fw
+                                        | Reply
+                                    li: a(href='#')
+                                        em.ion-forward.icon-fw
+                                        | Forward
+                                    li: a(href='#')
+                                        em.ion-trash-a.icon-fw
+                                        | Spam
+                            // END dropdown
+                    tr.msg-display.clickable
+                        td
+                            .initial32.bg-pink-500 L
+                        td.text-ellipsis Lillian Snyder
+                        td.text-ellipsis Praesent vel nisi nibh.Integer imperdiet, turpis nec viverra egestas, magna sapien convallis velit, nec vestibulum turpis dui vel dui.
+                        td
+                            // START dropdown
+                            .pull-right.dropdown
+                                button.btn.btn-default.btn-flat.btn-flat-icon(type='button', data-toggle='dropdown')
+                                    em.ion-android-more-vertical
+                                ul.dropdown-menu.md-dropdown-menu.dropdown-menu-right(role='menu')
+                                    li: a(href='#')
+                                        em.ion-reply.icon-fw
+                                        | Reply
+                                    li: a(href='#')
+                                        em.ion-forward.icon-fw
+                                        | Forward
+                                    li: a(href='#')
+                                        em.ion-trash-a.icon-fw
+                                        | Spam
+                            // END dropdown
+
+        // Floating button for compose
+        .floatbutton
+            ul.mfb-component--br.mfb-zoomin
+                li.mfb-component__wrap
+                    a#compose.mfb-component__button--main(href="#")
+                        i.mfb-component__main-icon--resting.ion-edit
+                        i.mfb-component__main-icon--active.ion-edit
+                    ul.mfb-component__list
+
+        // Modal content example for messages
+        .modal.modal-right.modal-auto-size.fade.modal-message(tabindex='-1', role='dialog')
+            .modal-dialog
+                .modal-content
+                    .modal-header
+                        .media.m0.pv
+                            .pull-right
+                                .clickable(data-dismiss='modal')
+                                    sup: em.ion-close-round.text-muted.icon-2x
+                            .media-left
+                                a(href='#')
+                                    img.media-object.img-circle.thumb64(src='img/user/04.jpg', alt='User')
+                            .media-body.media-middle
+                                h4.media-heading Patrick Brooks
+                                span.text-muted patrick.brooks@mail.com
+                    .modal-body
+                        // START dropdown
+                        .pull-right.dropdown
+                            button.btn.btn-default.btn-flat.btn-flat-icon(type='button', data-toggle='dropdown')
+                                em.ion-android-more-vertical
+                            ul.dropdown-menu.md-dropdown-menu.dropdown-menu-right(role='menu')
+                                li: a(href='#')
+                                    em.ion-star.icon-fw
+                                    | Favorite
+                                li: a(href='#')
+                                    em.ion-ios-box.icon-fw
+                                    | Archive
+                                li: a(href='#', data-dismiss='modal')
+                                    em.ion-trash-a.icon-fw
+                                    | Discard
+                        // END dropdown
+                        p.text-muted 26 aug 2015 10:30 am
+                        h4.mt Nam vel tristique dolor.
+                        .reader-block
+                            p Praesent vel nisi nibh. Vestibulum purus ipsum, rutrum varius aliquam id, rhoncus eget neque. Curabitur sodales nisl eu enim suscipit eu faucibus dui mattis.
+                            p Aenean risus nulla, aliquam sed aliquam vitae, ultricies non elit. Suspendisse nunc massa, euismod eu egestas quis, molestie sit amet mauris. Mauris eu lacus massa, vel condimentum lectus. Quisque quam justo, cursus sit amet pretium vel, viverra vel leo. Nullam lobortis consectetur hendrerit. Aenean rhoncus, est vel vestibulum tristique, ante lectus elementum augue, eu dictum turpis dui ut ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            p Pellentesque ac ligula varius nisl laoreet pretium quis quis tellus. Praesent et mauris lacus, non volutpat augue.
+                    .modal-footer
+                        .text-left
+                            p Reply
+                        .media.m0.pv
+                            .media-left
+                                a(href='#')
+                                    img.media-object.img-circle.thumb32(src='img/user/01.jpg', alt='User')
+                            .media-body.media-middle
+                                form(action='')
+                                    .mda-form-group
+                                        .mda-form-control.pt0
+                                            textarea.form-control(rows='3', aria-multiline='true', tabindex='0', aria-invalid='false', placeholder="Write here...")
+                                            .mda-form-control-line
+                        button.btn.btn-success(type="button", data-dismiss='modal') Send
+        // End Modal content example for messages
+
+        // Modal content example for compose
+        .modal.fade.modal-compose(tabindex='-1', role='dialog')
+            .modal-dialog
+                .modal-content
+                    .modal-body
+                        form(action='')
+                            .mda-form-group
+                                .mda-form-control
+                                    input.form-control(rows='3', aria-multiline='true', tabindex='0', aria-invalid='false')
+                                    .mda-form-control-line
+                                    label To:
+                            .mda-form-group
+                                .mda-form-control
+                                    textarea.form-control(rows='3', aria-multiline='true', tabindex='0', aria-invalid='false')
+                                    .mda-form-control-line
+                                    label Message
+                            button.btn.btn-success(type="button", data-dismiss='modal') Send
+        // End Modal content example for compose

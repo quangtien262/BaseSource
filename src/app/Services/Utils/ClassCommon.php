@@ -20,7 +20,7 @@ class ClassCommon {
         $string = preg_replace('#[-]+#', '-', $string);
         return strtolower($string . $ext);
     }
-    
+
     public static function _utf8ToAscii($str) {
         $chars = array(
             'a' => array('ấ', 'ầ', 'ẩ', 'ẫ', 'ậ', 'Ấ', 'Ầ', 'Ẩ', 'Ẫ', 'Ậ', 'ắ', 'ằ', 'ẳ', 'ẵ', 'ặ', 'Ắ', 'Ằ', 'Ẳ', 'Ẵ', 'Ặ', 'á', 'à', 'ả', 'ã', 'ạ', 'â', 'ă', 'Á', 'À', 'Ả', 'Ã', 'Ạ', 'Â', 'Ă'),
@@ -36,38 +36,5 @@ class ClassCommon {
         }
         return $str;
     }
-    
-    public function mapIdAndNameTbl($arr,$id, $name) {
-        $result = [];
-        foreach($arr as $val) {
-            $result[$val->$id] = $val->$name;
-        }
-        return $result;
-    }
-	
-	 public static function dirToArray($dir) {
 
-        $result = [];
-        
-        if (file_exists($dir)) 
-            $cdir = scandir($dir);
-        if (!empty($cdir)) {
-            foreach ($cdir as $key => $value) {
-                if (!in_array($value, array(".", ".."))) {
-                    $result[] = $dir . '/' . $value;
-                }
-            }
-        }
-        return $result;
-    }
-    
-    public function generateRandomString($length = 10) {
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $charactersLength = strlen($characters);
-        $randomString = '';
-        for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
-        }
-        return $randomString;
-    }
 }

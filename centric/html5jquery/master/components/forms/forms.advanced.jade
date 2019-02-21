@@ -1,0 +1,297 @@
+extends ../core/core.layout
+block pagetitle
+    - pageTitle = 'Forms Advanced'
+block content
+    .container-fluid
+        // UISELECT
+        .card
+            .card-heading
+                .card-title Select2
+                .text-muted jQuery based replacement for select boxes
+
+            .card-body
+                .form-horizontal
+                    .form-group
+                        .col-md-3.col-sm-4
+                            p.m0 Basics
+                        .col-md-5.col-sm-8
+                            select#select2-1.form-control
+                                option(value='AL') Alabama
+                                option(value='AR') Arkansas
+                                option(value='IL') Illinois
+                                option(value='IA') Iowa
+                                option(value='KS') Kansas
+                                option(value='KY') Kentucky
+                                option(value='LA') Louisiana
+                                option(value='MN') Minnesota
+                                option(value='MS') Mississippi
+                                option(value='MO') Missouri
+                                option(value='OK') Oklahoma
+                                option(value='SD') South Dakota
+                                option(value='TX') Texas
+                                option(value='TN') Tennessee
+                                option(value='WI') Wisconsin
+                    .form-group
+                        .col-md-3.col-sm-4
+                            p.m0 Multiple
+                        .col-md-5.col-sm-8
+                            select#select2-2.form-control
+                                optgroup(label='Alaskan/Hawaiian Time Zone')
+                                  option(value='AK') Alaska
+                                  option(value='HI') Hawaii
+                                optgroup(label='Pacific Time Zone')
+                                  option(value='CA') California
+                                  option(value='NV') Nevada
+                                  option(value='OR') Oregon
+                                  option(value='WA') Washington
+                                optgroup(label='Mountain Time Zone')
+                                  option(value='AZ') Arizona
+                                  option(value='CO') Colorado
+                                  option(value='ID') Idaho
+                                  option(value='MT') Montana
+                                  option(value='NE') Nebraska
+                                  option(value='NM') New Mexico
+                                  option(value='ND') North Dakota
+                                  option(value='UT') Utah
+                                  option(value='WY') Wyoming
+                                optgroup(label='Central Time Zone')
+                                  option(value='AL') Alabama
+                                  option(value='AR') Arkansas
+                                  option(value='IL') Illinois
+                                  option(value='IA') Iowa
+                                  option(value='KS') Kansas
+                                  option(value='KY') Kentucky
+                                  option(value='LA') Louisiana
+                                  option(value='MN') Minnesota
+                                  option(value='MS') Mississippi
+                                  option(value='MO') Missouri
+                                  option(value='OK') Oklahoma
+                                  option(value='SD') South Dakota
+                                  option(value='TX') Texas
+                                  option(value='TN') Tennessee
+                                  option(value='WI') Wisconsin
+                                optgroup(label='Eastern Time Zone')
+                                  option(value='CT') Connecticut
+                                  option(value='DE') Delaware
+                                  option(value='FL') Florida
+                                  option(value='GA') Georgia
+                                  option(value='IN') Indiana
+                                  option(value='ME') Maine
+                                  option(value='MD') Maryland
+                                  option(value='MA') Massachusetts
+                                  option(value='MI') Michigan
+                                  option(value='NH') New Hampshire
+                                  option(value='NJ') New Jersey
+                                  option(value='NY') New York
+                                  option(value='NC') North Carolina
+                                  option(value='OH') Ohio
+                                  option(value='PA') Pennsylvania
+                                  option(value='RI') Rhode Island
+                                  option(value='SC') South Carolina
+                                  option(value='VT') Vermont
+                                  option(value='VA') Virginia
+                                  option(value='WV') West Virginia
+
+                    .form-group
+                        .col-md-3.col-sm-4
+                            p.m0 Multiple Pills
+                        .col-md-5.col-sm-8
+                            select#select2-3.form-control(multiple='multiple')
+                                optgroup(label='Alaskan/Hawaiian Time Zone')
+                                  option(value='AK', selected="selected") Alaska
+                                  option(value='HI') Hawaii
+                                optgroup(label='Pacific Time Zone')
+                                  option(value='CA') California
+                                  option(value='NV') Nevada
+                                  option(value='OR') Oregon
+                                  option(value='WA') Washington
+                                optgroup(label='Mountain Time Zone')
+                                  option(value='AZ') Arizona
+                                  option(value='CO') Colorado
+                                  option(value='ID') Idaho
+                                  option(value='MT') Montana
+                                  option(value='NE') Nebraska
+                                  option(value='NM') New Mexico
+                                  option(value='ND') North Dakota
+                                  option(value='UT') Utah
+                                  option(value='WY') Wyoming
+                                optgroup(label='Central Time Zone')
+                                  option(value='AL') Alabama
+                                  option(value='AR') Arkansas
+                                  option(value='IL') Illinois
+                                  option(value='IA') Iowa
+                                  option(value='KS') Kansas
+                                  option(value='KY') Kentucky
+                                  option(value='LA') Louisiana
+                                  option(value='MN') Minnesota
+                                  option(value='MS') Mississippi
+                                  option(value='MO') Missouri
+                                  option(value='OK') Oklahoma
+                                  option(value='SD') South Dakota
+                                  option(value='TX') Texas
+                                  option(value='TN') Tennessee
+                                  option(value='WI') Wisconsin
+                                optgroup(label='Eastern Time Zone')
+                                  option(value='CT') Connecticut
+                                  option(value='DE') Delaware
+                                  option(value='FL') Florida
+                                  option(value='GA') Georgia
+                                  option(value='IN') Indiana
+                                  option(value='ME') Maine
+                                  option(value='MD') Maryland
+                                  option(value='MA') Massachusetts
+                                  option(value='MI') Michigan
+                                  option(value='NH') New Hampshire
+                                  option(value='NJ') New Jersey
+                                  option(value='NY') New York
+                                  option(value='NC') North Carolina
+                                  option(value='OH') Ohio
+                                  option(value='PA') Pennsylvania
+                                  option(value='RI') Rhode Island
+                                  option(value='SC') South Carolina
+                                  option(value='VT') Vermont
+                                  option(value='VA') Virginia
+                                  option(value='WV') West Virginia
+
+                    .form-group
+                        .col-md-3.col-sm-4
+                            p.m0 Placeholders
+                        .col-md-5.col-sm-8
+                            select#select2-4.form-control
+                                optgroup(label='Alaskan/Hawaiian Time Zone')
+                                  option(value='AK') Alaska
+                                  option(value='HI') Hawaii
+                                optgroup(label='Pacific Time Zone')
+                                  option(value='CA') California
+                                  option(value='NV') Nevada
+                                  option(value='OR') Oregon
+                                  option(value='WA') Washington
+                                optgroup(label='Mountain Time Zone')
+                                  option(value='AZ') Arizona
+                                  option(value='CO') Colorado
+                                  option(value='ID') Idaho
+                                  option(value='MT') Montana
+                                  option(value='NE') Nebraska
+                                  option(value='NM') New Mexico
+                                  option(value='ND') North Dakota
+                                  option(value='UT') Utah
+                                  option(value='WY') Wyoming
+        // END UISELECT
+        .card
+            .card-heading Calendar
+            .card-body
+                .row.text-center
+                    .col-lg-4
+                        #example-datepicker-1.ui-datepicker.datepicker-standalone.dp-theme-primary(data-date="12/13/2016")
+                    .col-lg-4
+                        #example-datepicker-2.ui-datepicker.datepicker-standalone.dp-theme-info(data-date="12/13/2016")
+                    .col-lg-4
+                        #example-datepicker-3.ui-datepicker.datepicker-standalone.dp-theme-pink(data-date="12/13/2016")
+                h5 Popup
+                #example-datepicker-container-4.rel-wrapper.ui-datepicker.ui-datepicker-popup.dp-theme-primary
+                    .mda-form-control
+                        input.form-control#example-datepicker-4(type="text", data-date="12/13/2016", placeholder="Select a date..")
+                        .mda-form-control-line
+                h5 Range
+                #example-datepicker-container-5.rel-wrapper.ui-datepicker.ui-datepicker-popup.dp-theme-success
+                    #example-datepicker-5.input-daterange.input-group.mda-input-group
+                        .mda-form-control
+                            input.form-control(type='text', name='start', value='01/16/2016')
+                            .mda-form-control-line
+                        span.input-group-addon to
+                        .mda-form-control
+                            input.form-control(type='text', name='end', value='02/12/2016')
+                            .mda-form-control-line
+
+        .card
+            .card-heading Time picker
+            .card-body
+                .row
+                    .col-lg-5
+                        .mda-form-group.mda-input-group.clockpicker(data-autoclose='true')
+                            .mda-form-control
+                                input.form-control(type='text', value='09:30')
+                                .mda-form-control-line
+                            span.mda-input-group-addon
+                                span.ion-clock
+        .card
+            .card-heading Range Sliders
+            .card-body
+                p Single
+                .ui-slider.mb-lg(data-start='40')
+                p Range
+                .ui-slider-range.mb-lg
+                p.clearfix
+                    span.pull-left Live values
+                    span.pull-right
+                        strong#ui-slider-value-lower.text-muted
+                        span.mh -
+                        strong#ui-slider-value-upper.text-muted
+                .ui-slider-values.m-b-15
+
+                p.mv-lg Color options
+
+                .ui-slider-range.ui-slider-success
+                .pv
+                .ui-slider-range.ui-slider-info
+                .pv
+                .ui-slider-range.ui-slider-warning
+                .pv
+                .ui-slider-range.ui-slider-danger
+                .pv
+                .ui-slider-range.ui-slider-inverse
+                .pv
+
+        .card
+            .card-heading Note editors (textarea)
+            .card-body
+              .panel
+                .panel-body
+                    .note-area
+                        textarea.form-control(rows="10") In elementum magna sed sapien gravida scelerisque.
+              p With margin
+              .panel
+                .panel-body
+                  .note-area.note-area-margin
+                    textarea.form-control(rows="10") Curabitur tellus mauris, fringilla sed tempus eget, convallis id orci.
+
+        .card
+            .card-heading Color pickers
+            .card-body
+                .row
+                    .col-sm-6
+                        .panel
+                            .panel-heading Picker 2x
+                            .panel-body
+                                .mda-form-control
+                                    input.form-control#cp-demo-basic(type='text', value='#5367ce')
+                                    .mda-form-control-line
+                    .col-sm-6
+                        .panel
+                            .panel-heading Hex format
+                            .panel-body
+                                .mda-form-control
+                                    input#cp-demo-hex.form-control(type='text', data-format='hex', value='#5367ce')
+                                    .mda-form-control-line
+                .row
+                    .col-sm-6
+                        .panel
+                            .panel-heading Component
+                            .panel-body
+                                #cp-demo-component.mda-input-group.input-group
+                                    .mda-form-control
+                                        input.form-control.pl-sm(type='text', value='#5367ce')
+                                        .mda-form-control-line
+                                    span.input-group-addon.bg-transparent.b0
+                                        i
+                    .col-sm-6
+                        .panel
+                            .panel-heading Bootstrap colors
+                            .panel-body
+                                .mda-form-control
+                                    input#cp-demo-bootstrap.form-control(type='text', data-format='hex', value='success')
+                                    .mda-form-control-line
+        br
+        br
+        br
+        br

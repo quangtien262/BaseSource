@@ -1,0 +1,978 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>Centric Docs</title><link rel="stylesheet" href="assets/styles.css"></head><body><div class="inf-header-wrapper"><header class="inf-header"><h1 class="title"><a href="http://themicon.co/centric">Centric Docs</a></h1><div class="support"><a href="https://wrapbootstrap.com/user/themicon#contact" class="btn-support">Contact support</a></div></header></div><div class="inf-wrapper"><nav class="inf-menu"><ul><li><a href="#introduction">Introduction</a></li><li><a href="#structure">Structure</a></li><li><a href="#build">Build</a></li><li><a href="#usage">Usage</a></li><li><a href="#components">Components</a></li><li><a href="#customization">Customization</a></li><li><a href="#credits">Credits</a></li></ul><div class="inf-menu-meta"><span>By:</span><a href="https://twitter.com/themicon_co">@themicon</a><br><span>Created:</span><span>2016-03-01</span><br><span>Updated:</span><span>2016-03-14</span></div></nav><div class="inf-content"><div class="inf-item-header"><h1>Centric<small>Bootstrap Admin Template + AngularJS</small></h1><p>Thank you for purchasing Centric - Bootstrap Admin Template + AngularJS.<br>If you have any question about this product and beyond the scope of this help file, please feel free to write us using the support button.</p><br><p><strong>Thanks so much!</strong></p></div><section class="inf-section"><article id="introduction"><h2 class="title">Introduction</h2><div class="content"><p>This document aims to explain the best way to work with the product and its components.</p>
+<p><strong>- <em>All the best and enjoy coding.</em></strong></p>
+<h4 id="getting-started-tips">Getting started tips</h4>
+<ul>
+<li>Do not start from scratch, use an existing asset and modify it to learn how it works.</li>
+<li>Explore the sources for ideas and sample code.</li>
+<li>Use Firebug or Chrome Developer Tools to find bugs on your website. Using one of those tools will help you to save time analyzing the site and finding elements structure, like classes, id or tags<ul>
+<li>Quick tip: open your site with Chrome, press F12 and go to console tab, reload your page and if something goes wrong you will see your page errors in red text.</li>
+</ul>
+</li>
+<li>In case of errors, someone might have seen it too, you can try a Google search for a quick fix.</li>
+</ul>
+<h4 id="starting-the-app">Starting the app</h4>
+<p>Since this is AngularJS based application you need a server (Apache, IIS, xampp, etc) to serve the html files and perform http request to load all views.</p>
+<blockquote>
+<p><strong>Important</strong> Opening the index.html with a double click (i.e. using file:// protocol) will show you only a blank page because there’s no server that response to the requests made for each view in order to display the app interface.</p>
+</blockquote>
+<h5 id="basic-server-setup-requires-nodejs-">Basic server setup (requires nodejs)</h5>
+<p>This is simple solution for a basic server setup using nodejs that might help you. If you don&#39;t have installed nodejs take a look at the Build section to learn about it</p>
+<ul>
+<li><p>Install the http-server  (-g installs globally)  </p>
+<p><code>npm install http-server -g</code>  </p>
+</li>
+<li><p>Move to the root folder of the theme (where index.html is located) and run</p>
+<p><code>http-server . -a 127.0.0.1 -p 8080</code></p>
+</li>
+<li><p>If everything goes fine you can now access to the app at <a href="http://127.0.0.1:8080/">http://127.0.0.1:8080/</a></p>
+</li>
+</ul>
+</div></article><article id="structure"><h2 class="title">Structure</h2><div class="content"><p>Before starting to customize the template, here is the project files organization structure:</p>
+<pre><code class="lang-css">+---app
+|   +---css
+|   +---js
+|   +---fonts
+|   +---img
+|   |   +---preloader
+|   |   \---user
+|   \---views
++---master
+|   +---images
+|   \---components
+|       +---bootstrap
+|       +---bootstrapui
+|       +---cards
+|       +---charts
+|       +---colors
+|       +---common
+|       +---core
+|       +---dashboard
+|       +---elements
+|       +---floatbutton
+|       +---forms
+|       +---header
+|       +---layouts
+|       +---loadingbar
+|       +---maps
+|       +---menu
+|       +---pages
+|       +---preloader
+|       +---ripple
+|       +---router
+|       +---settings
+|       +---sidebar
+|       +---tables
+|       +---translate
+|       +---user
+|       \---utils
++---server
+|   +---chart
+|   \---i18n
+\---vendor
+</code></pre>
+<h4 id="main-folders-explanation">Main folders explanation</h4>
+<p><strong>app/</strong></p>
+<p>This folder contains the assets like images, fonts, etc and compiled files. This files are ready to deploy on your server.</p>
+<ul>
+<li>views/ This folder contains the compiled html files for the views and partials used for the app.</li>
+<li>css/ This folder contains the compiled stylesheets.</li>
+<li>js/ This folder contains only the final build of javascript files placed in master/ folder. Such final build is generated using Gulp. By default all Javascript are linked to files in /master/components folder. </li>
+</ul>
+<p><strong>master/</strong></p>
+<p>This folder contains the source files organized by components. Each component can contains JADE/HTML, LESS and JS files divided into modules.<br>This folder also will contain the node_modules folder after run &quot;&gt; npm install&quot;</p>
+<p><strong>vendor/</strong></p>
+<p>This folder contains the vendor files used to include plugins and other components. This folder is handled using Bower, optionally, you can remove or upgrade the vendor file using such tool.<br>There&#39;s no bower_components, all files installed with bower are placed directly into this folder.</p>
+<p><strong>server/</strong></p>
+<p>This folder contains server side files used for demonstration. In a real app your server should listen to specific address and return the content of this files (and/or others) with specific information.</p>
+</div></article><article id="build"><h2 class="title">Build</h2><div class="content"><blockquote>
+<p><strong>Important</strong> You only need to follow this instructions if you plan to use build tools.</p>
+</blockquote>
+<h4 id="build-tools">Build Tools</h4>
+<p>Node.js is a platform built on Chrome’s JavaScript runtime for easily building fast, scalable network applications.</p>
+<p>Gulp is a task manager, you can define different tasks to run certain commands. Those commands does the compilation job for precompiled languages (JADE/LESS), and concatenates the JS files.</p>
+<p>Bower is a dependency manager, it works by fetching and installing packages from all over, taking care of hunting, finding, downloading, and saving the stuff you’re looking for. Bower keeps track of these packages in a manifest file, bower.json.</p>
+<p>The package includes under the master/ folder the file gulpfile.js, package.json and bower.json to install the required components in order to compile the source files.<br>.bowerrc includes directives for bower and is used to change the destination folder where files are downloaded.<br>.jshintrc contains directives used to ensure a well written Javascript code. </p>
+<h4 id="installing-tools">Installing tools</h4>
+<p>The following steps are intended to be an orientation guide, if you are not experienced with this you will need to learn a bit more about it from Google :)</p>
+<ul>
+<li>To install node and npm, go to <a href="http://nodejs.org/" title="http://nodejs.org/">http://nodejs.org/</a></li>
+<li>Download and install GIT for your platform from <a href="http://git-scm.com/downloads">http://git-scm.com/downloads</a></li>
+</ul>
+<p>Once you have all tools installed</p>
+<ul>
+<li>Open a console/terminal and <code>npm install -g gulp bower</code> to install Bower and Gulp</li>
+<li><p>Move to the package master/ folder, there run the following commands</p>
+<ul>
+<li>This command will install all node dependencies.
+<code>npm install</code>. </li>
+<li>This command will install vendor dependencies
+<code>bower install</code></li>
+</ul>
+</li>
+<li><p>Finally run <code>gulp</code> to start the task manager.</p>
+</li>
+</ul>
+<p>If everything goes fine, you should see messages in your terminal telling you that all the task are done ok. Gulp will watch for file changes to compile them automatically.</p>
+<h5 id="gulp-configuration">Gulp configuration</h5>
+<p>If you need to change the configuration used by Gulp, mainly paths, you can do that by editing the file <code>gulp.config.js</code>  </p>
+<p>In such file you can also change Gulp plugin options.</p>
+<h5 id="main-gulp-tasks">Main Gulp tasks</h5>
+<p>This command will run the default task without minify assets</p>
+<p><code>&gt; gulp</code></p>
+<p>This command will run the default task and start the built-in server using <a href="http://www.browsersync.io/">BrowserSync</a></p>
+<p><code>&gt; gulp serve</code></p>
+<p>Compiles all assets for production and start a server running the app in the browser</p>
+<p><code>&gt; gulp serve-prod</code></p>
+<p>This modifier will create source-maps when compiling assets</p>
+<p><code>&gt; gulp --usesourcemaps</code></p>
+<p>This task will compile the application for distribution</p>
+<p><code>&gt; gulp dist</code></p>
+<p>Delete build files</p>
+<p><code>&gt; gulp clean</code></p>
+<blockquote>
+<p><strong>Be careful</strong> the clean task will delete files without any confirmation or undo option.<br>Configured to be deleted: /app/css, /app/js, /app/views/, /app/img, /index.html</p>
+</blockquote>
+<p><a href="http://www.javascriptlint.com/">Lint</a> your JavaScript code</p>
+<p><code>&gt; gulp lint</code></p>
+<h5 id="angularjs-template-cache">AngularJS Template Cache</h5>
+<p>To enable this feature, run gulp with the following command</p>
+<p><code>&gt; gulp --usecache</code></p>
+<p>Note: This flag is recommended to be combined with &#39;build&#39; task so you can generate the best optimized version for production environment.</p>
+</div></article><article id="usage"><h2 class="title">Usage</h2><div class="content"><p>This template was developed to use Gulp as a start of the development workflow.<br>Gulp provides plugins to serve the app, perform automatic browser reloading after any change and build of assets for distribution. It also allows to work with agile languages like JADE/LESS/etc and modular JavaScript (concatenated).   </p>
+<p>Beyond that, if you are not convinced about build tools, the current setup has a basic support to work with static files (html, css) without needing build tools.  </p>
+<p><strong>We encourage you to use build tools, the benefits greatly outweigh the costs of learning.</strong></p>
+<h4 id="static-files-organization-no-gulp-">Static files organization (no gulp)</h4>
+<p>The most simple usage is by pointing the server root the root folder of the package, where the index.html is placed and then start editing files within app/ folder. </p>
+<p>This allows to work directly with raw files like CSS, HTML and JS without worrying about build tools.<br>Now, to edit files focus on the following locations:  </p>
+<ul>
+<li>Styles are accessible in folder /app/css</li>
+<li>Markup is accessible in folder /app/views (raw html)</li>
+<li>Scripts are accessible in folder /master/components</li>
+</ul>
+<p>Optionally, you can move &#39;components&#39; folder from &#39;master&#39; to &#39;app&#39; folder, then open/edit index.html and change the paths for all script from &#39;/master/components&#39; to &#39;/app/components&#39;</p>
+<h4 id="compiled-files-organization">Compiled files organization</h4>
+<p>As quick reference, the current setup does the following compilations:</p>
+<table>
+<thead>
+<tr>
+<th>Language</th>
+<th style="text-align:center">Produces</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTML</td>
+<td style="text-align:center">HTML</td>
+</tr>
+<tr>
+<td>JADE</td>
+<td style="text-align:center">HTML</td>
+</tr>
+<tr>
+<td>LESS</td>
+<td style="text-align:center">CSS</td>
+</tr>
+<tr>
+<td>Javascript</td>
+<td style="text-align:center">Javascript (concatenation)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>HTML files found in components folder are copied directly to the &#39;app&#39; folder</p>
+</blockquote>
+<h5 id="styles">Styles</h5>
+<p>Each component contains its own styles. Gulp read all folder recursively and includes all files related to styles into one single file: <strong>app.css</strong></p>
+<p>The inclusion order is determined by the way file are read like follows:</p>
+<pre><code class="lang-jade">path_to_components + &#39;app.less&#39;,
+path_to_components + &#39;**/*.less&#39;
+</code></pre>
+<p>As you can see, the file <code>app.less</code> is read first. Use this file to add any styles that you need before anything else. For example, @import directives.</p>
+<h5 id="scripts">Scripts</h5>
+<p>Each component contains its own scripts (module, services, controllers, etc). Gulp read all folder recursively and includes all files related to scripts into the index file using a loop (see index.jade)</p>
+<p>The inclusion order is determined by the way file are read like follows:</p>
+<pre><code class="lang-jade">path_to_components + &#39;app.module.js&#39;
+path_to_components + &#39;**/*.module.js&#39;
+path_to_components + &#39;**/*.js&#39;
+</code></pre>
+<p>The main file <code>app.module.js</code> is the start point of the application and includes all modules related to components.   Third party modules are included in the core component <code>core/core.module.js</code></p>
+<p>This is the content of the app.module.js</p>
+<pre><code class="lang-javascript">angular
+    .module(&#39;centric&#39;, [
+        &#39;app.core&#39;,
+        &#39;app.header&#39;,
+        &#39;app.sidebar&#39;,
+        &#39;app.ripple&#39;,
+        &#39;app.floatbutton&#39;,
+        &#39;app.layouts&#39;,
+        &#39;app.menu&#39;,
+        &#39;app.preloader&#39;,
+        &#39;app.loadingbar&#39;,
+        &#39;app.translate&#39;,
+        &#39;app.settings&#39;,
+        &#39;app.utils&#39;,
+        &#39;app.dashboard&#39;,
+        &#39;app.charts&#39;,
+        &#39;app.cards&#39;,
+        &#39;app.elements&#39;,
+        &#39;app.forms&#39;,
+        &#39;app.tables&#39;,
+        &#39;app.bootstrapui&#39;,
+        &#39;app.maps&#39;,
+        &#39;app.pages&#39;,
+        &#39;app.user&#39;
+    ]);
+</code></pre>
+<h5 id="views">Views</h5>
+<p>By default views are written in <a href="http://jade-lang.com/reference/">JADE</a> for quick development. Using this language you will get a well organized and readable markup without need to deal with closing tags and tag delimiters.</p>
+<p>Gulp workflow also supports <strong>raw HTML</strong>, all this files are copied directly without any special process. Only JADE views are compiled separately into their respective HTML file.<br>Meaning,<br>file.jade <em>compiles to</em> file.html<br>file.html <em>is copied as</em> file.html</p>
+<h4 id="index">Index</h4>
+<p>The main file for all layouts is the index.jade with the following content</p>
+<pre><code class="lang-jade">doctype html
+html(lang=&quot;en&quot;, data-ng-app=&quot;centric&quot;)
+
+    head
+        meta(charset=&#39;utf-8&#39;)
+        meta(name=&#39;viewport&#39;, content=&#39;width=device-width, initial-scale=1, maximum-scale=1&#39;)
+
+        meta(name=&#39;description&#39;, content=&#39;{{app.description}}&#39;)
+        meta(name=&#39;keywords&#39;, content=&#39;app, responsive, angular, bootstrap, dashboard, admin&#39;)
+
+        title(data-ng-bind=&quot;documentTitle&quot;) Centric - Angular Bootstrap Admin Template
+
+        // build:css(..) app/css/vendor.css
+        link(rel=&#39;stylesheet&#39;, href=&#39;vendor/animate.css/animate.css&#39;)
+        link(rel=&#39;stylesheet&#39;, href=&#39;vendor/bootstrap/dist/css/bootstrap.min.css&#39;)
+        //- link(rel=&#39;stylesheet&#39;, href=&#39;vendor/bootstrap/dist/css/bootstrap.rtl.css&#39;)
+        // endbuild
+
+        // Application styles
+        link#appcss(rel=&#39;stylesheet&#39;, href=&#39;app/css/app.css&#39;)
+        //- link#appcss(rel=&#39;stylesheet&#39;, href=&#39;app/css/app-rtl.css&#39;)
+
+    body(data-ng-class=&quot;theme()&quot;)
+
+        div(data-preloader)
+
+        .layout-container(data-ui-view=&quot;&quot;, data-autoscroll=&#39;false&#39;, ng-class=&quot;layout()&quot;)
+
+        // build:vendor(..) app/js/vendor.js
+        script(src=&quot;vendor/modernizr/modernizr.js&quot;)
+        script(src=&quot;vendor/jquery/dist/jquery.min.js&quot;)
+        script(src=&quot;vendor/angular/angular.js&quot;)
+        script(src=&quot;vendor/angular-route/angular-route.js&quot;)
+        script(src=&quot;vendor/angular-cookies/angular-cookies.js&quot;)
+        script(src=&quot;vendor/angular-messages/angular-messages.js&quot;)
+        script(src=&quot;vendor/angular-animate/angular-animate.js&quot;)
+        script(src=&quot;vendor/angular-touch/angular-touch.js&quot;)
+        script(src=&quot;vendor/angular-ui-router/release/angular-ui-router.js&quot;)
+        script(src=&quot;vendor/ngstorage/ngStorage.js&quot;)
+        script(src=&quot;vendor/angular-ui-utils/ui-utils.js&quot;)
+        script(src=&quot;vendor/angular-sanitize/angular-sanitize.js&quot;)
+        script(src=&quot;vendor/angular-resource/angular-resource.js&quot;)
+        script(src=&quot;vendor/angular-translate/angular-translate.js&quot;)
+        script(src=&quot;vendor/angular-translate-loader-url/angular-translate-loader-url.js&quot;)
+        script(src=&quot;vendor/angular-translate-loader-static-files/angular-translate-loader-static-files.js&quot;)
+        script(src=&quot;vendor/angular-translate-storage-local/angular-translate-storage-local.js&quot;)
+        script(src=&quot;vendor/angular-translate-storage-cookie/angular-translate-storage-cookie.js&quot;)
+        script(src=&quot;vendor/oclazyload/dist/ocLazyLoad.js&quot;)
+        script(src=&quot;vendor/angular-bootstrap/ui-bootstrap-tpls.js&quot;)
+        script(src=&quot;vendor/angular-loading-bar/build/loading-bar.js&quot;)
+        script(src=&quot;vendor/jquery.browser/dist/jquery.browser.js&quot;)
+        script(src=&quot;vendor/material-colors/dist/colors.js&quot;)
+        // endbuild
+
+        // App script
+        script(src=&quot;app/js/app.js&quot;)
+
+        //- templates:js
+        //- endinject
+</code></pre>
+<p>We use two great tools to build the index file: <a href="https://github.com/zont/gulp-usemin">Usemin</a> and <a href="https://www.npmjs.com/package/gulp-inject">Inject</a></p>
+<ul>
+<li>The first one, Usemin, is used to combine a set of files into one single file. For example when you see
+<code>// build:vendor(..) app/js/vendor.js</code> it means all files withing this build block will be concatenated into the file vendor.js  </li>
+</ul>
+<p><strong>Usemin</strong> is only executed when you run <strong>&gt; gulp build</strong></p>
+<ul>
+<li>The second one, Inject, is used only to inject automatically the file templates.js, this file is only created when you run &gt; gulp --usecache because it creates the angular templateCache file with all views markup in there.</li>
+</ul>
+<h5 id="behavior-classes">Behavior classes</h5>
+<p>As you can see in the index, there is a function <code>layout()</code> attached to the .layout-container element, this function return classes related to the sidebar that are used to change the layout behavior.</p>
+<p>This classes are:</p>
+<table>
+<thead>
+<tr>
+<th>Classname</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sidebar-visible</code></td>
+<td style="text-align:center">Makes the sidebar visible on mobiles and is activated only via Javascript.</td>
+</tr>
+<tr>
+<td><code>sidebar-offscreen</code></td>
+<td style="text-align:center">Allows to use an offcanvas sidebar on desktops like devices.</td>
+</tr>
+<tr>
+<td><code>sidebar-offcanvas</code></td>
+<td style="text-align:center">Enables the sidebar offcanvas for desktops.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="layout">Layout</h4>
+<p>The main application layout is contained in file <code>core.layout.jade</code> (part of the core module)</p>
+<p>The content of this file is</p>
+<pre><code class="lang-jade">// top navbar
+header.header-container(ng-include=&quot;&#39;app/views/header.tpl.html&#39;&quot;)
+
+// sidebar
+aside.sidebar-container(ng-include=&quot;&#39;app/views/sidebar.tpl.html&#39;&quot;)
+.sidebar-layout-obfuscator(ng-click=&#39;closeSidebar()&#39;)
+
+// Main section
+main.main-container
+
+    // Page content
+    section(ui-view=&quot;&quot;, autoscroll=&quot;false&quot;, ng-class=&quot;app.viewAnimation&quot;)
+
+    // Page footer
+    footer
+        span 2016 - Centric app.
+</code></pre>
+<h5 id="sidebar">Sidebar</h5>
+<p>Sidebar related styles, markup and scripts are contained under the components/sidebar folder.</p>
+<p>The file <code>sidebar.tpl.jade</code> contains the markup to generate the sidebar and it&#39;s basically a loop that read the menus entry added from different modules. (see below about adding a new menu entry).</p>
+<p>The sidebar uses an element (<code>.sidebar-layout-obfuscator</code>) to show a backdrop screen when it&#39;s open on mobiles. This backdrop also allows the user to click on almost any place to close the sidebar easily.</p>
+<h5 id="header">Header</h5>
+<p>Header (or top navbar) related styles, markup and scripts are contained under the components/header folder.</p>
+<p>The file <code>header.tpl.jade</code> contains the markup to generate the top navigation bar.</p>
+<p>Under this module also exists the search bar controllers. The markup for the search bar can be found in file <code>header-search.tpl.jade</code></p>
+<p>In the file header.controller.js you can find functions to show the search bar and the right sidebar. Both components are based on Bootstrap modals with minor modifications to the styles. Custom modals styles can be found in file <code>common/modals.less</code></p>
+<h5 id="user-layouts">User layouts</h5>
+<p>User layout is used for common user pages like login, signup, lock, etc.</p>
+<p>All related stuff for this layout and page content can be found under folder <strong>components/user</strong></p>
+<h5 id="other-layouts">Other layouts</h5>
+<p>Other layouts stuff displayed under menu entry &#39;Layouts&#39; can be found under folder <strong>components/layouts</strong></p>
+<p>This folder contains example markup to generate different layouts for the main content. </p>
+<h4 id="rtl">RTL</h4>
+<p>RTL mode is supported using a Nodejs tool called <a href="https://www.npmjs.com/package/gulp-rtlcss">rtlcss</a> which inverts most the CSS properties to change the page orientation.</p>
+<p>There&#39;s also a property $rootScope.app.layout.rtl to know when the site is in RTL mode.</p>
+<p>The enable RTL you need the RTL version of the template and Bootstrap stylesheets.</p>
+<pre><code class="lang-markup">    &lt;link rel=&quot;stylesheet&quot; href=&quot;path/to/bootstrap-rtl.css&quot;&gt;
+    &lt;link id=&quot;appcss&quot; rel=&quot;stylesheet&quot; href=&quot;app/css/app-rtl.css&quot;&gt;
+</code></pre>
+<p>RTL version of the main application stylesheet is generated by Gulp and it&#39;s named <code>app-rtl.css</code></p>
+<p>Bootstrap doesn&#39;t have an official RTL version but you can generate it using the mentioned tool, rtlcss.<br>To do that, you need nodejs installed on your machine. After that install the tool with npm like is described <a href="https://www.npmjs.com/package/rtlcss">here</a></p>
+<p>Once you have the tool ready to use, download or go the vendor/bootstrap folder and look for the file bootstrap.css.<br>Open a console/terminal in the same folder of that file and run the following command</p>
+<pre><code>$ rtlcss bootstrap.css bootstrap-rtl.css
+</code></pre><p>When the command ends you should have a new file <code>bootstrap-rtl.css</code> in the same folder ready to include in your index file.</p>
+</div></article><article id="components"><h2 class="title">Components</h2><div class="content"><p>This table shows a brief description of each component</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bootstrap</td>
+<td style="text-align:center">Bootstrap reset</td>
+</tr>
+<tr>
+<td>bootstrapui</td>
+<td style="text-align:center">Angular UI Bootstrap demo controllers</td>
+</tr>
+<tr>
+<td>cards</td>
+<td style="text-align:center">Card component and menu entry</td>
+</tr>
+<tr>
+<td>charts</td>
+<td style="text-align:center">Charts menu entry (flot, rickshaw, radials etc)</td>
+</tr>
+<tr>
+<td>colors</td>
+<td style="text-align:center">Color constants and utilities</td>
+</tr>
+<tr>
+<td>common</td>
+<td style="text-align:center">Common used styles and mixins</td>
+</tr>
+<tr>
+<td>core</td>
+<td style="text-align:center">Core component of the application</td>
+</tr>
+<tr>
+<td>dashboard</td>
+<td style="text-align:center">Dashboard related styles, script and views</td>
+</tr>
+<tr>
+<td>elements</td>
+<td style="text-align:center">Elements menu entry</td>
+</tr>
+<tr>
+<td>floatbutton</td>
+<td style="text-align:center">Material floating button</td>
+</tr>
+<tr>
+<td>forms</td>
+<td style="text-align:center">Forms menu entry</td>
+</tr>
+<tr>
+<td>header</td>
+<td style="text-align:center">Header template and related stuff</td>
+</tr>
+<tr>
+<td>layouts</td>
+<td style="text-align:center">Layouts menu entry</td>
+</tr>
+<tr>
+<td>loadingbar</td>
+<td style="text-align:center">Loading bar related stuff</td>
+</tr>
+<tr>
+<td>maps</td>
+<td style="text-align:center">Maps menu entry</td>
+</tr>
+<tr>
+<td>menu</td>
+<td style="text-align:center">Menu service and controller</td>
+</tr>
+<tr>
+<td>pages</td>
+<td style="text-align:center">Pages menu entry</td>
+</tr>
+<tr>
+<td>preloader</td>
+<td style="text-align:center">Full site preloader</td>
+</tr>
+<tr>
+<td>ripple</td>
+<td style="text-align:center">Ripple effect directive</td>
+</tr>
+<tr>
+<td>router</td>
+<td style="text-align:center">Router constant, service and controller</td>
+</tr>
+<tr>
+<td>settings</td>
+<td style="text-align:center">Settings and themes related stuff</td>
+</tr>
+<tr>
+<td>sidebar</td>
+<td style="text-align:center">Sidebar directive and template</td>
+</tr>
+<tr>
+<td>tables</td>
+<td style="text-align:center">Tables menu entry</td>
+</tr>
+<tr>
+<td>translate</td>
+<td style="text-align:center">Translation related stuff</td>
+</tr>
+<tr>
+<td>user</td>
+<td style="text-align:center">User pages (login, signup, etc)</td>
+</tr>
+<tr>
+<td>utils</td>
+<td style="text-align:center">Utilities</td>
+</tr>
+</tbody>
+</table>
+<h4 id="router">Router</h4>
+<p>The router module, under folder <strong>components/router</strong> contains all related stuff for custom functions used to add new routes.</p>
+<p>The <code>RouterProvider</code> is used to provide <strong>LazyLoading</strong> to the application by wrapping the new routes addition and to help with common task like requesting vendor assets per route (lazy load)</p>
+<p>This example shows as example the Dashboard route with comments on main parts: </p>
+<blockquote>
+<p>Note that &#39;Router&#39; is the mentioned provider and is injected in order to use it.</p>
+</blockquote>
+<pre><code class="lang-javascript">(function() {
+    &#39;use strict&#39;;
+
+    angular
+        .module(&#39;app.dashboard&#39;)
+        .run(dashboardRoute);
+
+    // Inject the RouterProvider
+    dashboardRoute.$inject = [&#39;Router&#39;];
+
+    function dashboardRoute(Router) {
+
+        // Usage is the same like the UIRouter
+        // First param is the route state name and second param are state options
+        Router.state(&#39;app.dashboard&#39;, {
+            url: &#39;/dashboard&#39;,
+            title: &#39;Dashboard&#39;,
+            // No need to add here the base path for each view every time
+            templateUrl: &#39;dashboard.html&#39;,
+            // The special &#39;require&#39; property allows to load vendor assets before loading the route
+            require: [&#39;angular-flot&#39;, &#39;easypiechart&#39;, &#39;sparkline&#39;, &#39;vector-map&#39;, &#39;vector-map-maps&#39;]
+            // resolve: can also be used
+        });
+    }
+
+})();
+</code></pre>
+<p>The <code>templateUrl</code> has a special treatment, any file added here will be appended to the base path configured for each view.</p>
+<p>The <code>require</code> property is converted to a normal resolve or mixed if present. Each value in the array of require corresponds to an entry in the constant <code>APP_REQUIRES</code> defined in file <code>router.constants.js</code>, this constant is used to list the paths for each vendor assets.<br>This technique is useful to have all vendor paths in one place, and it also saves time when the same paths are used by more than one route.</p>
+<p>The RouterProvider can be configured in file <code>router.provider.js</code></p>
+<pre><code class="lang-javascript">var config = {
+    // The paths where html template resides
+    viewsBasePath: &#39;app/views/&#39;,
+    // Automatically prepend views path to all templatesUrl?
+    useViewsBasePath: true,
+    // Set the following to true to enable the HTML5 Mode
+    // You may have to set &lt;base&gt; tag in index and a routing configuration in your server
+    html5Mode: false,
+    // defaults to dashboard
+    defaultRoute: &#39;/app/dashboard&#39;
+};
+</code></pre>
+<h4 id="preloader">Preloader</h4>
+<p>The site preloader is used adding the following markup to the index file right below the body tag</p>
+<pre><code class="lang-jade">div(data-preloader)
+</code></pre>
+<h5 id="background-color">Background color</h5>
+<p>Background color can be changed be editing class .preloader (app.css or preloader.less)</p>
+<h5 id="image-logo">Image logo</h5>
+<p>To generate the loading effect we use two images that are the same but one fully colored and the other with a little opacity. </p>
+<p>Both images can be found and replaced in the following paths</p>
+<ul>
+<li>/app/img/preloader/preloader.empty.png</li>
+<li>/app//img/preloader/preloader.full.png</li>
+</ul>
+<p>Note: If you change this images, try to respect the original size. Otherwise, you will need to change a bit of the css to make the expected size matches with the real one.</p>
+<h4 id="ripple-effect">Ripple Effect</h4>
+<p>The ripple can be achieved on almost any component by adding the class <code>.ripple</code></p>
+<p>This class is handled by a directive that display a simple animation in the middle of the element where it&#39;s attached. </p>
+<p>If you want to customized the styles of scripts of this effect, you find all related files under <strong>components/ripple</strong></p>
+<h4 id="translation">Translation</h4>
+<p>The translation system uses the AngularUI Translate module.
+This modules simplifies the translation system by loading translate references from a JSON file and replacing the content where the reference has been used.</p>
+<pre><code class="lang-markup">&lt;h3 ui-translate=&quot;reference.NAME&quot;&gt;Text that will be replaced&lt;/h3&gt;
+
+&lt;h3&gt;{{ &#39;reference.NAME&#39; | translate }}&lt;/h3&gt;
+
+&lt;a href=&quot;#&quot; title=&quot;{{ &#39;reference.NAME&#39; | translate }}&quot;&gt;Link&lt;/a&gt;
+</code></pre>
+<p>Example content of the file server/i18n/en.json</p>
+<pre><code class="lang-javascript">{
+  &quot;WELCOME&quot;: &quot;Welcome&quot;,
+  &quot;header&quot;: {
+    &quot;SEARCH&quot;: &quot;Search..&quot;
+  }
+}
+</code></pre>
+<p>As a convention, we use the key name with the translated text in uppercase.</p>
+<h4 id="settings-and-themes">Settings and Themes</h4>
+<p>All settings related files belongs to <strong>components/settings</strong></p>
+<p>There you will find the initial values for the different settings supported.
+The template markup for the settings panel (the right sidebar) and the styles for such panel. </p>
+<h5 id="themes">Themes</h5>
+<p>Theming is based on class-names that provides colors to components. </p>
+<p>All themes classes available are configured in <code>settings.run.js</code> </p>
+<pre><code class="lang-javascript">var themes = [
+    &#39;theme-1&#39;,
+    &#39;theme-2&#39;,
+    &#39;theme-3&#39;,
+    &#39;theme-4&#39;,
+    &#39;theme-5&#39;,
+    &#39;theme-6&#39;,
+    &#39;theme-7&#39;,
+    &#39;theme-8&#39;,
+    &#39;theme-9&#39;,
+]
+</code></pre>
+<p>Each of this theme, named theme-* is applied to the body tag via the function <code>theme()</code></p>
+<p>You can find the source of the themes definition in file <code>master/components/common/themes.less</code></p>
+<p>Tip:<br>Selected settings are not auto-saved, this can be easily added by using <a href="https://github.com/grevory/angular-local-storage">angular-local-storage</a> and <a href="https://docs.angularjs.org/api/ng/function/angular.extend">angular.extend()</a> function will do the job mixing the default values with stored values.</p>
+<h5 id="default-theme">Default theme</h5>
+<p>To set a theme as default, just add the classname of the theme you want to the body tag.</p>
+<pre><code class="lang-markup">&lt;body class=&quot;theme-1&quot;&gt;
+</code></pre>
+</div></article><article id="customization"><h2 class="title">Customization</h2><div class="content"><p>Here you will find information about how to add new features to the template.</p>
+<h4 id="adding-new-components">Adding new Components</h4>
+<p>To add a new component create a new folder under &#39;master/components/&#39;</p>
+<p>For example,&#39;master/components/<strong>mycomp</strong>&#39; </p>
+<h5 id="adding-styles">Adding styles</h5>
+<p>To add a new styles just a create a new LESS file into the component folder. This file will be automatically compiled and added to final CSS files.</p>
+<blockquote>
+<p>Separated components should not have conflicts between CSS rules but just in case, check the specificity in your styles (read more <a href="http://www.smashingmagazine.com/2007/07/css-specificity-things-you-should-know/">here</a>)</p>
+</blockquote>
+<h5 id="adding-views">Adding views</h5>
+<p>Create a new JADE (or HTML) file with the name your route expect to find the file. </p>
+<p>For example, mycomp.jade will be compiled to mycomp.html</p>
+<p>The minimum necessary for a view markup is the .container-* element</p>
+<p>mycomp.jade</p>
+<pre><code class="lang-jade">.container-fluid
+    // here goes the content, .row, .panels., .cards, etc...
+</code></pre>
+<p>or, with a centered container </p>
+<pre><code class="lang-jade">.container.container-lg
+    // here goes the content, .row, .panels., .cards, etc...
+</code></pre>
+<p>a raw html version of above looks like</p>
+<pre><code class="lang-markup">&lt;div class=&quot;container container-lg&quot;&gt;
+    &lt;!-- here goes the content, .row, .panels., .cards, etc... --&gt;
+&lt;/div&gt;
+</code></pre>
+<h5 id="adding-a-module">Adding a Module</h5>
+<p>Your new component should defined its own module in order to keep the app modular.
+Place in the new folder a module file with the name <code>mycomp.module.js</code> and the content could be:</p>
+<pre><code class="lang-javascript">(function() {
+    &#39;use strict&#39;;
+
+    angular
+        .module(&#39;myapp.mycomp&#39;, []);
+})();
+</code></pre>
+<p>All modules should be added as a dependency of the main app, in file <code>app.module.js</code>
+Example</p>
+<pre><code class="lang-javascript">(function() {
+    &#39;use strict&#39;;
+
+    angular
+        .module(&#39;centrict&#39;, [
+            &#39;app.core&#39;,
+            ...
+            &#39;myapp.mycomp&#39;
+        ]);
+})();
+</code></pre>
+<h5 id="adding-a-route">Adding a Route</h5>
+<p>Add the file mycomp.route.js with the following example content</p>
+<pre><code class="lang-javascript">(function() {
+    &#39;use strict&#39;;
+
+    angular
+        .module(&#39;myapp.mycomp&#39;)
+        .run(mycompRoute);
+
+    mycompRoute.$inject = [&#39;Router&#39;];
+
+    function mycompRoute(Router) {
+
+        Router.state(&#39;app.myroute&#39;, {
+            url: &#39;/myroute&#39;,
+            title: &#39;My Route Title&#39;,
+            templateUrl: &#39;mycomp.html&#39;
+            // optionally add require and resolve here
+        });
+    }
+
+})();
+</code></pre>
+<p>Note that the route name is &#39;app.myroute&#39; in order to be handled by the main router name &#39;app&#39;. This route state is defined in <code>core.route.js</code>.</p>
+<h5 id="adding-a-menu-entry">Adding a Menu entry</h5>
+<p>To add a new menu, you can use the <code>Menu Service</code>(under components/menu).<br>This menu service collects all menu items added from each component and is used by the sidebar to build recursively each entry.</p>
+<p>Create a file named mycomp.menu.js with the following example content:</p>
+<pre><code class="lang-javascript">(function() {
+    &#39;use strict&#39;;
+
+    angular
+        .module(&#39;myapp.mycomp&#39;)
+        .run(mycompRun);
+
+    mycompRun.$inject = [&#39;Menu&#39;];
+
+    function mycompRun(Menu) {
+
+        var menuItem = {
+            name: &#39;My Comp&#39;,    // the menu name displayed
+            sref: &#39;app.mycomp&#39;, // the target state
+            order: 1,           // the order in the list of menu items
+            iconclass: &#39;ion-chevron-right&#39; // the classname for the icon
+        };
+
+        Menu.addItem(menuItem);
+
+    }
+})();
+</code></pre>
+<p>Check other components for examples to build a menu with subitems.</p>
+<h4 id="adding-vendor-assets">Adding vendor assets</h4>
+<p>To add a new vendor assets you need to follow 3 steps:</p>
+<p><strong>1-</strong> Download and install. </p>
+<p>Usually this is done with &#39;bower install 3rd-party-plugin&#39;. </p>
+<p>All files downloaded will be placed in vendor/ folder</p>
+<p><strong>2-</strong> Add main files to the application. </p>
+<p>Here are 2 options:</p>
+<ul>
+<li>Files available across the entire application<ul>
+<li>Add the main files directly to the index file</li>
+</ul>
+</li>
+<li>Files available to certain routes (lazyloaded)<ul>
+<li>Add the paths to the APP_REQUIRE constant, in components/router/router.constants.js</li>
+<li>Use the constant entry name in your route &#39;require&#39; property</li>
+</ul>
+</li>
+</ul>
+</div></article><article id="credits"><h2 class="title">Credits</h2><div class="content"><table>
+<thead>
+<tr>
+<th>Name</th>
+<th style="text-align:center">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>angular-bootstrap</td>
+<td style="text-align:center"><a href="https://github.com/angular-ui/bootstrap-bower">https://github.com/angular-ui/bootstrap-bower</a></td>
+</tr>
+<tr>
+<td>angular-bootstrap-colorpicker</td>
+<td style="text-align:center"><a href="https://github.com/buberdds/angular-bootstrap-colorpicker">https://github.com/buberdds/angular-bootstrap-colorpicker</a></td>
+</tr>
+<tr>
+<td>angular-bootstrap-tour</td>
+<td style="text-align:center"><a href="https://github.com/benmarch/angular-bootstrap-tour">https://github.com/benmarch/angular-bootstrap-tour</a></td>
+</tr>
+<tr>
+<td>angular-dropzone</td>
+<td style="text-align:center"><a href="https://github.com/sandbochs/angular-dropzone">https://github.com/sandbochs/angular-dropzone</a></td>
+</tr>
+<tr>
+<td>angular-deckgrid</td>
+<td style="text-align:center"><a href="https://github.com/akoenig/angular-deckgrid">https://github.com/akoenig/angular-deckgrid</a></td>
+</tr>
+<tr>
+<td>angular</td>
+<td style="text-align:center"><a href="https://github.com/angular/bower-angular">https://github.com/angular/bower-angular</a></td>
+</tr>
+<tr>
+<td>angular-file-upload</td>
+<td style="text-align:center"><a href="https://github.com/nervgh/angular-file-upload">https://github.com/nervgh/angular-file-upload</a></td>
+</tr>
+<tr>
+<td>angular-flot</td>
+<td style="text-align:center"><a href="http://github.com/develersrl/angular-flot">http://github.com/develersrl/angular-flot</a></td>
+</tr>
+<tr>
+<td>angular-cookies</td>
+<td style="text-align:center"><a href="https://github.com/angular/bower-angular-cookies">https://github.com/angular/bower-angular-cookies</a></td>
+</tr>
+<tr>
+<td>angular-animate</td>
+<td style="text-align:center"><a href="https://github.com/angular/bower-angular-animate">https://github.com/angular/bower-angular-animate</a></td>
+</tr>
+<tr>
+<td>angular-loading-bar</td>
+<td style="text-align:center"><a href="https://github.com/chieffancypants/angular-loading-bar">https://github.com/chieffancypants/angular-loading-bar</a></td>
+</tr>
+<tr>
+<td>angular-knob</td>
+<td style="text-align:center"><a href="https://github.com/yunlzheng/angular-knob">https://github.com/yunlzheng/angular-knob</a></td>
+</tr>
+<tr>
+<td>angular-datatables</td>
+<td style="text-align:center"><a href="https://github.com/l-lin/angular-datatables">https://github.com/l-lin/angular-datatables</a></td>
+</tr>
+<tr>
+<td>angular-google-maps</td>
+<td style="text-align:center"><a href="https://github.com/angular-ui/angular-google-maps">https://github.com/angular-ui/angular-google-maps</a></td>
+</tr>
+<tr>
+<td>angular-rickshaw</td>
+<td style="text-align:center"><a href="https://github.com/ngyewch/angular-rickshaw">https://github.com/ngyewch/angular-rickshaw</a></td>
+</tr>
+<tr>
+<td>angular-summernote</td>
+<td style="text-align:center"><a href="https://github.com/summernote/angular-summernote">https://github.com/summernote/angular-summernote</a></td>
+</tr>
+<tr>
+<td>angular-resource</td>
+<td style="text-align:center"><a href="https://github.com/angular/bower-angular-resource">https://github.com/angular/bower-angular-resource</a></td>
+</tr>
+<tr>
+<td>angular-translate</td>
+<td style="text-align:center"><a href="https://github.com/PascalPrecht/bower-angular-translate">https://github.com/PascalPrecht/bower-angular-translate</a></td>
+</tr>
+<tr>
+<td>angular-sweetalert</td>
+<td style="text-align:center"><a href="https://github.com/oitozero/ngSweetAlert">https://github.com/oitozero/ngSweetAlert</a></td>
+</tr>
+<tr>
+<td>angular-route</td>
+<td style="text-align:center"><a href="https://github.com/angular/bower-angular-route">https://github.com/angular/bower-angular-route</a></td>
+</tr>
+<tr>
+<td>angular-translate-loader-static-files</td>
+<td style="text-align:center"><a href="https://github.com/PascalPrecht/bower-angular-translate-loader-static-files">https://github.com/PascalPrecht/bower-angular-translate-loader-static-files</a></td>
+</tr>
+<tr>
+<td>angular-translate-loader-url</td>
+<td style="text-align:center"><a href="https://github.com/PascalPrecht/bower-angular-translate-loader-url">https://github.com/PascalPrecht/bower-angular-translate-loader-url</a></td>
+</tr>
+<tr>
+<td>angular-touch</td>
+<td style="text-align:center"><a href="https://github.com/angular/bower-angular-touch">https://github.com/angular/bower-angular-touch</a></td>
+</tr>
+<tr>
+<td>angular-translate-storage-local</td>
+<td style="text-align:center"><a href="https://github.com/PascalPrecht/bower-angular-translate-storage-local">https://github.com/PascalPrecht/bower-angular-translate-storage-local</a></td>
+</tr>
+<tr>
+<td>angular-ui-router</td>
+<td style="text-align:center"><a href="https://github.com/angular-ui/ui-router">https://github.com/angular-ui/ui-router</a></td>
+</tr>
+<tr>
+<td>angular-ui-select</td>
+<td style="text-align:center"><a href="https://github.com/angular-ui/ui-select">https://github.com/angular-ui/ui-select</a></td>
+</tr>
+<tr>
+<td>angular-translate-storage-cookie</td>
+<td style="text-align:center"><a href="https://github.com/PascalPrecht/bower-angular-translate-storage-cookie">https://github.com/PascalPrecht/bower-angular-translate-storage-cookie</a></td>
+</tr>
+<tr>
+<td>angular-sanitize</td>
+<td style="text-align:center"><a href="https://github.com/angular/bower-angular-sanitize">https://github.com/angular/bower-angular-sanitize</a></td>
+</tr>
+<tr>
+<td>animate.css</td>
+<td style="text-align:center"><a href="https://github.com/daneden/animate.css">https://github.com/daneden/animate.css</a></td>
+</tr>
+<tr>
+<td>blueimp-gallery</td>
+<td style="text-align:center"><a href="https://github.com/blueimp/Gallery">https://github.com/blueimp/Gallery</a></td>
+</tr>
+<tr>
+<td>angular-ui-utils</td>
+<td style="text-align:center"><a href="http://angular-ui.github.com">http://angular-ui.github.com</a></td>
+</tr>
+<tr>
+<td>dropzone</td>
+<td style="text-align:center"><a href="http://www.dropzonejs.com">http://www.dropzonejs.com</a></td>
+</tr>
+<tr>
+<td>angular-xeditable</td>
+<td style="text-align:center"><a href="http://vitalets.github.io/angular-xeditable">http://vitalets.github.io/angular-xeditable</a></td>
+</tr>
+<tr>
+<td>flot-spline</td>
+<td style="text-align:center"><a href="https://github.com/JohnPozy/flot-spline">https://github.com/JohnPozy/flot-spline</a></td>
+</tr>
+<tr>
+<td>flot.tooltip</td>
+<td style="text-align:center"><a href="https://github.com/krzysu/flot.tooltip">https://github.com/krzysu/flot.tooltip</a></td>
+</tr>
+<tr>
+<td>flot</td>
+<td style="text-align:center"><a href="https://github.com/flot/flot">https://github.com/flot/flot</a></td>
+</tr>
+<tr>
+<td>html.sortable</td>
+<td style="text-align:center"><a href="https://github.com/voidberg/html5sortable">https://github.com/voidberg/html5sortable</a></td>
+</tr>
+<tr>
+<td>ionicons</td>
+<td style="text-align:center"><a href="https://github.com/driftyco/ionicons">https://github.com/driftyco/ionicons</a></td>
+</tr>
+<tr>
+<td>jquery.easy-pie-chart</td>
+<td style="text-align:center"><a href="https://github.com/rendro/easy-pie-chart">https://github.com/rendro/easy-pie-chart</a></td>
+</tr>
+<tr>
+<td>font-awesome</td>
+<td style="text-align:center"><a href="http://fontawesome.io">http://fontawesome.io</a></td>
+</tr>
+<tr>
+<td>bootstrap</td>
+<td style="text-align:center"><a href="http://getbootstrap.com">http://getbootstrap.com</a></td>
+</tr>
+<tr>
+<td>material-colors</td>
+<td style="text-align:center"><a href="https://github.com/shuhei/material-colors">https://github.com/shuhei/material-colors</a></td>
+</tr>
+<tr>
+<td>angular-messages</td>
+<td style="text-align:center"><a href="https://github.com/angular/bower-angular-messages">https://github.com/angular/bower-angular-messages</a></td>
+</tr>
+<tr>
+<td>ng-mfb</td>
+<td style="text-align:center"><a href="https://github.com/nobitagit/ng-material-floating-button">https://github.com/nobitagit/ng-material-floating-button</a></td>
+</tr>
+<tr>
+<td>jquery.browser</td>
+<td style="text-align:center"><a href="https://github.com/gabceb/jquery-browser-plugin">https://github.com/gabceb/jquery-browser-plugin</a></td>
+</tr>
+<tr>
+<td>lodash</td>
+<td style="text-align:center"><a href="https://github.com/lodash/lodash">https://github.com/lodash/lodash</a></td>
+</tr>
+<tr>
+<td>modernizr</td>
+<td style="text-align:center"><a href="https://github.com/Modernizr/Modernizr">https://github.com/Modernizr/Modernizr</a></td>
+</tr>
+<tr>
+<td>ng-nestable</td>
+<td style="text-align:center"><a href="http://kamilkp.github.io/ng-nestable">http://kamilkp.github.io/ng-nestable</a></td>
+</tr>
+<tr>
+<td>jquery</td>
+<td style="text-align:center"><a href="https://github.com/jquery/jquery">https://github.com/jquery/jquery</a></td>
+</tr>
+<tr>
+<td>ng-wig</td>
+<td style="text-align:center"><a href="https://github.com/stevermeister/ngWig">https://github.com/stevermeister/ngWig</a></td>
+</tr>
+<tr>
+<td>ngstorage</td>
+<td style="text-align:center"><a href="https://github.com/gsklee/ngStorage">https://github.com/gsklee/ngStorage</a></td>
+</tr>
+<tr>
+<td>ng-table</td>
+<td style="text-align:center"><a href="https://github.com/esvit/ng-table">https://github.com/esvit/ng-table</a></td>
+</tr>
+<tr>
+<td>oclazyload</td>
+<td style="text-align:center"><a href="https://github.com/ocombe/ocLazyLoad">https://github.com/ocombe/ocLazyLoad</a></td>
+</tr>
+<tr>
+<td>sparkline</td>
+<td style="text-align:center"><a href="https://github.com/gwatts/jquery.sparkline">https://github.com/gwatts/jquery.sparkline</a></td>
+</tr>
+<tr>
+<td>bootstrap-filestyle</td>
+<td style="text-align:center"><a href="https://github.com/markusslima/bootstrap-filestyle">https://github.com/markusslima/bootstrap-filestyle</a></td>
+</tr>
+<tr>
+<td>screenfull</td>
+<td style="text-align:center"><a href="https://github.com/sindresorhus/screenfull.js">https://github.com/sindresorhus/screenfull.js</a></td>
+</tr>
+<tr>
+<td>venturocket-angular-slider</td>
+<td style="text-align:center"><a href="https://github.com/Venturocket/angular-slider">https://github.com/Venturocket/angular-slider</a></td>
+</tr>
+<tr>
+<td>textAngular</td>
+<td style="text-align:center"><a href="https://github.com/fraywing/textAngular">https://github.com/fraywing/textAngular</a></td>
+</tr>
+<tr>
+<td>angular-loaders</td>
+<td style="text-align:center"><a href="https://github.com/the-cormoran/angular-loaders">https://github.com/the-cormoran/angular-loaders</a></td>
+</tr>
+<tr>
+<td>angular-bootstrap-nav-tree</td>
+<td style="text-align:center"><a href="https://github.com/nickperkinslondon/angular-bootstrap-nav-tree">https://github.com/nickperkinslondon/angular-bootstrap-nav-tree</a></td>
+</tr>
+<tr>
+<td>ng-table-export</td>
+<td style="text-align:center"><a href="https://github.com/esvit/ng-table-export">https://github.com/esvit/ng-table-export</a></td>
+</tr>
+<tr>
+<td>nestable</td>
+<td style="text-align:center"><a href="https://github.com/dbushell/Nestable">https://github.com/dbushell/Nestable</a></td>
+</tr>
+<tr>
+<td>ika.jvectormap</td>
+<td style="text-align:center"><a href="http://jvectormap.com/">http://jvectormap.com/</a></td>
+</tr>
+</tbody>
+</table>
+</div></article></section></div></div><script src="assets/scripts.js"></script></body></html>

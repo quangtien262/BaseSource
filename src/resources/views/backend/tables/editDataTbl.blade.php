@@ -72,6 +72,8 @@
                                                 <span>ckeditor</span>
                                             @elseif($col->type_edit == 'image_laravel')
                                                 <div class="col-md-6">
+                                                    <br/>
+                                                    <label>{{ $col->display_name or $col->name }}</label>
                                                     <div class="input-group">
                                                         <span class="input-group-btn">
                                                             <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">

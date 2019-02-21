@@ -1,0 +1,21 @@
+extends ../core/core.layout
+block pagetitle
+    - pageTitle = 'Vector Maps'
+block content
+    .container-fluid
+        .card
+            .card-heading
+                .pull-right
+                    span.mr.text-muted Show last year events
+                    label.switch.switch-info
+                        input(type='checkbox')
+                        span
+                .card-title World Events
+            .card-body
+                #vector-map-world.vector-map(style="height:240px")
+
+        .card
+            .card-heading
+                .card-title Usa Makers
+            .card-body
+                #vector-map-usa.vector-map(style="height:240px")

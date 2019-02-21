@@ -1,0 +1,41 @@
+extends user.layout
+block content
+    .container-full
+        .container.container-xs
+            img.mv-lg.block-center.img-responsive.thumb64(src="img/logo.png")
+            form.card.b0.form-validate#user-signup(action="", name="createForm", novalidate='')
+                .card-offset.pb0
+                    .card-offset-item.text-right
+                        #form-ok.btn.btn-success.btn-circle.btn-lg.hidden
+                            em.ion-checkmark-round
+                .card-heading
+                    .card-title.text-center Create account
+                .card-body
+                    .mda-form-group.float-label.mda-input-group
+                        .mda-form-control
+                            input.form-control(type='email', name="accountName", required="")
+                            .mda-form-control-line
+                            label Email address
+                        span.mda-input-group-addon
+                            em.ion-ios-email-outline.icon-lg
+                    .mda-form-group.float-label.mda-input-group
+                        .mda-form-control
+                            input.form-control#account-password(type='password', name="accountPassword", required="")
+                            .mda-form-control-line
+                            label Password
+                        span.mda-input-group-addon
+                            em.ion-ios-locked-outline.icon-lg
+                    .mda-form-group.float-label.mda-input-group
+                        .mda-form-control
+                            input.form-control(type='password', name="accountPasswordCheck", required="")
+                            .mda-form-control-line
+                            label Confirm password
+                        span.mda-input-group-addon
+                            em.ion-ios-locked-outline.icon-lg
+                button.btn.btn-primary.btn-flat(type="submit") Create
+
+                .card-body.bg-gray-lighter.text-center.text-sm
+                    span.spr By registering I accept the
+                    a.spr(href="#") Terms of Service
+                    span.spr and
+                    a.spr(href="#") Privacy

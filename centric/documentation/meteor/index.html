@@ -1,0 +1,332 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>Centric Docs</title><link rel="stylesheet" href="assets/styles.css"></head><body><div class="inf-header-wrapper"><header class="inf-header"><h1 class="title"><a href="http://themicon.co/centric">Centric Docs</a></h1><div class="support"><a href="https://wrapbootstrap.com/user/themicon#contact" class="btn-support">Contact support</a></div></header></div><div class="inf-wrapper"><nav class="inf-menu"><ul><li><a href="#introduction">Introduction</a></li><li><a href="#structure">Structure</a></li><li><a href="#usage">Usage</a></li><li><a href="#components">Components</a></li></ul><div class="inf-menu-meta"><span>By:</span><a href="https://twitter.com/themicon_co">@themicon</a><br><span>Created:</span><span>2016-06-23</span><br><span>Updated:</span><span>2017-03-24</span></div></nav><div class="inf-content"><div class="inf-item-header"><h1>Centric<small>Bootstrap Admin Template + Meteor</small></h1><p>Thank you for purchasing Centric - Bootstrap Admin Template + Meteor.<br>If you have any question about this product and beyond the scope of this help file, please feel free to write us using the support button.</p><br><p><strong>Thanks so much!</strong></p></div><section class="inf-section"><article id="introduction"><h2 class="title">Introduction</h2><div class="content"><p>This document aims to explain the best way to work with the product and its components.</p>
+<p><strong>- <em>All the best and enjoy coding.</em></strong></p>
+<h4 id="getting-started-tips">Getting started tips</h4>
+<ul>
+<li>Do not start from scratch, use an existing asset and modify it to learn how it works.</li>
+<li>Explore the sources for ideas and sample code.</li>
+<li>Use Firebug or Chrome Developer Tools to find bugs on your website. Using one of those tools will help you to save time analyzing the site and finding elements structure, like classes, id or tags<ul>
+<li>Quick tip: open your site with Chrome, press F12 and go to console tab, reload your page and if something goes wrong you will see your page errors in red text.</li>
+</ul>
+</li>
+<li>In case of errors, someone might have seen it too, you can try a Google search for a quick fix.</li>
+</ul>
+<h4 id="starting-the-app">Starting the app</h4>
+<p><strong>Download MeteorJS</strong></p>
+<p>Start downloading METEOR framework for your platform at <a href="https://www.meteor.com/install">https://www.meteor.com/install</a></p>
+<p><strong>Start the application</strong></p>
+<p>Run the following command in the meteor project root folder</p>
+<pre><code class="lang-css">npm install
+</code></pre>
+<pre><code class="lang-css">meteor
+</code></pre>
+<p><strong>Open your browser*</strong></p>
+<p>If everything goes fine, your application should be ready at <a href="http://localhost:3000/">http://localhost:3000/</a></p>
+</div></article><article id="structure"><h2 class="title">Structure</h2><div class="content"><p>Before starting to customize the template, here is the project files organization structure:</p>
+<pre><code class="lang-css">+---client
+|   +---main.js
+|   \---head.html
++---imports
+|   +---startup
+|   |   \---client
+|   |       +---index.js
+|   |       +---routes.js
+|   |       \---vendor.js
+|   +---ui
+|   |   \---components
+|   |       +---bootstrap
+|   |       +---cards
+|   |       +---charts
+|   |       +---colors
+|   |       +---common
+|   |       +---core
+|   |       +---dashboard
+|   |       +---elements
+|   |       +---floatbutton
+|   |       +---forms
+|   |       +---header
+|   |       +---layouts
+|   |       +---maps
+|   |       +---pages
+|   |       +---ripple
+|   |       +---settings
+|   |       +---sidebar
+|   |       +---tables
+|   |       +---translate
+|   |       +---user
+|   |       \---utils
++---public
+|   +---fonts
+|   +---img
+|   \---server
+\---server
+    +---main.js
+</code></pre>
+<h4 id="main-folders-explanation">Main folders explanation</h4>
+<p>The structure we have followed is pretty similar to the stated at the official documentation. Except for some parts we have omitted (just for simplicity), you can follow the official guide to learn more in deep how to structure your final app.<br>Please check it here <a href="http://guide.meteor.com/structure.html">http://guide.meteor.com/structure.html</a></p>
+<p><strong>client/</strong></p>
+<p>Files placed here are the entry point for the client side code of the application. </p>
+<p><strong>imports/</strong></p>
+<p>This files are imported from another files. By itself, those files are loaded by Meteor</p>
+<p><strong>pubic/</strong></p>
+<p>Everything placed here is for public access, like images, fonts, etc.</p>
+<p><strong>server/</strong></p>
+<p>Files placed here are the entry point for the server side code of the application.</p>
+<h3 id="layouts">Layouts</h3>
+<p>Main layout can be found in file <code>imports/ui/components/core/core.layout.html</code> with the following content:</p>
+<pre><code class="lang-markup">&lt;template name=&quot;layout&quot;&gt;
+
+    &lt;div class=&quot;layout-container&quot;&gt;
+
+        &lt;!-- header --&gt;
+        &lt;header class=&quot;header-container&quot;&gt;
+            {{&gt; header }}
+        &lt;/header&gt;
+
+        &lt;!-- Sidebar --&gt;
+        &lt;aside class=&quot;sidebar-container&quot;&gt;
+            {{&gt; sidebar }}
+        &lt;/aside&gt;
+        &lt;div class=&quot;sidebar-layout-obfuscator&quot;&gt;&lt;/div&gt;
+
+        &lt;!-- Main section --&gt;
+        &lt;main class=&quot;main-container&quot;&gt;
+
+            &lt;!-- Page content --&gt;
+            &lt;section&gt;
+                {{&gt; yield }}
+            &lt;/section&gt;
+            &lt;!-- Page footer --&gt;
+            &lt;footer&gt;
+                &lt;span&gt;2016 - Centric app.&lt;/span&gt;
+            &lt;/footer&gt;
+        &lt;/main&gt;
+
+    &lt;/div&gt;
+
+    &lt;!-- Search template --&gt;
+    {{&gt; headerSearch }}
+    &lt;!-- End Search template --&gt;
+    &lt;!-- Settings template --&gt;
+    {{&gt; settings }}
+    &lt;!-- End Settings template --&gt;
+
+    {{&gt; yield region=&quot;bodyChild&quot; }}
+
+&lt;/template&gt;
+</code></pre>
+<p>The user layout is defined in <code>imports/ui/components/user/user.layout.html</code></p>
+<pre><code class="lang-markup">&lt;template name=&quot;userLayout&quot;&gt;
+    &lt;div class=&quot;layout-container&quot;&gt;
+        &lt;div class=&quot;page-container bg-blue-grey-900&quot;&gt;
+            {{&gt; yield }}
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+</div></article><article id="usage"><h2 class="title">Usage</h2><div class="content"><p>As mentioned, the entry of the application is the file <code>client/main.js</code> this file only imports the startup code listed in <code>imports/startup/client/index.js</code></p>
+<p>client/main.js</p>
+<pre><code class="lang-javascript">import &#39;/imports/startup/client&#39;;
+</code></pre>
+<p>Note that by default, index.js is no required to be explicitly declared in the import statement.</p>
+<p>imports/startup/client/index.js</p>
+<pre><code class="lang-javascript">import &#39;./vendor.js&#39;;
+
+import &#39;../../ui/components/app.scss&#39;;
+import &#39;../../ui/components/app.js&#39;;
+
+import &#39;./routes.js&#39;;
+</code></pre>
+<blockquote>
+<p>Reminder: everything under the <strong>imports</strong> directory is not available to the app unless you import it first.</p>
+</blockquote>
+<h4 id="vendor">Vendor</h4>
+<p>The startup file will import first all vendor assets listed in <strong>vendor.js</strong>. This file will import (or require) all styles and javascripts of third party assets used in the app. By adding or remove files here you can customize the necessary feature for your final app.</p>
+<h4 id="styles">Styles</h4>
+<p>The file <code>imports/ui/components/app.scss</code> is the main file to import custom styles into the app. You can create a custom component and import here your new styles.</p>
+<h4 id="scripts">Scripts</h4>
+<p>In the same way like styles, the file <code>imports/ui/components/app.js</code> is used to import all scripts for the app, adding a custom component you can import here your custom scripts to make them they be available </p>
+<p>All scripts that access to dom object must be executed using the <code>onRendered</code> of the template that is using. For example:</p>
+<pre><code class="lang-javascript">import { Template } from &#39;meteor/templating&#39;;
+
+Template.layout.onRendered(() =&gt; {
+
+    // dom ready here
+
+});
+</code></pre>
+<h4 id="routes">Routes</h4>
+<p>Finally, the route.js will be imported in order to define routes. To define routes we use <a href="https://github.com/iron-meteor/iron-router">iron:router</a></p>
+<p>Examples</p>
+<pre><code class="lang-javascript">
+// Single route example
+Router.route(&#39;dashboard&#39;, function() {
+    this.render(&#39;Dashboard&#39;);
+});
+
+// Group route example
+Router.map(function() {
+    this.route(&#39;chart-flot&#39;, function() {
+        this.render(&#39;chartsFlot&#39;);
+    });
+    this.route(&#39;chart-radial&#39;, function() {
+        this.render(&#39;chartsRadial&#39;);
+    });
+    this.route(&#39;chart-rickshaw&#39;, function() {
+        this.render(&#39;chartsRickshaw&#39;);
+    });
+});
+</code></pre>
+<p><strong> Different layouts </strong></p>
+<p>To use a different template layout for a view just setup the layout property when defining the route</p>
+<pre><code class="lang-javascript">Router.route(&#39;login&#39;, function() {
+    this.render(&#39;login&#39;);
+    this.layout(&#39;userLayout&#39;);
+});
+</code></pre>
+</div></article><article id="components"><h2 class="title">Components</h2><div class="content"><p>This table shows a brief description of each component</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bootstrap</td>
+<td style="text-align:center">Bootstrap reset</td>
+</tr>
+<tr>
+<td>cards</td>
+<td style="text-align:center">Card component and menu entry</td>
+</tr>
+<tr>
+<td>charts</td>
+<td style="text-align:center">Charts menu entry (flot, rickshaw, radials etc)</td>
+</tr>
+<tr>
+<td>colors</td>
+<td style="text-align:center">Color constants and utilities</td>
+</tr>
+<tr>
+<td>common</td>
+<td style="text-align:center">Common used styles and mixins</td>
+</tr>
+<tr>
+<td>core</td>
+<td style="text-align:center">Core component of the application</td>
+</tr>
+<tr>
+<td>dashboard</td>
+<td style="text-align:center">Dashboard related styles, script and views</td>
+</tr>
+<tr>
+<td>elements</td>
+<td style="text-align:center">Elements menu entry</td>
+</tr>
+<tr>
+<td>floatbutton</td>
+<td style="text-align:center">Material floating button</td>
+</tr>
+<tr>
+<td>forms</td>
+<td style="text-align:center">Forms menu entry</td>
+</tr>
+<tr>
+<td>header</td>
+<td style="text-align:center">Header template and related stuff</td>
+</tr>
+<tr>
+<td>layouts</td>
+<td style="text-align:center">Layouts menu entry</td>
+</tr>
+<tr>
+<td>maps</td>
+<td style="text-align:center">Maps menu entry</td>
+</tr>
+<tr>
+<td>pages</td>
+<td style="text-align:center">Pages menu entry</td>
+</tr>
+<tr>
+<td>ripple</td>
+<td style="text-align:center">Ripple effect directive</td>
+</tr>
+<tr>
+<td>settings</td>
+<td style="text-align:center">Settings and themes related stuff</td>
+</tr>
+<tr>
+<td>sidebar</td>
+<td style="text-align:center">Sidebar directive and template</td>
+</tr>
+<tr>
+<td>tables</td>
+<td style="text-align:center">Tables menu entry</td>
+</tr>
+<tr>
+<td>translate</td>
+<td style="text-align:center">Translation related stuff</td>
+</tr>
+<tr>
+<td>user</td>
+<td style="text-align:center">User pages (login, signup, etc)</td>
+</tr>
+<tr>
+<td>utils</td>
+<td style="text-align:center">Utilities</td>
+</tr>
+</tbody>
+</table>
+<h4 id="ripple-effect">Ripple Effect</h4>
+<p>The ripple can be achieved on almost any component by adding the class <code>.ripple</code></p>
+<p>This class is handled by a script that display a simple animation in the middle of the element where it&#39;s attached. </p>
+<p>If you want to customized the styles of scripts of this effect, you find all related files under <strong>components/ripple</strong></p>
+<h4 id="translation">Translation</h4>
+<p>The translation system uses jQuery Localize
+This modules simplifies the translation system by loading translate references from a JSON file and replacing the content where the reference has been used.</p>
+<p>Examples</p>
+<pre><code class="lang-markup">&lt;small data-localize=&quot;dashboard.WELCOME&quot;&gt;&lt;/small&gt;
+</code></pre>
+<p>The JSON files with translation references are located in the folder app/i18n</p>
+<p>Example content of the file app/i18n/en.json</p>
+<pre><code class="lang-javascript">{
+  &quot;WELCOME&quot;: &quot;Welcome&quot;,
+  &quot;header&quot;: {
+    &quot;SEARCH&quot;: &quot;Search..&quot;
+  }
+}
+</code></pre>
+<p>As a convention, we use the key name with the translated text in uppercase.</p>
+<h4 id="settings-and-themes">Settings and Themes</h4>
+<p>All settings related files belongs to <strong>components/settings</strong></p>
+<p>There you will find the initial values for the different settings supported.
+The template markup for the settings panel (the right sidebar) and the styles for such panel. </p>
+<h5 id="themes">Themes</h5>
+<p>Theming is based on class-names that provides colors to components. </p>
+<p>All themes classes available are configured in <code>settings.js</code></p>
+<pre><code class="lang-javascript">var themes = [
+    &#39;theme-1&#39;,
+    &#39;theme-2&#39;,
+    &#39;theme-3&#39;,
+    &#39;theme-4&#39;,
+    &#39;theme-5&#39;,
+    &#39;theme-6&#39;,
+    &#39;theme-7&#39;,
+    &#39;theme-8&#39;,
+    &#39;theme-9&#39;,
+]
+</code></pre>
+<p>Each of this theme, named theme-* is applied to the body tag via JavaScript.</p>
+<p>You can find the source of the themes definition in file <code>components/common/themes.scss</code></p>
+<h5 id="default-theme">Default theme</h5>
+<p>The default is added by using the following code (meteor doesn&#39;t allow to change the body tag directly)</p>
+<pre><code class="lang-javascript">// /meteor/imports/ui/components/core/core.js
+Template.layout.onRendered(() =&gt; {
+
+    // Set default theme
+    $(&#39;body&#39;).addClass(&#39;theme-1&#39;);
+
+});
+</code></pre>
+</div></article></section></div></div><script src="assets/scripts.js"></script></body></html>

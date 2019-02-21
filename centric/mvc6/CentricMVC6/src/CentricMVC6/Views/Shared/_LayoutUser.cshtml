@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Bootstrap Admin Template">
+    <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin">
+    <title>Centric - Bootstrap Admin Template</title>
+
+    <environment names="Development">
+        <!-- Animate.CSS-->
+        <link rel="stylesheet" href="~/lib/animate.css/animate.css">
+        <!-- Bootstrap-->
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+        <!-- Ionicons-->
+        <link rel="stylesheet" href="~/lib/ionicons/css/ionicons.css">
+        <!-- Material Colors-->
+        <link rel="stylesheet" href="~/lib/material-colors/dist/colors.css">
+    </environment>
+
+    <environment names="Staging,Production">
+        <!-- Animate.CSS-->
+        <link rel="stylesheet" href="~/lib/animate.css/animate.css">
+        <!-- Bootstrap-->
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+        <!-- Ionicons-->
+        <link rel="stylesheet" href="~/lib/ionicons/css/ionicons.css">
+        <!-- Material Colors-->
+        <link rel="stylesheet" href="~/lib/material-colors/dist/colors.css">
+    </environment>
+
+    <!-- Application styles-->
+    <link rel="stylesheet" href="~/css/app.css" />
+
+</head>
+<body>
+
+    <div class="layout-container">
+        <div class="page-container bg-blue-grey-900">
+            @RenderBody()
+        </div>
+    </div>
+    
+    <environment names="Development">
+        <!-- Modernizr-->
+        <script src="~/lib/modernizr/modernizr.custom.js"></script>
+        <!-- jQuery-->
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <!-- Bootstrap-->
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <!-- jQuery Browser-->
+        <script src="~/lib/jquery.browser/dist/jquery.browser.js"></script>
+        <!-- Material Colors-->
+        <script src="~/lib/material-colors/dist/colors.js"></script>
+        <!-- jQuery Form Validation-->
+        <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+        <script src="~/lib/jquery-validation/dist/additional-methods.js"></script>
+    </environment>
+
+    <environment names="Staging,Production">
+        <!-- Modernizr-->
+        <script src="~/lib/modernizr/modernizr.custom.js"></script>
+        <!-- jQuery-->
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <!-- Bootstrap-->
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <!-- jQuery Browser-->
+        <script src="~/lib/jquery.browser/dist/jquery.browser.js"></script>
+        <!-- Material Colors-->
+        <script src="~/lib/material-colors/dist/colors.js"></script>
+        <!-- jQuery Form Validation-->
+        <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+        <script src="~/lib/jquery-validation/dist/additional-methods.js"></script>
+    </environment>
+
+    <!-- App script-->
+    <script src="~/js/app.js" asp-append-version="true"></script>
+
+</body>
+</html>

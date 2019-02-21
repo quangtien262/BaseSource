@@ -1,0 +1,30 @@
+/**
+ * Pages
+ */
+
+/* Fix blueimp-gallery image paths for distribution */
+
+.blueimp-gallery > .slides > .slide > .video-content > a {
+  background: url(../images/blueimp/video-play.png) center no-repeat;
+}
+.blueimp-gallery > .slides > .slide > .video-loading > a {
+  background: url(../images/blueimp/loading.gif) center no-repeat;
+}
+body:last-child .blueimp-gallery > .slides > .slide > .video-content:not(.video-loading) > a {
+  background-image: url(../images/blueimp/video-play.svg);
+}
+.blueimp-gallery > .slides > .slide-loading {
+  background: url(../images/blueimp/loading.gif) center no-repeat;
+}
+.blueimp-gallery > .slides > .slide-error {
+  background: url(../images/blueimp/error.png) center no-repeat;
+}
+.blueimp-gallery > .play-pause {
+  background: url(../images/blueimp/play-pause.png) 0 0 no-repeat;
+}
+body:last-child .blueimp-gallery > .slides > .slide-error {
+  background-image: url(../images/blueimp/error.svg);
+}
+body:last-child .blueimp-gallery > .play-pause {
+  background-image: url(../images/blueimp/play-pause.svg);
+}

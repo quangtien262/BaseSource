@@ -1,0 +1,36 @@
+extends ../core/core.layout
+block pagetitle
+    - pageTitle = 'SweetAlert'
+block content
+    .container-md
+        h4.page-header.mt0 Usage examples
+        .list-group
+            .list-group-item
+                .pull-right
+                    p
+                        a#swal-demo1.btn.btn-primary(href='#') Try me!
+                p A basic message
+        .list-group
+            .list-group-item
+                .pull-right
+                    p
+                        a#swal-demo2.btn.btn-primary(href='#') Try me!
+                p A title with a text under
+        .list-group
+            .list-group-item
+                .pull-right
+                    p
+                        a#swal-demo3.btn.btn-primary(href='#') Try me!
+                p A success message!
+        .list-group
+            .list-group-item
+                .pull-right
+                    p
+                        a#swal-demo4.btn.btn-primary(href='#') Try me!
+                p A warning message, with a function attached to the &quot;Confirm&quot;-button
+        .list-group
+            .list-group-item
+                .pull-right
+                    p
+                        a#swal-demo5.btn.btn-primary(href='#') Try me!
+                p ... and by passing a parameter, you can execute something else for &quot;Cancel&quot;.
