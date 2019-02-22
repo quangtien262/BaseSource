@@ -3,7 +3,7 @@
 //return code
 define("RETURN_SUCCESS", 'success');
 define("RETURN_ERROR", 'error');
-
+define("PERMISSION_OF_ADMIN", 'edit articles');
 
 define("COLUMN_TYPE", serialize(['INT', 'VARCHAR', 'TEXT', 'LONGTEXT', 'DATE', 'DATETIME']));
 define("IS_REQUIRE", serialize([

@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+
 class TablesController extends Controller {
+
 
     public function index() {
         $tables = app('ClassTables')->getAllTables();
@@ -173,11 +175,7 @@ class TablesController extends Controller {
     private function setTypeForField($table, $fieldName, $type, $maxlength, $default, $isNull = 1) {
         switch ($type) {
             case "INT":
-                if (!empty($isNull)) {
-                    $table->integer($fieldName)->default($default);
-                } else {
-                    $table->integer($fieldName)->nullable()->default($default);
-                }
+                $table->integer($fieldName)->nullable()->default($default);
                 break;
             case "VARCHAR":
                 $table->string($fieldName)->nullable()->default($default);

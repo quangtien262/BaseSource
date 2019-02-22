@@ -24,7 +24,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'admin'], function () {
         Route::get('/', 'Backend\PagesController@home')->name('adminHome');
-
         //config tbl
         Route::get('/configtbl', 'Backend\TablesController@index')->name('configTbl');
         Route::get('/configtbl/edit/{id}', 'Backend\TablesController@formEdit')->name('configTbl_edit');
@@ -36,5 +35,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/tbl/edit/{tableId}/{dataId}', 'Backend\TablesController@formDataTbl')->name('editDataTbl');
         Route::post('/tbl/edit/{tableId}/{dataId}', 'Backend\TablesController@submitFormDataTbl');
     });
+    Route::resource('users', 'Backend\UserController');
+
+    Route::resource('roles', 'Backend\RoleController');
+
+    Route::resource('permissions', 'Backend\PermissionController');
 });
 

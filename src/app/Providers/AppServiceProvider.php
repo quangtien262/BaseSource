@@ -34,6 +34,7 @@ class AppServiceProvider extends ServiceProvider {
                 'ClassValidationRequest', function () {
             return new \App\Services\Utils\ClassValidationRequest;
         });
+        
         //Entity
         $this->app->singleton(
                 'ClassTables', function () {

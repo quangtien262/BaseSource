@@ -138,7 +138,6 @@ class ClassTables {
         $tableData = app('EntityCommon')->getRowsByConditions($table->name, $conditions, $limit = 0, $order);
 
         foreach ($tableData as $td) {
-
             $html .= '<li class="dd-item" data-id="'.$td->id.'">
                             <div class="card b0 dd-handle">
                                 <div class="mda-list">
@@ -151,7 +150,9 @@ class ClassTables {
                                         </div>
                                     </div>
                                 </div>
-                            </div>';
+                            </div>
+                            <a href="'.route('editDataTbl', [$table->id, $td->id]).'" class="btn btn-sm btn-success">Edit</a>
+                            <a href="'.route('deleteTable', ['table'=>$table->id]).'" class="btn btn-sm btn-default">Delete</a>';
             if ($table->type_show == 2) { 
                 
             }

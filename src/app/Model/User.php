@@ -4,10 +4,14 @@ namespace App\Model;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+//laravel permission 
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-//    protected $table = \TblName::USERS;
+    //laravel permission 
+    use HasRoles;
+
     use Notifiable;
 
     /**
