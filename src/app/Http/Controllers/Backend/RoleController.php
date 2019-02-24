@@ -15,7 +15,8 @@ use Session;
 class RoleController extends Controller {
 
     public function __construct() {
-        //$this->middleware(['auth', 'isAdmin']);//isAdmin middleware lets only users with a //specific permission permission to access these resources
+        //isAdmin middleware lets only users with a //specific permission permission to access these resources
+        //$this->middleware(['auth', 'isAdmin']);
     }
 
     /**
@@ -107,9 +108,9 @@ class RoleController extends Controller {
     public function update(Request $request, $id) {
 
         $role = Role::findOrFail($id);//Get role with the given id
-    //Validate name and permission fields
-        $this->validate($request, [
-            'name'=>'required|max:10|unique:roles,name,'.$id,
+        //Validate name and permission fields
+        $xx = $this->validate($request, [
+            'name'=>'required|max:255|unique:roles,name,'.$id,
             'permissions' =>'required'
         ]);
 

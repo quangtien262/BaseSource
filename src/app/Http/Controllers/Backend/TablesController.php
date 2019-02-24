@@ -14,6 +14,7 @@ class TablesController extends Controller {
 
     public function index() {
         $tables = app('ClassTables')->getAllTables();
+
         return view('backend.tables.index', compact('tables'));
     }
 
