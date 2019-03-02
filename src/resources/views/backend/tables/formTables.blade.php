@@ -185,7 +185,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-6 col-sm-3 center-block">
-                                        @if(empty($_GET['collumn']))
+                                        @if(empty($_GET['column']))
                                             <button class="btn btn-primary" type="submit" name="add_field">Add New Column</button>
                                         @else
                                             <button class="btn btn-primary" type="submit" name="edit_field">Edit Column</button>

@@ -6,7 +6,16 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-heading">
-                <a href="{{ route('editDataTbl', [$tableId, 0]) }}">add New</a>
+                <p><a href="{{ route('editDataTbl', [$tableId, 0]) }}">add New</a></p>
+                <div class="row">
+                    @if(!empty($columns))
+                        @foreach($columns as $col)
+                            @if($col->add2search == 1)
+                                @include('backend.element.columnFormData')
+                            @endif
+                        @endforeach
+                    @endif
+                </div>
             </div>
             <div class="card-body">
                 <table class="table-datatable table table-striped table-hover mv-lg">
