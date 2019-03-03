@@ -59,4 +59,10 @@
         <span>file</span>
     @elseif($col->type_edit == 'files')
         <span>files</span>
+    @elseif($col->type_edit == 'date')
+        <div class="col-md-6">
+            <br/>
+            <label>{{ $col->display_name or $col->name }}</label>
+            <input name="{{ $col->name or '' }}" value="{{ $data[$col->name] or '' }}" class="form-control datepicker-1" type="text" placeholder="{{ $data[$col->display_name] or '' }}"/>
+        </div>
     @endif

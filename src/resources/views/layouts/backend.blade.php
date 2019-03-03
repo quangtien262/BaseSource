@@ -19,6 +19,7 @@
     <div class="layout-container">
       <!-- top navbar-->
       <header class="header-container">
+         
         @include('backend.element.header')
       </header>
       <!-- sidebar-->
@@ -28,7 +29,6 @@
       <main class="main-container">
         <!-- Page content-->
         @yield('content')
-        
         <!-- Page footer-->
         <footer><span>2017 - HT app.</span></footer>
       </main>

@@ -11,7 +11,7 @@
                     @if(!empty($columns))
                         @foreach($columns as $col)
                             @if($col->add2search == 1)
-                                @include('backend.element.columnFormData')
+                                @include('backend.element.formColumn')
                             @endif
                         @endforeach
                     @endif

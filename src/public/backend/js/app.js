@@ -12,36 +12,38 @@
 // APP START
 // -----------------------------------
 
-(function() {
+(function () {
     'use strict';
 
     // Disable warning "Synchronous XMLHttpRequest on the main thread is deprecated.."
-    $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
+    $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
         options.async = true;
     });
 
     // Support for float labels on inputs
-    $(document).on('change', '.mda-form-control > input', function() {
+    $(document).on('change', '.mda-form-control > input', function () {
         $(this)[this.value.length ? 'addClass' : 'removeClass']('has-value');
     });
 
 })();
 
-(function() {
+(function () {
     'use strict';
 
     $(FlotCharts);
 
     function FlotCharts() {
 
-        if (!$.fn.plot) return;
+        if (!$.fn.plot)
+            return;
 
         // Dont run if charts page not loaded
-        if (!$('#bar-flotchart').length) return;
+        if (!$('#bar-flotchart').length)
+            return;
 
         // BAR
         // -----------------------------------
-        $.get('server/chart/bar.json', function(data) {
+        $.get('server/chart/bar.json', function (data) {
 
             var barData = data;
             var barOptions = {
@@ -54,10 +56,10 @@
                         fill: true,
                         fillColor: {
                             colors: [{
-                                opacity: 0.8
-                            }, {
-                                opacity: 0.5
-                            }]
+                                    opacity: 0.8
+                                }, {
+                                    opacity: 0.5
+                                }]
                         }
                     }
                 },
@@ -69,7 +71,7 @@
                 },
                 tooltip: true,
                 tooltipOpts: {
-                    content: function(label, x, y) {
+                    content: function (label, x, y) {
                         return x + ' : ' + y;
                     }
                 },
@@ -97,7 +99,7 @@
 
         // BAR STACKED
         // -----------------------------------
-        $.get('server/chart/barstacked.json', function(data) {
+        $.get('server/chart/barstacked.json', function (data) {
 
             var barStackeData = data;
             var barStackedOptions = {
@@ -119,7 +121,7 @@
                 },
                 tooltip: true,
                 tooltipOpts: {
-                    content: function(label, x, y) {
+                    content: function (label, x, y) {
                         return x + ' : ' + y;
                     }
                 },
@@ -147,7 +149,7 @@
 
         // SPLINE
         // -----------------------------------
-        $.get('server/chart/spline.json', function(data) {
+        $.get('server/chart/spline.json', function (data) {
 
             var splineData = data;
             var splineOptions = {
@@ -174,7 +176,7 @@
                 },
                 tooltip: true,
                 tooltipOpts: {
-                    content: function(label, x, y) {
+                    content: function (label, x, y) {
                         return x + ' : ' + y;
                     }
                 },
@@ -193,8 +195,8 @@
                         color: Colors.byName('blueGrey-200')
                     },
                     // position: (isRTL ? 'right' : 'left'),
-                    tickFormatter: function(v) {
-                        return v /* + ' visitors'*/ ;
+                    tickFormatter: function (v) {
+                        return v /* + ' visitors'*/;
                     }
                 },
                 shadowSize: 0
@@ -205,7 +207,7 @@
 
         // AREA
         // -----------------------------------
-        $.get('server/chart/area.json', function(data) {
+        $.get('server/chart/area.json', function (data) {
             var areaData = data;
             var areaOptions = {
                 series: {
@@ -214,10 +216,10 @@
                         fill: true,
                         fillColor: {
                             colors: [{
-                                opacity: 0.5
-                            }, {
-                                opacity: 0.9
-                            }]
+                                    opacity: 0.5
+                                }, {
+                                    opacity: 0.9
+                                }]
                         }
                     },
                     points: {
@@ -232,7 +234,7 @@
                 },
                 tooltip: true,
                 tooltipOpts: {
-                    content: function(label, x, y) {
+                    content: function (label, x, y) {
                         return x + ' : ' + y;
                     }
                 },
@@ -261,7 +263,7 @@
 
         // LINE
         // -----------------------------------
-        $.get('server/chart/line.json', function(data) {
+        $.get('server/chart/line.json', function (data) {
 
             var lineData = data;
             var lineOptions = {
@@ -283,7 +285,7 @@
                 },
                 tooltip: true,
                 tooltipOpts: {
-                    content: function(label, x, y) {
+                    content: function (label, x, y) {
                         return x + ' : ' + y;
                     }
                 },
@@ -310,18 +312,18 @@
         // PIE
         // -----------------------------------
         var pieData = [{
-            'label': 'CSS',
-            'color': '#009688',
-            'data': 40
-        }, {
-            'label': 'LESS',
-            'color': '#FFC107',
-            'data': 90
-        }, {
-            'label': 'SASS',
-            'color': '#FF7043',
-            'data': 75
-        }];
+                'label': 'CSS',
+                'color': '#009688',
+                'data': 40
+            }, {
+                'label': 'LESS',
+                'color': '#FFC107',
+                'data': 90
+            }, {
+                'label': 'SASS',
+                'color': '#FF7043',
+                'data': 75
+            }];
         var pieOptions = {
             series: {
                 pie: {
@@ -330,11 +332,11 @@
                     label: {
                         show: true,
                         radius: 0.8,
-                        formatter: function(label, series) {
+                        formatter: function (label, series) {
                             return '<div class="flot-pie-label">' +
-                                //label + ' : ' +
-                                Math.round(series.percent) +
-                                '%</div>';
+                                    //label + ' : ' +
+                                    Math.round(series.percent) +
+                                    '%</div>';
                         },
                         background: {
                             opacity: 0.8,
@@ -350,26 +352,26 @@
         // DONUT
         // -----------------------------------
         var donutData = [{
-            'color': '#4CAF50',
-            'data': 60,
-            'label': 'Coffee'
-        }, {
-            'color': '#009688',
-            'data': 90,
-            'label': 'CSS'
-        }, {
-            'color': '#FFC107',
-            'data': 50,
-            'label': 'LESS'
-        }, {
-            'color': '#FF7043',
-            'data': 80,
-            'label': 'Jade'
-        }, {
-            'color': '#3949AB',
-            'data': 116,
-            'label': 'AngularJS'
-        }];
+                'color': '#4CAF50',
+                'data': 60,
+                'label': 'Coffee'
+            }, {
+                'color': '#009688',
+                'data': 90,
+                'label': 'CSS'
+            }, {
+                'color': '#FFC107',
+                'data': 50,
+                'label': 'LESS'
+            }, {
+                'color': '#FF7043',
+                'data': 80,
+                'label': 'Jade'
+            }, {
+                'color': '#3949AB',
+                'data': 116,
+                'label': 'AngularJS'
+            }];
         var donutOptions = {
             series: {
                 pie: {
@@ -401,7 +403,7 @@
                 labelMargin: 10
             },
             xaxis: {
-                tickFormatter: function() {
+                tickFormatter: function () {
                     return '';
                 }
             },
@@ -417,7 +419,7 @@
 
         // Generate random data for realtime demo
         var data = [],
-            totalPoints = 300;
+                totalPoints = 300;
 
         var realTimeData = getRandomData();
         update();
@@ -428,7 +430,7 @@
             // Do a random walk
             while (data.length < totalPoints) {
                 var prev = data.length > 0 ? data[data.length - 1] : 50,
-                    y = prev + Math.random() * 10 - 5;
+                        y = prev + Math.random() * 10 - 5;
                 if (y < 0) {
                     y = 0;
                 } else if (y > 100) {
@@ -455,14 +457,15 @@
 
     }
 })();
-(function() {
+(function () {
     'use strict';
 
     $(RadialCharts);
 
     function RadialCharts() {
 
-        if (!$.fn.knob || !$.fn.easyPieChart) return;
+        if (!$.fn.knob || !$.fn.easyPieChart)
+            return;
 
         // KNOB Charts
 
@@ -566,12 +569,12 @@
     }
 })();
 
-(function() {
+(function () {
     'use strict';
 
-    if( !document.querySelector('#rickshaw-chart1') ||
-        !document.querySelector('#rickshaw-chart2') ||
-        !document.querySelector('#rickshaw-chart3') )
+    if (!document.querySelector('#rickshaw-chart1') ||
+            !document.querySelector('#rickshaw-chart2') ||
+            !document.querySelector('#rickshaw-chart3'))
         return;
 
     $(RickshawCharts);
@@ -592,18 +595,18 @@
             element: document.querySelector('#rickshaw-chart1'),
             renderer: 'area',
             series: [{
-                color: Colors.byName('indigo-700'),
-                data: seriesData[0],
-                name: 'New York'
-            }, {
-                color: Colors.byName('primary'),
-                data: seriesData[1],
-                name: 'London'
-            }, {
-                color: Colors.byName('info'),
-                data: seriesData[2],
-                name: 'Tokyo'
-            }]
+                    color: Colors.byName('indigo-700'),
+                    data: seriesData[0],
+                    name: 'New York'
+                }, {
+                    color: Colors.byName('primary'),
+                    data: seriesData[1],
+                    name: 'London'
+                }, {
+                    color: Colors.byName('info'),
+                    data: seriesData[2],
+                    name: 'Tokyo'
+                }]
         });
         graph1.render();
 
@@ -612,18 +615,18 @@
             element: document.querySelector('#rickshaw-chart2'),
             renderer: 'bar',
             series: [{
-                color: Colors.byName('green-700'),
-                data: seriesData[0],
-                name: 'New York'
-            }, {
-                color: Colors.byName('green-500'),
-                data: seriesData[1],
-                name: 'London'
-            }, {
-                color: Colors.byName('green-200'),
-                data: seriesData[2],
-                name: 'Tokyo'
-            }]
+                    color: Colors.byName('green-700'),
+                    data: seriesData[0],
+                    name: 'New York'
+                }, {
+                    color: Colors.byName('green-500'),
+                    data: seriesData[1],
+                    name: 'London'
+                }, {
+                    color: Colors.byName('green-200'),
+                    data: seriesData[2],
+                    name: 'Tokyo'
+                }]
         });
         graph2.render();
 
@@ -648,25 +651,25 @@
                 highlight: true
             },
             series: [{
-                color: Colors.byName('pink-700'),
-                data: seriesData2[0],
-                name: 'New York'
-            }, {
-                color: Colors.byName('pink-500'),
-                data: seriesData2[1],
-                name: 'London'
-            }, {
-                color: Colors.byName('pink-200'),
-                data: seriesData2[2],
-                name: 'Tokyo'
-            }]
+                    color: Colors.byName('pink-700'),
+                    data: seriesData2[0],
+                    name: 'New York'
+                }, {
+                    color: Colors.byName('pink-500'),
+                    data: seriesData2[1],
+                    name: 'London'
+                }, {
+                    color: Colors.byName('pink-200'),
+                    data: seriesData2[2],
+                    name: 'Tokyo'
+                }]
         });
         new Rickshaw.Graph.HoverDetail({
             graph: graph3,
-            xFormatter: function(x) {
+            xFormatter: function (x) {
                 return 't=' + x;
             },
-            yFormatter: function(y) {
+            yFormatter: function (y) {
                 return '$' + y;
             }
         });
@@ -675,7 +678,7 @@
         // Fluid charts
         // ---------------
 
-        window.addEventListener('resize', function(){
+        window.addEventListener('resize', function () {
             //- 1
             graph1.configure({
                 width: $('#rickshaw-chart1').width(),
@@ -701,26 +704,25 @@
 
 })();
 
-(function(global) {
+(function (global) {
     'use strict';
 
     global.APP_COLORS = {
-        'gray-darker':            '#263238',
-        'gray-dark':              '#455A64',
-        'gray':                   '#607D8B',
-        'gray-light':             '#90A4AE',
-        'gray-lighter':           '#ECEFF1',
-
-        'primary':                '#448AFF',
-        'success':                '#4CAF50',
-        'info':                   '#03A9F4',
-        'warning':                '#FFB300',
-        'danger':                 '#F44336'
+        'gray-darker': '#263238',
+        'gray-dark': '#455A64',
+        'gray': '#607D8B',
+        'gray-light': '#90A4AE',
+        'gray-lighter': '#ECEFF1',
+        'primary': '#448AFF',
+        'success': '#4CAF50',
+        'info': '#03A9F4',
+        'warning': '#FFB300',
+        'danger': '#F44336'
     };
 
 })(window);
 
-(function(global) {
+(function (global) {
     'use strict';
 
     global.Colors = new ColorsHandler();
@@ -742,70 +744,71 @@
     }
 
 })(window);
-(function() {
+(function () {
     'use strict';
 
     $(initDashboard);
 
     function initDashboard() {
 
-        if (!$.fn.plot || !$.fn.easyPieChart) return;
+        if (!$.fn.plot || !$.fn.easyPieChart)
+            return;
 
         // Main Flot chart
         var splineData = [{
-            'label': 'Clicks',
-            'color': Colors.byName('purple-300'),
-            data: [
-                ['1', 40],
-                ['2', 50],
-                ['3', 40],
-                ['4', 50],
-                ['5', 66],
-                ['6', 66],
-                ['7', 76],
-                ['8', 96],
-                ['9', 90],
-                ['10', 105],
-                ['11', 125],
-                ['12', 135]
+                'label': 'Clicks',
+                'color': Colors.byName('purple-300'),
+                data: [
+                    ['1', 40],
+                    ['2', 50],
+                    ['3', 40],
+                    ['4', 50],
+                    ['5', 66],
+                    ['6', 66],
+                    ['7', 76],
+                    ['8', 96],
+                    ['9', 90],
+                    ['10', 105],
+                    ['11', 125],
+                    ['12', 135]
 
-            ]
-        }, {
-            'label': 'Unique',
-            'color': Colors.byName('green-400'),
-            data: [
-                ['1', 30],
-                ['2', 40],
-                ['3', 20],
-                ['4', 40],
-                ['5', 80],
-                ['6', 90],
-                ['7', 70],
-                ['8', 60],
-                ['9', 90],
-                ['10', 150],
-                ['11', 130],
-                ['12', 160]
-            ]
-        }, {
-            'label': 'Recurrent',
-            'color': Colors.byName('blue-500'),
-            data: [
-                ['1', 10],
-                ['2', 20],
-                ['3', 10],
-                ['4', 20],
-                ['5', 6],
-                ['6', 10],
-                ['7', 32],
-                ['8', 26],
-                ['9', 20],
-                ['10', 35],
-                ['11', 30],
-                ['12', 56]
+                ]
+            }, {
+                'label': 'Unique',
+                'color': Colors.byName('green-400'),
+                data: [
+                    ['1', 30],
+                    ['2', 40],
+                    ['3', 20],
+                    ['4', 40],
+                    ['5', 80],
+                    ['6', 90],
+                    ['7', 70],
+                    ['8', 60],
+                    ['9', 90],
+                    ['10', 150],
+                    ['11', 130],
+                    ['12', 160]
+                ]
+            }, {
+                'label': 'Recurrent',
+                'color': Colors.byName('blue-500'),
+                data: [
+                    ['1', 10],
+                    ['2', 20],
+                    ['3', 10],
+                    ['4', 20],
+                    ['5', 6],
+                    ['6', 10],
+                    ['7', 32],
+                    ['8', 26],
+                    ['9', 20],
+                    ['10', 35],
+                    ['11', 30],
+                    ['12', 56]
 
-            ]
-        }];
+                ]
+            }];
         var splineOptions = {
             series: {
                 lines: {
@@ -831,7 +834,7 @@
             },
             tooltip: true,
             tooltipOpts: {
-                content: function(label, x, y) {
+                content: function (label, x, y) {
                     return x + ' : ' + y;
                 }
             },
@@ -851,16 +854,17 @@
                     color: Colors.byName('blueGrey-200')
                 },
                 //position: 'right' or 'left',
-                tickFormatter: function(v) {
-                    return v /* + ' visitors'*/ ;
+                tickFormatter: function (v) {
+                    return v /* + ' visitors'*/;
                 }
             },
             shadowSize: 0
         };
 
-        $('#flot-main-spline').each(function() {
+        $('#flot-main-spline').each(function () {
             var $el = $(this);
-            if ($el.data('height')) $el.height($el.data('height'));
+            if ($el.data('height'))
+                $el.height($el.data('height'));
             $el.plot(splineData, splineOptions);
         });
 
@@ -868,32 +872,32 @@
         // Bar chart stacked
         // ------------------------
         var stackedChartData = [{
-            data: [
-                [1, 45],
-                [2, 42],
-                [3, 45],
-                [4, 43],
-                [5, 45],
-                [6, 47],
-                [7, 45],
-                [8, 42],
-                [9, 45],
-                [10, 43]
-            ]
-        }, {
-            data: [
-                [1, 35],
-                [2, 35],
-                [3, 17],
-                [4, 29],
-                [5, 10],
-                [6, 7],
-                [7, 35],
-                [8, 35],
-                [9, 17],
-                [10, 29]
-            ]
-        }];
+                data: [
+                    [1, 45],
+                    [2, 42],
+                    [3, 45],
+                    [4, 43],
+                    [5, 45],
+                    [6, 47],
+                    [7, 45],
+                    [8, 42],
+                    [9, 45],
+                    [10, 43]
+                ]
+            }, {
+                data: [
+                    [1, 35],
+                    [2, 35],
+                    [3, 17],
+                    [4, 29],
+                    [5, 10],
+                    [6, 7],
+                    [7, 35],
+                    [8, 35],
+                    [9, 17],
+                    [10, 29]
+                ]
+            }];
 
         var stackedChartOptions = {
             bars: {
@@ -905,10 +909,10 @@
                 // order : 1,
                 fillColor: {
                     colors: [{
-                        opacity: 1
-                    }, {
-                        opacity: 1
-                    }]
+                            opacity: 1
+                        }, {
+                            opacity: 1
+                        }]
                 }
             },
             colors: [Colors.byName('blue-100'), Colors.byName('blue-500')],
@@ -948,9 +952,10 @@
             }
         };
 
-        $('#flot-stacked-chart').each(function() {
+        $('#flot-stacked-chart').each(function () {
             var $el = $(this);
-            if ($el.data('height')) $el.height($el.data('height'));
+            if ($el.data('height'))
+                $el.height($el.data('height'));
             $el.plot(stackedChartData, stackedChartOptions);
         });
 
@@ -1000,57 +1005,58 @@
         };
 
         var barChartData = [{
-            'label': 'New',
-            bars: {
-                order: 0,
-                fillColor: Colors.byName('primary')
-            },
-            data: [
-                ['Jan', 20],
-                ['Feb', 15],
-                ['Mar', 25],
-                ['Apr', 30],
-                ['May', 40],
-                ['Jun', 35]
-            ]
-        }, {
-            'label': 'Recurrent',
-            bars: {
-                order: 1,
-                fillColor: Colors.byName('green-400')
-            },
-            data: [
-                ['Jan', 35],
-                ['Feb', 25],
-                ['Mar', 45],
-                ['Apr', 25],
-                ['May', 30],
-                ['Jun', 15]
-            ]
-        }];
+                'label': 'New',
+                bars: {
+                    order: 0,
+                    fillColor: Colors.byName('primary')
+                },
+                data: [
+                    ['Jan', 20],
+                    ['Feb', 15],
+                    ['Mar', 25],
+                    ['Apr', 30],
+                    ['May', 40],
+                    ['Jun', 35]
+                ]
+            }, {
+                'label': 'Recurrent',
+                bars: {
+                    order: 1,
+                    fillColor: Colors.byName('green-400')
+                },
+                data: [
+                    ['Jan', 35],
+                    ['Feb', 25],
+                    ['Mar', 45],
+                    ['Apr', 25],
+                    ['May', 30],
+                    ['Jun', 15]
+                ]
+            }];
 
-        $('#flot-bar-chart').each(function() {
+        $('#flot-bar-chart').each(function () {
             var $el = $(this);
-            if ($el.data('height')) $el.height($el.data('height'));
+            if ($el.data('height'))
+                $el.height($el.data('height'));
             $el.plot(barChartData, barChartOptions);
         });
 
         // Small flot chart
         // ---------------------
         var chartTaskData = [{
-            'label': 'Total',
-            color: Colors.byName('primary'),
-            data: [
-                ['Jan', 14],
-                ['Feb', 14],
-                ['Mar', 12],
-                ['Apr', 16],
-                ['May', 13],
-                ['Jun', 14],
-                ['Jul', 19]
-                //4, 4, 3, 5, 3, 4, 6
-            ]
-        }];
+                'label': 'Total',
+                color: Colors.byName('primary'),
+                data: [
+                    ['Jan', 14],
+                    ['Feb', 14],
+                    ['Mar', 12],
+                    ['Apr', 16],
+                    ['May', 13],
+                    ['Jun', 14],
+                    ['Jul', 19]
+                            //4, 4, 3, 5, 3, 4, 6
+                ]
+            }];
         var chartTaskOptions = {
             series: {
                 lines: {
@@ -1074,7 +1080,7 @@
             },
             tooltip: true,
             tooltipOpts: {
-                content: function(label, x, y) {
+                content: function (label, x, y) {
                     return x + ' : ' + y;
                 }
             },
@@ -1087,16 +1093,17 @@
                 max: 30, // optional: use it for a clear representation
                 tickColor: '#eee',
                 //position: 'right' or 'left',
-                tickFormatter: function(v) {
-                    return v /* + ' visitors'*/ ;
+                tickFormatter: function (v) {
+                    return v /* + ' visitors'*/;
                 }
             },
             shadowSize: 0
         };
 
-        $('#flot-task-chart').each(function() {
+        $('#flot-task-chart').each(function () {
             var $el = $(this);
-            if ($el.data('height')) $el.height($el.data('height'));
+            if ($el.data('height'))
+                $el.height($el.data('height'));
             $el.plot(chartTaskData, chartTaskOptions);
         });
 
@@ -1123,39 +1130,39 @@
 
         // USA Map
         var usa_markers = [{
-            latLng: [40.71, -74.00],
-            name: 'New York'
-        }, {
-            latLng: [34.05, -118.24],
-            name: 'Los Angeles'
-        }, {
-            latLng: [41.87, -87.62],
-            name: 'Chicago',
-            style: {
-                fill: Colors.byName('pink-500'),
-                r: 15
-            }
-        }, {
-            latLng: [29.76, -95.36],
-            name: 'Houston',
-            style: {
-                fill: Colors.byName('purple-500'),
-                r: 10
-            }
-        }, {
-            latLng: [39.95, -75.16],
-            name: 'Philadelphia'
-        }, {
-            latLng: [38.90, -77.03],
-            name: 'Washington'
-        }, {
-            latLng: [37.36, -122.03],
-            name: 'Silicon Valley',
-            style: {
-                fill: Colors.byName('green-500'),
-                r: 20
-            }
-        }];
+                latLng: [40.71, -74.00],
+                name: 'New York'
+            }, {
+                latLng: [34.05, -118.24],
+                name: 'Los Angeles'
+            }, {
+                latLng: [41.87, -87.62],
+                name: 'Chicago',
+                style: {
+                    fill: Colors.byName('pink-500'),
+                    r: 15
+                }
+            }, {
+                latLng: [29.76, -95.36],
+                name: 'Houston',
+                style: {
+                    fill: Colors.byName('purple-500'),
+                    r: 10
+                }
+            }, {
+                latLng: [39.95, -75.16],
+                name: 'Philadelphia'
+            }, {
+                latLng: [38.90, -77.03],
+                name: 'Washington'
+            }, {
+                latLng: [37.36, -122.03],
+                name: 'Silicon Valley',
+                style: {
+                    fill: Colors.byName('green-500'),
+                    r: 20
+                }
+            }];
 
         var usa_options = {
             map: 'us_mill_en',
@@ -1229,7 +1236,7 @@
     }
 })();
 
-(function() {
+(function () {
     'use strict';
 
     $(runBootstrap);
@@ -1252,17 +1259,18 @@
 
 })();
 
-(function() {
+(function () {
     'use strict';
 
     $(runMasonry);
 
     function runMasonry() {
 
-        if( ! $.fn.imagesLoaded ) return;
+        if (!$.fn.imagesLoaded)
+            return;
 
         // init Masonry after all images have loaded
-        var $grid = $('.grid').imagesLoaded(function() {
+        var $grid = $('.grid').imagesLoaded(function () {
             $grid.masonry({
                 itemSelector: '.grid-item',
                 percentPosition: true,
@@ -1273,15 +1281,15 @@
 
 })();
 
-(function() {
+(function () {
     'use strict';
 
     $(initNestable);
 
     function initNestable() {
-        var updateOutput = function(e) {
+        var updateOutput = function (e) {
             var list = e.length ? e : $(e.target),
-                output = list.data('output');
+                    output = list.data('output');
             if (window.JSON) {
                 output.text(window.JSON.stringify(list.nestable('serialize'))); //, null, 2));
             } else {
@@ -1290,19 +1298,19 @@
         };
 
         // activate Nestable for list 1
-        $('#nestable').each(function() {
+        $('#nestable').each(function () {
             $(this).nestable({
                 group: 1
             })
-            .on('change', updateOutput);
+                    .on('change', updateOutput);
 
             // output initial serialised data
             updateOutput($(this).data('output', $('#nestable-output')));
         });
 
-        $('.js-nestable-action').on('click', function(e) {
+        $('.js-nestable-action').on('click', function (e) {
             var target = $(e.target),
-                action = target.data('action');
+                    action = target.data('action');
             if (action === 'expand-all') {
                 $('.dd').nestable('expandAll');
             }
@@ -1314,46 +1322,46 @@
 
 })();
 
-(function() {
+(function () {
     'use strict';
 
     $(runSweetAlert);
 
     function runSweetAlert() {
 
-        $('#swal-demo1').on('click', function(e) {
+        $('#swal-demo1').on('click', function (e) {
             e.preventDefault();
             swal('Here\'s a message!');
         });
 
-        $('#swal-demo2').on('click', function(e) {
+        $('#swal-demo2').on('click', function (e) {
             e.preventDefault();
             swal('Here\'s a message!', 'It\'s pretty, isn\'t it?');
         });
 
-        $('#swal-demo3').on('click', function(e) {
+        $('#swal-demo3').on('click', function (e) {
             e.preventDefault();
             swal('Good job!', 'You clicked the button!', 'success');
         });
 
-        $('#swal-demo4').on('click', function(e) {
+        $('#swal-demo4').on('click', function (e) {
             e.preventDefault();
             swal({
-                    title: 'Are you sure?',
-                    text: 'You will not be able to recover this imaginary file!',
-                    type: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#DD6B55',
-                    confirmButtonText: 'Yes, delete it!',
-                    closeOnConfirm: false
-                },
-                function() {
-                    swal('Deleted!', 'Your imaginary file has been deleted.', 'success');
-                });
+                title: 'Are you sure?',
+                text: 'You will not be able to recover this imaginary file!',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#DD6B55',
+                confirmButtonText: 'Yes, delete it!',
+                closeOnConfirm: false
+            },
+            function () {
+                swal('Deleted!', 'Your imaginary file has been deleted.', 'success');
+            });
 
         });
 
-        $('#swal-demo5').on('click', function(e) {
+        $('#swal-demo5').on('click', function (e) {
             e.preventDefault();
             swal({
                 title: 'Are you sure?',
@@ -1365,7 +1373,7 @@
                 cancelButtonText: 'No, cancel plx!',
                 closeOnConfirm: false,
                 closeOnCancel: false
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     swal('Deleted!', 'Your imaginary file has been deleted.', 'success');
                 } else {
@@ -1378,14 +1386,15 @@
 
 })();
 
-(function() {
+(function () {
     'use strict';
 
     $(formUpload);
 
     function formUpload() {
 
-        if(typeof Dropzone === 'undefined') return;
+        if (typeof Dropzone === 'undefined')
+            return;
 
         // Dropzone settings
         Dropzone.options.dropzoneArea = {
@@ -1397,34 +1406,34 @@
             paramName: 'file', // The name that will be used to transfer the file
             maxFilesize: 2, // MB
             addRemoveLinks: true,
-            accept: function(file, done) {
+            accept: function (file, done) {
                 if (file.name === 'justinbieber.jpg') {
                     done('Naha, you dont. :)');
                 } else {
                     done();
                 }
             },
-            init: function() {
+            init: function () {
                 var dzHandler = this;
 
-                this.element.querySelector('button[type=submit]').addEventListener('click', function(e) {
+                this.element.querySelector('button[type=submit]').addEventListener('click', function (e) {
                     e.preventDefault();
                     e.stopPropagation();
                     dzHandler.processQueue();
                 });
-                this.on('addedfile', function(file) {
+                this.on('addedfile', function (file) {
                     console.log('Added file: ' + file.name);
                 });
-                this.on('removedfile', function(file) {
+                this.on('removedfile', function (file) {
                     console.log('Removed file: ' + file.name);
                 });
-                this.on('sendingmultiple', function() {
+                this.on('sendingmultiple', function () {
 
                 });
-                this.on('successmultiple', function(/*files, response*/) {
+                this.on('successmultiple', function (/*files, response*/) {
 
                 });
-                this.on('errormultiple', function(/*files, response*/) {
+                this.on('errormultiple', function (/*files, response*/) {
 
                 });
             }
@@ -1434,7 +1443,7 @@
 
 })();
 
-(function() {
+(function () {
     'use strict';
 
     $(formEditor);
@@ -1442,13 +1451,13 @@
     function formEditor() {
 
         // Summernote HTML editor
-        $('.summernote').each(function(){
+        $('.summernote').each(function () {
             $(this).summernote({
                 height: 380
             });
         });
 
-        $('.summernote-air').each(function(){
+        $('.summernote-air').each(function () {
             $(this).summernote({
                 airMode: true
             });
@@ -1458,17 +1467,18 @@
 
 })();
 
-(function() {
+(function () {
     'use strict';
 
     $(formAdvanced);
 
     function formAdvanced() {
 
-        if ( !$.fn.select2 ||
-             !$.fn.datepicker ||
-             !$.fn.clockpicker ||
-             !$.fn.colorpicker ) return;
+        if (!$.fn.select2 ||
+                !$.fn.datepicker ||
+                !$.fn.clockpicker ||
+                !$.fn.colorpicker)
+            return;
 
         // Select 2
 
@@ -1482,29 +1492,26 @@
 
         // Datepicker
 
-        $('#example-datepicker-1').datepicker();
-        $('#example-datepicker-2').datepicker();
-        $('#example-datepicker-3').datepicker();
-        $('#example-datepicker-4')
-            .datepicker({
-                container:'#example-datepicker-container-4'
-            });
-        $('#example-datepicker-5')
-            .datepicker({
-                container:'#example-datepicker-container-5'
-            });
+        $('.example-datepicker-1').datepicker({dateFormat: 'yy-mm-dd'});
+        $('.example-datepicker-2').datepicker();
+        $('.datepicker-1').datepicker({
+            format: 'yyyy-mm-dd'
+        });
+        $('.example-datepicker-4').datepicker({
+            container: '.example-datepicker-container-4'
+        });
 
         // Clockpicker
         var cpInput = $('.clockpicker').clockpicker();
         // auto close picker on scroll
-        $('main').scroll(function() {
+        $('main').scroll(function () {
             cpInput.clockpicker('hide');
         });
 
 
         // UI SLider (noUiSlider)
 
-        $('.ui-slider').each(function() {
+        $('.ui-slider').each(function () {
 
             noUiSlider.create(this, {
                 start: $(this).data('start'),
@@ -1517,7 +1524,7 @@
         });
 
         // Range selectable
-        $('.ui-slider-range').each(function() {
+        $('.ui-slider-range').each(function () {
             noUiSlider.create(this, {
                 start: [25, 75],
                 range: {
@@ -1530,7 +1537,7 @@
         });
 
         // Live Values
-        $('.ui-slider-values').each(function() {
+        $('.ui-slider-values').each(function () {
             var slider = this;
 
             noUiSlider.create(slider, {
@@ -1590,7 +1597,7 @@
 
 })();
 
-(function() {
+(function () {
     'use strict';
 
     $(formValidation);
@@ -1677,7 +1684,7 @@
                 },
                 length: {
                     required: true,
-                    range: [6,10]
+                    range: [6, 10]
                 },
                 match1: {
                     required: true
@@ -1694,13 +1701,13 @@
     // Necessary to place dyncamic error messages
     // without breaking the expected markup for custom input
     function errorPlacementInput(error, element) {
-        if( element.parent().parent().is('.mda-input-group') ) {
+        if (element.parent().parent().is('.mda-input-group')) {
             error.insertAfter(element.parent().parent()); // insert at the end of group
         }
-        else if( element.parent().is('.mda-form-control') ) {
+        else if (element.parent().is('.mda-form-control')) {
             error.insertAfter(element.parent()); // insert after .mda-form-control
         }
-        else if ( element.is(':radio') || element.is(':checkbox')) {
+        else if (element.is(':radio') || element.is(':checkbox')) {
             error.insertAfter(element.parent());
         }
         else {
@@ -1709,14 +1716,15 @@
     }
 
 })();
-(function() {
+(function () {
     'use strict';
 
     $(formWizard);
 
     function formWizard() {
 
-        if (!$.fn.steps) return;
+        if (!$.fn.steps)
+            return;
 
         var form = $("#example-form").removeClass('hidden');
 
@@ -1733,15 +1741,15 @@
             headerTag: "h4",
             bodyTag: "fieldset",
             transitionEffect: "slideLeft",
-            onStepChanging: function(event, currentIndex, newIndex) {
+            onStepChanging: function (event, currentIndex, newIndex) {
                 form.validate().settings.ignore = ":disabled,:hidden";
                 return form.valid();
             },
-            onFinishing: function(event, currentIndex) {
+            onFinishing: function (event, currentIndex) {
                 form.validate().settings.ignore = ":disabled";
                 return form.valid();
             },
-            onFinished: function(event, currentIndex) {
+            onFinished: function (event, currentIndex) {
                 alert("Submitted!");
 
                 // Submit form
@@ -1753,13 +1761,13 @@
         // -----------------------------------
 
         $("#example-vertical")
-            .removeClass('hidden')
-            .steps({
-                headerTag: "h4",
-                bodyTag: "section",
-                transitionEffect: "slideLeft",
-                stepsOrientation: "vertical"
-            });
+                .removeClass('hidden')
+                .steps({
+                    headerTag: "h4",
+                    bodyTag: "section",
+                    transitionEffect: "slideLeft",
+                    stepsOrientation: "vertical"
+                });
 
 
         // Necessary to place dyncamic error messages
@@ -1780,29 +1788,30 @@
 
 })();
 
-(function() {
+(function () {
     'use strict';
 
     $(formXeditable);
 
     function formXeditable() {
 
-        if( !$.fn.editableform ) return;
+        if (!$.fn.editableform)
+            return;
 
         // Font Awesome support
         $.fn.editableform.buttons =
-            '<button type="submit" class="btn btn-primary btn-sm editable-submit">' +
-            '<i class="icon-fw ion-checkmark"></i>' +
-            '</button>' +
-            '<button type="button" class="btn btn-default btn-sm editable-cancel">' +
-            '<i class="icon-fw ion-close-round"></i>' +
-            '</button>';
+                '<button type="submit" class="btn btn-primary btn-sm editable-submit">' +
+                '<i class="icon-fw ion-checkmark"></i>' +
+                '</button>' +
+                '<button type="button" class="btn btn-default btn-sm editable-cancel">' +
+                '<i class="icon-fw ion-close-round"></i>' +
+                '</button>';
 
         //defaults
         $.fn.editable.defaults.url = 'server/xeditable.res';
 
         //enable / disable
-        $('#enable').click(function() {
+        $('#enable').click(function () {
             $('#user .editable').editable('toggleDisabled');
         });
 
@@ -1816,29 +1825,30 @@
         });
 
         $('#firstname').editable({
-            validate: function(value) {
-                if ($.trim(value) === '') return 'This field is required';
+            validate: function (value) {
+                if ($.trim(value) === '')
+                    return 'This field is required';
             }
         });
 
         $('#sex').editable({
             prepend: 'not selected',
             source: [{
-                value: 1,
-                text: 'Male'
-            }, {
-                value: 2,
-                text: 'Female'
-            }],
-            display: function(value, sourceData) {
+                    value: 1,
+                    text: 'Male'
+                }, {
+                    value: 2,
+                    text: 'Female'
+                }],
+            display: function (value, sourceData) {
                 var colors = {
-                        '': 'gray',
-                        1: 'green',
-                        2: 'blue'
-                    },
-                    elem = $.grep(sourceData, function(o) {
-                        return o.value === value;
-                    });
+                    '': 'gray',
+                    1: 'green',
+                    2: 'blue'
+                },
+                elem = $.grep(sourceData, function (o) {
+                    return o.value === value;
+                });
 
                 if (elem.length) {
                     $(this).text(elem[0].text).css('color', colors[value]);
@@ -1868,7 +1878,7 @@
         });
 
         $('#note').editable();
-        $('#pencil').click(function(e) {
+        $('#pencil').click(function (e) {
             e.stopPropagation();
             e.preventDefault();
             $('#note').editable('toggle');
@@ -1878,28 +1888,28 @@
             pk: 1,
             limit: 3,
             source: [{
-                value: 1,
-                text: 'banana'
-            }, {
-                value: 2,
-                text: 'peach'
-            }, {
-                value: 3,
-                text: 'apple'
-            }, {
-                value: 4,
-                text: 'watermelon'
-            }, {
-                value: 5,
-                text: 'orange'
-            }]
+                    value: 1,
+                    text: 'banana'
+                }, {
+                    value: 2,
+                    text: 'peach'
+                }, {
+                    value: 3,
+                    text: 'apple'
+                }, {
+                    value: 4,
+                    text: 'watermelon'
+                }, {
+                    value: 5,
+                    text: 'orange'
+                }]
         });
 
-        $('#user .editable').on('hidden', function(e, reason) {
+        $('#user .editable').on('hidden', function (e, reason) {
             if (reason === 'save' || reason === 'nochange') {
                 var $next = $(this).closest('tr').next().find('.editable');
                 if ($('#autoopen').is(':checked')) {
-                    setTimeout(function() {
+                    setTimeout(function () {
                         $next.editable('show');
                     }, 300);
                 } else {
@@ -1922,7 +1932,7 @@
 })();
 
 
-(function() {
+(function () {
     'use strict';
 
     $(initHeader);
@@ -1931,45 +1941,45 @@
 
         // Search modal
         var modalSearch = $('.modal-search');
-        $('#header-search').on('click', function(e) {
+        $('#header-search').on('click', function (e) {
             e.preventDefault();
             modalSearch
-                .on('show.bs.modal', function() {
-                    // Add class for white backdrop
-                    $('body').addClass('modal-backdrop-soft');
-                })
-                .on('hidden.bs.modal', function() {
-                    // Remove class for white backdrop (if not will affect future modals)
-                    $('body').removeClass('modal-backdrop-soft');
-                })
-                .on('shown.bs.modal', function() {
-                    // Auto focus the search input
-                    $('.header-input-search').focus();
-                })
-                .modal()
-                ;
+                    .on('show.bs.modal', function () {
+                        // Add class for white backdrop
+                        $('body').addClass('modal-backdrop-soft');
+                    })
+                    .on('hidden.bs.modal', function () {
+                        // Remove class for white backdrop (if not will affect future modals)
+                        $('body').removeClass('modal-backdrop-soft');
+                    })
+                    .on('shown.bs.modal', function () {
+                        // Auto focus the search input
+                        $('.header-input-search').focus();
+                    })
+                    .modal()
+                    ;
         });
 
         // Settings modal
         var modalSettings = $('.modal-settings');
-        $('#header-settings').on('click', function(){
+        $('#header-settings').on('click', function () {
             modalSettings
-                .on('show.bs.modal', function() {
-                    // Add class for soft backdrop
-                    $('body').addClass('modal-backdrop-soft');
-                })
-                .on('hidden.bs.modal', function() {
-                    // Remove class for soft backdrop (if not will affect future modals)
-                    $('body').removeClass('modal-backdrop-soft');
-                })
-                .modal()
-                ;
+                    .on('show.bs.modal', function () {
+                        // Add class for soft backdrop
+                        $('body').addClass('modal-backdrop-soft');
+                    })
+                    .on('hidden.bs.modal', function () {
+                        // Remove class for soft backdrop (if not will affect future modals)
+                        $('body').removeClass('modal-backdrop-soft');
+                    })
+                    .modal()
+                    ;
         });
 
     }
 
 })();
-(function() {
+(function () {
     'use strict';
 
     $(dataMaps);
@@ -1979,7 +1989,8 @@
         var elMapBasic = document.getElementById('datamap-basic');
         var elMapArc = document.getElementById('datamap-arc');
 
-        if(!elMapBasic || !elMapArc) return;
+        if (!elMapBasic || !elMapArc)
+            return;
 
         var mapBasic = new Datamap({
             element: elMapBasic,
@@ -2052,30 +2063,30 @@
         })
 
         mapArc.arc([{
-            origin: 'CA',
-            destination: 'TX',
-            options: {
-                strokeWidth: 3,
-                strokeColor: '#fff',
-            }
-        }, {
-            origin: 'OR',
-            destination: 'TX',
-            options: {
-                strokeWidth: 3,
-                strokeColor: '#fff',
-            }
-        }, {
-            origin: 'NY',
-            destination: 'TX',
-            options: {
-                strokeWidth: 3,
-                strokeColor: '#fff',
-            }
-        }]);
+                origin: 'CA',
+                destination: 'TX',
+                options: {
+                    strokeWidth: 3,
+                    strokeColor: '#fff',
+                }
+            }, {
+                origin: 'OR',
+                destination: 'TX',
+                options: {
+                    strokeWidth: 3,
+                    strokeColor: '#fff',
+                }
+            }, {
+                origin: 'NY',
+                destination: 'TX',
+                options: {
+                    strokeWidth: 3,
+                    strokeColor: '#fff',
+                }
+            }]);
 
         // Allow resize by hooking window resize event
-        $(window).resize(function(){
+        $(window).resize(function () {
             mapArc.resize();
             mapBasic.resize();
         });
@@ -2086,7 +2097,7 @@
 
 })();
 
-(function() {
+(function () {
     'use strict';
 
     $(googleMapsFull);
@@ -2096,11 +2107,11 @@
         if (document.getElementById('mapfull-markers')) {
 
             var myMarkers = [
-                {id: 0, name: 'Canada',        coords: {latitude: 56.130366, longitude: -106.346771 } },
-                {id: 1, name: 'New York',      coords: {latitude: 40.712784, longitude: -74.005941 } },
-                {id: 2, name: 'Toronto',       coords: {latitude: 43.653226, longitude: -79.383184 } },
-                {id: 3, name: 'San Francisco', coords: {latitude: 37.774929, longitude: -122.419416 } },
-                {id: 4, name: 'Utah',          coords: {latitude: 39.320980, longitude: -111.093731 } }
+                {id: 0, name: 'Canada', coords: {latitude: 56.130366, longitude: -106.346771}},
+                {id: 1, name: 'New York', coords: {latitude: 40.712784, longitude: -74.005941}},
+                {id: 2, name: 'Toronto', coords: {latitude: 43.653226, longitude: -79.383184}},
+                {id: 3, name: 'San Francisco', coords: {latitude: 37.774929, longitude: -122.419416}},
+                {id: 4, name: 'Utah', coords: {latitude: 39.320980, longitude: -111.093731}}
             ];
 
             var mapFull = new GMaps({
@@ -2110,7 +2121,7 @@
                 zoom: 4
             });
 
-            for (var i=0; i < myMarkers.length; i++) {
+            for (var i = 0; i < myMarkers.length; i++) {
                 mapFull.addMarker({
                     lat: myMarkers[i].coords.latitude,
                     lng: myMarkers[i].coords.longitude,
@@ -2121,7 +2132,7 @@
                 });
             }
             // Panto marker using the data attribute
-            $('#markers-list').on('click', '[data-panto-marker]', function() {
+            $('#markers-list').on('click', '[data-panto-marker]', function () {
                 var markers = mapFull.markers;
                 var id = $(this).data('pantoMarker');
                 if (markers[id])
@@ -2135,7 +2146,7 @@
 
 })();
 
-(function() {
+(function () {
     'use strict';
 
     $(googleMaps);
@@ -2150,7 +2161,7 @@
 
             GMaps.geocode({
                 address: '276 N TUSTIN ST, ORANGE, CA 92867',
-                callback: function(results, status) {
+                callback: function (results, status) {
                     if (status === 'OK') {
                         var latlng = results[0].geometry.location;
                         map.setCenter(latlng.lat(), latlng.lng());
@@ -2178,7 +2189,7 @@
                     database_id: 42,
                     author: 'HPNeo'
                 },
-                click: function(e) {
+                click: function (e) {
                     if (console.log)
                         console.log(e);
                     alert('You clicked in this marker');
@@ -2207,7 +2218,7 @@
 
 })();
 
-(function() {
+(function () {
     'use strict';
 
     $(vectorMap);
@@ -2217,18 +2228,18 @@
         if (document.getElementById('vector-map-world')) {
 
             var world_markers = [
-                {'latLng': [47.14, 9.52],    'name': 'Liechtenstein'},
-                {'latLng': [7.11, 171.06],   'name': 'Marshall Islands'},
-                {'latLng': [17.3, -62.73],   'name': 'Saint Kitts and Nevis'},
-                {'latLng': [3.2, 73.22],     'name': 'Maldives'},
-                {'latLng': [35.88, 14.5],    'name': 'Malta'},
-                {'latLng': [12.05, -61.75],  'name': 'Grenada'},
-                {'latLng': [13.16, -61.23],  'name': 'Saint Vincent and the Grenadines'},
-                {'latLng': [13.16, -59.55],  'name': 'Barbados'},
-                {'latLng': [17.11, -61.85],  'name': 'Antigua and Barbuda'},
-                {'latLng': [-4.61, 55.45],   'name': 'Seychelles'},
-                {'latLng': [7.35, 134.46],   'name': 'Palau'},
-                {'latLng': [42.5, 1.51],     'name': 'Andorra'}
+                {'latLng': [47.14, 9.52], 'name': 'Liechtenstein'},
+                {'latLng': [7.11, 171.06], 'name': 'Marshall Islands'},
+                {'latLng': [17.3, -62.73], 'name': 'Saint Kitts and Nevis'},
+                {'latLng': [3.2, 73.22], 'name': 'Maldives'},
+                {'latLng': [35.88, 14.5], 'name': 'Malta'},
+                {'latLng': [12.05, -61.75], 'name': 'Grenada'},
+                {'latLng': [13.16, -61.23], 'name': 'Saint Vincent and the Grenadines'},
+                {'latLng': [13.16, -59.55], 'name': 'Barbados'},
+                {'latLng': [17.11, -61.85], 'name': 'Antigua and Barbuda'},
+                {'latLng': [-4.61, 55.45], 'name': 'Seychelles'},
+                {'latLng': [7.35, 134.46], 'name': 'Palau'},
+                {'latLng': [42.5, 1.51], 'name': 'Andorra'}
             ];
 
             var world_options = {
@@ -2266,35 +2277,35 @@
         }// world
 
 
-            // USA Map
+        // USA Map
         if (document.getElementById('vector-map-usa')) {
 
             var usa_markers = [{
-                latLng: [40.71, -74.00],
-                name: 'New York'
-            }, {
-                latLng: [34.05, -118.24],
-                name: 'Los Angeles'
-            }, {
-                latLng: [41.87, -87.62],
-                name: 'Chicago'
-            }, {
-                latLng: [29.76, -95.36],
-                name: 'Houston'
-            }, {
-                latLng: [39.95, -75.16],
-                name: 'Philadelphia'
-            }, {
-                latLng: [38.90, -77.03],
-                name: 'Washington'
-            }, {
-                latLng: [37.36, -122.03],
-                name: 'Silicon Valley',
-                style: {
-                    fill: Colors.byName('green-500'),
-                    r: 20
-                }
-            }];
+                    latLng: [40.71, -74.00],
+                    name: 'New York'
+                }, {
+                    latLng: [34.05, -118.24],
+                    name: 'Los Angeles'
+                }, {
+                    latLng: [41.87, -87.62],
+                    name: 'Chicago'
+                }, {
+                    latLng: [29.76, -95.36],
+                    name: 'Houston'
+                }, {
+                    latLng: [39.95, -75.16],
+                    name: 'Philadelphia'
+                }, {
+                    latLng: [38.90, -77.03],
+                    name: 'Washington'
+                }, {
+                    latLng: [37.36, -122.03],
+                    name: 'Silicon Valley',
+                    style: {
+                        fill: Colors.byName('green-500'),
+                        r: 20
+                    }
+                }];
 
             var usa_options = {
                 map: 'us_mill_en',
@@ -2333,7 +2344,7 @@
 
 })();
 
-(function(){
+(function () {
     'use strict';
 
     $(initMessages);
@@ -2341,13 +2352,13 @@
     function initMessages() {
         var msgList = $('.msg-display');
 
-        msgList.each(function() {
+        msgList.each(function () {
             var msg = $(this);
 
-            msg.on('click', function(e){
+            msg.on('click', function (e) {
                 // Ignores drodown click to avoid opening modal at the same time
-                if( $(e.target).is('.dropdown') ||
-                    $(e.target).parents('.dropdown').length > 0  ) {
+                if ($(e.target).is('.dropdown') ||
+                        $(e.target).parents('.dropdown').length > 0) {
                     return;
                 }
                 // Open modal
@@ -2357,7 +2368,7 @@
 
         });
 
-        $('#compose').on('click', function(){
+        $('#compose').on('click', function () {
             $('.modal-compose').modal();
         });
 
@@ -2365,24 +2376,25 @@
 
 })();
 
-(function() {
+(function () {
     'use strict';
 
     $(initProfile);
 
     function initProfile() {
 
-        if (!$.fn.editable) return;
+        if (!$.fn.editable)
+            return;
 
         var editables = $('.is-editable, #gender');
 
-        $('#edit-enable').click(function(e) {
+        $('#edit-enable').click(function (e) {
             e.preventDefault();
             editables.editable('toggleDisabled');
             $('#edit-disable').removeClass('hidden');
             $('#edit-enable').addClass('hidden');
         });
-        $('#edit-disable').click(function(e) {
+        $('#edit-disable').click(function (e) {
             e.preventDefault();
             editables.editable('toggleDisabled');
             $('#edit-enable').removeClass('hidden');
@@ -2390,7 +2402,7 @@
         });
 
 
-        $('.is-editable').each(function() {
+        $('.is-editable').each(function () {
             var opts = $(this).data();
             $(this).editable({
                 showbuttons: 'bottom',
@@ -2406,25 +2418,25 @@
             mode: 'inline',
             url: '',
             source: [{
-                value: 1,
-                text: 'Male'
-            }, {
-                value: 2,
-                text: 'Female'
-            }]
+                    value: 1,
+                    text: 'Male'
+                }, {
+                    value: 2,
+                    text: 'Female'
+                }]
         });
 
     }
 
 })();
 
-(function() {
+(function () {
     'use strict';
 
     $(initRipple);
 
     function initRipple() {
-        $('.ripple').each(function(){
+        $('.ripple').each(function () {
             new Ripple($(this));
         });
     }
@@ -2432,7 +2444,7 @@
 })();
 
 
-(function(global) {
+(function (global) {
     'use strict';
 
     // public interface
@@ -2453,19 +2465,19 @@
         var clickEv = this.detectClickEvent();
 
         var self = this;
-        element.on(clickEv, function() {
+        element.on(clickEv, function () {
             // remove animation on click
             self.$rippleElement.removeClass('md-ripple-animate');
             // Set ripple size and position
             self.calcSizeAndPos();
             // start to animate
             self.$rippleElement
-                .addClass('md-ripple-animate');
+                    .addClass('md-ripple-animate');
         });
 
-        this.$rippleElement.on(TRANSITION_END, function() {
+        this.$rippleElement.on(TRANSITION_END, function () {
             self.$rippleElement
-                .removeClass('md-ripple-animate');
+                    .removeClass('md-ripple-animate');
             // avoid weird affect when ripple is not active
             self.rippleElement.style.width = 0;
             self.rippleElement.style.height = 0;
@@ -2476,7 +2488,7 @@
      * If not exists, it is created by appending a new
      * dom element
      */
-    RippleEffect.prototype.getElement = function() {
+    RippleEffect.prototype.getElement = function () {
         var dom = this.element[0];
         var rippleElement = dom.querySelector('.md-ripple');
 
@@ -2495,7 +2507,7 @@
      * based on the element attached and calculates the
      * position be fully centered
      */
-    RippleEffect.prototype.calcSizeAndPos = function() {
+    RippleEffect.prototype.calcSizeAndPos = function () {
         var size = Math.max(this.element.width(), this.element.height());
         this.rippleElement.style.width = size + 'px';
         this.rippleElement.style.height = size + 'px';
@@ -2504,7 +2516,7 @@
         this.rippleElement.style.marginLeft = -(size / 2) + 'px';
     };
 
-    RippleEffect.prototype.detectClickEvent = function() {
+    RippleEffect.prototype.detectClickEvent = function () {
         var isIOS = ((/iphone|ipad/gi).test(navigator.appVersion));
         return isIOS ? 'touchstart' : 'click';
     };
@@ -2512,7 +2524,7 @@
 })(window);
 
 
-(function() {
+(function () {
     'use strict';
 
     $(initSettings);
@@ -2539,22 +2551,22 @@
         var content = $('.layout-container > main');
 
         // Handler for themes preview
-        $('input[name="setting-theme"]:radio').change(function() {
+        $('input[name="setting-theme"]:radio').change(function () {
             var index = this.value;
             if (themes[index]) {
                 body.removeClass(themeClassname);
                 body.addClass(themes[index]);
             }
         });
-            // Regular expression for the pattern bg-* to find the background class
-            function themeClassname(index, css) {
-                var cmatch = css.match(/(^|\s)theme-\S+/g);
-                return (cmatch || []).join(' ');
-            }
+        // Regular expression for the pattern bg-* to find the background class
+        function themeClassname(index, css) {
+            var cmatch = css.match(/(^|\s)theme-\S+/g);
+            return (cmatch || []).join(' ');
+        }
 
 
         // Handler for menu links
-        $('input[name="headerMenulink"]:radio').change(function() {
+        $('input[name="headerMenulink"]:radio').change(function () {
             var menulinks = $('.menu-link');
             // remove allowed classses
             menulinks.removeClass('menu-link-slide menu-link-arrow menu-link-close');
@@ -2564,21 +2576,21 @@
 
         // Handlers for layout variations
         // var lContainer = $('.layout-container');
-        $('#sidebar-showheader').change(function() {
+        $('#sidebar-showheader').change(function () {
             brand[this.checked ? 'show' : 'hide']();
         });
         var sidebarToolbar = $('.sidebar-toolbar');
-        $('#sidebar-showtoolbar').change(function() {
+        $('#sidebar-showtoolbar').change(function () {
             sidebarToolbar[this.checked ? 'show' : 'hide']();
         });
 
-        $('#sidebar-offcanvas').change(function() {
+        $('#sidebar-offcanvas').change(function () {
             body[this.checked ? 'addClass' : 'removeClass']('sidebar-offcanvas');
         });
     }
 
 })();
-(function() {
+(function () {
     'use strict';
 
     $(sidebarNav);
@@ -2590,19 +2602,20 @@
 
         activate($sidebarNav);
 
-        $sidebarNav.on('click', function(event) {
+        $sidebarNav.on('click', function (event) {
             var item = getItemElement(event);
             // check click is on a tag
-            if (!item) return;
+            if (!item)
+                return;
 
             var ele = $(item),
-                liparent = ele.parent()[0];
+                    liparent = ele.parent()[0];
 
             var lis = ele.parent().parent().children(); // markup: ul > li > a
             // remove .active from childs
             lis.find('li').removeClass('active');
             // remove .active from siblings ()
-            $.each(lis, function(idx, li) {
+            $.each(lis, function (idx, li) {
                 if (li !== liparent)
                     $(li).removeClass('active');
             });
@@ -2618,14 +2631,17 @@
         // doesn't check deeply, asumens two levels only
         function getItemElement(event) {
             var element = event.target,
-                parent = element.parentNode;
-            if (element.tagName.toLowerCase() === 'a') return element;
-            if (parent.tagName.toLowerCase() === 'a') return parent;
-            if (parent.parentNode.tagName.toLowerCase() === 'a') return parent.parentNode;
+                    parent = element.parentNode;
+            if (element.tagName.toLowerCase() === 'a')
+                return element;
+            if (parent.tagName.toLowerCase() === 'a')
+                return parent;
+            if (parent.parentNode.tagName.toLowerCase() === 'a')
+                return parent.parentNode;
         }
 
         function activate(sidebar) {
-            sidebar.find('a').each(function() {
+            sidebar.find('a').each(function () {
                 var href = $(this).attr('href').replace('#', '');
                 if (href !== '' && window.location.href.indexOf(href) >= 0) {
                     var item = $(this).parents('li').addClass('active');
@@ -2641,14 +2657,14 @@
         var layoutContainer = $('.layout-container');
         var $body = $('body');
         // Handler to toggle sidebar visibility on mobile
-        $('#sidebar-toggler').click(function(e) {
+        $('#sidebar-toggler').click(function (e) {
             e.preventDefault();
             layoutContainer.toggleClass('sidebar-visible');
             // toggle icon state
             $(this).parent().toggleClass('active');
         });
         // Close sidebar when click on backdrop
-        $('.sidebar-layout-obfuscator').click(function(e) {
+        $('.sidebar-layout-obfuscator').click(function (e) {
             e.preventDefault();
             layoutContainer.removeClass('sidebar-visible');
             // restore icon
@@ -2656,7 +2672,7 @@
         });
 
         // Handler to toggle sidebar visibility on desktop
-        $('#offcanvas-toggler').click(function(e) {
+        $('#offcanvas-toggler').click(function (e) {
             e.preventDefault();
             $body.toggleClass('offcanvas-visible');
             // toggle icon state
@@ -2665,7 +2681,7 @@
 
         // remove desktop offcanvas when app changes to mobile
         // so when it returns, the sidebar is shown again
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             if (window.innerWidth < 768) {
                 $body.removeClass('offcanvas-visible');
                 $('#offcanvas-toggler').parent().addClass('active');
@@ -2676,14 +2692,15 @@
 
 })();
 
-(function() {
+(function () {
     'use strict';
 
     $(tableBootgrid);
 
     function tableBootgrid() {
 
-        if ( !$.fn.bootgrid ) return;
+        if (!$.fn.bootgrid)
+            return;
 
         var ioniconCss = {
             icon: "icon",
@@ -2706,19 +2723,19 @@
             keepSelection: true,
             templates: {
                 select: '<label class="mda-checkbox">' +
-                            '<input name="select" type="{{ctx.type}}" class="{{css.selectBox}}" value="{{ctx.value}}" {{ctx.checked}} />' +
-                            '<em class="bg-warning"></em>' +
+                        '<input name="select" type="{{ctx.type}}" class="{{css.selectBox}}" value="{{ctx.value}}" {{ctx.checked}} />' +
+                        '<em class="bg-warning"></em>' +
                         '</label>'
             }
         })
-        ;
+                ;
 
         $('#bootgrid-command').bootgrid({
             css: ioniconCss,
             formatters: {
-                commands: function(column, row) {
+                commands: function (column, row) {
                     return '<button type="button" class="btn btn-flat btn-sm btn-info" data-row-id="' + row.id + '"><em class="ion-edit"></em></button>' +
-                        '<button type="button" class="btn btn-flat btn-sm btn-danger" data-row-id="' + row.id + '"><em class="ion-trash-a"></em></button>';
+                            '<button type="button" class="btn btn-flat btn-sm btn-danger" data-row-id="' + row.id + '"><em class="ion-trash-a"></em></button>';
                 }
             }
         });
@@ -2727,14 +2744,15 @@
 
 })();
 
-(function() {
+(function () {
     'use strict';
 
     $(tableDatatables);
 
     function tableDatatables() {
 
-        if (!$.fn.dataTable) return;
+        if (!$.fn.dataTable)
+            return;
 
         // Zero configuration
 
@@ -2785,32 +2803,33 @@
 
         // On input keyup trigger filtering
         columnInputs
-            .keyup(function() {
-                dtInstance2.fnFilter(this.value, columnInputs.index(this));
-            });
+                .keyup(function () {
+                    dtInstance2.fnFilter(this.value, columnInputs.index(this));
+                });
 
     }
 
 })();
-(function() {
+(function () {
     'use strict';
 
     $(initTranslation);
 
     // Global configuration
     var preferredLang = 'en';
-    var pathPrefix    = 'server/i18n'; // folder of json files
-    var packName      = 'site';
+    var pathPrefix = 'server/i18n'; // folder of json files
+    var packName = 'site';
 
     function initTranslation() {
 
-        if (!$.fn.localize) return;
+        if (!$.fn.localize)
+            return;
 
         // set initial options
         var opts = {
             language: preferredLang,
             pathPrefix: pathPrefix,
-            callback: function(data, defaultCallback) {
+            callback: function (data, defaultCallback) {
                 defaultCallback(data);
             }
         };
@@ -2819,7 +2838,7 @@
         setLanguage(opts);
 
         // Listen for changes
-        $('[data-set-lang]').on('click', function() {
+        $('[data-set-lang]').on('click', function () {
 
             var selectedLang = $(this).data('setLang');
 
@@ -2852,7 +2871,7 @@
 })();
 
 
-(function() {
+(function () {
     'use strict';
 
     $(userLock);
@@ -2869,7 +2888,7 @@
                     email: true
                 }
             },
-            submitHandler: function(/*form*/) {
+            submitHandler: function (/*form*/) {
                 // form.submit();
                 console.log('Form submitted!');
                 // move to dashboard
@@ -2882,10 +2901,10 @@
     // Necessary to place dyncamic error messages
     // without breaking the expected markup for custom input
     function errorPlacementInput(error, element) {
-        if( element.parent().is('.mda-form-control') ) {
+        if (element.parent().is('.mda-form-control')) {
             error.insertAfter(element.parent()); // insert after .mda-form-control
         }
-        else if ( element.is(':radio') || element.is(':checkbox')) {
+        else if (element.is(':radio') || element.is(':checkbox')) {
             error.insertAfter(element.parent());
         }
         else {
@@ -2895,7 +2914,7 @@
 
 })();
 
-(function() {
+(function () {
     'use strict';
 
     $(userLogin);
@@ -2915,7 +2934,7 @@
                     required: true
                 }
             },
-            submitHandler: function(/*form*/) {
+            submitHandler: function (/*form*/) {
                 // form.submit();
                 console.log('Form submitted!');
             }
@@ -2925,10 +2944,10 @@
     // Necessary to place dyncamic error messages
     // without breaking the expected markup for custom input
     function errorPlacementInput(error, element) {
-        if( element.parent().is('.mda-form-control') ) {
+        if (element.parent().is('.mda-form-control')) {
             error.insertAfter(element.parent()); // insert after .mda-form-control
         }
-        else if ( element.is(':radio') || element.is(':checkbox')) {
+        else if (element.is(':radio') || element.is(':checkbox')) {
             error.insertAfter(element.parent());
         }
         else {
@@ -2938,7 +2957,7 @@
 
 })();
 
-(function() {
+(function () {
     'use strict';
 
     $(userRecover);
@@ -2955,7 +2974,7 @@
                     email: true
                 }
             },
-            submitHandler: function(/*form*/) {
+            submitHandler: function (/*form*/) {
                 // form.submit();
                 console.log('Form submitted!');
                 $form.hide();
@@ -2968,10 +2987,10 @@
     // Necessary to place dyncamic error messages
     // without breaking the expected markup for custom input
     function errorPlacementInput(error, element) {
-        if( element.parent().is('.mda-form-control') ) {
+        if (element.parent().is('.mda-form-control')) {
             error.insertAfter(element.parent()); // insert after .mda-form-control
         }
-        else if ( element.is(':radio') || element.is(':checkbox')) {
+        else if (element.is(':radio') || element.is(':checkbox')) {
             error.insertAfter(element.parent());
         }
         else {
@@ -2981,7 +3000,7 @@
 
 })();
 
-(function() {
+(function () {
     'use strict';
 
     $(userSignup);
@@ -3005,7 +3024,7 @@
                     equalTo: '#account-password'
                 }
             },
-            submitHandler: function( /*form*/ ) {
+            submitHandler: function ( /*form*/ ) {
                 // form.submit();
                 console.log('Form submitted!');
                 $('#form-ok').hide().removeClass('hidden').show(500);
@@ -3028,18 +3047,18 @@
 
 })();
 
-(function() {
+(function () {
     'use strict';
 
     $(initScreenfull);
 
     function initScreenfull() {
         var element = $('[data-toggle-fullscreen]');
-            // Not supported under IE (requires jQuery Browser)
+        // Not supported under IE (requires jQuery Browser)
         if (window.jQBrowser.msie) {
             element.addClass('hide');
         } else {
-            element.on('click', function(e) {
+            element.on('click', function (e) {
                 e.preventDefault();
 
                 if (screenfull.enabled) {
@@ -3055,7 +3074,7 @@
     }
 
 })();
-(function() {
+(function () {
     'use strict';
 
     $(initSvgReplace);
@@ -3063,7 +3082,7 @@
     function initSvgReplace() {
         var elements = $('[data-svg-replace]');
 
-        elements.each(function() {
+        elements.each(function () {
             var el = $(this);
             var src = el.data('svgReplace');
 
@@ -3071,7 +3090,7 @@
                 throw "only support for SVG images";
             // return /*only support for SVG images*/;
 
-            $.get(src).success(function(res) {
+            $.get(src).success(function (res) {
                 var $svg = $(res).find('svg');
                 $svg = $svg.removeAttr('xmlns:a');
                 el.replaceWith($svg);

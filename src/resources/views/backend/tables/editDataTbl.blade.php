@@ -34,7 +34,7 @@
                                 <div class="row">
                                     @foreach($columns as $col)
                                         @if($col->edit == 1)
-                                            @include('backend.element.columnFormData')
+                                            @include('backend.element.formColumn')
                                         @endif
                                     @endforeach
                                 </div>
@@ -42,9 +42,9 @@
                                     <div class="col-xs-6 col-sm-3 center-block">
                                         <br/>
                                         @if(empty($dataId))
-                                        <button class="btn btn-primary" type="submit" name="add_field">Thêm mới</button>
+                                            <button class="btn btn-primary" type="submit" name="add_field">Thêm mới</button>
                                         @else
-                                        <button class="btn btn-primary" type="submit" name="edit_field">Cập nhật</button>
+                                            <button class="btn btn-primary" type="submit" name="edit_field">Cập nhật</button>
                                         @endif
                                         <a href="{{ route('listDataTbl', [$tableId]) }}" class="btn btn-default" type="button">Hủy</a>
                                     </div>
