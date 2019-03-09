@@ -9,7 +9,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 
-class TablesController extends Controller {
+class TblController extends Controller {
 
 
     public function index() {

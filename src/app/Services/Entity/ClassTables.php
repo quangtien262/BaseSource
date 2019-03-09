@@ -99,7 +99,7 @@ class ClassTables {
             $html .= '<li>
                         <a class="ripple" href="' . route('listDataTbl', [$table->id]) . '">
                             <span class="pull-right nav-label">
-                                <span class="badge bg-success">' . $countData . '</span> 
+                                <span class="badge bg-success">' . $countData . '</span>
                             </span>
                             <span class="nav-icon"><em class="ion-gear-b"></em></span>
                             <span>' . $table->display_name . '</span>
@@ -109,13 +109,13 @@ class ClassTables {
         return $html;
     }
 
-    public function getHtmlSelectForTable($name, $tblDataId, $selectedId = 0, $multiple = false) {
+    public function getHtmlSelectForTable($name, $tblRowId, $selectedId = 0, $multiple = false) {
         if ($multiple) {
             $html = '<select multiple class="form-control" name="' . $name . '">';
         } else {
             $html = '<select class="form-control" name="' . $name . '"><option value="0">Chọn</option>';
         }
-        $table = self::getTable($tblDataId);
+        $table = self::getTable($tblRowId);
         if (!empty($table)) {
             $tableData = app('EntityCommon')->getRowsByConditions($table->name, [], 0, $order = ['id', 'asc']);
             foreach ($tableData as $data) {
@@ -153,8 +153,8 @@ class ClassTables {
                             </div>
                             <a href="'.route('editDataTbl', [$table->id, $td->id]).'" class="btn btn-sm btn-success">Edit</a>
                             <a href="'.route('deleteTable', ['table'=>$table->id]).'" class="btn btn-sm btn-default">Delete</a>';
-            if ($table->type_show == 2) { 
-                
+            if ($table->type_show == 2) {
+
             }
             $html .= '</li>';
         }

@@ -1,32 +1,34 @@
 
     @if($col->type_edit == 'text')
-        <div class="col-md-6">
+        <div class="col-xs-6 col-sm-3">
             <br/>
             <label>{{ $col->display_name or $col->name }}</label>
             <input name="{{ $col->name or '' }}" value="{{ $data[$col->name] or '' }}" class="form-control" type="text" placeholder=""/>
         </div>
     @elseif($col->type_edit == 'textarea')
-        <div class="col-md-8">
+        <div class="col-xs-6 col-sm-3">
             <br/>
             <label>{{ $col->display_name or $col->name }}</label>
             <textarea name="{{ $col->name or '' }}" class="form-control">{{ $data[$col->name] or '' }}</textarea>
         </div>
     @elseif($col->type_edit == 'select')
-        <div class="col-md-6">
+        <div class="col-xs-6 col-sm-3">
             <br/>
             <label>{{ $col->display_name or $col->name }}</label>
-            @if(isset($data[$col->name]))
-              {!! app('ClassTables')->getHtmlSelectForTable($col->name, $col->select_table_id, $data[$col->name]) !!}
+            @if(isset($_GET[$col->name]))
+              {!! app('ClassTables')->getHtmlSelectForTable($col->name, $col->select_table_id, $_GET[$col->name]) !!}
+            @else
+              {!! app('ClassTables')->getHtmlSelectForTable($col->name, $col->select_table_id, 0) !!}
             @endif
         </div>
     @elseif($col->type_edit == 'summoner')
-        <div class="col-md-8">
+        <div class="col-xs-6 col-sm-3">
             <br/>
             <label>{{ $col->display_name or $col->name }}</label>
             <textarea name="{{ $col->name or '' }}" class="summernote">{{ $data[$col->name] or '' }}</textarea>
         </div>
     @elseif($col->type_edit == 'selects')
-        <div class="col-md-6">
+        <div class="col-xs-6 col-sm-3">
             <br/>
             <label>{{ $col->display_name or $col->name }}</label>
             {!! app('ClassTables')->getHtmlSelectForTable($col->name, $col->select_table_id, $data[$col->name] ? $data[$col->name]:0, true) !!}
@@ -38,7 +40,7 @@
     @elseif($col->type_edit == 'ckeditor')
         <span>ckeditor</span>
     @elseif($col->type_edit == 'image_laravel')
-        <div class="col-md-6">
+        <div class="col-xs-6 col-sm-3">
             <br/>
             <label>{{ $col->display_name or $col->name }}</label>
             <div class="input-group">
@@ -62,7 +64,7 @@
     @elseif($col->type_edit == 'files')
         <span>files</span>
     @elseif($col->type_edit == 'date')
-        <div class="col-md-6">
+        <div class="col-xs-6 col-sm-3">
             <br/>
             <label>{{ $col->display_name or $col->name }}</label>
             <input name="{{ $col->name or '' }}" value="{{ $data[$col->name] or '' }}" class="form-control datepicker-1" type="text" placeholder="{{ $data[$col->display_name] or '' }}"/>

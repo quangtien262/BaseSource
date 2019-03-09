@@ -25,15 +25,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'admin'], function () {
         Route::get('/', 'Backend\PagesController@home')->name('adminHome');
         //config tbl
-        Route::get('/configtbl', 'Backend\TablesController@index')->name('configTbl');
-        Route::get('/configtbl/edit/{id}', 'Backend\TablesController@formEdit')->name('configTbl_edit');
-        Route::post('/configtbl/edit-table/{id}', 'Backend\TablesController@postSbmitFormTable')->name('editTable');
-        Route::post('/configtbl/edit-column', 'Backend\TablesController@postSubmitFormColumn')->name('editColumn');
-        Route::get('/configtbl/delete-table/', 'Backend\TablesController@deleteTable')->name('deleteTable');
-        Route::get('/configtbl/delete-column', 'Backend\TablesController@deleteColumn')->name('deleteColumn');
-        Route::get('/tbl/list/{tableId}', 'Backend\TablesController@listDataTbl')->name('listDataTbl');
-        Route::get('/tbl/edit/{tableId}/{dataId}', 'Backend\TablesController@formDataTbl')->name('editDataTbl');
-        Route::post('/tbl/edit/{tableId}/{dataId}', 'Backend\TablesController@submitFormDataTbl');
+        Route::get('/configtbl', 'Backend\TblController@index')->name('configTbl');
+        Route::get('/configtbl/edit/{id}', 'Backend\TblController@formEdit')->name('configTbl_edit');
+        Route::post('/configtbl/edit-table/{id}', 'Backend\TblController@postSbmitFormTable')->name('editTable');
+        Route::post('/configtbl/edit-column', 'Backend\TblController@postSubmitFormColumn')->name('editColumn');
+        Route::get('/configtbl/delete-table/', 'Backend\TblController@deleteTable')->name('deleteTable');
+        Route::get('/configtbl/delete-column', 'Backend\TblController@deleteColumn')->name('deleteColumn');
+        Route::get('/tbl/list/{tableId}', 'Backend\TblController@listDataTbl')->name('listDataTbl');
+        Route::get('/tbl/edit/{tableId}/{dataId}', 'Backend\TblController@formDataTbl')->name('editDataTbl');
+        Route::post('/tbl/edit/{tableId}/{dataId}', 'Backend\TblController@submitFormDataTbl');
     });
     Route::resource('users', 'Backend\UserController');
 
@@ -41,4 +41,3 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('permissions', 'Backend\PermissionController');
 });
-

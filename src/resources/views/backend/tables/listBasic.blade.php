@@ -7,15 +7,24 @@
         <div class="card">
             <div class="card-heading">
                 <p><a href="{{ route('editDataTbl', [$tableId, 0]) }}">add New</a></p>
-                <div class="row">
-                    @if(!empty($columns))
-                        @foreach($columns as $col)
-                            @if($col->add2search == 1)
-                                @include('backend.element.formColumn')
-                            @endif
-                        @endforeach
-                    @endif
-                </div>
+                <form action="" method="get">
+                  <div class="row">
+                      @php $isSearch = false; @endphp
+                      @if(!empty($columns))
+                          @foreach($columns as $col)
+                              @if($col->add2search == 1)
+                                  @php $isSearch = true; @endphp
+                                  @include('backend.element.formSearchColumn')
+                              @endif
+                          @endforeach
+                      @endif
+                  </div>
+                  @if($isSearch)
+                    <div class="row" style="text-align:center">
+                      <input type="submit" value="Tìm kiếm" class="btn btn-primary"/>
+                    </div>
+                  @endif
+                </form>
             </div>
             <div class="card-body">
                 <table class="table-datatable table table-striped table-hover mv-lg">
