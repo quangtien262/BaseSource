@@ -1,0 +1,96 @@
+{
+    "Menu": [
+        {
+            "name": "Quản lý danh mục",
+            "type": "LIST_JOB",
+            "routeName": "adminListCategory",
+            "subMenu": []
+        },
+        {
+            "name": "Quản lý sản phẩm",
+            "type": "LIST_NEWS",
+            "routeName": "adminListProduct",
+            "subMenu": []
+        },
+        {
+            "name": "Quản lý tin tức",
+            "type": "LIST_NEWS",
+            "routeName": "adminListNews",
+            "subMenu": []
+        },
+        {
+            "name": "Quản lý bài viết đơn",
+            "type": "SIGNLE_NEWS",
+            "routeName": "adminListCategory",
+            "param": "?typeShow=singleNews",
+            "subMenu": []
+        },
+        {
+            "name": "slide hình ảnh",
+            "type": "",
+            "routeName": "adminListBlock",
+            "param": "?type=slide",
+            "subMenu": {
+            }
+        },
+        {
+            "name": "link footer",
+            "type": "",
+            "routeName": "adminListBlock",
+            "param": "?type=footer",
+            "subMenu": {
+            }
+        },
+        {
+            "name": "Thông tin liên hệ",
+            "type": "",
+            "routeName": "adminListBlock",
+            "param": "?type=contact",
+            "subMenu": {
+            }
+        },
+        {
+            "name": "Mô tả chi tiết sp",
+            "type": "",
+            "routeName": "adminListBlock",
+            "param": "?type=detailPro",
+            "subMenu": {
+            }
+        },
+        {
+            "name": "Quản lý Liên hệ",
+            "type": "LIST_CONTACT",
+            "routeName": "adminListContact",
+            "param": "",
+            "subMenu": []
+        },
+        {
+            "name": "Quản lý File",
+            "type": "",
+            "routeName": "home",
+            "param": "/laravel-filemanager?type=image",
+            "subMenu": []
+        },
+        {
+            "name": "Cài đặt",
+            "type": "",
+            "routeName": "",
+            "subMenu": [
+                {
+                    "name": "cấu hình website",
+                    "type": "",
+                    "routeName": "configSite",
+                    "subMenu": {
+                    }
+                },
+                {
+                    "name": "Thay đổi thông tin chân trang",
+                    "type": "",
+                    "routeName": "changeFooter",
+                    "subMenu": {
+                    }
+                }
+            ]
+        }
+    ]
+}
