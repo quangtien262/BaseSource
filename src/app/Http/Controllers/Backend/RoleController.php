@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Backend;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\BackendController;
 
 use Illuminate\Http\Request;
 
@@ -12,7 +12,7 @@ use Spatie\Permission\Models\Permission;
 
 use Session;
 
-class RoleController extends Controller {
+class RoleController extends BackendController {
 
     public function __construct() {
         //isAdmin middleware lets only users with a //specific permission permission to access these resources

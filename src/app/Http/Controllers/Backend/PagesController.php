@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\BackendController;
 use Illuminate\Http\Request;
 
-class PagesController extends Controller
+class PagesController extends BackendController
 {
     /**
      * Show the application dashboard.
@@ -14,6 +14,7 @@ class PagesController extends Controller
      */
     public function home()
     {
+        // var_dump(\Auth::check());
         return view('backend.pages.home');
     }
 }

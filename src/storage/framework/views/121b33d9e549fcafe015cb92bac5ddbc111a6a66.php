@@ -12,7 +12,7 @@
         <li><a href="profile.html"><em class="ion-home icon-fw"></em>Profile</a></li>
         <li><a href="messages.html"><em class="ion-gear-a icon-fw"></em>Messages</a></li>
         <li class="divider" role="presentation"></li>
-        <li><a href="user.login.html"><em class="ion-log-out icon-fw"></em>Logout</a></li>  
+        <li><a href="<?php echo e(route('logout')); ?>"><em class="ion-log-out icon-fw"></em>Logout</a></li>  
         </ul>
     </li>
     <li><a class="ripple" id="header-settings" href="#"><em class="ion-gear-b"></em></a></li>

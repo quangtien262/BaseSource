@@ -11,7 +11,7 @@ Route::group(['middleware' => \App\Http\Middleware\Language::class], function ()
     Route::get('login', 'Auth\AuthController@showLoginForm')->name('login');
     Route::get('admin/login', 'Auth\AuthController@showLoginForm');
     Route::post('admin/login', 'Auth\AuthController@loginAdmin');
-    Route::get('logout', 'Auth\AuthController@logout');
+    Route::get('logout', 'Auth\AuthController@logout')->name('logout');
 
     Route::get('{sluggable}/ln{cid}.html', 'Frontend\NewsController@listNews')->name('listNews');
     Route::get('{sluggable}/dn{nid}.html', 'Frontend\NewsController@detail')->name('detailNews');
@@ -39,7 +39,7 @@ Route::group(['middleware' => \App\Http\Middleware\Language::class], function ()
     Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'LanguageController@switchLang']);
 });
 //backend
-Route::group(['middleware' => 'auth'], function () {
+// Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'admin'], function () {
         Route::get('/', 'Backend\PagesController@home')->name('adminHome');
         //config tbl
@@ -53,4 +53,4 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/tbl/edit/{tableId}/{dataId}', 'Backend\TblController@formDataTbl')->name('editDataTbl');
         Route::post('/tbl/edit/{tableId}/{dataId}', 'Backend\TblController@submitFormDataTbl');
     });
-});
+// });
