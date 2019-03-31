@@ -40,8 +40,8 @@
                             </div>
                             <form class="form-nestable" method="POST" action="{{ route('sortOrderTable') }}">
                                 {{ csrf_field()}}
-                                <textarea style="display: block" name="ids" class="well" id="nestable-output"></textarea>
-                                <input type="submit"/>
+                                <textarea style="display: none" name="ids" class="well" id="nestable-output"></textarea>
+                              
                             </form>
                         </div>
                     </div>
