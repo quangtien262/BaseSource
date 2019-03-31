@@ -4,7 +4,6 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-heading">
-                <p><a href="<?php echo e(route('editDataTbl', [$tableId, 0])); ?>">add New</a></p>
                 <form action="" method="get">
                   <div class="row">
                       <?php  $isSearch = false;  ?>
@@ -18,8 +17,16 @@
                       <?php endif; ?>
                   </div>
                   <?php if($isSearch): ?>
-                    <div class="row" style="text-align:center">
-                      <input type="submit" value="Tìm kiếm" class="btn btn-primary"/>
+                    <div class="row">
+                        <br/>
+                        <button type="submit" class="btn btn-primary _left" style="margin-left: 10px">
+                            <i class="ion-ios-search-strong"></i>
+                            Tìm kiếm
+                        </button>
+                        <a class="btn btn-primary _right" href="<?php echo e(route('editDataTbl', [$tableId, 0])); ?>" style="margin-right: 10px">
+                            <i class="ion-plus-circled"></i>
+                            Thêm mới
+                        </a>
                     </div>
                   <?php endif; ?>
                 </form>
@@ -43,16 +50,34 @@
                             <td><?php echo e($index + 1); ?></td>
                             <?php $__currentLoopData = $columns; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $col): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <?php if($col->show_in_list == 1): ?>
-                                    <td><?php echo e($col->show_in_list == 1 ? $data[$col->name]:''); ?></td>
+                                    <td>
+                                        <?php if(in_array($col->type_edit, ['image_laravel', 'images_laravel', 'image'. 'images'])): ?>
+                                            <img style="width:70px" src="<?php echo e($data[$col->name]); ?>"/>
+                                        <?php else: ?>
+                                            <?php echo e($data[$col->name]); ?>
+
+                                        <?php endif; ?>
+                                    </td>
                                 <?php endif; ?>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             <td>
-                                <a href="<?php echo e(route('editDataTbl', [$tableId, $data['id']])); ?>" class="btn btn-sm btn-success">Edit</a>
-                                <a href="<?php echo e(route('deleteRow', [$tableId, $data['id']])); ?>" class="btn btn-sm btn-default">Delete</a>
+                                <a href="<?php echo e(route('editDataTbl', [$tableId, $data['id']])); ?>" class="btn btn-sm btn-success">
+                                    <i class="ion-edit"></i>
+                                    Edit
+                                </a>
+                                <a href="<?php echo e(route('deleteRow', [$tableId, $data['id']])); ?>" class="btn btn-sm btn-default">
+                                    <i class="ion-trash-a"></i>
+                                    Delete
+                                </a>
                             </td>
                         </tr>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>
+                </table>
+                <table class="table-datatable table table-striped table-hover mv-lg">
+                    <tr>
+                        <td><?php echo $dataQuery->render();; ?></td>
+                    </tr>
                 </table>
             </div>
         </div>

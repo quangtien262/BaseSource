@@ -7,22 +7,13 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
 
-class TblController extends BackendController
+class RowController extends BackendController
 {
 
     public function index()
     {
         $htmlList = app('ClassTables')->getHtmlListTable();
         return view('backend.tables.index', compact('htmlList'));
-    }
-    
-    public function sortOrderTable(Request $request)
-    {
-        $ids = json_decode($request->ids, true);
-        if(!empty($ids)) {
-            app('EntityCommon')->updateSortOrder('tables', $ids);
-        }
-        return response()->json([RETURN_SUCCESS, MSG_UPDATE_SORT_ORDER_SUCCESS]);
     }
 
     public function formEdit(Request $request, $tableId = 0)

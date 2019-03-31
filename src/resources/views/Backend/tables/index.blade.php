@@ -2,39 +2,53 @@
 
 @section('content')
 
-<section>
-    <div class="container-fluid">
-        <div class="card">
-            <div class="card-heading">
-                <a href="{{ route('configTbl_edit', [0]) }}">add New</a>
-            </div>
-            <div class="card-body">
-                <table class="table-datatable table table-striped table-hover mv-lg">
-                    <thead>
-                        <tr>
-                            <th>Table Name</th>
-                            <th>Title</th>
-                            <th>Edit</th>
-                            <th class="sort-numeric">Option</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($tables as $table)
-                            <tr class="gradeX">
-                                <td>{{ $table->name }}</td>
-                                <td>{{ $table->display_name }}</td>
-                                <td>{{ $table->is_edit == 1 ? 'Have Edit':'Not Edit' }}</td>
-                                <td>
-                                    <a href="{{ route('configTbl_edit', [$table->id]) }}" class="btn btn-sm btn-success">Edit</a>
-                                    <a href="{{ route('deleteTable', ['table'=>$table->id]) }}" class="btn btn-sm btn-default">Delete</a>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+    <section>
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-heading">
+                    <div class="row">
+                            <div class="js-nestable-action">
+                                <a data-action="expand-all" class="btn btn-default btn-sm mr-sm">
+                                    <i class="ion-arrow-down-a"></i>
+                                    Mở rộng
+                                </a>
+                                <a data-action="collapse-all" class="btn btn-default btn-sm">
+                                    <i class="ion-arrow-up-a"></i>
+                                    Thu gọn
+                                </a>
+                                <button type="submit" 
+                                        class="btn btn-primary btn-sm "
+                                        onclick="submitForm('.loading', '.form-nestable', 'none')" 
+                                        style="margin-left: 10px">
+                                    <i class="ion-chevron-down"></i>
+                                    Cập nhật lại thứ tự
+                                </button>
+                                <a class="btn btn-sm btn-success " href="{{ route('configTbl_edit', [0]) }}" style="margin-right: 10px">
+                                    <i class="ion-plus-circled"></i>
+                                    Thêm mới
+                                </a>
+                            </div>
+                        </div>
+                    <hr/>
+                    <div class="row loading"></div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="dd" id="nestable">
+                                {!! $htmlList !!}
+                            </div>
+                            <form class="form-nestable" method="POST" action="{{ route('sortOrderTable') }}">
+                                {{ csrf_field()}}
+                                <textarea style="display: block" name="ids" class="well" id="nestable-output"></textarea>
+                                <input type="submit"/>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
 
 @endsection

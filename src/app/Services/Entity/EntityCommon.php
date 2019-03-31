@@ -4,9 +4,11 @@ namespace App\Services\Entity;
 
 use Illuminate\Support\Facades\DB;
 
-class EntityCommon {
+class EntityCommon
+{
 
-    public function getCountData($tblName) {
+    public function getCountData($tblName)
+    {
         return DB::table($tblName)->count();
     }
 
@@ -33,6 +35,7 @@ class EntityCommon {
                 $data = $data->whereIn($key, $val);
             }
         }
+        $data = $data->orderBy($order[0], $order[1]);
         //Check for the count of data
         if ($limit == 0) {
             $data = $data->get();
@@ -45,22 +48,26 @@ class EntityCommon {
         return $data;
     }
 
-    public function getDataById($tblName, $id) {
+    public function getDataById($tblName, $id)
+    {
         $tableData = DB::table($tblName)->where('id', $id)->first();
         return $tableData;
     }
 
-    public function getDataByIds($tblName, $ids) {
+    public function getDataByIds($tblName, $ids)
+    {
         $tableData = DB::table($tblName)->whereIn('id', $ids)->get();
         return $tableData;
     }
 
-    public function getAllDataPaginate($tblName, $columnOrder = 'sort_order', $orderBy = 'asc', $limit = 30) {
+    public function getAllDataPaginate($tblName, $columnOrder = 'sort_order', $orderBy = 'asc', $limit = 30)
+    {
         $tableData = DB::table($tblName)->orderBy($columnOrder, $orderBy)->paginate($limit);
         return $tableData;
     }
 
-    public function getIdAndNameTable($tblName, $collumnName = 'name') {
+    public function getIdAndNameTable($tblName, $collumnName = 'name')
+    {
         $result = [];
         $tableData = DB::table($tblName)->orderBy('sort_order', 'asc')->get();
         foreach ($tableData as $data) {
@@ -69,27 +76,30 @@ class EntityCommon {
         return $result;
     }
 
-    public function deleteTable($tblName, $id) {
+    public function deleteTable($tblName, $id)
+    {
         try {
             DB::table($tblName)->where('id', $id)->delete();
-            return \ReturnCode::RETURN_SUCCESS;
+            return RETURN_SUCCESS;
         } catch (\Exception $e) {
-            return \ReturnCode::Exception_DELETE_TABLE;
+            return RETURN_ERROR;
         }
     }
 
-    public function searchDataByKeyword($tblName, $columnName, $keyword) {
+    public function searchDataByKeyword($tblName, $columnName, $keyword)
+    {
         $result = [];
         if (!empty($keyword)) {
             $result = DB::table($tblName)->where($columnName, 'like', "%{$keyword}%")
-                    ->limit(20)
-                    ->orderBy($columnName, 'asc')
-                    ->get();
+                ->limit(20)
+                ->orderBy($columnName, 'asc')
+                ->get();
         }
         return $result;
     }
 
-    public function getCountByConditions($tblName, $conditions) {
+    public function getCountByConditions($tblName, $conditions)
+    {
         $result = DB::table($tblName);
 
         if (!empty($conditions)) {
@@ -103,10 +113,11 @@ class EntityCommon {
         return $result;
     }
 
-    public function getFirstDataByColumnName($tblName, $columnName, $columnValue, $orderBy = 'desc', $columnOrder = 'id') {
+    public function getFirstDataByColumnName($tblName, $columnName, $columnValue, $orderBy = 'desc', $columnOrder = 'id')
+    {
         $result = DB::table($tblName)->where($columnName, $columnValue)
-                ->orderBy($columnOrder, $orderBy)
-                ->first();
+            ->orderBy($columnOrder, $orderBy)
+            ->first();
         return $result;
     }
 
@@ -116,47 +127,49 @@ class EntityCommon {
      * $data: data insert, ex: ['column_name' => 'value insert',]
      */
 
-    public function insertData($tblName, $data) {
+    public function insertData($tblName, $data)
+    {
         $data['created_at'] = date('Y-m-d h:i:s');
         $data['updated_at'] = $data['created_at'];
         $result = DB::table($tblName)->insert($data);
         return $result;
     }
 
-    public function updateData($tblName, $dataId, $data) {
+    public function updateData($tblName, $dataId, $data)
+    {
         $data['updated_at'] = date('Y-m-d h:i:s');
         $result = DB::table($tblName)->where('id', $dataId)->update($data);
         return $result;
     }
 
-    function updateSortOrder($tblName, $listId, $parentId = 0) {
+    public function updateSortOrder($tblName, $listId, $parentId = 0)
+    {
         $idx = 0;
         try {
             \DB::beginTransaction();
-
-            foreach ($listId as $id) {
+            foreach ($listId as $i => $id) {
                 $idx++;
                 $result = DB::table($tblName)
-                        ->where('id', $id['id'])
-                        ->update([
-                    'sort_order' => $idx,
-                    'parent_id' => intval($parentId)
-                ]);
+                    ->where('id', $id['id'])
+                    ->update([
+                        'sort_order' => $idx,
+                        'parent_id' => intval($parentId),
+                    ]);
                 if (isset($id['children'])) {
                     self::updateSortOrder($tblName, $id['children'], $id['id']);
                 }
             }
-
             \DB::commit();
-            return \ReturnCode::RETURN_SUCCESS;
+            return RETURN_SUCCESS;
         } catch (\Exception $exc) {
             \DB::rollback();
             echo $exc->getTraceAsString();
-            return \ReturnCode::RETURN_ERROR;
+            return RETURN_ERROR;
         }
     }
 
-    public function htmlListData($tblName, $routeEdit, $routeDelete, $parentId = 0, $popup = true, $conditions = []) {
+    public function htmlListData($tblName, $routeEdit, $routeDelete, $parentId = 0, $popup = true, $conditions = [])
+    {
         $list = DB::table($tblName)->where('parent_id', $parentId);
         if (!empty($conditions)) {
             foreach ($conditions as $collumn => $value) {
@@ -188,10 +201,11 @@ class EntityCommon {
                     $urlEdit = route($routeEdit, [$item->id]);
                 }
 
-                if ($popup == true)
+                if ($popup == true) {
                     $even = ' onclick="loadPopupLarge(\'' . $urlEdit . '\')" data-toggle="modal" data-target=".bs-modal-lg" ';
-                else
+                } else {
                     $even = ' href="' . $urlEdit . '" ';
+                }
 
                 $manager = '';
                 $linkManager = '';
@@ -215,14 +229,14 @@ class EntityCommon {
                 }
 
                 $htmlList .= '<li data-id="' . $item->id . '" class="dd-item">'
-                        . '<div class="option-menu">'
-                        . '<a ' . $even . ' title="Sửa"><i data-pack="default" class="ion-edit"></i></a>&nbsp;&nbsp;'
-                        . $manager
-                        . $img
-                        . '<a onclick="deleteRow(\'' . url(route($routeDelete, [$item->id])) . '\')"  tabindex="-1"  title="Xóa"><i data-pack="default" class="ion-trash-a"></i></a>&nbsp;&nbsp;</div>'
-                        . '<div class="card b0 dd-handle"><div class="mda-list">'
-                        . '<div class="mda-list-item"><div class="mda-list-item-icon item-grab"><em class="ion-drag icon-lg"></em></div>'
-                        . '<div class="mda-list-item-text mda-2-line">';
+                . '<div class="option-menu">'
+                . '<a ' . $even . ' title="Sửa"><i data-pack="default" class="ion-edit"></i></a>&nbsp;&nbsp;'
+                . $manager
+                . $img
+                . '<a onclick="deleteRow(\'' . url(route($routeDelete, [$item->id])) . '\')"  tabindex="-1"  title="Xóa"><i data-pack="default" class="ion-trash-a"></i></a>&nbsp;&nbsp;</div>'
+                    . '<div class="card b0 dd-handle"><div class="mda-list">'
+                    . '<div class="mda-list-item"><div class="mda-list-item-icon item-grab"><em class="ion-drag icon-lg"></em></div>'
+                    . '<div class="mda-list-item-text mda-2-line">';
                 $htmlList .= '<h4>' . $name . ' </h4>';
                 $htmlList .= '</div><div class="_right">' . '</div></div></div></div>';
                 $subMenu = DB::table($tblName)->where('parent_id', $item->id)->count();
@@ -233,7 +247,6 @@ class EntityCommon {
             }
             $htmlList .= '</ol>';
         }
-        return($htmlList);
+        return ($htmlList);
     }
-
 }

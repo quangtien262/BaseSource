@@ -3,13 +3,13 @@
         <div class="col-xs-6 col-sm-3">
             <br/>
             <label>{{ $col->display_name or $col->name }}</label>
-            <input name="{{ $col->name or '' }}" value="{{ $data[$col->name] or '' }}" class="form-control" type="text" placeholder=""/>
+            <input name="{{ $col->name or '' }}" value="{{ $_GET[$col->name] or '' }}" class="form-control" type="text" placeholder=""/>
         </div>
     @elseif($col->type_edit == 'textarea')
         <div class="col-xs-6 col-sm-3">
             <br/>
             <label>{{ $col->display_name or $col->name }}</label>
-            <textarea name="{{ $col->name or '' }}" class="form-control">{{ $data[$col->name] or '' }}</textarea>
+            <textarea name="{{ $col->name or '' }}" class="form-control">{{ $_GET[$col->name] or '' }}</textarea>
         </div>
     @elseif($col->type_edit == 'select')
         <div class="col-xs-6 col-sm-3">
@@ -25,13 +25,13 @@
         <div class="col-xs-6 col-sm-3">
             <br/>
             <label>{{ $col->display_name or $col->name }}</label>
-            <textarea name="{{ $col->name or '' }}" class="summernote">{{ $data[$col->name] or '' }}</textarea>
+            <textarea name="{{ $col->name or '' }}" class="summernote">{{ $_GET[$col->name] or '' }}</textarea>
         </div>
     @elseif($col->type_edit == 'selects')
         <div class="col-xs-6 col-sm-3">
             <br/>
             <label>{{ $col->display_name or $col->name }}</label>
-            {!! app('ClassTables')->getHtmlSelectForTable($col->name, $col->select_table_id, $data[$col->name] ? $data[$col->name]:0, true) !!}
+            {!! app('ClassTables')->getHtmlSelectForTable($col->name, $col->select_table_id, $_GET[$col->name] ? $_GET[$col->name]:0, true) !!}
         </div>
     @elseif($col->type_edit == 'select2')
         <span>select2</span>
@@ -49,9 +49,9 @@
                         <i class="fa fa-picture-o"></i> Chọn file
                     </a>
                 </span>
-                <input id="thumbnail" class="form-control" type="text" name="{{ $col->name or '' }}" value="{{ $data[$col->name] or '' }}"/>
+                <input id="thumbnail" class="form-control" type="text" name="{{ $col->name or '' }}" value="{{ $_GET[$col->name] or '' }}"/>
             </div>
-            <img id="holder" style="margin-top:15px;max-height:100px;" src="{{ $data[$col->name] or '' }}">
+            <img id="holder" style="margin-top:15px;max-height:100px;" src="{{ $_GET[$col->name] or '' }}">
         </div>
     @elseif($col->type_edit == 'images_laravel')
         <span>image_laravel</span>
@@ -67,6 +67,6 @@
         <div class="col-xs-6 col-sm-3">
             <br/>
             <label>{{ $col->display_name or $col->name }}</label>
-            <input name="{{ $col->name or '' }}" value="{{ $data[$col->name] or '' }}" class="form-control datepicker-1" type="text" placeholder="{{ $data[$col->display_name] or '' }}"/>
+            <input name="{{ $col->name or '' }}" value="{{ $_GET[$col->name] or '' }}" class="form-control datepicker-1" type="text" placeholder="{{ $data[$col->display_name] or '' }}"/>
         </div>
     @endif

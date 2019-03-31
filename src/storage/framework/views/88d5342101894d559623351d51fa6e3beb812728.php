@@ -3,13 +3,13 @@
         <div class="col-xs-6 col-sm-3">
             <br/>
             <label><?php echo e(isset($col->display_name) ? $col->display_name : $col->name); ?></label>
-            <input name="<?php echo e(isset($col->name) ? $col->name : ''); ?>" value="<?php echo e(isset($data[$col->name]) ? $data[$col->name] : ''); ?>" class="form-control" type="text" placeholder=""/>
+            <input name="<?php echo e(isset($col->name) ? $col->name : ''); ?>" value="<?php echo e(isset($_GET[$col->name]) ? $_GET[$col->name] : ''); ?>" class="form-control" type="text" placeholder=""/>
         </div>
     <?php elseif($col->type_edit == 'textarea'): ?>
         <div class="col-xs-6 col-sm-3">
             <br/>
             <label><?php echo e(isset($col->display_name) ? $col->display_name : $col->name); ?></label>
-            <textarea name="<?php echo e(isset($col->name) ? $col->name : ''); ?>" class="form-control"><?php echo e(isset($data[$col->name]) ? $data[$col->name] : ''); ?></textarea>
+            <textarea name="<?php echo e(isset($col->name) ? $col->name : ''); ?>" class="form-control"><?php echo e(isset($_GET[$col->name]) ? $_GET[$col->name] : ''); ?></textarea>
         </div>
     <?php elseif($col->type_edit == 'select'): ?>
         <div class="col-xs-6 col-sm-3">
@@ -27,13 +27,13 @@
         <div class="col-xs-6 col-sm-3">
             <br/>
             <label><?php echo e(isset($col->display_name) ? $col->display_name : $col->name); ?></label>
-            <textarea name="<?php echo e(isset($col->name) ? $col->name : ''); ?>" class="summernote"><?php echo e(isset($data[$col->name]) ? $data[$col->name] : ''); ?></textarea>
+            <textarea name="<?php echo e(isset($col->name) ? $col->name : ''); ?>" class="summernote"><?php echo e(isset($_GET[$col->name]) ? $_GET[$col->name] : ''); ?></textarea>
         </div>
     <?php elseif($col->type_edit == 'selects'): ?>
         <div class="col-xs-6 col-sm-3">
             <br/>
             <label><?php echo e(isset($col->display_name) ? $col->display_name : $col->name); ?></label>
-            <?php echo app('ClassTables')->getHtmlSelectForTable($col->name, $col->select_table_id, $data[$col->name] ? $data[$col->name]:0, true); ?>
+            <?php echo app('ClassTables')->getHtmlSelectForTable($col->name, $col->select_table_id, $_GET[$col->name] ? $_GET[$col->name]:0, true); ?>
 
         </div>
     <?php elseif($col->type_edit == 'select2'): ?>
@@ -52,9 +52,9 @@
                         <i class="fa fa-picture-o"></i> Chọn file
                     </a>
                 </span>
-                <input id="thumbnail" class="form-control" type="text" name="<?php echo e(isset($col->name) ? $col->name : ''); ?>" value="<?php echo e(isset($data[$col->name]) ? $data[$col->name] : ''); ?>"/>
+                <input id="thumbnail" class="form-control" type="text" name="<?php echo e(isset($col->name) ? $col->name : ''); ?>" value="<?php echo e(isset($_GET[$col->name]) ? $_GET[$col->name] : ''); ?>"/>
             </div>
-            <img id="holder" style="margin-top:15px;max-height:100px;" src="<?php echo e(isset($data[$col->name]) ? $data[$col->name] : ''); ?>">
+            <img id="holder" style="margin-top:15px;max-height:100px;" src="<?php echo e(isset($_GET[$col->name]) ? $_GET[$col->name] : ''); ?>">
         </div>
     <?php elseif($col->type_edit == 'images_laravel'): ?>
         <span>image_laravel</span>
@@ -70,6 +70,6 @@
         <div class="col-xs-6 col-sm-3">
             <br/>
             <label><?php echo e(isset($col->display_name) ? $col->display_name : $col->name); ?></label>
-            <input name="<?php echo e(isset($col->name) ? $col->name : ''); ?>" value="<?php echo e(isset($data[$col->name]) ? $data[$col->name] : ''); ?>" class="form-control datepicker-1" type="text" placeholder="<?php echo e(isset($data[$col->display_name]) ? $data[$col->display_name] : ''); ?>"/>
+            <input name="<?php echo e(isset($col->name) ? $col->name : ''); ?>" value="<?php echo e(isset($_GET[$col->name]) ? $_GET[$col->name] : ''); ?>" class="form-control datepicker-1" type="text" placeholder="<?php echo e(isset($data[$col->display_name]) ? $data[$col->display_name] : ''); ?>"/>
         </div>
     <?php endif; ?>

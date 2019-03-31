@@ -4,51 +4,50 @@ namespace App\Services\Entity;
 
 use App\Model\Tables;
 use App\Model\TablesColumn;
+use Illuminate\Support\Facades\DB;
 
-class ClassTables {
+class ClassTables
+{
 
-    public function getAllTables() {
+    public function getAllTables()
+    {
         return Tables::all();
     }
 
-    public function getTable($id) {
+    public function getTable($id)
+    {
         return Tables::find($id);
     }
 
-    public function getColumn($id) {
+    public function getColumn($id)
+    {
         return TablesColumn::find($id);
     }
 
-    public function getColumnByTableId($tableId) {
+    public function getColumnByTableId($tableId)
+    {
         return TablesColumn::where('table_id', $tableId)->orderBy('sort_order', 'asc')->get();
     }
 
-    public function saveTable($id, $request) {
+    public function saveTable($id, $request)
+    {
         if ($id > 0) {
             $tables = Tables::find($id);
         } else {
             $tables = new Tables;
         }
-        if (!empty($request['table_name'])) {
-            $tables->name = $request['table_name'];
-        }
-        if (!empty($request['table_edit'])) {
-            $tables->is_edit = $request['table_edit'];
-        }
-        if (!empty($request['table_type_show'])) {
-            $tables->type_show = $request['table_type_show'];
-        }
-        if (!empty($request['model_name'])) {
-            $tables->model_name = $request['model_name'];
-        }
-        if (!empty($request['display_name'])) {
-            $tables->display_name = $request['display_name'];
-        }
+        $tables->count_item_of_page = $request['count_item_of_page'];
+        $tables->display_name = $request['display_name'];
+        $tables->model_name = $request['model_name'];
+        $tables->type_show = $request['table_type_show'];
+        $tables->is_edit = $request['table_edit'];
+        $tables->name = $request['table_name'];
         $tables->save();
         return $tables;
     }
 
-    public function saveColumn($request) {
+    public function saveColumn($request)
+    {
         if (!empty($request['column_id'])) {
             $block = TablesColumn::find($request['column_id']);
         } else {
@@ -83,17 +82,60 @@ class ClassTables {
         return $block;
     }
 
-    public function deleteTable($tableId) {
+    public function deleteTable($tableId)
+    {
         return Tables::find($tableId)->delete();
     }
 
-    public function deleteColumn($columnId) {
+    public function deleteColumn($columnId)
+    {
         return TablesColumn::find($columnId)->delete();
     }
 
-    public function getHtmlMenuAdmin() {
+    public function getRowsByConditions($table, $columns, $request)
+    {
+        //select table
+        $data = DB::table($table->name);
+        //where condition if exist conditions
+        foreach ($columns as $col) {
+            if ($col['add2search'] == 1 && !empty($request[$col->name])) {
+                // $conditions[$col->name] = $request[$col->name];
+                switch ($col->search_type) {
+                    case '2':
+                        $data = $data->where($col->name, '=', $request[$col->name]);
+                        break;
+                    case '3':
+                        $data = $data->where($col->name, '!=', $request[$col->name]);
+                        break;
+                    case '4':
+                        $data = $data->where($col->name, 'like', '%' . $request[$col->name]);
+                        break;
+                    case '5':
+                        $data = $data->where($col->name, 'like', $request[$col->name] . '%');
+                        break;
+                    case '6':
+                        $data = $data->whereBetween($col->name, [$request[$col->name . '01'], $request[$col->name . '02']]);
+                        break;
+                    default:
+                        //case = 1 or other
+                        $data = $data->where($col->name, 'like', '%' . $request[$col->name] . '%');
+                        break;
+                }
+            }
+        }
+        //The count of data
+        $data = $data->paginate($table->count_item_of_page);
+
+        return $data;
+    }
+
+    public function getHtmlMenuAdmin()
+    {
         $html = '';
-        $tables = self::getAllTables();
+        // $conditions = ['parent_id' => $parentId];
+        $conditions = ['is_edit' => 1];
+        $order = ['sort_order', 'asc'];
+        $tables = app('EntityCommon')->getRowsByConditions('tables', $conditions, 0, $order);
         foreach ($tables as $table) {
             $countData = app('EntityCommon')->getCountData($table->name);
             $html .= '<li>
@@ -109,7 +151,8 @@ class ClassTables {
         return $html;
     }
 
-    public function getHtmlSelectForTable($name, $tblRowId, $selectedId = 0, $multiple = false) {
+    public function getHtmlSelectForTable($name, $tblRowId, $selectedId = 0, $multiple = false)
+    {
         if ($multiple) {
             $html = '<select multiple class="form-control" name="' . $name . '">';
         } else {
@@ -130,36 +173,98 @@ class ClassTables {
         return $html;
     }
 
-    public function getHtmlListDragDrop($table, $columns, $parentId) {
-        $html = '<ol class="dd-list">';
+    ////apply for all table have config in table tables
+    public function getHtmlListDragDrop($table, $parentId = 0)
+    {
+        $html = '';
         $conditions = [];
-        $conditions['parent_id'] = 0;
+        $conditions['parent_id'] = $parentId;
         $order = ['sort_order', 'asc'];
         $tableData = app('EntityCommon')->getRowsByConditions($table->name, $conditions, $limit = 0, $order);
-
-        foreach ($tableData as $td) {
-            $html .= '<li class="dd-item" data-id="'.$td->id.'">
+        
+        if (!empty($tableData)) {
+            $html = '<ol class="dd-list">';
+            foreach ($tableData as $td) {
+                $img = '';
+                if (!empty($td->image)) {
+                    $img = '<div class="mda-list-item-icon"><img style="height:40px" src="' . $td->image . '"/></div>';
+                }
+                $html .= '<li class="dd-item" data-id="' . $td->id . '">
                             <div class="card b0 dd-handle">
                                 <div class="mda-list">
                                     <div class="mda-list-item">
-                                        <div class="mda-list-item-icon item-grab"><em class="ion-drag icon-lg"></em></div>
-                                        <div class="mda-list-item-icon bg-info"><em class="ion-coffee icon-lg"></em></div>
+                                        <div class="mda-list-item-icon item-grab" style="padding-top: 9px;">
+                                            <em class="ion-drag icon-lg"></em>
+                                        </div>
+                                        ' . $img . '
                                         <div class="mda-list-item-text mda-2-line">
-                                            <h3>'.$td->name.'</h3>
-                                            <h4>description</h4>
+                                            <h3>' . $td->name . '</h3>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="'.route('editDataTbl', [$table->id, $td->id]).'" class="btn btn-sm btn-success">Edit</a>
-                            <a href="'.route('deleteTable', ['table'=>$table->id]).'" class="btn btn-sm btn-default">Delete</a>';
-            if ($table->type_show == 2) {
-
+                            <div class="option-dd">
+                                &nbsp;
+                                <a href="' . route('editDataTbl', [$table->id, $td->id]) . '"><i class="ion-edit"></i></a>
+                                &nbsp;
+                                <a href="' . route('deleteRow', [$table->id, $td->id]) . '"><i class="ion-trash-a"></i></a>
+                            </div>';
+                // check sub data
+                $subData = DB::table($table->name)->where('parent_id', $td->id)->count();
+                if ($subData > 0) {
+                    $html .= self::getHtmlListDragDrop($table, $td->id);
+                }
+                $html .= '</li>';
             }
-            $html .= '</li>';
+            $html .= '</ol>';
         }
-        $html .= '</ol>';
         return $html;
     }
 
+    //apply for table tables 
+    public function getHtmlListTable($parentId = 0)
+    {
+        $html = '';
+        $conditions = ['parent_id' => $parentId];
+        $order = ['sort_order', 'asc'];
+        $tableData = app('EntityCommon')->getRowsByConditions('tables', $conditions, 0, $order);
+        
+        if (!empty($tableData)) {
+            $html = '<ol class="dd-list">';
+            foreach ($tableData as $td) {
+                $img = '';
+                if (!empty($td->image)) {
+                    $img = '<div class="mda-list-item-icon"><img style="height:40px" src="' . $td->image . '"/></div>';
+                }
+                $html .= '<li class="dd-item" data-id="' . $td->id . '">
+                            <div class="card b0 dd-handle">
+                                <div class="mda-list">
+                                    <div class="mda-list-item">
+                                        <div class="mda-list-item-icon item-grab" style="padding-top: 9px;">
+                                            <em class="ion-drag icon-lg"></em>
+                                        </div>
+                                        ' . $img . '
+                                        <div class="mda-list-item-text mda-2-line">
+                                            <h3>' . $td->name . ' - '. $td->display_name .'</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="option-dd">
+                                &nbsp;
+                                <a href="' . route('configTbl_edit', [$td->id]) . '"><i class="ion-edit"></i></a>
+                                &nbsp;
+                                <a href="' . route('deleteTable', ['table'=>$td->id]) . '"><i class="ion-trash-a"></i></a>
+                            </div>';
+                // check sub data
+                $subData = DB::table('tables')->where('parent_id', $td->id)->count();
+                if ($subData > 0) {
+                    $html .= self::getHtmlListTable($td->id);
+                }
+                $html .= '</li>';
+            }
+            $html .= '</ol>';
+        }
+        return $html;
+    }
 }

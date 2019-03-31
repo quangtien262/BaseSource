@@ -25,9 +25,15 @@
                             <fieldset class="b0">
                                 <div class="row">
                                     <div class="col-xs-6 col-sm-3">
+                                        <label>Tên bảng</label>
                                         <input value="{{ $table->name or '' }}" class="form-control" id="id-source" type="text" name="table_name" placeholder=" Table name"/>
                                     </div>
                                     <div class="col-xs-6 col-sm-3">
+                                        <label>Tên hiển thị</label>
+                                        <input value="{{ $table->display_name or '' }}" class="form-control" type="text" name="display_name" placeholder="Dislay name"/>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-3">
+                                        <label>Cho phép sửa bảng này không?</label>
                                         <select name="table_edit" class="form-control">
                                             @foreach(unserialize(IS_EDIT) as $keyEdit => $valEdit)
                                                 <option {{ isset($table->is_edit) && $table->is_edit == $keyEdit ? 'selected="selected"':'' }}  value="{{$keyEdit}}">{{$valEdit}}</option>
@@ -35,6 +41,7 @@
                                         </select>
                                     </div>
                                     <div class="col-xs-6 col-sm-3">
+                                        <label>Kiểu show dữ liệu ở trang danh sách</label>
                                         <select name="table_type_show" class="form-control">
                                             <option value="">Type show</option>
                                             @foreach(unserialize(TABLE_TYPE_SHOW) as $keyType => $valType)
@@ -43,10 +50,14 @@
                                         </select>
                                     </div>
                                     <div class="col-xs-6 col-sm-3">
-                                        <input value="{{ $table->model_name or '' }}" class="form-control" type="text" name="model_name" placeholder="Model name"/>
+                                        <br/>
+                                        <label>Số lượng Item trên 1 trang</label>
+                                        <input value="{{ $table->count_item_of_page or 30 }}" class="form-control" type="number" name="count_item_of_page" placeholder=""/>
                                     </div>
                                     <div class="col-xs-6 col-sm-3">
-                                        <input value="{{ $table->display_name or '' }}" class="form-control" type="text" name="display_name" placeholder="Dislay name"/>
+                                        <br/>
+                                        <label>Nhập tên model cần tạo</label>
+                                        <input value="{{ $table->model_name or '' }}" class="form-control" type="text" name="model_name" placeholder="Model name"/>
                                     </div>
                                 </div>
 
@@ -54,7 +65,126 @@
                         </form> 
                         @if(!empty($tableId))
                         <fieldset class="b0">
-                            <legend>Column</legend>
+                            @if(empty($_GET['collumn']))
+                                <legend>Add Column</legend>
+                            @else
+                                <legend>Edit Column</legend>
+                            @endif
+                        </fieldset>
+                        <fieldset class="b0">
+                            <form class="form-validate form-horizontal" id="form-column" method="post" action="{{ route('editColumn') }}">
+                                {{ csrf_field()}}
+                                <input type="hidden" name="table_id" value="{{ $table->id or 0 }}"/>
+                                <input type="hidden" name="column_id" value="{{ $_GET['column'] or 0 }}"/>
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-3">
+                                        <label>Tên cột</label>
+                                        <input value="{{ $column->name or '' }}" class="form-control" type="text" name="column_name" placeholder="Column name" required=""/>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-3">
+                                        <label>Tên hiển thị</label>
+                                        <input value="{{ $column->display_name or '' }}" class="form-control" type="text" name="display_name" placeholder="Display name" required=""/>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-3">
+                                        <label>Kiểu dữ liệu</label>
+                                        <select name="column_type" class="form-control" required="">
+                                            @foreach(unserialize(COLUMN_TYPE) as $columnType)
+                                                <option {{ isset($column->type) && $column->type == $columnType ? 'selected="selected"':'' }}  value="{{$columnType}}">{{$columnType}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-3">
+                                        <label>Max length</label>
+                                        <input value="{{ $column->max_length or '' }}" class="form-control" id="id-source" type="text" name="max_length" placeholder="Max length"/>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-3">
+                                        <br/>
+                                        <label>Giá trị mặc định</label>
+                                        <input value="{{ $column->value_default or '' }}" class="form-control" type="text" name="value_default" placeholder="default"/>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-3">
+                                        <br/>
+                                        <label>Require</label>
+                                        <select name="require" class="form-control" required="">
+                                            @foreach(unserialize(IS_REQUIRE) as $key => $val)
+                                                <option {{ isset($column->require) && $column->require == $key ? 'selected="selected"':'' }}  value="{{$key}}">{{$val}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-3">
+                                        <br/>
+                                        <label>Có cho phép chỉnh sửa hay không</label>
+                                        <select name="edit" class="form-control" required="">
+                                            @foreach(unserialize(IS_EDIT) as $key => $val)
+                                                <option {{ isset($column->edit) && $column->edit == $key ? 'selected="selected"':'' }}  value="{{$key}}">{{$val}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-3">
+                                        <br/>
+                                        <label>Thứ tự sắp xếp</label>
+                                        <input value="{{ $column->sort_order or '' }}" class="form-control" type="number" name="sort_order" placeholder="Sort Order"/>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-3">
+                                        <br/>
+                                        <label>Hiển thị trong form search?</label>
+                                        <select name="add2search" class="form-control">
+                                            @foreach(unserialize(ADD2SEARCH) as $key => $val)
+                                                <option {{ isset($column->add2search) && $column->add2search == $key ? 'selected="selected"':'' }}  value="{{$key}}">{{$val}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-3">
+                                        <br/>
+                                        <label>Kiểu tìm kiếm</label>
+                                        <select name="search_type" class="form-control">
+                                            @foreach(unserialize(SEARCH_TYPE) as $key => $val)
+                                                <option {{ isset($column->search_type) && $column->search_type == $key ? 'selected="selected"':'' }}  value="{{$key}}">{{$val}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-3">
+                                        <br/>
+                                        <label>Hiển thị ở trang danh sách?</label>
+                                        <select name="show_in_list" class="form-control">
+                                            @foreach(unserialize(SHOW_IN_LIST) as $key => $val)
+                                                <option {{ isset($column->show_in_list) && $column->show_in_list == $key ? 'selected="selected"':'' }}  value="{{$key}}">{{$val}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-3">
+                                        <br/>
+                                        <label>Kiểu nhập dữ liệu</label>
+                                        <select name="type_edit" class="form-control">
+                                            @foreach(unserialize(TYPE_EDIT) as $typeValue => $typeName)
+                                                <option {{ isset($column->type_edit) && $column->type_edit == $typeValue ? 'selected="selected"':'' }}  value="{{$typeValue}}">{{$typeName}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-3">
+                                        <label>Chọn table select <Áp dụng với kiểu dữ liệu là select></label>
+                                        <select name="select_table_id" class="form-control">
+                                            <option value="">Please chose table data</option>
+                                            @foreach($tables as $tbl)
+                                                <option {{ isset($column->select_table_id) && $column->select_table_id == $tbl->id ? 'selected="selected"':'' }}  value="{{$tbl->id}}">{{$tbl->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-3 center-block">
+                                        @if(empty($_GET['column']))
+                                            <button class="btn btn-primary" type="submit" name="add_field">Thêm mới</button>
+                                        @else
+                                            <button class="btn btn-primary" type="submit" name="edit_field">Sửa</button>
+                                        @endif
+                                        <a href="{{ route('configTbl_edit', [$tableId]) }}" class="btn btn-default" type="button">Cancel</a>
+                                    </div>
+                                </div>
+                            </form> 
+                        </fieldset>
+                        <fieldset class="b0">
+                            <legend>List Column</legend>
                             <table class="table-datatable table table-striped table-hover mv-lg">
                                 <thead>
                                     <tr>
@@ -102,98 +232,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                        </fieldset>
-
-                        <fieldset class="b0">
-                            @if(empty($_GET['collumn']))
-                                <legend>Add Column</legend>
-                            @else
-                                <legend>Edit Column</legend>
-                            @endif
-                        </fieldset>
-                        <fieldset class="b0">
-                            <form class="form-validate form-horizontal" id="form-column" method="post" action="{{ route('editColumn') }}">
-                                {{ csrf_field()}}
-                                <input type="hidden" name="table_id" value="{{ $table->id or 0 }}"/>
-                                <input type="hidden" name="column_id" value="{{ $_GET['column'] or 0 }}"/>
-                                <div class="row">
-                                    <div class="col-xs-6 col-sm-3">
-                                        <input value="{{ $column->name or '' }}" class="form-control" type="text" name="column_name" placeholder="Column name" required=""/>
-                                    </div>
-                                    <div class="col-xs-6 col-sm-3">
-                                        <input value="{{ $column->display_name or '' }}" class="form-control" type="text" name="display_name" placeholder="Display name" required=""/>
-                                    </div>
-                                    <div class="col-xs-6 col-sm-3">
-                                        <select name="column_type" class="form-control" required="">
-                                            @foreach(unserialize(COLUMN_TYPE) as $columnType)
-                                                <option {{ isset($column->type) && $column->type == $columnType ? 'selected="selected"':'' }}  value="{{$columnType}}">{{$columnType}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-xs-6 col-sm-3">
-                                        <input value="{{ $column->max_length or '' }}" class="form-control" id="id-source" type="text" name="max_length" placeholder="Max length"/>
-                                    </div>
-                                    <div class="col-xs-6 col-sm-3">
-                                        <input value="{{ $column->value_default or '' }}" class="form-control" type="text" name="value_default" placeholder="default"/>
-                                    </div>
-                                    <div class="col-xs-6 col-sm-3">
-                                        <select name="require" class="form-control" required="">
-                                            @foreach(unserialize(IS_REQUIRE) as $key => $val)
-                                                <option {{ isset($column->require) && $column->require == $key ? 'selected="selected"':'' }}  value="{{$key}}">{{$val}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-xs-6 col-sm-3">
-                                        <select name="edit" class="form-control" required="">
-                                            @foreach(unserialize(IS_EDIT) as $key => $val)
-                                                <option {{ isset($column->edit) && $column->edit == $key ? 'selected="selected"':'' }}  value="{{$key}}">{{$val}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-xs-6 col-sm-3">
-                                        <input value="{{ $column->sort_order or '' }}" class="form-control" type="number" name="sort_order" placeholder="Sort Order"/>
-                                    </div>
-                                    <div class="col-xs-6 col-sm-3">
-                                        <select name="add2search" class="form-control">
-                                            @foreach(unserialize(ADD2SEARCH) as $key => $val)
-                                                <option {{ isset($column->add2search) && $column->add2search == $key ? 'selected="selected"':'' }}  value="{{$key}}">{{$val}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-xs-6 col-sm-3">
-                                        <select name="show_in_list" class="form-control">
-                                            @foreach(unserialize(SHOW_IN_LIST) as $key => $val)
-                                                <option {{ isset($column->show_in_list) && $column->show_in_list == $key ? 'selected="selected"':'' }}  value="{{$key}}">{{$val}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-xs-6 col-sm-3">
-                                        <select name="type_edit" class="form-control">
-                                            @foreach(unserialize(TYPE_EDIT) as $typeValue => $typeName)
-                                                <option {{ isset($column->type_edit) && $column->type_edit == $typeValue ? 'selected="selected"':'' }}  value="{{$typeValue}}">{{$typeName}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-xs-6 col-sm-3">
-                                        <select name="select_table_id" class="form-control">
-                                            <option value="">Please chose table data</option>
-                                            @foreach($tables as $tbl)
-                                                <option {{ isset($column->select_table_id) && $column->select_table_id == $tbl->id ? 'selected="selected"':'' }}  value="{{$tbl->id}}">{{$tbl->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-6 col-sm-3 center-block">
-                                        @if(empty($_GET['column']))
-                                            <button class="btn btn-primary" type="submit" name="add_field">Add New Column</button>
-                                        @else
-                                            <button class="btn btn-primary" type="submit" name="edit_field">Edit Column</button>
-                                        @endif
-                                        <a href="{{ route('configTbl_edit', [$tableId]) }}" class="btn btn-default" type="button">Cancel</a>
-                                    </div>
-                                </div>
-                            </form> 
                         </fieldset>
                         @endif
                         <hr>

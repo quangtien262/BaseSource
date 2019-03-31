@@ -4218,6 +4218,7 @@ footer {
 }
 .mda-list > .mda-list-item {
   padding: 0 22px;
+  background: #eeeeee;
 }
 .mda-list > .mda-list-item:before,
 .mda-list > .mda-list-item:after {
@@ -4238,6 +4239,7 @@ footer {
   margin-right: 20px;
   border-radius: 50%;
   margin-left: 20px;
+  color: #000000;
 }
 .mda-list > .mda-list-item > .mda-list-item-icon {
   text-align: center;
@@ -4260,11 +4262,12 @@ footer {
   padding-top: 0px;
 }
 .mda-list > .mda-list-item > .mda-list-item-text h3 {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
   letter-spacing: .01em;
-  margin: 0 0 6px;
-  line-height: .75em;
+  margin: 0 0 0px;
+  color: #000000;
+  line-height: 3em;
 }
 .mda-list > .mda-list-item > .mda-list-item-text h4 {
   font-size: 14px;
@@ -4272,6 +4275,7 @@ footer {
   font-weight: 400;
   margin: 10px 0 5px;
   line-height: .75em;
+  color: #000000;
 }
 .mda-list > .mda-list-item > .mda-list-item-text p {
   font-size: 14px;
@@ -7995,3 +7999,14 @@ textarea.no-resize {
 .logo_ht {
     height: 32px
 }
+.left {
+  float: left;
+}
+._right {
+  float: right;
+}
+.option-dd {
+  margin-top: -42px;
+  position: absolute;
+}
+
