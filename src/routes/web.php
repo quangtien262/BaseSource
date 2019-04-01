@@ -56,5 +56,6 @@ Route::group(['middleware' => \App\Http\Middleware\Language::class], function ()
         Route::post('/tbl/edit-row/{tableId}/{dataId}', 'Backend\TblController@submitFormDataTbl');
         Route::get('/tbl/delete-row/{tableId}/{dataId}', 'Backend\TblController@deleteRow')->name('deleteRow');
         Route::post('/tbl/sort-order-row/{tableId}', 'Backend\TblController@sortOrderRows')->name('sortOrderRows');
+        Route::post('/configtbl/sort-order-Column/{tableId}', 'Backend\TblController@sortOrderColumn')->name('sortOrderColumn');
     });
 // });

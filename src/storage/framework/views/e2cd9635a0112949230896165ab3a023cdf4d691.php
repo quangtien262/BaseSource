@@ -64,10 +64,10 @@
                         </form> 
                         <?php if(!empty($tableId)): ?>
                         <fieldset class="b0">
-                            <?php if(empty($_GET['collumn'])): ?>
+                            <?php if(empty($_GET['column'])): ?>
                                 <legend>Add Column</legend>
                             <?php else: ?>
-                                <legend>Edit Column</legend>
+                                <legend>Edit Column: <?php echo e(isset($column->name) ? $column->name : ''); ?></legend>
                             <?php endif; ?>
                         </fieldset>
                         <fieldset class="b0">
@@ -185,58 +185,45 @@
                         </fieldset>
                         <fieldset class="b0">
                             <legend>List Column</legend>
-                            <table class="table-datatable table table-striped table-hover mv-lg">
-                                <thead>
-                                    <tr>
-                                        <th>Field Name</th>
-                                        <th>Title</th>
-                                        <th>Type</th>
-                                        <th>Default</th>
-                                        <th>Edit</th>
-                                        <th>Search</th>
-                                        <th>Type show</th>
-                                        <th>List</th>
-                                        <th>Option</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="gradeX">
-                                        <td>id</td>
-                                        <td></td>
-                                        <td>Int 15</td>
-                                        <td>None</td>
-                                        <td>Not Edit</td>
-                                        <td>No</td>
-                                        <td>No</td>
-                                        <td>No</td>
-                                        <td>
-                                            <button disabled="" class="btn btn-sm">Edit</button>
-                                            <button disabled="" class="btn btn-sm">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <?php $__currentLoopData = $columns; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $col): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <tr class="gradeX">
-                                        <td><?php echo e($col->name); ?></td>
-                                        <td><?php echo e($col->display_name); ?></td>
-                                        <td><?php echo e($col->type . ' ' . $col->max_length); ?></td>
-                                        <td><?php echo e($col->value_default); ?></td>
-                                        <td><?php echo e(empty($col->edit) ? 'No':'Yes'); ?></td>
-                                        <td><?php echo e(empty($col->add2search) ? 'No':'Yes'); ?></td>
-                                        <td><?php echo e($col->type_edit); ?></td>
-                                        <td><?php echo e($col->show_in_list); ?></td>
-                                        <td>
-                                            <a href="<?php echo e(route('configTbl_edit', [$table->id, 'column' => $col->id])); ?>" class="btn btn-sm btn-success">Edit</a>
-                                            <a href="<?php echo e(route('deleteColumn', ['table' => $table->id, 'column' => $col->id])); ?>" class="btn btn-sm btn-default">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                </tbody>
-                            </table>
+                            <section>
+                                <div class="container-fluid">
+                                    <div class="card">
+                                        <div class="card-heading">
+                                            <div class="row">
+                                                    <div class="js-nestable-action">
+                                                        <button type="submit" 
+                                                                class="btn btn-primary btn-sm "
+                                                                onclick="submitForm('.loading', '.form-nestable', 'none')" 
+                                                                style="margin-left: 10px">
+                                                            <i class="ion-chevron-down"></i>
+                                                            Cập nhật lại thứ tự
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            <hr/>
+                                            <div class="row loading"></div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="dd" id="nestable">
+                                                        <?php echo $htmlList; ?>
+
+                                                    </div>
+                                                    <form class="form-nestable" method="POST" action="<?php echo e(route('sortOrderColumn',[$tableId])); ?>">
+                                                        <?php echo e(csrf_field()); ?>
+
+                                                        <textarea style="display: none" name="ids" class="well" id="nestable-output"></textarea>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
                         </fieldset>
                         <?php endif; ?>
                         <hr>
-                        <!-- END panel-->
-
                     </div>
                 </div>
                 <!-- END row-->

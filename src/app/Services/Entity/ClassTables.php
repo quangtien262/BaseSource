@@ -267,4 +267,54 @@ class ClassTables
         }
         return $html;
     }
+
+    //apply for table table_column 
+    public function getHtmlListColumn($tableId, $parentId = 0)
+    {
+        $html = '';
+        $conditions = ['parent_id' => $parentId, 'table_id' => $tableId];
+        $order = ['sort_order', 'asc'];
+        $tableData = app('EntityCommon')->getRowsByConditions('table_column', $conditions, 0, $order);
+        
+        if (!empty($tableData)) {
+            $html = '<ol class="dd-list">';
+            foreach ($tableData as $td) {
+                $img = '';
+                if (!empty($td->image)) {
+                    $img = '<div class="mda-list-item-icon"><img style="height:40px" src="' . $td->image . '"/></div>';
+                }
+                $html .= '<li class="dd-item" data-id="' . $td->id . '">
+                            <div class="card b0 dd-handle">
+                                <div class="mda-list">
+                                    <div class="mda-list-item">
+                                        <div class="mda-list-item-icon item-grab" style="padding-top: 9px;">
+                                            <em class="ion-drag icon-lg"></em>
+                                        </div>
+                                        ' . $img . '
+                                        <div class="mda-list-item-text mda-2-line">
+                                            <h3>' . $td->name . ' - '. $td->display_name .'</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="option-dd">
+                                &nbsp;
+                                <a href="' . route('configTbl_edit', [$tableId, 'column' => $td->id]) . '"><i class="ion-edit"></i></a>
+                                &nbsp;
+                                <a href="' . route('deleteColumn', ['table' => $tableId, 'column' => $td->id]) . '"><i class="ion-trash-a"></i></a>
+                            </div>';
+                // check sub data
+                $subData = DB::table('table_column')
+                            ->where('parent_id', $td->id)
+                            ->where('table_id', $tableId)
+                            ->count();
+                if ($subData > 0) {
+                    $html .= self::getHtmlListTable($tableId, $td->id);
+                }
+                $html .= '</li>';
+            }
+            $html .= '</ol>';
+        }
+        return $html;
+    }
 }

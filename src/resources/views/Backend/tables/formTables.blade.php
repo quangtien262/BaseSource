@@ -65,10 +65,10 @@
                         </form> 
                         @if(!empty($tableId))
                         <fieldset class="b0">
-                            @if(empty($_GET['collumn']))
+                            @if(empty($_GET['column']))
                                 <legend>Add Column</legend>
                             @else
-                                <legend>Edit Column</legend>
+                                <legend>Edit Column: {{ $column->name or '' }}</legend>
                             @endif
                         </fieldset>
                         <fieldset class="b0">
@@ -185,58 +185,43 @@
                         </fieldset>
                         <fieldset class="b0">
                             <legend>List Column</legend>
-                            <table class="table-datatable table table-striped table-hover mv-lg">
-                                <thead>
-                                    <tr>
-                                        <th>Field Name</th>
-                                        <th>Title</th>
-                                        <th>Type</th>
-                                        <th>Default</th>
-                                        <th>Edit</th>
-                                        <th>Search</th>
-                                        <th>Type show</th>
-                                        <th>List</th>
-                                        <th>Option</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="gradeX">
-                                        <td>id</td>
-                                        <td></td>
-                                        <td>Int 15</td>
-                                        <td>None</td>
-                                        <td>Not Edit</td>
-                                        <td>No</td>
-                                        <td>No</td>
-                                        <td>No</td>
-                                        <td>
-                                            <button disabled="" class="btn btn-sm">Edit</button>
-                                            <button disabled="" class="btn btn-sm">Delete</button>
-                                        </td>
-                                    </tr>
-                                    @foreach($columns as $col)
-                                    <tr class="gradeX">
-                                        <td>{{ $col->name }}</td>
-                                        <td>{{ $col->display_name }}</td>
-                                        <td>{{ $col->type . ' ' . $col->max_length }}</td>
-                                        <td>{{ $col->value_default }}</td>
-                                        <td>{{ empty($col->edit) ? 'No':'Yes' }}</td>
-                                        <td>{{ empty($col->add2search) ? 'No':'Yes' }}</td>
-                                        <td>{{ $col->type_edit }}</td>
-                                        <td>{{ $col->show_in_list }}</td>
-                                        <td>
-                                            <a href="{{ route('configTbl_edit', [$table->id, 'column' => $col->id]) }}" class="btn btn-sm btn-success">Edit</a>
-                                            <a href="{{ route('deleteColumn', ['table' => $table->id, 'column' => $col->id]) }}" class="btn btn-sm btn-default">Delete</a>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                            <section>
+                                <div class="container-fluid">
+                                    <div class="card">
+                                        <div class="card-heading">
+                                            <div class="row">
+                                                    <div class="js-nestable-action">
+                                                        <button type="submit" 
+                                                                class="btn btn-primary btn-sm "
+                                                                onclick="submitForm('.loading', '.form-nestable', 'none')" 
+                                                                style="margin-left: 10px">
+                                                            <i class="ion-chevron-down"></i>
+                                                            Cập nhật lại thứ tự
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            <hr/>
+                                            <div class="row loading"></div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="dd" id="nestable">
+                                                        {!! $htmlList !!}
+                                                    </div>
+                                                    <form class="form-nestable" method="POST" action="{{ route('sortOrderColumn',[$tableId]) }}">
+                                                        {{ csrf_field()}}
+                                                        <textarea style="display: none" name="ids" class="well" id="nestable-output"></textarea>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
                         </fieldset>
                         @endif
                         <hr>
-                        <!-- END panel-->
-
                     </div>
                 </div>
                 <!-- END row-->

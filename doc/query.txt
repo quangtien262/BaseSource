@@ -3,5 +3,6 @@ ALTER TABLE `tables` ADD `count_item_of_page` INT NULL DEFAULT '30' AFTER `type_
 INSERT INTO `tables` (`id`, `name`, `display_name`, `is_edit`, `type_show`, `count_item_of_page`, `model_name`, `created_at`, `updated_at`) VALUES ('', 'tables', 'Category', '0', '1', '30', 'Tables', '2019-02-21', '2019-02-21');
 ALTER TABLE `tables` ADD `sort_order` INT NULL DEFAULT '0' AFTER `id`;
 ALTER TABLE `tables` ADD `parent_id` INT NULL DEFAULT '0' AFTER `model_name`;
+ALTER TABLE `table_column` ADD `parent_id` INT NULL DEFAULT '0' AFTER `sort_order`;
 
 
