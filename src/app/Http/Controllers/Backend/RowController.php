@@ -42,6 +42,17 @@ class RowController extends BackendController
         return response()->json([RETURN_SUCCESS, MSG_UPDATE_SORT_ORDER_SUCCESS]);
     }
 
+    public function sortOrderColumn(Request $request, $tableId)
+    {
+        $table = app('ClassTables')->getTable($tableId);
+        $columns = app('ClassTables')->getColumnByTableId($tableId);
+        $ids = json_decode($request->ids, true);
+        if(!empty($ids)) {
+            app('EntityCommon')->updateSortOrder('table_column', $ids, $parentId = 0);
+        }
+        return response()->json([RETURN_SUCCESS, MSG_UPDATE_SORT_ORDER_SUCCESS]);
+    }
+
     public function formRow(Request $request, $tableId, $dataId)
     {
         $table = app('ClassTables')->getTable($tableId);
