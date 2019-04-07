@@ -51,11 +51,11 @@ Route::group(['middleware' => \App\Http\Middleware\Language::class], function ()
         Route::get('/configtbl/delete-column', 'Backend\TblController@deleteColumn')->name('deleteColumn');
         Route::post('/configtbl/sort-order-table/', 'Backend\TblController@sortOrderTable')->name('sortOrderTable');
         //table
-        Route::get('/tbl/list-row/{tableId}', 'Backend\TblController@listRow')->name('listDataTbl');
-        Route::get('/tbl/edit-row/{tableId}/{dataId}', 'Backend\TblController@formDataTbl')->name('editDataTbl');
-        Route::post('/tbl/edit-row/{tableId}/{dataId}', 'Backend\TblController@submitFormDataTbl');
-        Route::get('/tbl/delete-row/{tableId}/{dataId}', 'Backend\TblController@deleteRow')->name('deleteRow');
-        Route::post('/tbl/sort-order-row/{tableId}', 'Backend\TblController@sortOrderRows')->name('sortOrderRows');
-        Route::post('/configtbl/sort-order-Column/{tableId}', 'Backend\TblController@sortOrderColumn')->name('sortOrderColumn');
+        Route::get('/tbl/list-row/{tableId}', 'Backend\RowController@listRow')->name('listDataTbl');
+        Route::get('/tbl/edit-row/{tableId}/{dataId}', 'Backend\RowController@formRow')->name('formRow');
+        Route::post('/tbl/edit-row/{tableId}/{dataId}', 'Backend\RowController@submitFormRow');
+        Route::get('/tbl/delete-row/{tableId}/{dataId}', 'Backend\RowController@deleteRow')->name('deleteRow');
+        Route::post('/tbl/sort-order-row/{tableId}', 'Backend\RowController@sortOrderRows')->name('sortOrderRows');
+        Route::post('/configtbl/sort-order-Column/{tableId}', 'Backend\RowController@sortOrderColumn')->name('sortOrderColumn');
     });
 // });

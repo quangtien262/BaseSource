@@ -23,7 +23,7 @@
                                     <i class="ion-chevron-down"></i>
                                     Cập nhật lại thứ tự
                                 </button>
-                                <a class="btn btn-sm btn-success " href="{{ route('editDataTbl', [$tableId, 0]) }}" style="margin-right: 10px">
+                                <a class="btn btn-sm btn-success " href="{{ route('formRow', [$tableId, 0]) }}" style="margin-right: 10px">
                                     <i class="ion-plus-circled"></i>
                                     Thêm mới
                                 </a>

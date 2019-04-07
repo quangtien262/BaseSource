@@ -9,6 +9,34 @@
         {!! \File::get(base_path('vendor/unisharp/laravel-filemanager/public/js/lfm.js')) !!}
 
         $('.lfm').filemanager('image', {prefix: route_prefix});
+
+        var fileNames = [];
+        function readFile() {
+            
+            if (this.files) {
+                let length = this.files.length;
+                for(i = 0; i < length; i++) {
+                    this.files[i];
+                    if(fileNames.indexOf(this.files[i].name) >= 0) {
+                        continue;
+                    }
+                    fileNames.push(this.files[i].name);
+                    var FR= new FileReader();
+                    FR.addEventListener("load", function(e) {
+                        let htmlImage = '<div class="item-images">' +
+                                '<img src="' + e.target.result + '"/>' +
+                                '<textarea class="_hidden" name="_images[]">'+e.target.result+'</textarea>' +
+                                '<input type="hidden" value="base64" name="_images_type[]"/>' +
+                            '</div>';
+                        document.getElementById("result_up_images").innerHTML += htmlImage;
+                    }); 
+                    FR.readAsDataURL( this.files[i] );
+                }
+            }
+        }
+
+        document.getElementById("images").addEventListener("change", readFile);
+        
     </script>
 @endsection
 
@@ -21,7 +49,7 @@
                 <!-- START row-->
                 <div class="row">
                     <div class="col-md-12">
-                        <form class="form-validate form-horizontal" id="form-tables" method="post" action="">
+                        <form class="form-validate form-horizontal" id="form-tables" method="post" action="" enctype="multipart/form-data">
                             {{ csrf_field()}}
                             <input type="hidden" name="table_id" value="{{ $tableId or 0 }}"/>
                             <fieldset class="b0">

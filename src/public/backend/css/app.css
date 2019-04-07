@@ -8009,4 +8009,22 @@ textarea.no-resize {
   margin-top: -42px;
   position: absolute;
 }
-
+.item-images {
+  float: left;
+  margin-right: 10px;
+}
+.item-images img{
+  height: 100px;
+  border: 1px #038dcc solid;
+  padding: 2px;
+  border-radius: 5px
+}
+._hidden {
+  display: none
+} 
+.delete-img {
+  float: right;
+  position: absolute;
+  margin-right:0px;
+  padding-left: 5px;
+}

@@ -205,7 +205,7 @@ class ClassTables
                             </div>
                             <div class="option-dd">
                                 &nbsp;
-                                <a href="' . route('editDataTbl', [$table->id, $td->id]) . '"><i class="ion-edit"></i></a>
+                                <a href="' . route('formRow', [$table->id, $td->id]) . '"><i class="ion-edit"></i></a>
                                 &nbsp;
                                 <a href="' . route('deleteRow', [$table->id, $td->id]) . '"><i class="ion-trash-a"></i></a>
                             </div>';

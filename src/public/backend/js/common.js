@@ -188,3 +188,7 @@ function changeStt(_this, id) {
         }
     });
 }
+
+function deleteImage(_this) {
+    $(_this).parent( ".item-images" ).remove();
+}

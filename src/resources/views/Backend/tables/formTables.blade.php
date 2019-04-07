@@ -178,7 +178,7 @@
                                         @else
                                             <button class="btn btn-primary" type="submit" name="edit_field">Sửa</button>
                                         @endif
-                                        <a href="{{ route('configTbl_edit', [$tableId]) }}" class="btn btn-default" type="button">Cancel</a>
+                                        <a href="{{ route('configTbl_edit', [$tableId]) }}" class="btn  -default" type="button">Cancel</a>
                                     </div>
                                 </div>
                             </form> 

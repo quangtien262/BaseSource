@@ -38,30 +38,54 @@
     @elseif($col->type_edit == 'ckeditor')
         <span>ckeditor</span>
     @elseif($col->type_edit == 'image_laravel')
-        <label>{{ $col->display_name or $col->name }}</label>
-        <div class="input-group">
-            <span class="input-group-btn">
-                <a data-input="thumbnail" data-preview="holder1" class="btn btn-primary lfm">
-                    <i class="fa fa-picture-o"></i> Chọn ảnh
-                </a>
-            </span>
-            <input id="thumbnail" 
-                class="form-control" 
-                type="text" 
-                name="{{ $col->name or '' }}" 
-                value="{{ $data[$col->name] or '' }}" />
+        <div class="col-md-8">
+            <br/>
+            <label>{{ $col->display_name or $col->name }}</label>
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <a data-input="thumbnail" data-preview="holder1" class="btn btn-primary lfm">
+                        <i class="fa fa-picture-o"></i> Chọn ảnh
+                    </a>
+                </span>
+                <input id="thumbnail" 
+                    class="form-control" 
+                    type="text" 
+                    name="{{ $col->name or '' }}" 
+                    value="{{ $data[$col->name] or '' }}" />
+            </div>
+            @if(!empty($data[$col->name]))
+                <img id="holder1" src="{{ $data[$col->name] }}" style="margin-top:15px;max-height:100px;"/>
+            @else
+                <img id="holder1" style="margin-top:15px;max-height:100px;"/>
+            @endif
         </div>
-        @if(!empty($data[$col->name]))
-            <img id="holder1" src="{{ $data[$col->name] }}" style="margin-top:15px;max-height:100px;"/>
-        @else
-            <img id="holder1" style="margin-top:15px;max-height:100px;"/>
-        @endif
     @elseif($col->type_edit == 'images_laravel')
         <span>image_laravel</span>
     @elseif($col->type_edit == 'image')
         <span>image</span>
     @elseif($col->type_edit == 'images')
-        <span>images</span>
+        <div class="col-md-8">
+            <br/>
+            <label>{{ $col->display_name or $col->name }}</label>
+            <input id="images" multiple="multiple" type="file" class="form-control"/>
+        </div>
+        <div class="col-md-8">
+             @php $images = json_decode($data[$col->name]); @endphp
+                
+            <div id="result_up_images">
+                <br/>
+                @if(is_array($images))
+                    @foreach($images as $img) 
+                        <div class="item-images">
+                                <a class="_red delete-img" onclick="deleteImage(this)">Xóa</a>
+                                <img src="{{ $img or '' }}"/>
+                                <textarea class="_hidden" name="_images[]">{{ $img or '' }}</textarea>
+                                <input type="hidden" value="path" name="_images_type[]"/>
+                        </div>
+                    @endforeach
+                @endif
+            </div>
+        </div>
     @elseif($col->type_edit == 'file')
         <span>file</span>
     @elseif($col->type_edit == 'files')
@@ -72,4 +96,5 @@
             <label>{{ $col->display_name or $col->name }}</label>
             <input name="{{ $col->name or '' }}" value="{{ $data[$col->name] or '' }}" class="form-control datepicker-1" type="text" placeholder="{{ $data[$col->display_name] or '' }}"/>
         </div>
+        
     @endif

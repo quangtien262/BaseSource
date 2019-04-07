@@ -40,30 +40,54 @@
     <?php elseif($col->type_edit == 'ckeditor'): ?>
         <span>ckeditor</span>
     <?php elseif($col->type_edit == 'image_laravel'): ?>
-        <label><?php echo e(isset($col->display_name) ? $col->display_name : $col->name); ?></label>
-        <div class="input-group">
-            <span class="input-group-btn">
-                <a data-input="thumbnail" data-preview="holder1" class="btn btn-primary lfm">
-                    <i class="fa fa-picture-o"></i> Chọn ảnh
-                </a>
-            </span>
-            <input id="thumbnail" 
-                class="form-control" 
-                type="text" 
-                name="<?php echo e(isset($col->name) ? $col->name : ''); ?>" 
-                value="<?php echo e(isset($data[$col->name]) ? $data[$col->name] : ''); ?>" />
+        <div class="col-md-8">
+            <br/>
+            <label><?php echo e(isset($col->display_name) ? $col->display_name : $col->name); ?></label>
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <a data-input="thumbnail" data-preview="holder1" class="btn btn-primary lfm">
+                        <i class="fa fa-picture-o"></i> Chọn ảnh
+                    </a>
+                </span>
+                <input id="thumbnail" 
+                    class="form-control" 
+                    type="text" 
+                    name="<?php echo e(isset($col->name) ? $col->name : ''); ?>" 
+                    value="<?php echo e(isset($data[$col->name]) ? $data[$col->name] : ''); ?>" />
+            </div>
+            <?php if(!empty($data[$col->name])): ?>
+                <img id="holder1" src="<?php echo e($data[$col->name]); ?>" style="margin-top:15px;max-height:100px;"/>
+            <?php else: ?>
+                <img id="holder1" style="margin-top:15px;max-height:100px;"/>
+            <?php endif; ?>
         </div>
-        <?php if(!empty($data[$col->name])): ?>
-            <img id="holder1" src="<?php echo e($data[$col->name]); ?>" style="margin-top:15px;max-height:100px;"/>
-        <?php else: ?>
-            <img id="holder1" style="margin-top:15px;max-height:100px;"/>
-        <?php endif; ?>
     <?php elseif($col->type_edit == 'images_laravel'): ?>
         <span>image_laravel</span>
     <?php elseif($col->type_edit == 'image'): ?>
         <span>image</span>
     <?php elseif($col->type_edit == 'images'): ?>
-        <span>images</span>
+        <div class="col-md-8">
+            <br/>
+            <label><?php echo e(isset($col->display_name) ? $col->display_name : $col->name); ?></label>
+            <input id="images" multiple="multiple" type="file" class="form-control"/>
+        </div>
+        <div class="col-md-8">
+             <?php  $images = json_decode($data[$col->name]);  ?>
+                
+            <div id="result_up_images">
+                <br/>
+                <?php if(is_array($images)): ?>
+                    <?php $__currentLoopData = $images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $img): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> 
+                        <div class="item-images">
+                                <a class="_red delete-img" onclick="deleteImage(this)">Xóa</a>
+                                <img src="<?php echo e(isset($img) ? $img : ''); ?>"/>
+                                <textarea class="_hidden" name="_images[]"><?php echo e(isset($img) ? $img : ''); ?></textarea>
+                                <input type="hidden" value="path" name="_images_type[]"/>
+                        </div>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <?php endif; ?>
+            </div>
+        </div>
     <?php elseif($col->type_edit == 'file'): ?>
         <span>file</span>
     <?php elseif($col->type_edit == 'files'): ?>
@@ -74,4 +98,5 @@
             <label><?php echo e(isset($col->display_name) ? $col->display_name : $col->name); ?></label>
             <input name="<?php echo e(isset($col->name) ? $col->name : ''); ?>" value="<?php echo e(isset($data[$col->name]) ? $data[$col->name] : ''); ?>" class="form-control datepicker-1" type="text" placeholder="<?php echo e(isset($data[$col->display_name]) ? $data[$col->display_name] : ''); ?>"/>
         </div>
+        
     <?php endif; ?>

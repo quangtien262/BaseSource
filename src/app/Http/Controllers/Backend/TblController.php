@@ -45,7 +45,7 @@ class TblController extends BackendController
         if (!empty($request->input('column'))) {
             $column = app('ClassTables')->getColumn($request->input('column'));
         }
-        $htmlList = app('ClassTables')->getHtmlListColumn($table->id);
+        $htmlList = app('ClassTables')->getHtmlListColumn($tableId);
         return view('backend.tables.formTables', compact('tableId', 'table', 'tables', 'columns', 'column', 'htmlList'));
     }
 

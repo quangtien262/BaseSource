@@ -2,9 +2,11 @@
 
 namespace App\Services\Utils;
 
-class ClassCommon {
+class ClassCommon
+{
 
-    public function formatText($string, $ext = '') {
+    public function formatText($string, $ext = '')
+    {
         // remove all characters that aren"t a-z, 0-9, dash, underscore or space
         $string = strip_tags(str_replace('&nbsp;', ' ', $string));
         $string = str_replace('&quot;', '', $string);
@@ -21,7 +23,8 @@ class ClassCommon {
         return strtolower($string . $ext);
     }
 
-    public static function _utf8ToAscii($str) {
+    public static function _utf8ToAscii($str)
+    {
         $chars = array(
             'a' => array('ấ', 'ầ', 'ẩ', 'ẫ', 'ậ', 'Ấ', 'Ầ', 'Ẩ', 'Ẫ', 'Ậ', 'ắ', 'ằ', 'ẳ', 'ẵ', 'ặ', 'Ắ', 'Ằ', 'Ẳ', 'Ẵ', 'Ặ', 'á', 'à', 'ả', 'ã', 'ạ', 'â', 'ă', 'Á', 'À', 'Ả', 'Ã', 'Ạ', 'Â', 'Ă'),
             'e' => array('ế', 'ề', 'ể', 'ễ', 'ệ', 'Ế', 'Ề', 'Ể', 'Ễ', 'Ệ', 'é', 'è', 'ẻ', 'ẽ', 'ẹ', 'ê', 'É', 'È', 'Ẻ', 'Ẽ', 'Ẹ', 'Ê'),
@@ -35,6 +38,18 @@ class ClassCommon {
             $str = str_replace($arr, $key, $str);
         }
         return $str;
+    }
+
+    public function base64ToImage($base64, $output_file)
+    {
+        $file = fopen($output_file, "wb");
+
+        $data = explode(',', $base64);
+
+        fwrite($file, base64_decode($data[1]));
+        fclose($file);
+        
+        return true;
     }
 
 }

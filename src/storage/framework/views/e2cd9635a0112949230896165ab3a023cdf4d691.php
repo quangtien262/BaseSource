@@ -178,7 +178,7 @@
                                         <?php else: ?>
                                             <button class="btn btn-primary" type="submit" name="edit_field">Sửa</button>
                                         <?php endif; ?>
-                                        <a href="<?php echo e(route('configTbl_edit', [$tableId])); ?>" class="btn btn-default" type="button">Cancel</a>
+                                        <a href="<?php echo e(route('configTbl_edit', [$tableId])); ?>" class="btn  -default" type="button">Cancel</a>
                                     </div>
                                 </div>
                             </form> 

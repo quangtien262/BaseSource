@@ -25,7 +25,7 @@
                             <i class="ion-ios-search-strong"></i>
                             Tìm kiếm
                         </button>
-                        <a class="btn btn-primary _right" href="{{ route('editDataTbl', [$tableId, 0]) }}" style="margin-right: 10px">
+                        <a class="btn btn-primary _right" href="{{ route('formRow', [$tableId, 0]) }}" style="margin-right: 10px">
                             <i class="ion-plus-circled"></i>
                             Thêm mới
                         </a>
@@ -62,7 +62,7 @@
                                 @endif
                             @endforeach
                             <td>
-                                <a href="{{ route('editDataTbl', [$tableId, $data['id']]) }}" class="btn btn-sm btn-success">
+                                <a href="{{ route('formRow', [$tableId, $data['id']]) }}" class="btn btn-sm btn-success">
                                     <i class="ion-edit"></i>
                                     Edit
                                 </a>
