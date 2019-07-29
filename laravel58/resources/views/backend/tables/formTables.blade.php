@@ -26,11 +26,11 @@
                                 <div class="row">
                                     <div class="col-xs-6 col-sm-3">
                                         <label>Tên bảng</label>
-                                        <input value="{{ $table->name or '' }}" class="form-control" id="id-source" type="text" name="table_name" placeholder=" Table name"/>
+                                        <input value="{{ $table->name ?? '' }}" class="form-control" id="id-source" type="text" name="table_name" placeholder=" Table name"/>
                                     </div>
                                     <div class="col-xs-6 col-sm-3">
                                         <label>Tên hiển thị</label>
-                                        <input value="{{ $table->display_name or '' }}" class="form-control" type="text" name="display_name" placeholder="Dislay name"/>
+                                        <input value="{{ $table->display_name ?? '' }}" class="form-control" type="text" name="display_name" placeholder="Dislay name"/>
                                     </div>
                                     <div class="col-xs-6 col-sm-3">
                                         <label>Kiểu show dữ liệu ở trang danh sách</label>
@@ -44,12 +44,12 @@
                                     <div class="col-xs-6 col-sm-3">
                                         <br/>
                                         <label>Số lượng Item trên 1 trang</label>
-                                        <input value="{{ $table->count_item_of_page or 30 }}" class="form-control" type="number" name="count_item_of_page" placeholder=""/>
+                                        <input value="{{ $table->count_item_of_page ?? 30 }}" class="form-control" type="number" name="count_item_of_page" placeholder=""/>
                                     </div>
                                     <div class="col-xs-6 col-sm-3">
                                         <br/>
                                         <label>Nhập tên model cần tạo</label>
-                                        <input value="{{ $table->model_name or '' }}" class="form-control" type="text" name="model_name" placeholder="Model name"/>
+                                        <input value="{{ $table->model_name ?? '' }}" class="form-control" type="text" name="model_name" placeholder="Model name"/>
                                     </div>
                                     <div class="col-xs-6 col-sm-3">
                                         <br/>
@@ -62,7 +62,7 @@
                                     </div>
                                     <div class="col-xs-6 col-sm-3">
                                         <label>table_tab</label>
-                                        <input type="text" name="table_tab_map_column" value="{{ $table->table_tab_map_column or '' }}" placeholder="table_tab_map_column"/>
+                                        <input type="text" name="table_tab_map_column" value="{{ $table->table_tab_map_column ?? '' }}" placeholder="table_tab_map_column"/>
                                         <select name="table_tab" class="form-control">
                                             <option value="">Please chose</option>
                                             @foreach($tables as $tbl)
@@ -118,22 +118,22 @@
                             @if(empty($_GET['column']))
                                 <legend>Add Column</legend>
                             @else
-                                <legend>Edit Column: {{ $column->name or '' }}</legend>
+                                <legend>Edit Column: {{ $column->name ?? '' }}</legend>
                             @endif
                         </fieldset>
                         <fieldset class="b0">
                             <form class="form-validate form-horizontal" id="form-column" method="post" action="{{ route('editColumn') }}">
                                 {{ csrf_field()}}
-                                <input type="hidden" name="table_id" value="{{ $table->id or 0 }}"/>
+                                <input type="hidden" name="table_id" value="{{ $table->id ?? 0 }}"/>
                                 <input type="hidden" name="column_id" value="{{ isset($_GET['column']) ? $_GET['column']:0 }}"/>
                                 <div class="row">
                                     <div class="col-xs-6 col-sm-3">
                                         <label>Tên cột</label>
-                                        <input value="{{ $column->name || '' }}" class="form-control" type="text" name="column_name" placeholder="Column name" required=""/>
+                                        <input value="{{ $column->name ?? '' }}" class="form-control" type="text" name="column_name" placeholder="Column name" required=""/>
                                     </div>
                                     <div class="col-xs-6 col-sm-3">
                                         <label>Tên hiển thị</label>
-                                        <input value="{{ $column->display_name or '' }}" class="form-control" type="text" name="display_name" placeholder="Display name" required=""/>
+                                        <input value="{{ $column->display_name ?? '' }}" class="form-control" type="text" name="display_name" placeholder="Display name" required=""/>
                                     </div>
                                     <div class="col-xs-6 col-sm-3">
                                         <label>Kiểu dữ liệu</label>
@@ -145,7 +145,7 @@
                                     </div>
                                     <div class="col-xs-6 col-sm-3">
                                         <label>Max length</label>
-                                        <input value="{{ $column->max_length or '' }}" class="form-control" id="id-source" type="text" name="max_length" placeholder="Max length"/>
+                                        <input value="{{ $column->max_length ?? '' }}" class="form-control" id="id-source" type="text" name="max_length" placeholder="Max length"/>
                                     </div>
                                     <div class="col-xs-6 col-sm-3">
                                         <br/>
@@ -167,7 +167,7 @@
                                     </div>
                                     <div class="col-xs-6 col-sm-3">
                                         <br/>
-                                        <label>table select (kiểu dữ liệu là select or comment)</label>
+                                        <label>table select (kiểu dữ liệu là select ?? comment)</label>
                                         <select name="select_table_id" class="form-control">
                                             <option value="">Please chose table data</option>
                                             @foreach($tables as $tbl)
@@ -178,13 +178,13 @@
                                     <div class="col-xs-6 col-sm-3">
                                         <br/>
                                         <label>Điều kiện select</label> 
-                                        <input value="{{ $column->conditions or '' }}" class="form-control" type="text" name="conditions" placeholder='{"route_id":"2"}' />
+                                        <input value="{{ $column->conditions ?? '' }}" class="form-control" type="text" name="conditions" placeholder='{"route_id":"2"}' />
                                     </div>
 
                                     <div class="col-xs-6 col-sm-3">
                                         <br/>
                                         <label>Giá trị mặc định</label>
-                                        <input value="{{ $column->value_default or '' }}" class="form-control" type="text" name="value_default" placeholder="default"/>
+                                        <input value="{{ $column->value_default ?? '' }}" class="form-control" type="text" name="value_default" placeholder="default"/>
                                     </div>
                                     <div class="col-xs-6 col-sm-3">
                                         <br/>
@@ -199,12 +199,12 @@
                                     <div class="col-xs-6 col-sm-3">
                                         <br/>
                                         <label>sub_column_name</label>
-                                        <input value="{{ $column->sub_column_name or '' }}" class="form-control" type="text" name="sub_column_name" placeholder="sub_column_name"/>
+                                        <input value="{{ $column->sub_column_name ?? '' }}" class="form-control" type="text" name="sub_column_name" placeholder="sub_column_name"/>
                                     </div>
                                     <div class="col-xs-6 col-sm-3">
                                         <br/>
                                         <label>Class</label>
-                                        <input value="{{ $column->class or '' }}" class="form-control" type="text" name="class" placeholder="Class of element in list page"/>
+                                        <input value="{{ $column->class ?? '' }}" class="form-control" type="text" name="class" placeholder="Class of element in list page"/>
                                     </div>
                                     <div class="col-xs-6 col-sm-3">
                                         <br/>
@@ -212,7 +212,7 @@
                                         <textarea class="form-control" 
                                             type="text" 
                                             placeholder='{"table_id":"hang_ve_id","column":"hang_ve_id","title":"hang_ve_id"}'
-                                            name="config_add_sub_table">{{ $column->config_add_sub_table or '' }}</textarea>
+                                            name="config_add_sub_table">{{ $column->config_add_sub_table ?? '' }}</textarea>
                                     </div>
                                     <div class="col-xs-6 col-sm-3">
                                         <br/>
@@ -220,7 +220,7 @@
                                         <textarea class="form-control" 
                                             type="text" 
                                             placeholder='{"0":"column_01"}'
-                                            name="add_column_in_list">{{ $column->add_column_in_list or '' }}</textarea>
+                                            name="add_column_in_list">{{ $column->add_column_in_list ?? '' }}</textarea>
                                     </div>
                                     <div class="col-xs-6 col-sm-3">
                                         <br/>
@@ -228,7 +228,7 @@
                                         <textarea class="form-control" 
                                             type="text" 
                                             placeholder='Nhập tên cột để map với kiểu dữ liệu là comment'
-                                            name="column_name_map_to_comment">{{ $column->column_name_map_to_comment or '' }}</textarea>
+                                            name="column_name_map_to_comment">{{ $column->column_name_map_to_comment ?? '' }}</textarea>
                                     </div>
                                     <div class="col-xs-6 col-sm-3">
                                         <br/>

@@ -1,0 +1,15 @@
+{
+  "phpfmt.enable_auto_align": true,
+  "crane.showStatusBarBugReportLink": true,
+  "phpfmt.cakephp": true,
+  "vscode-php-cs-fixer.allowRisky": true,
+  "git.ignoreLimitWarning": true,
+  "phpformatter.composer": true,
+  "phpformatter.logging": true,
+  "phpfmt.detect_indent": true,
+  "phpfmt.psr1": true,
+  "phpfmt.psr1_naming": true,
+  "phpfmt.smart_linebreak_after_curly": true,
+  "phpfmt.visibility_order": true,
+  "phpfmt.yoda": true
+}

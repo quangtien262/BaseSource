@@ -27,8 +27,6 @@
     <div class="sidebar-content">
         <nav class="sidebar-nav">
 
-
-
             {!! app('ClassTables')->getHtmlMenuAdmin(0) !!}
 
             <li><a class="ripple" href="{{ route('configTbl') }}"><span class="nav-icon"><em class="ion-gear-b"></em></span><span>Config Table</span></a></li>

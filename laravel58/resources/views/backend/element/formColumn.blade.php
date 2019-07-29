@@ -2,26 +2,26 @@
     @if($col->type_edit == 'text')
         <div class="col-md-6">
             <br/>
-            <label>{{ $col->display_name or $col->name }}</label>
-            <input name="{{ $col->name or '' }}" value="{{ $data[$col->name] or '' }}" class="form-control" type="text" placeholder=""/>
+            <label>{{ $col->display_name ?? $col->name }}</label>
+            <input name="{{ $col->name ?? '' }}" value="{{ $data[$col->name] ?? '' }}" class="form-control" type="text" placeholder=""/>
         </div>
     @elseif($col->type_edit == 'number')
         <div class="col-md-6">
             <br/>
-            <label>{{ $col->display_name or $col->name }}</label>
-            <input name="{{ $col->name or '' }}" value="{{ $data[$col->name] or '' }}" class="form-control" type="number" placeholder=""/>
+            <label>{{ $col->display_name ?? $col->name }}</label>
+            <input name="{{ $col->name ?? '' }}" value="{{ $data[$col->name] ?? '' }}" class="form-control" type="number" placeholder=""/>
         </div>
     @elseif($col->type_edit == 'textarea')
         <div class="col-md-8">
             <br/>
-            <label>{{ $col->display_name or $col->name }}</label>
-            <textarea name="{{ $col->name or '' }}" class="form-control">{{ $data[$col->name] or '' }}</textarea>
+            <label>{{ $col->display_name ?? $col->name }}</label>
+            <textarea name="{{ $col->name ?? '' }}" class="form-control">{{ $data[$col->name] ?? '' }}</textarea>
         </div>
     @elseif($col->type_edit == 'select')
         @if(empty($_GET[$col->name]))
             <div class="col-md-6">
                 <br/>
-                <label>{{ $col->display_name or $col->name }}</label>
+                <label>{{ $col->display_name ?? $col->name }}</label>
                 {!! app('ClassTables')->getHtmlSelectForTable($col->name, $col->select_table_id, $data[$col->name], false, $col->conditions ) !!}
             </div>            
         @endif
@@ -29,14 +29,14 @@
     </div>
         <div class="row">
             <br/>
-            <label>{{ $col->display_name or $col->name }}</label>
-            <textarea name="{{ $col->name or '' }}" id="ckeditor">{{ $data[$col->name] or '' }}</textarea>
+            <label>{{ $col->display_name ?? $col->name }}</label>
+            <textarea name="{{ $col->name ?? '' }}" id="ckeditor">{{ $data[$col->name] ?? '' }}</textarea>
         </div>
     <div class="row">
     @elseif($col->type_edit == 'selects')
         <div class="col-md-6">
             <br/>
-            <label>{{ $col->display_name or $col->name }}</label>
+            <label>{{ $col->display_name ?? $col->name }}</label>
             {!! app('ClassTables')->getHtmlSelectForTable($col->name, $col->select_table_id, $data[$col->name] ? $data[$col->name]:0, true, $col->conditions) !!}
         </div>
     @elseif($col->type_edit == 'select2')
@@ -48,7 +48,7 @@
     @elseif($col->type_edit == 'image_laravel')
         <div class="col-md-8">
             <br/>
-            <label>{{ $col->display_name or $col->name }}</label>
+            <label>{{ $col->display_name ?? $col->name }}</label>
             <div class="input-group">
                 <span class="input-group-btn">
                     <a data-input="thumbnail" data-preview="holder1" class="btn btn-primary lfm">
@@ -58,8 +58,8 @@
                 <input id="thumbnail" 
                     class="form-control" 
                     type="text" 
-                    name="{{ $col->name or '' }}" 
-                    value="{{ $data[$col->name] or '' }}" />
+                    name="{{ $col->name ?? '' }}" 
+                    value="{{ $data[$col->name] ?? '' }}" />
             </div>
             @if(!empty($data[$col->name]))
                 <img id="holder1" src="{{ $data[$col->name] }}" style="margin-top:15px;max-height:100px;"/>
@@ -74,7 +74,7 @@
     @elseif($col->type_edit == 'images')
         <div class="col-md-8">
             <br/>
-            <label>{{ $col->display_name or $col->name }}</label>
+            <label>{{ $col->display_name ?? $col->name }}</label>
             <input id="images" multiple="multiple" type="file" class="form-control"/>
         </div>
         <div class="col-md-8">
@@ -85,8 +85,8 @@
                     @foreach($images['images'] as $img) 
                         <div class="item-images">
                             <a class="_red delete-img" onclick="deleteImage(this)">Xóa</a>
-                            <img src="{{ $img or '' }}"/>
-                            <textarea class="_hidden" name="_images[]">{{ $img or '' }}</textarea>
+                            <img src="{{ $img ?? '' }}"/>
+                            <textarea class="_hidden" name="_images[]">{{ $img ?? '' }}</textarea>
                             <input type="hidden" value="path" name="_images_type[]"/>
                             <div>
                                 <label onclick="chooseAvatar(this)">
@@ -103,7 +103,7 @@
     @elseif($col->type_edit == 'video')
         <div class="col-md-8">
             <br/>
-            <label>{{ $col->display_name or $col->name }}</label>
+            <label>{{ $col->display_name ?? $col->name }}</label>
             <div class="input-group">
                 <span class="input-group-btn">
                     <a data-input="video" data-preview="holder_video" class="btn btn-primary video">
@@ -113,14 +113,14 @@
                 <input id="video" 
                     class="form-control" 
                     type="text" 
-                    name="{{ $col->name or '' }}" 
-                    value="{{ $data[$col->name] or '' }}" />
+                    name="{{ $col->name ?? '' }}" 
+                    value="{{ $data[$col->name] ?? '' }}" />
             </div>
         </div>
     @elseif($col->type_edit == 'pdf')
         <div class="col-md-8">
             <br/>
-            <label>{{ $col->display_name or $col->name }}</label>
+            <label>{{ $col->display_name ?? $col->name }}</label>
             <div class="input-group">
                 <span class="input-group-btn">
                     <a data-input="pdf" data-preview="holder_video" class="btn btn-primary pdf">
@@ -130,8 +130,8 @@
                 <input id="pdf" 
                     class="form-control" 
                     type="text" 
-                    name="{{ $col->name or '' }}" 
-                    value="{{ $data[$col->name] or '' }}" />
+                    name="{{ $col->name ?? '' }}" 
+                    value="{{ $data[$col->name] ?? '' }}" />
             </div>
         </div>
     @elseif($col->type_edit == 'file')
@@ -141,13 +141,13 @@
     @elseif($col->type_edit == 'date')
         <div class="col-md-6">
             <br/>
-            <label>{{ $col->display_name or $col->name }}</label>
-            <input name="{{ $col->name or '' }}" value="{{ $data[$col->name] or '' }}" placeholder="{{ $data[$col->display_name] or '' }}" autocomplete="off" class="form-control datepicker01" type="text"/>
+            <label>{{ $col->display_name ?? $col->name }}</label>
+            <input name="{{ $col->name ?? '' }}" value="{{ $data[$col->name] ?? '' }}" placeholder="{{ $data[$col->display_name] ?? '' }}" autocomplete="off" class="form-control datepicker01" type="text"/>
         </div>
     @elseif($col->type_edit == 'input')
         <div class="col-md-6">
             <br/>
-            <label>{{ $col->display_name or $col->name }}</label>
+            <label>{{ $col->display_name ?? $col->name }}</label>
             <select name="{{ $col->name }}" class="form-control">
                 @foreach(unserialize(TYPE_EDIT) as $typeValue => $typeName)
                     <option {{ isset($column->type_edit) && $column->type_edit == $typeValue ? 'selected="selected"':'' }}  value="{{$typeValue}}">{{$typeName}}</option>
@@ -157,20 +157,20 @@
     @elseif($col->type_edit == 'block')
         <div class="col-md-8">
             <br/>
-            <label>{{ $col->display_name or $col->name }}</label>
+            <label>{{ $col->display_name ?? $col->name }}</label>
             <em> (Vui lòng khởi tạo landingpage trước khi tạo các block con tương ứng) </em>
             @include('backend.element.listBlockLandingPage')
         </div>
     @elseif($col->type_edit == 'encryption')
         <div class="col-md-6">
             <br/>
-            <label>{{ $col->display_name or $col->name }}</label>
-            <input name="{{ $col->name or '' }}" value="" class="form-control" type="password" placeholder="Bỏ trống nếu bạn không muốn thay đổi"/>
+            <label>{{ $col->display_name ?? $col->name }}</label>
+            <input name="{{ $col->name ?? '' }}" value="" class="form-control" type="password" placeholder="Bỏ trống nếu bạn không muốn thay đổi"/>
         </div> 
     @elseif($col->type_edit == 'color')
         <div class="col-md-6">
             <br/>
-            <label>{{ $col->display_name or $col->name }}</label>
-            <input style="background:{{ $data[$col->name] or '' }}" name="{{ $col->name or '' }}" value="{{ $data[$col->name] or '' }}" autocomplete="off" class="form-control cp-basic" type="text" data-format="hex"/>
+            <label>{{ $col->display_name ?? $col->name }}</label>
+            <input style="background:{{ $data[$col->name] ?? '' }}" name="{{ $col->name ?? '' }}" value="{{ $data[$col->name] ?? '' }}" autocomplete="off" class="form-control cp-basic" type="text" data-format="hex"/>
         </div>
     @endif

@@ -1,5 +1,5 @@
 <script>
-    let route_prefix = "{{ url(config('lfm.url_prefix')) }}"; //laravel-filemanager
+    // let route_prefix = "{{ url(config('lfm.url_prefix')) }}"; //laravel-filemanager
 
         (function( $ ){
 

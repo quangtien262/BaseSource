@@ -77,7 +77,7 @@
                         @yield('avatar')
                     </div>
                     <nav class="sidebar-nav">
-                        @include('Backend/Layouts/menuLeft')
+                        @include('backend/Layouts/menuLeft')
                     </nav>
                 </div>
             </aside>

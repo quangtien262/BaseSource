@@ -377,7 +377,7 @@ class ClassTables
         ];
         $order = ['sort_order', 'asc'];
         $tables = app('EntityCommon')->getRowsByConditions('tables', $conditions, 0, $order);
-        if (is_array($tables) && count($tables) > 0) {
+        if (!empty($tables)) {
             if ($sub) {
                 $html .= '<ul>';
             }
