@@ -32,7 +32,7 @@ class RowController extends BackendController
             $htmlListDragDrop = app('ClassTables')->getHtmlListDragDrop($table);
 
             return view('backend.row.listRowDragDrop',
-                compact('tableId', 'table', 'columns', 'datas', 'htmlListDragDrop'));
+                compact('tableId', 'table', 'columns', 'htmlListDragDrop'));
         } elseif ($table->type_show == 5) {
             return redirect(route('formRow', [$tableId, 1]));
         }
