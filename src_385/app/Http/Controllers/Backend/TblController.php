@@ -30,11 +30,19 @@ class TblController extends BackendController
         $table = app('ClassTables')->getTable($tableId);
         $tables = app('ClassTables')->getAllTables();
         $columns = app('ClassTables')->getColumnByTableId($tableId);
+        $htmlList = app('ClassTables')->getHtmlListColumn($tableId);
+        $viewsParam = [
+            'table' => $table,
+            'tables' => $tables,
+            'columns' => $columns,
+            'htmlList' => $htmlList,
+            'tableId' => $tableId
+        ];
         if (!empty($request->input('column'))) {
             $column = app('ClassTables')->getColumn($request->input('column'));
+            $viewsParam['column'] = $column;
         }
-        $htmlList = app('ClassTables')->getHtmlListColumn($tableId);
-        return view('backend.tables.formTables', compact('tableId', 'table', 'tables', 'columns', 'column', 'htmlList'));
+        return view('backend.tables.formTables', $viewsParam);
     }
 
     public function postSbmitFormTable(Request $request, $tableId = 0)

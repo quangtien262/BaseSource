@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 29, 2019 at 08:51 PM
+-- Generation Time: Jul 30, 2019 at 06:18 PM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.6
 
@@ -229,55 +229,38 @@ INSERT INTO `footer` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `up
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hang_hoa`
+-- Table structure for table `home`
 --
 
-CREATE TABLE `hang_hoa` (
+CREATE TABLE `home` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `parent_id` int(11) DEFAULT 0,
   `sort_order` int(11) DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `so_kien` int(11) DEFAULT NULL,
-  `so_luong_dong_goi` int(11) DEFAULT NULL,
-  `so_luong` int(11) DEFAULT 0,
-  `hang_ve_id` int(11) DEFAULT NULL
+  `gia_thue` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `hang_hoa`
+-- Dumping data for table `home`
 --
 
-INSERT INTO `hang_hoa` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `so_kien`, `so_luong_dong_goi`, `so_luong`, `hang_ve_id`) VALUES
-(1, 'hang 1', 0, 0, '2019-05-26 01:01:49', '2019-05-26 01:01:49', 1, 2, 3, 2);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `hang_ve`
---
-
-CREATE TABLE `hang_ve` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `nvkd_id` int(11) DEFAULT NULL,
-  `ngay_gui` date DEFAULT NULL,
-  `ngay_ve` date DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `total_sk` int(11) DEFAULT 0,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `hang_ve_id` int(11) DEFAULT NULL,
-  `nvmh_id` int(11) DEFAULT NULL,
-  `sort_order` int(11) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `hang_ve`
---
-
-INSERT INTO `hang_ve` (`id`, `nvkd_id`, `ngay_gui`, `ngay_ve`, `created_at`, `updated_at`, `total_sk`, `name`, `hang_ve_id`, `nvmh_id`, `sort_order`) VALUES
-(2, 1, NULL, NULL, '2019-05-25 00:36:15', '2019-05-25 01:12:19', 1000, '01', 100, 5, 0);
+INSERT INTO `home` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `gia_thue`) VALUES
+(1, '1A/174 Trần Duy Hưng', 0, 1, '2019-07-29 20:29:53', '2019-07-29 20:29:53', 0),
+(2, '101/174', 0, 1, '2019-07-29 20:30:20', '2019-07-29 20:30:20', 0),
+(3, '102/174', 0, 2, '2019-07-29 20:30:26', '2019-07-29 20:30:26', 0),
+(4, '103/174', 0, 3, '2019-07-29 20:30:42', '2019-07-29 20:30:42', 0),
+(5, '201/174', 0, 4, '2019-07-29 20:30:49', '2019-07-29 20:30:49', 0),
+(6, '203/174', 0, 6, '2019-07-29 20:31:05', '2019-07-29 20:31:05', 0),
+(7, '202/174', 0, 5, '2019-07-29 20:31:12', '2019-07-29 20:31:12', 0),
+(8, '301/174', 0, 7, '2019-07-29 20:31:54', '2019-07-29 20:31:54', 0),
+(9, '302/174', 0, 8, '2019-07-29 20:32:12', '2019-07-29 20:32:12', 0),
+(10, '303/174', 0, 9, '2019-07-29 20:49:00', '2019-07-29 20:49:00', 0),
+(11, '401/174', 0, 10, '2019-07-29 21:01:40', '2019-07-29 21:01:40', 0),
+(12, '402/174', 0, 11, '2019-07-29 21:03:20', '2019-07-29 21:03:20', 0),
+(13, '403/174', 0, 12, '2019-07-29 21:04:09', '2019-07-29 21:04:09', 0),
+(14, '501/174', 0, 13, '2019-07-29 21:04:45', '2019-07-29 21:04:45', 0);
 
 -- --------------------------------------------------------
 
@@ -615,21 +598,20 @@ CREATE TABLE `tables` (
 --
 
 INSERT INTO `tables` (`id`, `sort_order`, `name`, `display_name`, `is_edit`, `type_show`, `count_item_of_page`, `model_name`, `parent_id`, `form_data_type`, `created_at`, `updated_at`, `import`, `export`) VALUES
-(12, 5, 'product', 'Quản lí sản phẩm', 1, 'BASIC', 30, 'Product', 0, 1, '2019-02-12', '2019-04-01', NULL, NULL),
-(14, 7, 'news', 'Quản lí tin tức', 1, NULL, 30, NULL, 0, 1, '2019-03-19', '2019-04-01', NULL, NULL),
-(16, 4, 'category', 'QL danh mục', 1, '1', 30, NULL, 0, 2, '2019-03-30', '2019-05-01', NULL, NULL),
-(24, 1, 'route', 'route', 0, '1', 30, NULL, 26, 2, '2019-04-01', '2019-05-01', NULL, NULL),
-(26, 10, 'tables', 'Category', 0, '1', 30, 'Tables', 0, 1, '2019-02-21', '2019-02-21', NULL, NULL),
-(27, 9, 'configweb', 'Cấu hình website', 1, '5', 30, NULL, 0, 1, '2019-04-06', '2019-05-01', NULL, NULL),
-(28, 8, 'contact', 'Thư gửi liên hệ', 1, NULL, 30, NULL, 0, 1, '2019-04-07', '2019-04-07', NULL, NULL),
+(12, 4, 'product', 'Quản lí sản phẩm', 1, 'BASIC', 30, 'Product', 26, 1, '2019-02-12', '2019-04-01', NULL, NULL),
+(14, 6, 'news', 'Quản lí tin tức', 1, NULL, 30, NULL, 26, 1, '2019-03-19', '2019-04-01', NULL, NULL),
+(16, 3, 'category', 'QL danh mục', 1, '1', 30, NULL, 26, 2, '2019-03-30', '2019-05-01', NULL, NULL),
+(24, 9, 'route', 'route', 0, '1', 30, NULL, 26, 2, '2019-04-01', '2019-05-01', NULL, NULL),
+(26, 1, 'tables', 'Category', 0, '1', 30, 'Tables', 0, 1, '2019-02-21', '2019-02-21', NULL, NULL),
+(27, 8, 'configweb', 'Cấu hình website', 1, '5', 30, NULL, 26, 1, '2019-04-06', '2019-05-01', NULL, NULL),
+(28, 7, 'contact', 'Thư gửi liên hệ', 1, NULL, 30, NULL, 26, 1, '2019-04-07', '2019-04-07', NULL, NULL),
 (31, 2, 'block_item', 'block_item', 0, '1', 30, 'block_item', 34, 1, '2019-04-15', '2019-05-01', NULL, NULL),
 (32, 1, 'block', 'block', 0, '1', 30, NULL, 34, 2, '2019-04-15', '2019-05-01', NULL, NULL),
-(33, 6, 'landing_page_item', 'landing_page_item', 0, NULL, 30, 'landingpageItem', 0, 1, '2019-04-15', '2019-05-01', NULL, NULL),
-(34, 3, 'landing_page', 'landingpage', 1, NULL, 30, 'landingpage', 26, 1, '2019-04-15', '2019-04-28', NULL, NULL),
-(35, 2, 'users', 'Quản lý User', 0, NULL, 30, NULL, 26, 2, '2019-05-01', '2019-05-01', NULL, NULL),
-(36, 3, 'footer', 'Nội dung phần chân website', 1, '1', 30, NULL, 0, 2, '2019-05-01', '2019-05-01', NULL, NULL),
-(37, 2, 'hang_ve', 'Quản lý hàng về', 1, '0', 30, NULL, 0, 2, '2019-05-04', '2019-05-25', 0, 1),
-(38, 1, 'hang_hoa', 'Hàng hoá', 1, '0', 30, NULL, 0, 1, '2019-05-25', '2019-05-25', NULL, NULL);
+(33, 5, 'landing_page_item', 'landing_page_item', 0, NULL, 30, 'landingpageItem', 26, 1, '2019-04-15', '2019-05-01', NULL, NULL),
+(34, 11, 'landing_page', 'landingpage', 1, NULL, 30, 'landingpage', 26, 1, '2019-04-15', '2019-04-28', NULL, NULL),
+(35, 10, 'users', 'Quản lý User', 0, NULL, 30, NULL, 26, 2, '2019-05-01', '2019-05-01', NULL, NULL),
+(36, 2, 'footer', 'Nội dung phần chân website', 1, '1', 30, NULL, 26, 2, '2019-05-01', '2019-05-01', NULL, NULL),
+(39, 0, 'home', 'Căn hộ / Phòng', 1, '0', 100, NULL, 0, 2, '2019-07-30', '2019-07-30', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -793,7 +775,12 @@ INSERT INTO `table_column` (`id`, `table_id`, `display_name`, `name`, `type`, `v
 (157, 38, 'Đóng gói', 'so_luong_dong_goi', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 4, 0, '2019-05-25', '2019-05-26', 0, NULL, 1, NULL, 'width01'),
 (158, 38, 'Số lượng', 'so_luong', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 5, 0, '2019-05-25', '2019-05-26', 0, NULL, 1, NULL, 'width01'),
 (159, 38, 'Hàng về', 'hang_ve_id', 'INT', NULL, 1, NULL, 0, NULL, 0, 1, 'select', 0, 0, 0, 0, '2019-05-26', '2019-05-26', 37, NULL, 0, NULL, NULL),
-(160, 37, 'sort_order', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'number', 0, 0, 0, 0, '2019-05-26', '2019-05-26', 0, NULL, 0, NULL, NULL);
+(160, 37, 'sort_order', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'number', 0, 0, 0, 0, '2019-05-26', '2019-05-26', 0, NULL, 0, NULL, NULL),
+(161, 39, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 1, 0, '2019-07-30', '2019-07-30', 0, NULL, 0, 0, NULL),
+(162, 39, 'Tiêu đề', 'name', 'VARCHAR', '', 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 2, 0, '2019-07-30', '2019-07-30', 0, NULL, 0, 0, NULL),
+(163, 39, 'Căn Hộ', 'parent_id', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'select', 0, 0, 4, 0, '2019-07-30', '2019-07-30', 39, '{ \"parent_id\":\"0\"}', 0, NULL, NULL),
+(164, 39, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'text', 0, 0, 5, 0, '2019-07-30', '2019-07-30', 0, NULL, 0, NULL, NULL),
+(165, 39, 'Giá cho thuê', 'gia_thue', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'number', 0, 0, 3, 0, '2019-07-30', '2019-07-30', 0, NULL, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -820,7 +807,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `username`, `user_type`, `sort_order`) VALUES
 (1, 'tienlq', 'quangtienvkt@gmail.com', '$2y$10$qDSM1xhz.Tk7dgDP1vvIpO7oDFWK7tyqndVivchYpBEHoK62YyvCu', '9NLjNP5ec9lI3iPPus0btyJuEmJGAl5aFZutLfOHm4gF5iHxYLJEVAY6L88i', '2019-01-30 02:49:15', '2019-01-30 02:49:15', 'tienlq', '1', 0),
-(5, 'admin', 'quangtienvkt@gmail.com', '$2y$10$xS.w4lODyZETLIuENs1BXuRn3RnUTu6KdZ7fUTsP572VHJiZn3ika', 'CNEfFn5ty7O04xRymf6B1cgY0LjHL8eT2I2NAUajRxaFUun8ZY1Wdv8TD6TS', '2019-01-30 02:49:15', '2019-04-30 18:05:58', 'admin', '1', 0);
+(5, 'admin', 'quangtienvkt@gmail.com', '$2y$10$xS.w4lODyZETLIuENs1BXuRn3RnUTu6KdZ7fUTsP572VHJiZn3ika', 'rbKh4nS4LAApCVBDx9M7azqjDZGfgN93OZFXljS9LFrX1NCoE0WRzqNnuksM', '2019-01-30 02:49:15', '2019-04-30 18:05:58', 'admin', '1', 0);
 
 --
 -- Indexes for dumped tables
@@ -869,15 +856,9 @@ ALTER TABLE `footer`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `hang_hoa`
+-- Indexes for table `home`
 --
-ALTER TABLE `hang_hoa`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `hang_ve`
---
-ALTER TABLE `hang_ve`
+ALTER TABLE `home`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1006,16 +987,10 @@ ALTER TABLE `footer`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
--- AUTO_INCREMENT for table `hang_hoa`
+-- AUTO_INCREMENT for table `home`
 --
-ALTER TABLE `hang_hoa`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `hang_ve`
---
-ALTER TABLE `hang_ve`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `home`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `landing_page`
@@ -1069,13 +1044,13 @@ ALTER TABLE `route`
 -- AUTO_INCREMENT for table `tables`
 --
 ALTER TABLE `tables`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `table_column`
 --
 ALTER TABLE `table_column`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=161;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=166;
 
 --
 -- AUTO_INCREMENT for table `users`
