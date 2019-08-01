@@ -21,6 +21,20 @@
     });
 
 })();
+
+$( function() {
+    $(".datepicker01").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        format: 'yyyy-mm-dd'
+    });
+    $(".datepicker02").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'dd-mm-yyyy'
+    });
+});
+
 (function() {
     'use strict';
 
@@ -1678,7 +1692,7 @@
 
         // Colorpicker
 
-        $('#cp-demo-basic').colorpicker({
+        $('.cp-basic').colorpicker({
             customClass: 'colorpicker-2x',
             sliders: {
                 saturation: {
@@ -1693,10 +1707,10 @@
                 }
             }
         });
-        $('#cp-demo-component').colorpicker();
-        $('#cp-demo-hex').colorpicker();
+        $('.cp-demo-component').colorpicker();
+        $('.cp-hex').colorpicker();
 
-        $('#cp-demo-bootstrap').colorpicker({
+        $('.cp-bootstrap').colorpicker({
             colorSelectors: {
                 'default': '#777777',
                 'primary': '#337ab7',
@@ -1926,9 +1940,29 @@
             $('#user .editable').editable('toggleDisabled');
         });
 
+    //     $('.editable').on('hidden', function(e, reason) {
+    //         console.log(reason);
+    //         if(reason === 'save' || reason === 'nochange') {
+    //             // var $next = $(this).next().find('.editable');
+    //             // var $next = $(this).closest('td').next().find('.editable');
+    //             // var $next = $(this).closest('table').next().find('.editable');
+    //             console.log('next',$next.html());
+    //             setTimeout(function() {
+    //                 $next.editable('show');
+    //             }, 300);
+    //             if($('#autoopen').is(':checked')) {
+    //                 setTimeout(function() {
+    //                     $next.editable('show');
+    //                 }, 300); 
+    //             } else {
+    //                 $next.focus();
+    //             } 
+    //         }
+    //    });
+
         //editables
         $('.editable-text').editable({
-            mode: 'popup', //inline
+            mode: 'popup', //inline, popup
             ajaxOptions: {
                 dataType: 'text',
                 headers: {
@@ -1936,54 +1970,92 @@
                 },
             },
             success: function(response, newValue) {
-                // console.log(response);
+                // console.log('response', response);
             },
             error: function(e) {
                 console.log(e);
             }
         });
 
-        $('#firstname').editable({
+        $('.editable-textarea').editable({
+            mode: 'popup', //inline, popup
+            ajaxOptions: {
+                dataType: 'text',
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+            },
+            success: function(response, newValue) {
+                // console.log('response', response);
+            },
+            error: function(e) {
+                console.log(e);
+            }
+        });
+
+        $('.editable-number').editable({
+            mode: 'popup', //inline, popup
+            ajaxOptions: {
+                dataType: 'text',
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+            },
+            success: function(response, newValue) {
+                // console.log('response', response);
+            },
+            error: function(e) {
+                console.log(e);
+            }
+        });
+
+        $('.editable-select').editable({
+            prepend: 'Select',
+            showbuttons: false,
+            mode: 'popup', //inline, popup
+            // source: [],
+            ajaxOptions: {
+                dataType: 'text',
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+            },
+            success: function(response, newValue) {
+                console.log('response', response);
+                // reload('', '#main-sub-content', false);
+            },
+            error: function(e) {
+                console.log(e);
+            }
+        });
+
+        $('.editable-date').editable({
+            format: 'yyyy-mm-dd',    
+            showbuttons: false,
+            viewformat: 'dd/mm/yyyy',   
+            ajaxOptions: {
+                dataType: 'text',
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+            }, 
+            datepicker: {
+                weekStart: 1
+            },
+            success: function(response, newValue) {
+                console.log('response', response);
+            },
+            error: function(e) {
+                console.log(e);
+            }
+        });
+
+        $('.editable-require').editable({
             validate: function(value) {
                 if ($.trim(value) === '')
                     return 'This field is required';
             }
         });
-
-        $('#sex').editable({
-            prepend: 'not selected',
-            source: [{
-                value: 1,
-                text: 'Male'
-            }, {
-                value: 2,
-                text: 'Female'
-            }],
-            display: function(value, sourceData) {
-                var colors = {
-                        '': 'gray',
-                        1: 'green',
-                        2: 'blue'
-                    },
-                    elem = $.grep(sourceData, function(o) {
-                        return o.value === value;
-                    });
-
-                if (elem.length) {
-                    $(this).text(elem[0].text).css('color', colors[value]);
-                } else {
-                    $(this).empty();
-                }
-            }
-        });
-
-        $('#status').editable();
-
-        $('#group').editable({
-            showbuttons: false
-        });
-
-        $('#dob').editable();
 
         $('#event').editable({
             placement: 'right',
@@ -1996,33 +2068,12 @@
             showbuttons: 'bottom'
         });
 
-        $('#note').editable();
         $('#pencil').click(function(e) {
             e.stopPropagation();
             e.preventDefault();
             $('#note').editable('toggle');
         });
 
-        $('#fruits').editable({
-            pk: 1,
-            limit: 3,
-            source: [{
-                value: 1,
-                text: 'banana'
-            }, {
-                value: 2,
-                text: 'peach'
-            }, {
-                value: 3,
-                text: 'apple'
-            }, {
-                value: 4,
-                text: 'watermelon'
-            }, {
-                value: 5,
-                text: 'orange'
-            }]
-        });
 
         $('#user .editable').on('hidden', function(e, reason) {
             if (reason === 'save' || reason === 'nochange') {
@@ -2880,236 +2931,7 @@
     }
 
 })();
-(function() {
-    'use strict';
 
-    $(initTranslation);
-
-    // Global configuration
-    var preferredLang = 'en';
-    var pathPrefix = 'server/i18n'; // folder of json files
-    var packName = 'site';
-
-    function initTranslation() {
-
-        if (!$.fn.localize)
-            return;
-
-        // set initial options
-        var opts = {
-            language: preferredLang,
-            pathPrefix: pathPrefix,
-            callback: function(data, defaultCallback) {
-                defaultCallback(data);
-            }
-        };
-
-        // Set initial language
-        setLanguage(opts);
-
-        // Listen for changes
-        $('[data-set-lang]').on('click', function() {
-
-            var selectedLang = $(this).data('setLang');
-
-            if (selectedLang && opts.language !== selectedLang) {
-
-                opts.language = selectedLang;
-
-                setLanguage(opts);
-
-                activateDropdown($(this));
-            }
-
-        });
-    }
-
-    // Update translated text
-    function setLanguage(options) {
-        $('[data-localize]').localize(packName, options);
-    }
-
-    // Set the current clicked text as the active dropdown text
-    function activateDropdown(elem) {
-        var menu = elem.parents('.dropdown-menu');
-        if (menu.length) {
-            var toggle = menu.prev('button, a');
-            toggle.text(elem.text());
-        }
-    }
-
-})();
-
-
-(function() {
-    'use strict';
-
-    $(userLock);
-
-    function userLock() {
-
-        var $form = $('#user-lock');
-        $form.validate({
-            errorPlacement: errorPlacementInput,
-            // Form rules
-            rules: {
-                accountName: {
-                    required: true,
-                    email: true
-                }
-            },
-            submitHandler: function( /*form*/ ) {
-                // form.submit();
-                console.log('Form submitted!');
-                // move to dashboard
-                window.location.href = 'dashboard.html';
-            }
-        });
-    }
-
-
-    // Necessary to place dyncamic error messages
-    // without breaking the expected markup for custom input
-    function errorPlacementInput(error, element) {
-        if (element.parent().is('.mda-form-control')) {
-            error.insertAfter(element.parent()); // insert after .mda-form-control
-        } else if (element.is(':radio') || element.is(':checkbox')) {
-            error.insertAfter(element.parent());
-        } else {
-            error.insertAfter(element);
-        }
-    }
-
-})();
-
-(function() {
-    'use strict';
-
-    $(userLogin);
-
-    function userLogin() {
-
-        var $form = $('#user-login');
-        $form.validate({
-            errorPlacement: errorPlacementInput,
-            // Form rules
-            rules: {
-                accountName: {
-                    required: true,
-                    email: true
-                },
-                accountPassword: {
-                    required: true
-                }
-            },
-            submitHandler: function( /*form*/ ) {
-                // form.submit();
-                console.log('Form submitted!');
-            }
-        });
-    }
-
-    // Necessary to place dyncamic error messages
-    // without breaking the expected markup for custom input
-    function errorPlacementInput(error, element) {
-        if (element.parent().is('.mda-form-control')) {
-            error.insertAfter(element.parent()); // insert after .mda-form-control
-        } else if (element.is(':radio') || element.is(':checkbox')) {
-            error.insertAfter(element.parent());
-        } else {
-            error.insertAfter(element);
-        }
-    }
-
-})();
-
-(function() {
-    'use strict';
-
-    $(userRecover);
-
-    function userRecover() {
-
-        var $form = $('#user-recover');
-        $form.validate({
-            errorPlacement: errorPlacementInput,
-            // Form rules
-            rules: {
-                accountName: {
-                    required: true,
-                    email: true
-                }
-            },
-            submitHandler: function( /*form*/ ) {
-                // form.submit();
-                console.log('Form submitted!');
-                $form.hide();
-                $('#confirmation').hide().removeClass('hidden').show(500);
-            }
-        });
-    }
-
-
-    // Necessary to place dyncamic error messages
-    // without breaking the expected markup for custom input
-    function errorPlacementInput(error, element) {
-        if (element.parent().is('.mda-form-control')) {
-            error.insertAfter(element.parent()); // insert after .mda-form-control
-        } else if (element.is(':radio') || element.is(':checkbox')) {
-            error.insertAfter(element.parent());
-        } else {
-            error.insertAfter(element);
-        }
-    }
-
-})();
-
-(function() {
-    'use strict';
-
-    $(userSignup);
-
-    function userSignup() {
-
-        var $form = $('#user-signup');
-        $form.validate({
-            errorPlacement: errorPlacementInput,
-            // Form rules
-            rules: {
-                accountName: {
-                    required: true,
-                    email: true
-                },
-                accountPassword: {
-                    required: true
-                },
-                accountPasswordCheck: {
-                    required: true,
-                    equalTo: '#account-password'
-                }
-            },
-            submitHandler: function( /*form*/ ) {
-                // form.submit();
-                console.log('Form submitted!');
-                $('#form-ok').hide().removeClass('hidden').show(500);
-            }
-        });
-    }
-
-
-    // Necessary to place dyncamic error messages
-    // without breaking the expected markup for custom input
-    function errorPlacementInput(error, element) {
-        if (element.parent().is('.mda-form-control')) {
-            error.insertAfter(element.parent()); // insert after .mda-form-control
-        } else if (element.is(':radio') || element.is(':checkbox')) {
-            error.insertAfter(element.parent());
-        } else {
-            error.insertAfter(element);
-        }
-    }
-
-})();
 
 (function() {
     'use strict';
@@ -3117,49 +2939,40 @@
     $(initScreenfull);
 
     function initScreenfull() {
-        var element = $('[data-toggle-fullscreen]');
-        // Not supported under IE (requires jQuery Browser)
-        if (window.jQBrowser.msie) {
-            element.addClass('hide');
-        } else {
-            element.on('click', function(e) {
-                e.preventDefault();
-
-                if (screenfull.enabled) {
-
-                    screenfull.toggle();
-
-                } else {
-                    // Fullscreen not enabled ;
+        
+        $('#datatable1').dataTable({
+            'paging': true, // Table pagination
+            'ordering': true, // Column ordering
+            'info': true, // Bottom left status text
+            // Text translation options
+            // Note the required keywords between underscores (e.g _MENU_)
+            oLanguage: {
+                sSearch: '<em class="ion-search"></em>',
+                sLengthMenu: '_MENU_ records per page',
+                info: 'Showing page _PAGE_ of _PAGES_',
+                zeroRecords: 'Nothing found - sorry',
+                infoEmpty: 'No records available',
+                infoFiltered: '(filtered from _MAX_ total records)',
+                oPaginate: {
+                    sNext: '<em class="ion-ios-arrow-right"></em>',
+                    sPrevious: '<em class="ion-ios-arrow-left"></em>'
                 }
+            }
+        });
 
-            });
-        }
     }
 
 })();
+
 (function() {
     'use strict';
 
     $(initSvgReplace);
 
     function initSvgReplace() {
-        var elements = $('[data-svg-replace]');
-
-        elements.each(function() {
-            var el = $(this);
-            var src = el.data('svgReplace');
-
-            if (!src || src.indexOf('.svg') < 0)
-                throw "only support for SVG images";
-            // return /*only support for SVG images*/;
-
-            $.get(src).success(function(res) {
-                var $svg = $(res).find('svg');
-                $svg = $svg.removeAttr('xmlns:a');
-                el.replaceWith($svg);
-            })
-        })
+        $( ".target" ).change(function() {
+            alert( "Handler for .change() called." );
+        });
 
     }
 

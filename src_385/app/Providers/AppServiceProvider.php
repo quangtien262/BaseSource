@@ -24,6 +24,10 @@ class AppServiceProvider extends ServiceProvider
     public function register() {
         //Utils
         $this->app->singleton(
+                'UtilsCommon', function () {
+            return new \App\Services\Utils\UtilsCommon;
+        });
+        $this->app->singleton(
                 'ClassCommon', function () {
             return new \App\Services\Utils\ClassCommon;
         });

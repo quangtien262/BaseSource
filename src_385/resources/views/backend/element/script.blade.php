@@ -89,6 +89,8 @@
 <!-- Datamaps-->
 <script src="/vendor/topojson/topojson.min.js"></script>
 <script src="/vendor/datamaps/dist/datamaps.all.js"></script>
+<!-- jquery UI-->
+<script src="/vendor/jquery-ui/jquery-ui.min.js"></script>
 <!-- jquery form-->
 <script src="/vendor/jquery-form/jquery-form.js"></script>
 

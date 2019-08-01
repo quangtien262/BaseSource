@@ -48,6 +48,7 @@ Route::group(['middleware' => \App\Http\Middleware\Language::class], function ()
         Route::post('/configtbl/edit-column', 'Backend\TblController@postSubmitFormColumn')->name('editColumn');
         Route::get('/configtbl/delete-table/', 'Backend\TblController@deleteTable')->name('deleteTable');
         Route::get('/configtbl/delete-column', 'Backend\TblController@deleteColumn')->name('deleteColumn');
+        Route::post('/tbl/delete-multiple-row', 'Backend\RowController@listOption')->name('listOption');
         Route::post('/configtbl/sort-order-table/', 'Backend\TblController@sortOrderTable')->name('sortOrderTable');
         //table
         Route::get('/tbl/list-row/{tableId}', 'Backend\RowController@listRow')->name('listDataTbl');
@@ -65,5 +66,9 @@ Route::group(['middleware' => \App\Http\Middleware\Language::class], function ()
         Route::get('/tbl/list-block/{landingPageId?}', 'Backend\BlockController@index')->name('adminListBlock');
         Route::get('/tbl/edit-block/{landingPageId}/{blockId}/{landingPageItemId?}', 'Backend\BlockController@formBlock')->name('adminEditBlock');
         Route::post('/tbl/edit-block/{landingPageId}/{blockId}/{landingPageItemId?}', 'Backend\BlockController@submitFormBlock');
+
+        //upload file
+        Route::post('file/upload','Backend\UploadController@uploadFile');
+        Route::post('file/delete','Backend\UploadController@fileDestroy');
     });
 // });

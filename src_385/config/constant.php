@@ -1,4 +1,7 @@
 <?php
+define('LAYOUT_BACKEND_01', 'Layouts.main');
+define('LAYOUT_BACKEND_02', 'Layouts.backend');
+define('LAYOUT_POPUP', 'Layouts.popup');
 
 //return code
 define('RETURN_SUCCESS', 'success');
@@ -8,10 +11,12 @@ define('EXCEPTION_SEND_MAIL', 'EXCEPTION_SEND_MAIL');
 
 define('MSG_UPDATE_SORT_ORDER_SUCCESS', 'Sắp sếp lại thứ tự thành công');
 define('MSG_UPDATE_COLUMN_DATA_SUCCESS', 'Cập nhật dữ liệu thành công');
+define('MSG_UPDATE_COLUMN_DATA_FAIL', 'Cập nhật dữ liệu Thất bại');
 
 define('LANDING_PAGE_ITEM_ID', 33);
 
-define('COLUMN_TYPE', serialize(['INT', 'VARCHAR', 'TEXT', 'LONGTEXT', 'DATE', 'DATETIME']));
+//form config
+define('COLUMN_TYPE', serialize(['INT', 'VARCHAR', 'TEXT', 'LONGTEXT', 'DATE', 'DATETIME', 'FLOAT']));
 define('IS_REQUIRE', serialize([
     0 => 'NOT REQUIRE',
     1 => 'REQUIRE',
@@ -42,6 +47,7 @@ define('TYPE_EDIT', serialize([
     'images_laravel' => 'Images <Laravel file manager>',
     'image' => 'Image',
     'images' => 'Images',
+    'images_no_db' => 'images_no_db',
     'video' => 'File Video <laravel file manager>',
     'pdf' => 'File pdf <laravel file manager>',
     'files' => 'Multiple file',
@@ -50,6 +56,8 @@ define('TYPE_EDIT', serialize([
     'date' => 'Date',
     'input' => 'Select Input',
     'block' => 'Block (Cần tạo sẵn 2 bảng:block_type & block_item)',
+    'color' => 'Màu sắc',
+    'comment' => 'comment ("Tên cột" phải là "comment")',
 ]));
 
 define('TABLE_TYPE_SHOW', serialize([

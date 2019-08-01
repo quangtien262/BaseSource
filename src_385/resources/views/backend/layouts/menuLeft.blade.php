@@ -14,7 +14,7 @@ $menuArr = json_decode($menuJson, true);
     @foreach($menuArr['Menu'] as $menu)
     <li>
         <a href="{{ !empty($menu['routeName']) ?  url(route($menu['routeName'])):'#' }}{{ !empty($menu['param'])?$menu['param']:'' }}" class="ripple">
-            @if(count($menu['subMenu']) >0 )
+            @if(!empty($menu['subMenu']))
             <span class="pull-right nav-caret">
                 <em class="ion-ios-arrow-right"></em>
             </span>
@@ -25,7 +25,7 @@ $menuArr = json_decode($menuJson, true);
             </span>
             <span>{{ $menu['name'] }}</span>
         </a>
-        @if(count($menu['subMenu']) >0 )
+        @if(!empty($menu['subMenu']))
         <ul class="sidebar-subnav">
             @foreach($menu['subMenu'] as $sub)
             <li>

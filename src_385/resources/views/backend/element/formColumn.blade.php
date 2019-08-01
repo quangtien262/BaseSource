@@ -18,13 +18,13 @@
             <textarea name="{{ $col->name or '' }}" class="form-control">{{ $data[$col->name] or '' }}</textarea>
         </div>
     @elseif($col->type_edit == 'select')
-        <div class="col-md-6">
-            <br/>
-            <label>{{ $col->display_name or $col->name }}</label>
-            
-            {!! app('ClassTables')->getHtmlSelectForTable($col->name, $col->select_table_id, $data[$col->name], false, $col->conditions ) !!}
-           
-        </div>
+        @if(empty($_GET[$col->name]))
+            <div class="col-md-6">
+                <br/>
+                <label>{{ $col->display_name or $col->name }}</label>
+                {!! app('ClassTables')->getHtmlSelectForTable($col->name, $col->select_table_id, $data[$col->name], false, $col->conditions ) !!}
+            </div>            
+        @endif
     @elseif($col->type_edit == 'summoner')
     </div>
         <div class="row">
@@ -142,7 +142,7 @@
         <div class="col-md-6">
             <br/>
             <label>{{ $col->display_name or $col->name }}</label>
-            <input name="{{ $col->name or '' }}" value="{{ $data[$col->name] or '' }}" class="form-control datepicker-1" type="text" placeholder="{{ $data[$col->display_name] or '' }}"/>
+            <input name="{{ $col->name or '' }}" value="{{ $data[$col->name] or '' }}" placeholder="{{ $data[$col->display_name] or '' }}" autocomplete="off" class="form-control datepicker01" type="text"/>
         </div>
     @elseif($col->type_edit == 'input')
         <div class="col-md-6">
@@ -166,5 +166,11 @@
             <br/>
             <label>{{ $col->display_name or $col->name }}</label>
             <input name="{{ $col->name or '' }}" value="" class="form-control" type="password" placeholder="Bỏ trống nếu bạn không muốn thay đổi"/>
+        </div> 
+    @elseif($col->type_edit == 'color')
+        <div class="col-md-6">
+            <br/>
+            <label>{{ $col->display_name or $col->name }}</label>
+            <input style="background:{{ $data[$col->name] or '' }}" name="{{ $col->name or '' }}" value="{{ $data[$col->name] or '' }}" autocomplete="off" class="form-control cp-basic" type="text" data-format="hex"/>
         </div>
     @endif

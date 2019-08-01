@@ -48,6 +48,17 @@ class EntityCommon
         return $data;
     }
 
+    public function findDataLatestByCondition($tblName, $conditions = [], $order = ['sort_order', 'asc'])
+    {
+        $data = DB::table($tblName);
+        foreach ($conditions as $colName => $colValue) {
+            $data = $data->where($colName, $colValue);
+        }
+        $data = $data->orderBy($order[0], $order[1]);
+
+        return $data->first();
+    }
+
     public function getDataById($tblName, $id)
     {
         $tableData = DB::table($tblName)->where('id', $id)->first();
@@ -60,6 +71,14 @@ class EntityCommon
         $tableData = DB::table($tblName)->whereIn('id', $ids)->get();
 
         return $tableData;
+    }
+
+    public function getCurrentTableDataByTablesId($tableId, $rowId)
+    {
+        $tblColor = app('ClassTables')->getTable($tableId);
+        $colorData = app('EntityCommon')->getDataById($tblColor->name, $rowId);
+
+        return $colorData;
     }
 
     public function getAllDataPaginate($tblName, $columnOrder = 'sort_order', $orderBy = 'asc', $limit = 30)
@@ -84,6 +103,32 @@ class EntityCommon
     {
         try {
             DB::table($tblName)->where('id', $id)->delete();
+
+            return RETURN_SUCCESS;
+        } catch (\Exception $e) {
+            return RETURN_ERROR;
+        }
+    }
+
+    public function deleteTableByIds($tblName, $ids)
+    {
+        try {
+            DB::table($tblName)->whereIn('id', $ids)->delete();
+
+            return RETURN_SUCCESS;
+        } catch (\Exception $e) {
+            return RETURN_ERROR;
+        }
+    }
+
+    public function deletesTable($tblName, $conditions)
+    {
+        try {
+            $result = DB::table($tblName);
+            foreach ($conditions as $key => $val) {
+                $result = $result->where($key, $val);
+            }
+            $result = $result->delete();
 
             return RETURN_SUCCESS;
         } catch (\Exception $e) {
@@ -140,9 +185,12 @@ class EntityCommon
             $data['created_at'] = date('Y-m-d h:i:s');
             $data['updated_at'] = $data['created_at'];
         }
-        $result = DB::table($tblName)->insert($data);
 
-        return $result;
+        //insert start
+        DB::table($tblName)->insert($data);
+
+        //return id after insert
+        return DB::getPdo()->lastInsertId();
     }
 
     public function updateData($tblName, $dataId, $data)
@@ -223,34 +271,139 @@ class EntityCommon
         return $name;
     }
 
-    public function getHtmlTitleTblLink($tableId)
+    public function getHtmlTitleTblLink($tableId, $type = 'thead')
     {
-        $result = '';
+        $result = '<table class="table-datatable sub-table"><tr>';
         $tableColumn = self::getRowsByConditions('table_column', ['table_id' => $tableId]);
+        $class = '';
+        if ($type == 'thead') {
+            $class = 'sub_thead';
+        }
         foreach ($tableColumn as $col) {
-            if ($col->edit == 1) {
-                $result .= '<th class="'.$col->class.'">'.$col->display_name.'</th>';
+            if ($col->sub_list == 1) {
+                if ($col->table_link != 0) {
+                    $result .= '<th class="'.$class.'">'.self::getHtmlTitleTblLink($col->table_link, $type).'</th>';
+                } else {
+                    if ($type == 'thead') {
+                        $result .= '<th class="'.$class.'"><div class="'.$col->class.'">'.$col->display_name.'</div></th>';
+                    } elseif ($type == 'addNews') {
+                        if ($col->type_edit == 'date') {
+                            $result .= '
+                                <th class="'.$class.'"><div class="'.$col->class.'">
+                                    <input class="datepicker01" autocomplete="off" type="text" name="'.$col->name.'" placeholder="'.$col->display_name.'"/>    
+                                </div></th>';
+                        } elseif ($col->type_edit == 'select') {
+                            $result .= '
+                                <th class="'.$class.'"><div class="'.$col->class.'">'.
+                                    app('ClassTables')->getHtmlSelectForTable($col->name, $col->select_table_id, '', false, $col->conditions).
+                                '</div></th>';
+                        } else {
+                            $result .= '
+                                <th class="'.$class.'"><div class="'.$col->class.'">
+                                    <input type="text" name="'.$col->name.'" placeholder="'.$col->display_name.'"/>    
+                                </div></th>';
+                        }
+                    } else {
+                        $result .= '<th><div class="'.$col->class.'">&nbsp</div></th>';
+                    }
+                }
             }
         }
+        $result .= '</tr></table>';
 
         return $result;
     }
 
     public function getHtmlTblLink($tableId, $columnName, $columnId)
     {
-        $result = '';
+        $result = '<table class="table-datatable sub-table">';
         $table = self::getDataById('tables', $tableId);
+
         $tableColumn = self::getRowsByConditions('table_column', ['table_id' => $tableId]);
+
         $data = self::getRowsByConditions($table->name, [$columnName => $columnId]);
+
         $dataDecode = json_decode(json_encode($data), true);
-        foreach ($dataDecode as $d) {
+
+        //truong hop ko co data
+        if (empty($dataDecode)) {
+            $result .= '<tr>';
             foreach ($tableColumn as $col) {
-                if ($col->edit == 1) {
-                    $result .= '<td class="'.$col->class.'">'.$d[$col->name].'</td>';
+                if ($col->sub_list == 1) {
+                    if ($col->table_link != 0) {
+                        $result .= '<th>'.self::getHtmlTitleTblLink($col->table_link, 'tbody').'</th>';
+                    } else {
+                        $result .= '<th title="'.$col->display_name.'"><div class="'.$col->class.'"></div></th>';
+                    }
                 }
             }
+            $result .= '</tr>';
+        } else {
+            foreach ($dataDecode as $d) {
+                $result .= '<tr>';
+                foreach ($tableColumn as $col) {
+                    if ($col->sub_list == 1) {
+                        if ($col->table_link != 0) {
+                            // echo 'sub_list:' . $col->name;
+                            $result .= '<th>'.self::getHtmlTblLink($col->table_link, $col->name, $d['id']).'</th>';
+                        } else {
+                            $prepend = 'Chọn';
+                            $source = '';
+                            $type = 'text';
+                            $title = $col->display_name;
+                            $value = 'empty';
+                            $link = route('editCurrentColumn', [$col->name, $tableId, $d['id']]);
+                            if ($col->select_table_id > 0) {
+                                $tableSelect = self::getDataById('tables', $col->select_table_id);
+                                $currentTblData = self::getDataById($tableSelect->name, $d[$col->name]);
+                                $source = app('ClassTables')->getObjectJavascriptFromTable($col->select_table_id, $col->conditions);
+
+                                $type = 'select';
+                                if (!empty($currentTblData)) {
+                                    $value = $currentTblData->name;
+                                }
+                            } else {
+                                if ($col->type_edit == 'date') {
+                                    $type = 'date';
+                                }
+                                $value = $d[$col->name];
+                            }
+
+                            $result .=
+                                '<th title="'.$col->display_name.'">
+                                    <div class="'.$col->class.'">'.
+                                        // self::htmlXEditTable($type, $link, $title, $value, $prepend, $source) .
+                                        app('UtilsCommon')->xEditTable($tableId, $col, $d).
+
+                                        app('UtilsCommon')->inputFastEdit($col, $d[$col->name], $tableId, $d['id']).
+
+                                    '</div>';
+                            if (!empty($col->config_add_sub_table)) {
+                                $subTbl = json_decode($col->config_add_sub_table, true);
+                                $result .=
+                                        '<p class="add-sub-tbl">
+                                            <a onclick="loadDataPopup(\''.route('formRow', [$subTbl['table_id'], 0]).'\', \'&'.$subTbl['column'].'='.$d['id'].'\')" data-toggle="modal" data-target=".bs-modal-lg">'.
+                                                $subTbl['title'].
+                                            '</a>
+                                        </p>';
+                            }
+
+                            $result .= '</th>';
+                        }
+                    }
+                }
+                $result .= '</tr>';
+            }
         }
+        $result .= '</table>';
 
         return $result;
+    }
+
+    public function htmlXEditTable($type, $link, $title, $value, $prepend = '', $source = '')
+    {
+        return '<a class="editable-'.$type.'" data-url="'.$link.' "data-prepend="'.$prepend.'"data-source="'.$source.' "data-type="'.$type.'" data-pk="1" data-title="'.$title.'">'.
+                    $value.
+                '</a>';
     }
 }

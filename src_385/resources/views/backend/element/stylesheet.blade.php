@@ -41,6 +41,8 @@
 <link rel="stylesheet" href="/vendor/ng-material-floating-button/mfb/dist/mfb.css">
 <!-- Material Colors-->
 <link rel="stylesheet" href="/vendor/material-colors/dist/colors.css">
+<!-- jquery UI-->
+<link rel="stylesheet" href="/vendor/jquery-ui/jquery-ui.min.css">
 
 <!-- endbuild-->
 

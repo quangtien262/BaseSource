@@ -33,14 +33,6 @@
                                         <input value="{{ $table->display_name or '' }}" class="form-control" type="text" name="display_name" placeholder="Dislay name"/>
                                     </div>
                                     <div class="col-xs-6 col-sm-3">
-                                        <label>Cho phép sửa bảng này không?</label>
-                                        <select name="table_edit" class="form-control">
-                                            @foreach(unserialize(IS_EDIT) as $keyEdit => $valEdit)
-                                                <option {{ isset($table->is_edit) && $table->is_edit == $keyEdit ? 'selected="selected"':'' }}  value="{{$keyEdit}}">{{$valEdit}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-xs-6 col-sm-3">
                                         <label>Kiểu show dữ liệu ở trang danh sách</label>
                                         <select name="table_type_show" class="form-control">
                                             <option value="">Type show</option>
@@ -69,6 +61,23 @@
                                         </select>
                                     </div>
                                     <div class="col-xs-6 col-sm-3">
+                                        <label>table_tab</label>
+                                        <input type="text" name="table_tab_map_column" value="{{ $table->table_tab_map_column or '' }}" placeholder="table_tab_map_column"/>
+                                        <select name="table_tab" class="form-control">
+                                            <option value="">Please chose</option>
+                                            @foreach($tables as $tbl)
+                                                <option {{ isset($table->table_tab) && $table->table_tab == $tbl->id ? 'selected="selected"':'' }}  value="{{$tbl->id}}">{{$tbl->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="col-xs-6 col-sm-3">
+                                        <br/>
+                                        <label>
+                                            <input {{ isset($table->is_edit) && $table->is_edit == 1 ? 'checked="checked"':'' }} 
+                                                value="1" type="checkbox" name="is_edit" />
+                                            Is edit
+                                        </label>
                                         <br/>
                                         <label>
                                             <input {{ isset($table->export) && $table->export == 1 ? 'checked="checked"':'' }} 
@@ -81,6 +90,37 @@
                                                 value="1" type="checkbox" name="import" />
                                             Nhập từ file excel
                                         </label>
+                                        <br/>
+                                        <label>
+                                            <input {{ isset($table->have_add_new) && $table->have_add_new == 1 ? 'checked="checked"':'' }} 
+                                                value="1" type="checkbox" name="have_add_new" />
+                                            cho phép thêm mới
+                                        </label>
+                                        <br/>
+                                        <label>
+                                            <input {{ isset($table->have_delete) && $table->have_delete == 1 ? 'checked="checked"':'' }} 
+                                                value="1" type="checkbox" name="have_delete" />
+                                            cho phép Xóa
+                                        </label>
+                                        <br/>
+                                        <label>
+                                            <input {{ isset($table->is_show_btn_edit) && $table->is_show_btn_edit == 1 ? 'checked="checked"':'' }} 
+                                                value="1" type="checkbox" name="is_show_btn_edit" />
+                                            Hiển thị nút sửa
+                                        </label>
+                                        <br/>
+                                        <label>
+                                            <input {{ isset($table->is_add_express) && $table->is_add_express == 1 ? 'checked="checked"':'' }} 
+                                                value="1" type="checkbox" name="is_add_express" />
+                                            is_add_express
+                                        </label>
+                                        <br/>
+                                        <label>
+                                            <input {{ isset($table->is_edit_express) && $table->is_edit_express == 1 ? 'checked="checked"':'' }} 
+                                                value="1" type="checkbox" name="is_edit_express" />
+                                                is_edit_express
+                                        </label>
+                                        
                                     </div>
                                 </div>
 
@@ -140,7 +180,7 @@
                                     </div>
                                     <div class="col-xs-6 col-sm-3">
                                         <br/>
-                                        <label>Chọn table select <kiểu dữ liệu là select></label>
+                                        <label>table select (kiểu dữ liệu là select or comment)</label>
                                         <select name="select_table_id" class="form-control">
                                             <option value="">Please chose table data</option>
                                             @foreach($tables as $tbl)
@@ -151,8 +191,7 @@
                                     <div class="col-xs-6 col-sm-3">
                                         <br/>
                                         <label>Điều kiện select</label> 
-                                       
-                                        <input value="{{ $column->conditions or '' }}" class="form-control" type="text" name="conditions" placeholder="json" />
+                                        <input value="{{ $column->conditions or '' }}" class="form-control" type="text" name="conditions" placeholder='{"route_id":"2"}' />
                                     </div>
 
                                     <div class="col-xs-6 col-sm-3">
@@ -172,8 +211,37 @@
                                     </div>
                                     <div class="col-xs-6 col-sm-3">
                                         <br/>
+                                        <label>sub_column_name</label>
+                                        <input value="{{ $column->sub_column_name or '' }}" class="form-control" type="text" name="sub_column_name" placeholder="sub_column_name"/>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-3">
+                                        <br/>
                                         <label>Class</label>
                                         <input value="{{ $column->class or '' }}" class="form-control" type="text" name="class" placeholder="Class of element in list page"/>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-3">
+                                        <br/>
+                                        <label>config_add_sub_table</label>
+                                        <textarea class="form-control" 
+                                            type="text" 
+                                            placeholder='{"table_id":"hang_ve_id","column":"hang_ve_id","title":"hang_ve_id"}'
+                                            name="config_add_sub_table">{{ $column->config_add_sub_table or '' }}</textarea>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-3">
+                                        <br/>
+                                        <label>add_column_in_list</label>
+                                        <textarea class="form-control" 
+                                            type="text" 
+                                            placeholder='{"0":"column_01"}'
+                                            name="add_column_in_list">{{ $column->add_column_in_list or '' }}</textarea>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-3">
+                                        <br/>
+                                        <label>column_name_map_to_comment</label>
+                                        <textarea class="form-control" 
+                                            type="text" 
+                                            placeholder='Nhập tên cột để map với kiểu dữ liệu là comment'
+                                            name="column_name_map_to_comment">{{ $column->column_name_map_to_comment or '' }}</textarea>
                                     </div>
                                     <div class="col-xs-6 col-sm-3">
                                         <br/>
@@ -205,8 +273,21 @@
                                         <label>
                                             <input {{ isset($column->fast_edit) && $column->fast_edit == 1 ? 'checked="checked"':'' }}
                                                  value="1" type="checkbox" name="fast_edit" />
-                                            Cho phép sửa nhanh
+                                                Cho phép sửa nhanh
                                         </label>
+                                        <br/>
+                                        <label>
+                                            <input {{ isset($column->sub_list) && $column->sub_list == 1 ? 'checked="checked"':'' }}
+                                                 value="1" type="checkbox" name="sub_list" />
+                                                Hiển thị ở sub list
+                                        </label>
+                                        <br/>
+                                        <label>
+                                            <input {{ isset($column->bg_in_list) && $column->bg_in_list == 1 ? 'checked="checked"':'' }}
+                                                 value="1" type="checkbox" name="bg_in_list" />
+                                                 bg_in_list
+                                        </label>
+                                        
                                     </div>
                                 </div>
                                 <div class="row">

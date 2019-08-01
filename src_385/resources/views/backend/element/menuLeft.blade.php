@@ -29,7 +29,7 @@
 
 
 
-            {!! app('ClassTables')->getHtmlMenuAdmin(0) !!}
+            {!! app('ClassTables')->getHtmlMenuAdminLeft(0) !!}
 
             <li><a class="ripple" href="{{ route('configTbl') }}"><span class="nav-icon"><em class="ion-gear-b"></em></span><span>Config Table</span></a></li>
 

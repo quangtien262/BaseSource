@@ -33,17 +33,37 @@ class ClassTables
         return TablesColumn::where('table_id', $tableId)->orderBy('sort_order', 'asc')->get();
     }
 
+    public function getColumnByIds($ids)
+    {
+        return TablesColumn::whereIn('id', $ids)->orderBy('sort_order', 'asc')->get();
+    }
+
+    public function getColumnByName($name)
+    {
+        return TablesColumn::where('name', $name)->first();
+    }
+
+    public function getCurrentColumnByTableIdAndName($tableId, $name)
+    {
+        return TablesColumn::where('table_id', $tableId)->where('name', $name)->first();
+    }
+
     public function saveTable($id, $request)
     {
+        //check add new or edit
         if ($id > 0) {
             $tables = Tables::find($id);
         } else {
             $tables = new Tables();
         }
+
+        //import
         $import = 0;
         if (isset($request['import'])) {
             $import = intval($request['import']);
         }
+
+        //export
         $export = 0;
         if (isset($request['export'])) {
             $export = intval($request['export']);
@@ -54,9 +74,16 @@ class ClassTables
         $tables->display_name = $request['display_name'];
         $tables->model_name = $request['model_name'];
         $tables->type_show = $request['table_type_show'];
-        $tables->is_edit = $request['table_edit'];
+        $tables->is_edit = isset($request['is_edit']) ? $request['is_edit'] : 0;
         $tables->name = $request['table_name'];
         $tables->form_data_type = $request['form_data_type'];
+        $tables->have_delete = isset($request['have_delete']) ? $request['have_delete'] : 0;
+        $tables->have_add_new = isset($request['have_add_new']) ? $request['have_add_new'] : 0;
+        $tables->table_tab = $request['table_tab'];
+        $tables->table_tab_map_column = $request['table_tab_map_column'];
+        $tables->is_show_btn_edit = isset($request['is_show_btn_edit']) ? $request['is_show_btn_edit'] : 0;
+        $tables->is_add_express = isset($request['is_add_express']) ? $request['is_add_express'] : 0;
+        $tables->is_add_express = isset($request['is_edit_express']) ? $request['is_edit_express'] : 0;
         $tables->save();
 
         return $tables;
@@ -86,9 +113,114 @@ class ClassTables
         $block->conditions = $request['conditions'];
         $block->table_link = $request['table_link'];
         $block->class = $request['class'];
+        $block->sub_column_name = $request['sub_column_name'];
+        $block->sub_list = isset($request['sub_list']) ? $request['sub_list'] : 0;
+        $block->config_add_sub_table = $request['config_add_sub_table'];
+        $block->bg_in_list = isset($request['bg_in_list']) ? $request['bg_in_list'] : 0;
+        $block->add_column_in_list = $request['add_column_in_list'];
+        $block->column_name_map_to_comment = $request['column_name_map_to_comment'];
         $block->save();
 
         return $block;
+    }
+
+    public function saveRow($request, $tableId, $dataId, $subColumnName = '', $subColumnVal = 0)
+    {
+        $table = app('ClassTables')->getTable($tableId);
+        $columns = app('ClassTables')->getColumnByTableId($tableId);
+        $data = [];
+        $imageNoDbName = '';
+        foreach ($columns as $column) {
+            if ($subColumnName != '') {
+                $data[$subColumnName] = $subColumnVal;
+            }
+            if ($column->edit != 1) {
+                continue;
+            }
+            if ($column->name == 'id') {
+                continue;
+            }
+            if ($column->type_edit == 'images_no_db') {
+                if (!empty($request->file($column->name))) {
+                    $imageNoDbName = $column->name;
+                }
+            }
+
+            if ($column->type_edit == 'encryption') {
+                if ($dataId > 0 && $request->input($column->name) == '') {
+                    continue;
+                }
+                $data[$column->name] = bcrypt($request->input($column->name));
+                continue;
+            }
+            if ($column->type == 'INT') {
+                $data[$column->name] = intval($request->input($column->name));
+            } else {
+                $data[$column->name] = $request->input($column->name);
+            }
+            //upload images if exist
+            if ($column->type_edit == 'images') {
+                $images = [];
+                $avatar = '';
+                // create directory if not exist
+                if (!empty($request->input('_images'))) {
+                    $directoryUpload = 'imgs/'.$tableId;
+                    if (!file_exists($directoryUpload)) {
+                        mkdir($directoryUpload, 0777, true);
+                    }
+                    //loop images
+                    foreach ($request->input('_images') as $idx => $img) {
+                        $pathUpload = $img;
+                        if ($request->input('_images_type')[$idx] == 'base64') {
+                            //case image is base64
+                            $fileType = mime_content_type($img);
+                            if (substr($fileType, 0, 5) == 'image') {
+                                $fileName = $idx.'-'.time().'.'.str_replace('image/', '', $fileType);
+                                $pathUpload = $directoryUpload.'/'.$fileName;
+                                app('UtilsCommon')->base64ToImage($img, $pathUpload);
+                                $images[] = '/'.$pathUpload;
+                            }
+                        }
+                        if ($request->input('_avatar')[$idx] == '1') {
+                            $avatar = $pathUpload;
+                        }
+                        $images[] = $pathUpload;
+                    }
+                    if ($avatar == '' && !empty($images)) {
+                        $avatar = $images[0];
+                    }
+                }
+                $imageArr = [
+                    'avatar' => $avatar,
+                    'images' => $images,
+                ];
+                $data[$column->name] = json_encode($imageArr);
+            }
+        }
+
+        if ($dataId > 0) {
+            $data = app('EntityCommon')->updateData($table->name, $dataId, $data);
+        } else {
+            $id = app('EntityCommon')->insertData($table->name, $data);
+            if ($imageNoDbName != '' && !empty($request->file($imageNoDbName))) {
+                foreach ($request->file($imageNoDbName) as $file) {
+                    $path = "imgs/{$tableId}/{$id}/image/";
+                    app('UtilsCommon')->uploadFiles($path, $file);
+                }
+            }
+        }
+
+        //save subData & comment if exist
+        foreach ($columns as $column) {
+            // sub data
+            if ($column->table_link != 0 && !empty($column->name)) {
+                self::saveRow($request, $column->table_link, 0, $column->sub_column_name, $id);
+            }
+            // comment
+            if ($column->type_edit == 'comment' && !empty($column->name) && !empty($column->select_table_id)) {
+                self::saveRow($request, $column->select_table_id, 0, $column->column_name_map_to_comment, $id);
+            }
+        }
     }
 
     public function createDefaultColumn($tableId)
@@ -187,6 +319,19 @@ class ClassTables
     {
         //select table
         $data = DB::table($table->name);
+
+        //table tab
+        if (!empty($table->table_tab) && !empty($table->table_tab_map_column)) {
+            $tabTbl = self::getTable($table->table_tab);
+            if (isset($request->tab)) {
+                $tabId = $request->tab;
+            } else {
+                $rowData = app('EntityCommon')->findDataLatestByCondition($tabTbl->name);
+                $tabId = $rowData->id;
+            }
+            $data = $data->where($table->table_tab_map_column, $tabId);
+        }
+
         //where condition if exist conditions
         foreach ($columns as $col) {
             if ($col['add2search'] == 1 && !empty($request[$col->name])) {
@@ -215,6 +360,7 @@ class ClassTables
             }
         }
         //The count of data
+        $data = $data->orderBy('id', 'desc');
         if ($unlimit) {
             $data = $data->get();
         } else {
@@ -224,7 +370,39 @@ class ClassTables
         return $data;
     }
 
-    public function getHtmlMenuAdmin($parentId = 0)
+    public function getHtmlMenuAdmin($parentId = 0, $sub = false)
+    {
+        $html = '';
+        $conditions = [
+            'is_edit' => 1,
+            'parent_id' => $parentId,
+        ];
+        $order = ['sort_order', 'asc'];
+        $tables = app('EntityCommon')->getRowsByConditions('tables', $conditions, 0, $order);
+        if (is_array($tables) && count($tables) > 0) {
+            if ($sub) {
+                $html .= '<ul>';
+            }
+            foreach ($tables as $table) {
+                $subdata = self::getHtmlMenuAdmin($table->id, true);
+                $html .= '<li>
+                        <a class="ripple" href="'.route('listDataTbl', [$table->id]).'">
+                            <span>'.$table->display_name.'</span>
+                        </a>';
+
+                $html .= $subdata;
+
+                $html .= '</li>';
+            }
+            if ($sub) {
+                $html .= '</ul>';
+            }
+        }
+
+        return $html;
+    }
+
+    public function getHtmlMenuAdminLeft($parentId = 0)
     {
         $html = '';
         $conditions = [
@@ -237,7 +415,7 @@ class ClassTables
             $html .= '<ul>';
             foreach ($tables as $table) {
                 $countData = app('EntityCommon')->getCountData($table->name);
-                $subdata = self::getHtmlMenuAdmin($table->id);
+                $subdata = self::getHtmlMenuAdminLeft($table->id);
                 if ($subdata != '') {
                     $icon = '<span class="nav-icon"><em class="ion-android-arrow-dropdown" style="font-size: 18px;line-height: 25px;"></em></span>';
                 } else {
@@ -267,7 +445,7 @@ class ClassTables
         if ($multiple) {
             $html = '<select multiple class="form-control" name="'.$name.'">';
         } else {
-            $html = '<select class="form-control" name="'.$name.'"><option value="0">Chọn</option>';
+            $html = '<select class="form-control" name="'.$name.'">';
         }
         $conditions = [];
         if (!empty($conditionsJson)) {
@@ -276,6 +454,7 @@ class ClassTables
         // dd( $conditions);
         $table = self::getTable($tblRowId);
         if (!empty($table)) {
+            $html .= '<option value="0">Chọn '.$table->display_name.'</option>';
             $tableData = app('EntityCommon')->getRowsByConditions($table->name, $conditions, 0, $order = ['sort_order', 'asc']);
             foreach ($tableData as $data) {
                 $selected = '';
@@ -288,6 +467,58 @@ class ClassTables
         $html .= '</select>';
 
         return $html;
+    }
+
+    public function getHtmlSelectTableFastEdit($name, $tblRowId, $selectedId = 0, $dataId, $tableId)
+    {
+        $html = '<select class="_hidden input-fast-edit"
+                    element-update="#'.$name.$dataId.' "
+                    onchange="updateInput(this)" 
+                    class="form-control"
+                    type="select"
+                    name="'.$name.'"
+                    table-id="'.$tableId.'" 
+                    data-id="'.$dataId.'">';
+        $conditions = [];
+        $table = self::getTable($tblRowId);
+        if (!empty($table)) {
+            $html .= '<option value="0">Chọn '.$table->display_name.'</option>';
+            $tableData = app('EntityCommon')->getRowsByConditions($table->name, $conditions, 0, $order = ['sort_order', 'asc']);
+            foreach ($tableData as $data) {
+                $selected = '';
+                if ($data->id == $selectedId) {
+                    $selected = 'selected="selected"';
+                }
+                $html .= '<option '.$selected.' value="'.$data->id.'">'.$data->name.'</option>';
+            }
+        }
+        $html .= '</select>';
+
+        return $html;
+    }
+
+    public function getObjectJavascriptFromTable($tblRowId, $conditionsJson = '')
+    {
+        $result = '[';
+        $conditions = [];
+        if (!empty($conditionsJson)) {
+            $conditions = json_decode($conditionsJson);
+        }
+        // dd( $conditions);
+        $table = self::getTable($tblRowId);
+        if (!empty($table)) {
+            $tableData = app('EntityCommon')->getRowsByConditions($table->name, $conditions, 0, $order = ['sort_order', 'asc']);
+            foreach ($tableData as $data) {
+                $name = $data->name;
+                if (empty($data->name) && !empty($data->username)) {
+                    $name = $data->username;
+                }
+                $result .= "{value: {$data->id}, text: '{$name}'},";
+            }
+        }
+        $result .= ']';
+
+        return $result;
     }
 
     ////apply for all table have config in table tables
