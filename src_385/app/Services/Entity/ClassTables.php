@@ -83,7 +83,7 @@ class ClassTables
         $tables->table_tab_map_column = $request['table_tab_map_column'];
         $tables->is_show_btn_edit = isset($request['is_show_btn_edit']) ? $request['is_show_btn_edit'] : 0;
         $tables->is_add_express = isset($request['is_add_express']) ? $request['is_add_express'] : 0;
-        $tables->is_add_express = isset($request['is_edit_express']) ? $request['is_edit_express'] : 0;
+        $tables->is_edit_express = isset($request['is_edit_express']) ? $request['is_edit_express'] : 0;
         $tables->save();
 
         return $tables;
