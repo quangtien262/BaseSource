@@ -287,7 +287,12 @@
                                                  value="1" type="checkbox" name="bg_in_list" />
                                                  bg_in_list
                                         </label>
-                                        
+                                        <br/>
+                                        <label>
+                                            <input {{ isset($column->is_show_total) && $column->is_show_total == 1 ? 'checked="checked"':'' }}
+                                                 value="1" type="checkbox" name="is_show_total" />
+                                                 is_show_total
+                                        </label>
                                     </div>
                                 </div>
                                 <div class="row">

@@ -2,9 +2,9 @@
 
 @section('script')
 <script src="/backend/js/choose-multiple-checkbox.js"></script>
-<script>
+{{-- <script>
     $('.table-responsive').css('max-height', ($(window ).height() * 0.9));
-</script>
+</script> --}}
 @endsection
 
 @section('content')

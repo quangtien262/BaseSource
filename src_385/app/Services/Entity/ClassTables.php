@@ -119,6 +119,7 @@ class ClassTables
         $block->bg_in_list = isset($request['bg_in_list']) ? $request['bg_in_list'] : 0;
         $block->add_column_in_list = $request['add_column_in_list'];
         $block->column_name_map_to_comment = $request['column_name_map_to_comment'];
+        $block->is_show_total = isset($request['is_show_total']) ? $request['is_show_total'] : 0;
         $block->save();
 
         return $block;
@@ -678,5 +679,13 @@ class ClassTables
         }
 
         return $html;
+    }
+
+    public function getTotal($data, $colName) {
+        $result = 0;
+        foreach($data as $d) {
+            $result += $d[$colName];
+        }
+        return number_format($result);
     }
 }

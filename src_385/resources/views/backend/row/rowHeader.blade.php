@@ -66,7 +66,12 @@
                         {!! app('EntityCommon')->getHtmlTitleTblLink($col->table_link) !!}
                     </th>
                 @else
-                    <th><div class="{{ $col->class or '' }}">{{ $col->display_name }}</div></th>
+                    <th>
+                        <div class="{{ $col->class or '' }}">
+                            {{ $col->display_name }}
+                            {!! !empty($col->is_show_total) ? '<br/>'.app('ClassTables')->getTotal($datas, $col->name) : '' !!}
+                        </div>
+                    </th>
                 @endif
             @endif
         @endforeach

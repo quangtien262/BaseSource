@@ -10,8 +10,8 @@ class Category extends Model
 
     public function  getCategoryByParentId(){
         return self::where('parent_id', 0)
-                ->leftJoin('route', 'category.route_id', '=', 'route.id')
-                ->select('category.name as categoryName', 'category.id as categoryId', 'route.route_name as routeName')
+                ->leftJoin('route', 'category.route_id', '=', '__route.id')
+                ->select('category.name as categoryName', 'category.id as categoryId', '__route.route_name as routeName')
                 ->orderBy('category.sort_order', 'asc')
                 ->get();
     }

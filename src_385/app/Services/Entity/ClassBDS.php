@@ -11,10 +11,10 @@ class ClassBDS
         $categorys = Category::select([
             'category.id as cateId',
             'category.name as cateName',
-            'route.route_name as routeName',
-            'route.id as routeId',
+            '__route.route_name as routeName',
+            '__route.id as routeId',
         ])
-            ->leftJoin('route', 'route.id', 'category.route_id')
+            ->leftJoin('route', '__route.id', 'category.route_id')
             ->orderBy('category.sort_order', 'asc');
         foreach ($conditions as $key => $val) {
             $categorys = $categorys->where($key, $val);
