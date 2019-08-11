@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 09, 2019 at 04:40 AM
+-- Generation Time: Aug 11, 2019 at 04:09 PM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.6
 
@@ -56,6 +56,13 @@ CREATE TABLE `apartment` (
   `gia_nhuong` int(11) DEFAULT NULL,
   `note` text COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `apartment`
+--
+
+INSERT INTO `apartment` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `address`, `gia_nhuong`, `note`) VALUES
+(1, '1A/174 Trần Duy Hưng', 0, 0, '2019-07-31 03:36:06', '2019-07-31 03:36:06', '1A/174 Trần Duy Hưng', 155000000, NULL);
 
 -- --------------------------------------------------------
 
@@ -144,14 +151,14 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `sort_order`, `created_at`, `updated_at`, `name`, `parent_id`, `route_id`, `seo_keyword`, `seo_description`) VALUES
-(2, 3, '2019-03-29 16:05:16', '2019-04-09 14:55:47', 'Sản Phẩm', 0, 2, NULL, NULL),
-(3, 4, '2019-03-29 16:05:43', '2019-04-19 15:32:38', 'Tin tức', 0, 3, NULL, NULL),
-(4, 5, '2019-03-29 16:05:26', '2019-04-09 14:43:52', 'Liên Hệ', 0, 4, NULL, NULL),
-(8, 1, '2019-04-14 16:09:32', '2019-04-14 16:09:32', 'Sản Phẩm 1', 2, 2, NULL, NULL),
-(11, 2, '2019-04-14 16:10:32', '2019-04-14 16:10:32', 'Sản Phẩm 2.2', 2, 2, NULL, NULL),
-(12, 3, '2019-04-14 16:10:47', '2019-04-14 16:10:47', 'Sản Phẩm 2.3', 2, 2, NULL, NULL),
-(13, 1, '2019-04-21 18:21:37', '2019-04-21 18:22:12', 'Trang Chủ', 0, 6, NULL, NULL),
-(14, 2, '2019-04-28 20:25:58', '2019-04-28 20:25:58', 'Giới thiệu', 0, 8, NULL, NULL);
+(2, 3, '2019-03-29 23:05:16', '2019-04-09 21:55:47', 'Sản Phẩm', 0, 2, NULL, NULL),
+(3, 4, '2019-03-29 23:05:43', '2019-04-19 22:32:38', 'Tin tức', 0, 3, NULL, NULL),
+(4, 5, '2019-03-29 23:05:26', '2019-04-09 21:43:52', 'Liên Hệ', 0, 4, NULL, NULL),
+(8, 1, '2019-04-14 23:09:32', '2019-04-14 23:09:32', 'Sản Phẩm 1', 2, 2, NULL, NULL),
+(11, 2, '2019-04-14 23:10:32', '2019-04-14 23:10:32', 'Sản Phẩm 2.2', 2, 2, NULL, NULL),
+(12, 3, '2019-04-14 23:10:47', '2019-04-14 23:10:47', 'Sản Phẩm 2.3', 2, 2, NULL, NULL),
+(13, 1, '2019-04-22 01:21:37', '2019-04-22 01:22:12', 'Trang Chủ', 0, 6, NULL, NULL),
+(14, 2, '2019-04-29 03:25:58', '2019-04-29 03:25:58', 'Giới thiệu', 0, 8, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -360,7 +367,10 @@ INSERT INTO `investment` (`id`, `name`, `parent_id`, `sort_order`, `created_at`,
 (4, 'Sửa điều hòa phòng 402/217 ngày 27/07/2019', 0, 0, '2019-07-30 21:59:31', '2019-07-30 22:05:08', 0, 100000, NULL, 2),
 (5, 'Sửa điện tầng 1 ngày 27/07/2019', 0, 0, '2019-07-30 22:00:25', '2019-07-30 22:05:12', 0, 600000, NULL, 2),
 (6, 'Tiền sửa khóa vân tay tầng 1', 0, 0, '2019-08-02 21:16:02', '2019-08-02 21:16:02', 0, 1150000, NULL, 2),
-(7, 'nước tẩy, xi măng, bay,...', 0, 0, '2019-08-02 21:17:32', '2019-08-02 21:19:16', 0, 100000, 'đồ để sửa lại tầng 1', 0);
+(7, 'nước tẩy, xi măng, bay,...', 0, 0, '2019-08-02 21:17:32', '2019-08-09 04:09:08', 0, 100000, 'đồ để sửa lại tầng 1', 2),
+(8, 'Sửa Camera', 0, 0, '2019-08-09 04:07:58', '2019-08-09 04:07:58', 1000000, 0, 'Sửa camera tầng 1: 2 cái\r\ntầng thượng: mua mới 1 cái', 2),
+(9, 'Vệ sinh lại tầng 1', 0, 0, '2019-08-09 04:08:57', '2019-08-09 04:12:03', 1500000, 0, 'Vệ sinh tầng 1', 2),
+(10, 'mua quạt thông gió cho tầng 301', 0, 0, '2019-08-09 04:13:01', '2019-08-09 04:13:01', 500000, 0, NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -817,6 +827,29 @@ INSERT INTO `status_motel_room` (`id`, `name`, `parent_id`, `sort_order`, `creat
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `status_tien_phong`
+--
+
+CREATE TABLE `status_tien_phong` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `parent_id` int(11) DEFAULT 0,
+  `sort_order` int(11) DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `status_tien_phong`
+--
+
+INSERT INTO `status_tien_phong` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`) VALUES
+(1, 'Đã thanh toán', 0, 0, '2019-08-09 04:38:19', '2019-08-09 04:38:19'),
+(2, 'Chưa thanh toán', 0, 0, '2019-08-09 04:38:28', '2019-08-09 04:38:28');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tables`
 --
 
@@ -852,7 +885,7 @@ INSERT INTO `tables` (`id`, `sort_order`, `name`, `display_name`, `is_edit`, `ty
 (12, 3, 'product', 'Quản lí sản phẩm', 1, 'BASIC', 30, 'Product', 26, 1, '2019-02-12', '2019-04-01', NULL, NULL, 0, 0, 0, NULL, 0, 0, 0),
 (14, 5, 'news', 'Quản lí tin tức', 1, NULL, 30, NULL, 26, 1, '2019-03-19', '2019-04-01', NULL, NULL, 0, 0, 0, NULL, 0, 0, 0),
 (16, 2, 'category', 'QL danh mục', 1, '1', 30, NULL, 26, 2, '2019-03-30', '2019-05-01', NULL, NULL, 0, 0, 0, NULL, 0, 0, 0),
-(24, 8, '__route', 'route', 0, '1', 30, NULL, 26, 2, '2019-04-01', '2019-08-09', 0, 0, 0, 0, NULL, NULL, 0, 0, 0),
+(24, 8, '__route', 'route', 0, '1', 30, NULL, 26, 2, '2019-04-01', '2019-08-10', 0, 0, 0, 0, NULL, NULL, 0, 0, 0),
 (26, 10, 'tables', 'Category', 0, '1', 30, 'Tables', 0, 1, '2019-02-21', '2019-02-21', NULL, NULL, 0, 0, 0, NULL, 0, 0, 0),
 (27, 7, 'configweb', 'Cấu hình website', 1, '5', 30, NULL, 26, 1, '2019-04-06', '2019-05-01', NULL, NULL, 0, 0, 0, NULL, 0, 0, 0),
 (28, 6, 'contact', 'Thư gửi liên hệ', 1, NULL, 30, NULL, 26, 1, '2019-04-07', '2019-04-07', NULL, NULL, 0, 0, 0, NULL, 0, 0, 0),
@@ -866,14 +899,15 @@ INSERT INTO `tables` (`id`, `sort_order`, `name`, `display_name`, `is_edit`, `ty
 (40, 4, 'apartment', 'Căn hộ', 1, '0', 30, NULL, 0, 1, '2019-07-31', '2019-07-31', 0, 0, 1, 1, NULL, NULL, 1, 0, 0),
 (41, 6, 'customer', 'Khách hàng', 1, NULL, 30, NULL, 0, 1, '2019-07-31', '2019-08-02', 1, 1, 1, 1, NULL, NULL, 1, 0, 0),
 (42, 7, 'investment', 'Vốn đầu tư', 1, '0', 30, NULL, 0, 2, '2019-07-31', '2019-07-31', 1, 1, 1, 1, NULL, NULL, 1, 0, 0),
-(43, 3, 'status_investment', 'Trạng thái Vốn đầu tư', 1, '1', 30, NULL, 45, 2, '2019-07-31', '2019-07-31', 0, 0, 1, 1, NULL, NULL, 1, 0, 0),
-(44, 4, 'status_motel_room', 'Trạng thái phòng trọ', 1, '1', 30, NULL, 45, 1, '2019-07-31', '2019-07-31', 0, 0, 1, 1, NULL, NULL, 1, 0, 0),
+(43, 4, 'status_investment', 'Trạng thái Vốn đầu tư', 1, '1', 30, NULL, 45, 2, '2019-07-31', '2019-07-31', 0, 0, 1, 1, NULL, NULL, 1, 0, 0),
+(44, 5, 'status_motel_room', 'Trạng thái phòng trọ', 1, '1', 30, NULL, 45, 1, '2019-07-31', '2019-07-31', 0, 0, 1, 1, NULL, NULL, 1, 0, 0),
 (45, 8, 'status', 'Trạng thái', 1, '1', 30, NULL, 0, 1, '2019-08-02', '2019-08-02', 0, 0, 0, 0, NULL, NULL, 0, 0, 0),
-(46, 2, 'status_customer', 'Trạng thái khách hàng', 1, '1', 30, NULL, 45, 1, '2019-08-02', '2019-08-02', 0, 0, 0, 0, NULL, NULL, 0, 0, 0),
-(47, 1, 'tien_phong', 'Tiền phòng', 1, '0', 30, NULL, 0, 1, '2019-08-02', '2019-08-02', 1, 1, 1, 1, NULL, NULL, 1, 0, 0),
+(46, 3, 'status_customer', 'Trạng thái khách hàng', 1, '1', 30, NULL, 45, 1, '2019-08-02', '2019-08-02', 0, 0, 0, 0, NULL, NULL, 0, 0, 0),
+(47, 1, 'tien_phong', 'Tiền phòng', 1, '0', 30, NULL, 0, 1, '2019-08-02', '2019-08-10', 1, 1, 1, 1, NULL, NULL, 1, 0, 0),
 (48, 2, 'so_dien', 'Số điện', 1, NULL, 30, NULL, 0, 1, '2019-08-02', '2019-08-03', 1, 1, 1, 1, NULL, NULL, 1, 0, 1),
 (49, 3, 'hop_dong', 'Hợp đồng', 1, '0', 30, NULL, 0, 1, '2019-08-02', '2019-08-03', 1, 1, 1, 1, NULL, NULL, 1, 0, 1),
-(50, 1, 'status_hop_dong', 'Trạng thái hợp đồng', 1, '1', 30, NULL, 45, 1, '2019-08-02', '2019-08-02', 0, 0, 0, 0, NULL, NULL, 0, 0, 0);
+(50, 2, 'status_hop_dong', 'Trạng thái hợp đồng', 1, '1', 30, NULL, 45, 1, '2019-08-02', '2019-08-02', 0, 0, 0, 0, NULL, NULL, 0, 0, 0),
+(51, 1, 'status_tien_phong', 'Trạng thái tiền phòng', 1, '1', 30, NULL, 45, 1, '2019-08-09', '2019-08-09', 0, 0, 0, 0, NULL, NULL, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -912,218 +946,230 @@ CREATE TABLE `table_column` (
   `config_add_sub_table` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `bg_in_list` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `add_column_in_list` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `column_name_map_to_comment` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
+  `column_name_map_to_comment` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `is_show_total` tinyint(2) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `table_column`
 --
 
-INSERT INTO `table_column` (`id`, `table_id`, `display_name`, `name`, `type`, `value_default`, `is_null`, `max_length`, `edit`, `type_show`, `add2search`, `search_type`, `type_edit`, `show_in_list`, `require`, `sort_order`, `parent_id`, `created_at`, `updated_at`, `select_table_id`, `conditions`, `fast_edit`, `table_link`, `class`, `column_table_link`, `sub_list`, `sub_column_name`, `config_add_sub_table`, `bg_in_list`, `add_column_in_list`, `column_name_map_to_comment`) VALUES
-(4, 9, 'name', 'name', 'VARCHAR', '100', 1, 255, 1, NULL, 1, 1, 'text', 1, 0, 0, 0, '2019-02-11', '2019-02-18', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(7, 9, 'Image', 'image', 'INT', NULL, 1, NULL, 1, NULL, 1, 1, 'image_laravel', 1, 0, 0, 0, '2019-02-21', '2019-02-21', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(8, 13, 'Name', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 0, 0, 0, '2019-02-21', '2019-02-21', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(9, 13, 'parent_id', 'parent_id', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'select', 1, 0, 0, 0, '2019-02-21', '2019-02-21', 13, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(10, 12, 'Tên Sản Phẩm', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 1, 0, '2019-03-18', '2019-04-15', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(11, 12, 'Hình ảnh đại diên', 'image', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'image_laravel', 0, 1, 3, 0, '2019-03-18', '2019-05-04', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(12, 12, 'Nội dung', 'content', 'LONGTEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'summoner', 0, 1, 5, 0, '2019-03-18', '2019-04-15', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(13, 12, 'Nội dung tóm tắt', 'summary', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'summoner', 0, 1, 6, 0, '2019-03-18', '2019-04-15', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(14, 14, 'title', 'title', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 1, 0, '2019-03-19', '2019-03-19', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(15, 14, 'image', 'image', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'image_laravel', 0, 1, 3, 0, '2019-03-19', '2019-03-19', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(16, 14, 'content', 'content', 'LONGTEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'summoner', 0, 1, 4, 0, '2019-03-19', '2019-03-19', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(18, 14, 'summary', 'summary', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 1, 5, 0, '2019-03-19', '2019-03-27', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(19, 12, 'sort_order', 'sort_order', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'text', 0, 1, 9, 0, '2019-03-19', '2019-05-04', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(20, 14, 'sort_order', 'sort_order', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'text', 0, 1, 8, 0, '2019-03-20', '2019-05-04', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(21, 15, 'name', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 0, 0, '2019-03-30', '2019-03-30', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(22, 15, 'parent_id', 'parent_id', 'INT', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 0, 0, '2019-03-30', '2019-03-30', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(24, 15, 'sort_order', 'sort_order', 'INT', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 0, 0, 0, '2019-03-30', '2019-03-30', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(25, 16, 'name', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 0, 1, 0, '2019-03-30', '2019-03-30', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(26, 16, 'parent_id', 'parent_id', 'INT', NULL, 1, NULL, 1, NULL, 1, 1, 'select', 1, 0, 3, 0, '2019-03-30', '2019-04-29', 16, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(27, 17, 'name', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 1, 0, '2019-03-30', '2019-03-30', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(28, 17, 'describe', 'describe', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 3, 0, '2019-03-30', '2019-03-30', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(29, 17, 'image', 'image', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'image_laravel', 0, 0, 2, 0, '2019-03-30', '2019-03-30', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(30, 17, 'summary', 'summary', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 4, 0, '2019-03-30', '2019-03-30', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(31, 17, 'content', 'content', 'LONGTEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'summoner', 0, 0, 5, 0, '2019-03-30', '2019-03-30', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(32, 18, 'name', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 0, 1, 0, '2019-03-31', '2019-03-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(33, 18, 'image', 'image', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'image_laravel', 1, 0, 2, 0, '2019-03-31', '2019-03-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(34, 19, 'name', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 1, 0, '2019-03-31', '2019-03-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(36, 20, 'name', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 0, 1, 0, '2019-03-31', '2019-03-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(37, 20, 'image', 'image', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'image_laravel', 1, 0, 3, 0, '2019-03-31', '2019-03-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(38, 20, 'summary', 'summary', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'summoner', 0, 0, 4, 0, '2019-03-31', '2019-04-07', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(40, 21, 'name', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 2, 0, '2019-03-31', '2019-03-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(41, 21, 'image', 'image', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'image_laravel', 0, 0, 3, 0, '2019-03-31', '2019-03-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(42, 21, 'summary', 'summary', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 1, 4, 0, '2019-03-31', '2019-03-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(44, 21, 'content', 'content', 'LONGTEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'summoner', 0, 0, 5, 0, '2019-03-31', '2019-03-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(45, 22, 'name', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 1, 0, '2019-04-01', '2019-04-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(46, 22, 'image', 'image', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'image_laravel', 0, 1, 2, 0, '2019-04-01', '2019-04-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(47, 23, 'name', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 0, 1, 0, '2019-04-01', '2019-04-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(48, 23, 'image', 'image', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'image_laravel', 1, 0, 2, 0, '2019-04-01', '2019-04-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(49, 16, 'Chọn kiểu hiển thị', 'route_id', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'select', 0, 1, 2, 0, '2019-04-01', '2019-04-07', 24, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(50, 24, 'name', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 0, 0, '2019-04-01', '2019-04-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(51, 24, 'route_name', 'route_name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 0, 0, '2019-04-01', '2019-04-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(52, 25, 'name', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 0, 0, '2019-04-06', '2019-04-06', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(53, 25, 'summary', 'summary', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'text', 0, 1, 0, 0, '2019-04-06', '2019-04-06', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(54, 25, 'content', 'content', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'summoner', 0, 1, 0, 0, '2019-04-06', '2019-04-06', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(55, 25, 'image', 'image', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'image_laravel', 0, 1, 0, 0, '2019-04-06', '2019-04-06', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(58, 20, 'Link xem thêm', 'link', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 0, 0, 2, 0, '2019-04-06', '2019-04-08', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(59, 21, 'link', 'link', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 0, 1, 1, 0, '2019-04-06', '2019-04-06', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(60, 27, 'name', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 0, 0, '2019-04-06', '2019-04-06', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(61, 27, 'address', 'address', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'text', 1, 1, 0, 0, '2019-04-06', '2019-04-06', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(62, 27, 'email', 'email', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 0, 0, '2019-04-06', '2019-04-06', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(63, 27, 'logo', 'logo', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'image_laravel', 0, 1, 0, 0, '2019-04-06', '2019-04-06', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(67, 27, 'facebook', 'facebook', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 0, 0, '2019-04-06', '2019-04-06', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(68, 27, 'youtube', 'youtube', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'text', 0, 1, 0, 0, '2019-04-06', '2019-04-06', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(69, 27, 'instagram', 'instagram', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'text', 0, 1, 0, 0, '2019-04-06', '2019-04-06', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(70, 27, 'phone', 'phone', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-04-06', '2019-04-07', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(72, 28, 'name', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 0, 0, '2019-04-07', '2019-04-07', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(73, 28, 'phone', 'phone', 'INT', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 0, 0, '2019-04-07', '2019-04-07', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(74, 28, 'email', 'email', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 0, 0, 0, '2019-04-07', '2019-04-07', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(75, 28, 'address', 'address', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 0, 0, '2019-04-07', '2019-04-07', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(76, 12, 'Hình ảnh SP', 'images', 'LONGTEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'images', 0, 0, 4, 0, '2019-04-07', '2019-05-04', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(80, 12, 'chọn danh mục', 'category_id', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'select', 0, 0, 2, 0, '2019-04-07', '2019-05-04', 16, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(81, 14, 'chọn danh mục', 'category_id', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'select', 0, 0, 2, 0, '2019-04-07', '2019-05-04', 16, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(82, 29, 'name', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 1, 0, '2019-04-08', '2019-04-08', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(83, 29, 'pdf', 'pdf', 'TEXT', NULL, 1, 255, 1, NULL, 0, 1, 'pdf', 0, 0, 3, 0, '2019-04-08', '2019-04-08', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(84, 29, 'image', 'image', 'TEXT', NULL, 1, 255, 1, NULL, 0, 1, 'image_laravel', 0, 0, 4, 0, '2019-04-08', '2019-04-08', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(85, 29, 'summary', 'summary', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'summoner', 0, 0, 5, 0, '2019-04-08', '2019-04-08', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(86, 20, 'video', 'video', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'video', 0, 0, 0, 0, '2019-04-08', '2019-04-08', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(87, 29, 'Chọn danh mục', 'category_id', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'select', 0, 0, 2, 0, '2019-04-08', '2019-04-08', 16, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(88, 19, 'parent_id', 'parent_id', 'INT', NULL, 1, NULL, 0, NULL, 1, 1, 'select', 0, 0, 0, 0, '2019-04-11', '2019-04-11', 19, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(89, 31, 'name', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 1, 1, 'text', 1, 0, 1, 0, '2019-04-15', '2019-04-15', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(90, 31, 'parent_id', 'parent_id', 'INT', NULL, 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 5, 0, '2019-04-15', '2019-04-15', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(91, 31, 'input_type', 'input_type', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'input', 0, 0, 3, 0, '2019-04-15', '2019-04-28', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(92, 31, 'block_type_id', 'block_type_id', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'select', 0, 0, 4, 0, '2019-04-15', '2019-04-15', 32, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(93, 32, 'name', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 1, 1, 'text', 1, 0, 1, 0, '2019-04-15', '2019-04-15', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(94, 32, 'parent_id', 'parent_id', 'INT', NULL, 1, 255, 0, NULL, 0, 1, 'number', 0, 0, 3, 0, '2019-04-15', '2019-04-29', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(95, 32, 'image', 'image', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'image_laravel', 0, 0, 2, 0, '2019-04-15', '2019-04-15', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(96, 33, 'name', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 1, 1, 'text', 1, 0, 1, 0, '2019-04-15', '2019-04-15', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(97, 33, 'parent_id', 'parent_id', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 0, 0, 5, 0, '2019-04-15', '2019-04-15', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(98, 33, 'landing_page_id', 'landing_page_id', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'select', 0, 0, 2, 0, '2019-04-15', '2019-04-28', 34, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(100, 33, 'data', 'data', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'text', 0, 0, 3, 0, '2019-04-15', '2019-04-15', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(101, 34, 'name', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 1, 1, 'text', 1, 0, 0, 0, '2019-04-15', '2019-04-15', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(102, 34, 'parent_id', 'parent_id', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-04-15', '2019-04-15', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(103, 34, 'image', 'image', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'image_laravel', 0, 0, 0, 0, '2019-04-15', '2019-04-15', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(104, 34, 'category_id', 'category_id', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'select', 0, 0, 0, 0, '2019-04-15', '2019-04-15', 16, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(105, 34, 'blocks', 'blocks', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'block', 0, 0, 0, 0, '2019-04-15', '2019-04-15', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(106, 35, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 1, 0, '2019-04-15', '2019-04-15', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(107, 35, 'Mật khẩu (Bỏ trống nếu bạn không muốn thay đổi))', 'password', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'encryption', 0, 0, 4, 0, '2019-04-15', '2019-05-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(108, 35, 'name', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 0, 0, 2, 0, '2019-04-15', '2019-04-15', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(109, 35, 'remember_token', 'remember_token', 'VARCHAR', NULL, 1, 255, 0, NULL, 0, 1, 'text', 0, 0, 7, 0, '2019-04-15', '2019-05-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(110, 35, 'Tên đăng nhập', 'username', 'VARCHAR', '', 1, 255, 1, NULL, 1, 1, 'text', 1, 0, 3, 0, '2019-04-21', '2019-05-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(111, 35, 'Email', 'email', 'VARCHAR', '', 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 5, 0, '2019-04-21', '2019-04-21', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(112, 35, 'user_type', 'user_type', 'VARCHAR', '0', 1, 255, 0, NULL, 0, 1, 'text', 0, 0, 6, 0, '2019-04-21', '2019-05-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(122, 33, 'block_id', 'block_id', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'text', 0, 0, 4, 0, '2019-04-28', '2019-04-28', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(124, 31, 'input_name', 'input_name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'text', 0, 0, 2, 0, '2019-04-28', '2019-04-28', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(125, 16, 'Thứ tự sắp sếp', 'sort_order', 'INT', NULL, 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 6, 0, '2019-04-29', '2019-04-29', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(126, 24, 'parent_id', 'parent_id', 'INT', NULL, 1, NULL, 0, NULL, 0, 1, 'select', 0, 0, 0, 0, '2019-04-29', '2019-04-29', 24, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(127, 24, 'sort_order', 'sort_order', 'INT', NULL, 1, NULL, 0, NULL, 1, 1, 'number', 1, 0, 0, 0, '2019-04-29', '2019-04-29', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(132, 36, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 1, 0, '2019-05-01', '2019-05-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(133, 36, 'Tiêu đề', 'name', 'VARCHAR', '', 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 2, 0, '2019-05-01', '2019-05-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(134, 36, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 4, 0, '2019-05-01', '2019-05-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(135, 36, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 5, 0, '2019-05-01', '2019-05-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(136, 36, 'Liên kết (VD: http://abc.com/...)', 'link', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'text', 0, 0, 3, 0, '2019-05-01', '2019-05-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(137, 37, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 1, 0, '2019-05-04', '2019-05-04', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(138, 37, 'NVKD', 'nvkd_id', 'INT', NULL, 1, 255, 1, NULL, 0, 1, 'select', 1, 0, 4, 0, '2019-05-04', '2019-05-25', 35, NULL, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(139, 37, 'Ngày gửi', 'ngay_gui', 'DATE', '0', 1, NULL, 1, NULL, 0, 1, 'date', 1, 0, 7, 0, '2019-05-04', '2019-05-25', 0, NULL, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(140, 37, 'Ngày về', 'ngay_ve', 'DATE', '0', 1, NULL, 1, NULL, 0, 1, 'date', 1, 0, 8, 0, '2019-05-04', '2019-05-25', 0, NULL, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(141, 16, '[SEO] Từ khóa', 'seo_keyword', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'number', 0, 0, 4, 0, '2019-05-04', '2019-05-04', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(142, 16, '[SEO] Mô tả', 'seo_description', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'text', 0, 0, 5, 0, '2019-05-04', '2019-05-04', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(143, 12, '[SEO] Từ khóa', 'seo_keyword', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 7, 0, '2019-05-04', '2019-05-04', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(144, 12, '[SEO] Mô tả', 'seo_description', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 8, 0, '2019-05-04', '2019-05-04', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(145, 14, '[SEO] Từ khóa', 'seo_keyword', 'TEXT', NULL, 1, NULL, 1, NULL, 1, 1, 'textarea', 1, 0, 6, 0, '2019-05-04', '2019-05-04', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(146, 14, '[SEO] Mô tả', 'seo_description', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 7, 0, '2019-05-04', '2019-05-04', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(147, 37, 'Tổng SK', 'total_sk', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 2, 0, '2019-05-04', '2019-05-25', 0, NULL, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(148, 37, 'Mã SP', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 0, 3, 0, '2019-05-04', '2019-05-26', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(150, 37, 'Hàng hoá', 'hang_ve_id', 'INT', NULL, 1, NULL, 1, NULL, 1, 1, 'number', 1, 0, 5, 0, '2019-05-04', '2019-05-26', 0, NULL, 1, 38, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(151, 37, 'Nhân viên mua hàng', 'nvmh_id', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'select', 1, 0, 6, 0, '2019-05-25', '2019-05-25', 35, NULL, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(152, 38, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 1, 0, '2019-05-25', '2019-05-25', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(153, 38, 'Tên hàng', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 2, 0, '2019-05-25', '2019-05-26', 0, NULL, 0, NULL, 'width02', NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(154, 38, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 6, 0, '2019-05-25', '2019-05-25', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(155, 38, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 7, 0, '2019-05-25', '2019-05-25', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(156, 38, 'Số kiện', 'so_kien', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 3, 0, '2019-05-25', '2019-05-26', 0, NULL, 1, NULL, 'width01', NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(157, 38, 'Đóng gói', 'so_luong_dong_goi', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 4, 0, '2019-05-25', '2019-05-26', 0, NULL, 1, NULL, 'width01', NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(158, 38, 'Số lượng', 'so_luong', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 5, 0, '2019-05-25', '2019-05-26', 0, NULL, 1, NULL, 'width01', NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(159, 38, 'Hàng về', 'hang_ve_id', 'INT', NULL, 1, NULL, 0, NULL, 0, 1, 'select', 0, 0, 0, 0, '2019-05-26', '2019-05-26', 37, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(160, 37, 'sort_order', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'number', 0, 0, 0, 0, '2019-05-26', '2019-05-26', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(161, 39, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 1, 0, '2019-07-30', '2019-07-30', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(162, 39, 'Số phòng', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 2, 0, '2019-07-30', '2019-07-31', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(163, 39, 'parent_id', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'select', 0, 0, 9, 0, '2019-07-30', '2019-07-31', 39, '{ \"parent_id\":\"0\"}', 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(164, 39, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'text', 0, 0, 10, 0, '2019-07-30', '2019-07-30', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(166, 40, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 1, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(167, 40, 'Tiêu đề', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 2, 0, '2019-07-31', '2019-07-31', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
-(168, 40, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 6, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(169, 40, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 7, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(170, 40, 'Địa chỉ', 'address', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 4, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(171, 40, 'Giá nhượng lại', 'gia_nhuong', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 3, 0, '2019-07-31', '2019-07-31', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
-(173, 40, 'Note', 'note', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 5, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(174, 39, 'Căn hộ', 'apartment_id', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'select', 0, 0, 3, 0, '2019-07-31', '2019-07-31', 40, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(175, 41, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 1, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(176, 41, 'Họ tên', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 2, 0, '2019-07-31', '2019-08-03', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
-(177, 41, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 12, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(178, 41, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 13, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(179, 41, 'CMTND', 'cmtnd', 'VARCHAR', '0', 1, 255, 1, NULL, 0, 1, 'number', 0, 0, 8, 0, '2019-07-31', '2019-08-02', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
-(180, 41, 'Ngày cấp', 'ngay_cap', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'date', 0, 0, 7, 0, '2019-07-31', '2019-08-02', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
-(181, 41, 'Nơi cấp', 'noi_cap', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 9, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(182, 41, 'Địa chỉ', 'address', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 10, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(184, 41, 'Điện thoại', 'mobile', 'VARCHAR', '0', 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 6, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(185, 41, 'Email', 'email', 'TEXT', NULL, 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 5, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(186, 42, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 1, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(187, 42, 'Tiêu đề', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 2, 0, '2019-07-31', '2019-07-31', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(188, 42, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 6, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(189, 42, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 7, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(190, 42, 'TienLQ', 'tienlq', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 3, 0, '2019-07-31', '2019-07-31', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(191, 42, 'AnhHT', 'anhht', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 4, 0, '2019-07-31', '2019-07-31', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(192, 42, 'Note', 'note', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 5, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(193, 43, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(194, 43, 'Tên trạng thái', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 0, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(195, 43, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(196, 43, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(197, 42, 'Trạng thái', 'status_investment_id', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'select', 0, 0, 0, 0, '2019-07-31', '2019-07-31', 43, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(198, 44, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(199, 44, 'Tiêu đề', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 0, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
-(200, 44, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(201, 44, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(202, 39, 'Trạng thái', 'status_motel_room_id', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'select', 1, 0, 6, 0, '2019-07-31', '2019-07-31', 44, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
-(204, 39, 'Ghi chú', 'note', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 11, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
-(205, 45, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(206, 45, 'Tiêu đề', 'name', 'VARCHAR', '', 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 0, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(207, 45, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(208, 45, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(209, 46, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(210, 46, 'Tiêu đề', 'name', 'VARCHAR', '', 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 0, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(211, 46, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(212, 46, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(213, 41, 'Trạng thái', 'status_customer_id', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'select', 1, 0, 4, 0, '2019-08-02', '2019-08-02', 46, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
-(214, 41, 'Phòng', 'motel_room_id', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'select', 1, 0, 3, 0, '2019-08-02', '2019-08-02', 39, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
-(215, 47, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 3, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(216, 47, 'Tiêu đề', 'name', 'VARCHAR', '', 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 4, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(217, 47, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 6, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(218, 47, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 7, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(219, 47, 'Phòng', 'motel_room_id', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'select', 1, 0, 5, 0, '2019-08-02', '2019-08-02', 39, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
-(220, 48, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 1, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(221, 48, 'Tiêu đề', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 2, 0, '2019-08-02', '2019-08-03', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
-(222, 48, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 4, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(223, 48, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 5, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(227, 49, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 1, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(228, 49, 'Tiêu đề', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 2, 0, '2019-08-02', '2019-08-03', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
-(229, 49, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 11, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(230, 49, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 12, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(231, 49, 'Phòng', 'motel_room_id', 'INT', '0', 1, NULL, 1, NULL, 1, 1, 'select', 1, 0, 5, 0, '2019-08-02', '2019-08-02', 39, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
-(232, 49, 'Giá thuê', 'gia_thue', 'INT', '0', 1, NULL, 1, NULL, 1, 1, 'number', 1, 0, 6, 0, '2019-08-02', '2019-08-02', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
-(233, 49, 'Khách hàng', 'customer_id', 'INT', NULL, 1, NULL, 1, NULL, 1, 1, 'select', 1, 0, 3, 0, '2019-08-02', '2019-08-02', 41, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
-(236, 49, 'Ngày bắt đầu', 'start_date', 'DATE', NULL, 1, NULL, 1, NULL, 1, 1, 'date', 1, 0, 8, 0, '2019-08-02', '2019-08-03', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
-(237, 49, 'Ngày kết thúc', 'end_date', 'DATE', NULL, 1, NULL, 1, NULL, 1, 1, 'date', 1, 0, 9, 0, '2019-08-02', '2019-08-03', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
-(238, 47, 'Số điện đầu', 'so_dien_dau', 'INT', '0', 1, 255, 1, NULL, 1, 1, 'text', 1, 0, 1, 0, '2019-08-02', '2019-08-02', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
-(239, 47, 'Số điện cuối', 'so_dien_cuoi', 'INT', '0', 1, 22, 0, NULL, 0, 1, 'number', 0, 0, 2, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
-(240, 50, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(241, 50, 'Tiêu đề', 'name', 'VARCHAR', '', 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 0, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(242, 50, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(243, 50, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(244, 49, 'Tiền đặt cọc', 'tien_dat_coc', 'INT', '0', 1, NULL, 1, NULL, 1, 1, 'number', 1, 0, 7, 0, '2019-08-02', '2019-08-02', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
-(245, 48, 'Phòng', 'motel_room_id', 'INT', '0', 1, NULL, 1, NULL, 1, 1, 'select', 1, 0, 3, 0, '2019-08-03', '2019-08-03', 39, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
-(246, 49, 'Số Người', 'so_nguoi', 'INT', '0', 1, NULL, 1, NULL, 1, 1, 'number', 1, 0, 4, 0, '2019-08-03', '2019-08-03', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
-(247, 49, 'Ghi chú', 'note', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 10, 0, '2019-08-03', '2019-08-03', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
-(248, 41, 'Ghi chú', 'note', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 11, 0, '2019-08-03', '2019-08-03', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL);
+INSERT INTO `table_column` (`id`, `table_id`, `display_name`, `name`, `type`, `value_default`, `is_null`, `max_length`, `edit`, `type_show`, `add2search`, `search_type`, `type_edit`, `show_in_list`, `require`, `sort_order`, `parent_id`, `created_at`, `updated_at`, `select_table_id`, `conditions`, `fast_edit`, `table_link`, `class`, `column_table_link`, `sub_list`, `sub_column_name`, `config_add_sub_table`, `bg_in_list`, `add_column_in_list`, `column_name_map_to_comment`, `is_show_total`) VALUES
+(4, 9, 'name', 'name', 'VARCHAR', '100', 1, 255, 1, NULL, 1, 1, 'text', 1, 0, 0, 0, '2019-02-11', '2019-02-18', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(7, 9, 'Image', 'image', 'INT', NULL, 1, NULL, 1, NULL, 1, 1, 'image_laravel', 1, 0, 0, 0, '2019-02-21', '2019-02-21', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(8, 13, 'Name', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 0, 0, 0, '2019-02-21', '2019-02-21', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(9, 13, 'parent_id', 'parent_id', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'select', 1, 0, 0, 0, '2019-02-21', '2019-02-21', 13, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(10, 12, 'Tên Sản Phẩm', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 1, 0, '2019-03-18', '2019-04-15', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(11, 12, 'Hình ảnh đại diên', 'image', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'image_laravel', 0, 1, 3, 0, '2019-03-18', '2019-05-04', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(12, 12, 'Nội dung', 'content', 'LONGTEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'summoner', 0, 1, 5, 0, '2019-03-18', '2019-04-15', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(13, 12, 'Nội dung tóm tắt', 'summary', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'summoner', 0, 1, 6, 0, '2019-03-18', '2019-04-15', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(14, 14, 'title', 'title', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 1, 0, '2019-03-19', '2019-03-19', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(15, 14, 'image', 'image', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'image_laravel', 0, 1, 3, 0, '2019-03-19', '2019-03-19', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(16, 14, 'content', 'content', 'LONGTEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'summoner', 0, 1, 4, 0, '2019-03-19', '2019-03-19', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(18, 14, 'summary', 'summary', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 1, 5, 0, '2019-03-19', '2019-03-27', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(19, 12, 'sort_order', 'sort_order', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'text', 0, 1, 9, 0, '2019-03-19', '2019-05-04', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(20, 14, 'sort_order', 'sort_order', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'text', 0, 1, 8, 0, '2019-03-20', '2019-05-04', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(21, 15, 'name', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 0, 0, '2019-03-30', '2019-03-30', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(22, 15, 'parent_id', 'parent_id', 'INT', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 0, 0, '2019-03-30', '2019-03-30', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(24, 15, 'sort_order', 'sort_order', 'INT', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 0, 0, 0, '2019-03-30', '2019-03-30', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(25, 16, 'name', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 0, 1, 0, '2019-03-30', '2019-03-30', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(26, 16, 'parent_id', 'parent_id', 'INT', NULL, 1, NULL, 1, NULL, 1, 1, 'select', 1, 0, 3, 0, '2019-03-30', '2019-04-29', 16, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(27, 17, 'name', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 1, 0, '2019-03-30', '2019-03-30', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(28, 17, 'describe', 'describe', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 3, 0, '2019-03-30', '2019-03-30', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(29, 17, 'image', 'image', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'image_laravel', 0, 0, 2, 0, '2019-03-30', '2019-03-30', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(30, 17, 'summary', 'summary', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 4, 0, '2019-03-30', '2019-03-30', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(31, 17, 'content', 'content', 'LONGTEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'summoner', 0, 0, 5, 0, '2019-03-30', '2019-03-30', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(32, 18, 'name', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 0, 1, 0, '2019-03-31', '2019-03-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(33, 18, 'image', 'image', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'image_laravel', 1, 0, 2, 0, '2019-03-31', '2019-03-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(34, 19, 'name', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 1, 0, '2019-03-31', '2019-03-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(36, 20, 'name', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 0, 1, 0, '2019-03-31', '2019-03-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(37, 20, 'image', 'image', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'image_laravel', 1, 0, 3, 0, '2019-03-31', '2019-03-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(38, 20, 'summary', 'summary', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'summoner', 0, 0, 4, 0, '2019-03-31', '2019-04-07', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(40, 21, 'name', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 2, 0, '2019-03-31', '2019-03-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(41, 21, 'image', 'image', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'image_laravel', 0, 0, 3, 0, '2019-03-31', '2019-03-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(42, 21, 'summary', 'summary', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 1, 4, 0, '2019-03-31', '2019-03-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(44, 21, 'content', 'content', 'LONGTEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'summoner', 0, 0, 5, 0, '2019-03-31', '2019-03-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(45, 22, 'name', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 1, 0, '2019-04-01', '2019-04-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(46, 22, 'image', 'image', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'image_laravel', 0, 1, 2, 0, '2019-04-01', '2019-04-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(47, 23, 'name', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 0, 1, 0, '2019-04-01', '2019-04-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(48, 23, 'image', 'image', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'image_laravel', 1, 0, 2, 0, '2019-04-01', '2019-04-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(49, 16, 'Chọn kiểu hiển thị', 'route_id', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'select', 0, 1, 2, 0, '2019-04-01', '2019-04-07', 24, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(50, 24, 'name', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 0, 0, '2019-04-01', '2019-04-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(51, 24, 'route_name', 'route_name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 0, 0, '2019-04-01', '2019-04-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(52, 25, 'name', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 0, 0, '2019-04-06', '2019-04-06', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(53, 25, 'summary', 'summary', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'text', 0, 1, 0, 0, '2019-04-06', '2019-04-06', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(54, 25, 'content', 'content', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'summoner', 0, 1, 0, 0, '2019-04-06', '2019-04-06', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(55, 25, 'image', 'image', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'image_laravel', 0, 1, 0, 0, '2019-04-06', '2019-04-06', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(58, 20, 'Link xem thêm', 'link', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 0, 0, 2, 0, '2019-04-06', '2019-04-08', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(59, 21, 'link', 'link', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 0, 1, 1, 0, '2019-04-06', '2019-04-06', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(60, 27, 'name', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 0, 0, '2019-04-06', '2019-04-06', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(61, 27, 'address', 'address', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'text', 1, 1, 0, 0, '2019-04-06', '2019-04-06', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(62, 27, 'email', 'email', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 0, 0, '2019-04-06', '2019-04-06', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(63, 27, 'logo', 'logo', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'image_laravel', 0, 1, 0, 0, '2019-04-06', '2019-04-06', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(67, 27, 'facebook', 'facebook', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 0, 0, '2019-04-06', '2019-04-06', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(68, 27, 'youtube', 'youtube', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'text', 0, 1, 0, 0, '2019-04-06', '2019-04-06', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(69, 27, 'instagram', 'instagram', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'text', 0, 1, 0, 0, '2019-04-06', '2019-04-06', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(70, 27, 'phone', 'phone', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-04-06', '2019-04-07', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(72, 28, 'name', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 0, 0, '2019-04-07', '2019-04-07', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(73, 28, 'phone', 'phone', 'INT', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 0, 0, '2019-04-07', '2019-04-07', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(74, 28, 'email', 'email', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 0, 0, 0, '2019-04-07', '2019-04-07', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(75, 28, 'address', 'address', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 0, 0, '2019-04-07', '2019-04-07', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(76, 12, 'Hình ảnh SP', 'images', 'LONGTEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'images', 0, 0, 4, 0, '2019-04-07', '2019-05-04', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(80, 12, 'chọn danh mục', 'category_id', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'select', 0, 0, 2, 0, '2019-04-07', '2019-05-04', 16, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(81, 14, 'chọn danh mục', 'category_id', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'select', 0, 0, 2, 0, '2019-04-07', '2019-05-04', 16, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(82, 29, 'name', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 1, 1, 0, '2019-04-08', '2019-04-08', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(83, 29, 'pdf', 'pdf', 'TEXT', NULL, 1, 255, 1, NULL, 0, 1, 'pdf', 0, 0, 3, 0, '2019-04-08', '2019-04-08', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(84, 29, 'image', 'image', 'TEXT', NULL, 1, 255, 1, NULL, 0, 1, 'image_laravel', 0, 0, 4, 0, '2019-04-08', '2019-04-08', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(85, 29, 'summary', 'summary', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'summoner', 0, 0, 5, 0, '2019-04-08', '2019-04-08', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(86, 20, 'video', 'video', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'video', 0, 0, 0, 0, '2019-04-08', '2019-04-08', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(87, 29, 'Chọn danh mục', 'category_id', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'select', 0, 0, 2, 0, '2019-04-08', '2019-04-08', 16, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(88, 19, 'parent_id', 'parent_id', 'INT', NULL, 1, NULL, 0, NULL, 1, 1, 'select', 0, 0, 0, 0, '2019-04-11', '2019-04-11', 19, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(89, 31, 'name', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 1, 1, 'text', 1, 0, 1, 0, '2019-04-15', '2019-04-15', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(90, 31, 'parent_id', 'parent_id', 'INT', NULL, 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 5, 0, '2019-04-15', '2019-04-15', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(91, 31, 'input_type', 'input_type', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'input', 0, 0, 3, 0, '2019-04-15', '2019-04-28', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(92, 31, 'block_type_id', 'block_type_id', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'select', 0, 0, 4, 0, '2019-04-15', '2019-04-15', 32, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(93, 32, 'name', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 1, 1, 'text', 1, 0, 1, 0, '2019-04-15', '2019-04-15', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(94, 32, 'parent_id', 'parent_id', 'INT', NULL, 1, 255, 0, NULL, 0, 1, 'number', 0, 0, 3, 0, '2019-04-15', '2019-04-29', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(95, 32, 'image', 'image', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'image_laravel', 0, 0, 2, 0, '2019-04-15', '2019-04-15', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(96, 33, 'name', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 1, 1, 'text', 1, 0, 1, 0, '2019-04-15', '2019-04-15', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(97, 33, 'parent_id', 'parent_id', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 0, 0, 5, 0, '2019-04-15', '2019-04-15', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(98, 33, 'landing_page_id', 'landing_page_id', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'select', 0, 0, 2, 0, '2019-04-15', '2019-04-28', 34, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(100, 33, 'data', 'data', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'text', 0, 0, 3, 0, '2019-04-15', '2019-04-15', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(101, 34, 'name', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 1, 1, 'text', 1, 0, 0, 0, '2019-04-15', '2019-04-15', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(102, 34, 'parent_id', 'parent_id', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-04-15', '2019-04-15', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(103, 34, 'image', 'image', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'image_laravel', 0, 0, 0, 0, '2019-04-15', '2019-04-15', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(104, 34, 'category_id', 'category_id', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'select', 0, 0, 0, 0, '2019-04-15', '2019-04-15', 16, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(105, 34, 'blocks', 'blocks', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'block', 0, 0, 0, 0, '2019-04-15', '2019-04-15', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(106, 35, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 1, 0, '2019-04-15', '2019-04-15', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(107, 35, 'Mật khẩu (Bỏ trống nếu bạn không muốn thay đổi))', 'password', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'encryption', 0, 0, 4, 0, '2019-04-15', '2019-05-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(108, 35, 'name', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 0, 0, 2, 0, '2019-04-15', '2019-04-15', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(109, 35, 'remember_token', 'remember_token', 'VARCHAR', NULL, 1, 255, 0, NULL, 0, 1, 'text', 0, 0, 7, 0, '2019-04-15', '2019-05-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(110, 35, 'Tên đăng nhập', 'username', 'VARCHAR', '', 1, 255, 1, NULL, 1, 1, 'text', 1, 0, 3, 0, '2019-04-21', '2019-05-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(111, 35, 'Email', 'email', 'VARCHAR', '', 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 5, 0, '2019-04-21', '2019-04-21', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(112, 35, 'user_type', 'user_type', 'VARCHAR', '0', 1, 255, 0, NULL, 0, 1, 'text', 0, 0, 6, 0, '2019-04-21', '2019-05-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(122, 33, 'block_id', 'block_id', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'text', 0, 0, 4, 0, '2019-04-28', '2019-04-28', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(124, 31, 'input_name', 'input_name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'text', 0, 0, 2, 0, '2019-04-28', '2019-04-28', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(125, 16, 'Thứ tự sắp sếp', 'sort_order', 'INT', NULL, 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 6, 0, '2019-04-29', '2019-04-29', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(126, 24, 'parent_id', 'parent_id', 'INT', NULL, 1, NULL, 0, NULL, 0, 1, 'select', 0, 0, 0, 0, '2019-04-29', '2019-04-29', 24, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(127, 24, 'sort_order', 'sort_order', 'INT', NULL, 1, NULL, 0, NULL, 1, 1, 'number', 1, 0, 0, 0, '2019-04-29', '2019-04-29', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(132, 36, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 1, 0, '2019-05-01', '2019-05-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(133, 36, 'Tiêu đề', 'name', 'VARCHAR', '', 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 2, 0, '2019-05-01', '2019-05-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(134, 36, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 4, 0, '2019-05-01', '2019-05-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(135, 36, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 5, 0, '2019-05-01', '2019-05-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(136, 36, 'Liên kết (VD: http://abc.com/...)', 'link', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'text', 0, 0, 3, 0, '2019-05-01', '2019-05-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(137, 37, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 1, 0, '2019-05-04', '2019-05-04', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(138, 37, 'NVKD', 'nvkd_id', 'INT', NULL, 1, 255, 1, NULL, 0, 1, 'select', 1, 0, 4, 0, '2019-05-04', '2019-05-25', 35, NULL, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(139, 37, 'Ngày gửi', 'ngay_gui', 'DATE', '0', 1, NULL, 1, NULL, 0, 1, 'date', 1, 0, 7, 0, '2019-05-04', '2019-05-25', 0, NULL, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(140, 37, 'Ngày về', 'ngay_ve', 'DATE', '0', 1, NULL, 1, NULL, 0, 1, 'date', 1, 0, 8, 0, '2019-05-04', '2019-05-25', 0, NULL, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(141, 16, '[SEO] Từ khóa', 'seo_keyword', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'number', 0, 0, 4, 0, '2019-05-04', '2019-05-04', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(142, 16, '[SEO] Mô tả', 'seo_description', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'text', 0, 0, 5, 0, '2019-05-04', '2019-05-04', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(143, 12, '[SEO] Từ khóa', 'seo_keyword', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 7, 0, '2019-05-04', '2019-05-04', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(144, 12, '[SEO] Mô tả', 'seo_description', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 8, 0, '2019-05-04', '2019-05-04', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(145, 14, '[SEO] Từ khóa', 'seo_keyword', 'TEXT', NULL, 1, NULL, 1, NULL, 1, 1, 'textarea', 1, 0, 6, 0, '2019-05-04', '2019-05-04', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(146, 14, '[SEO] Mô tả', 'seo_description', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 7, 0, '2019-05-04', '2019-05-04', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(147, 37, 'Tổng SK', 'total_sk', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 2, 0, '2019-05-04', '2019-05-25', 0, NULL, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(148, 37, 'Mã SP', 'name', 'VARCHAR', NULL, 1, NULL, 1, NULL, 1, 1, 'text', 1, 0, 3, 0, '2019-05-04', '2019-05-26', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(150, 37, 'Hàng hoá', 'hang_ve_id', 'INT', NULL, 1, NULL, 1, NULL, 1, 1, 'number', 1, 0, 5, 0, '2019-05-04', '2019-05-26', 0, NULL, 1, 38, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(151, 37, 'Nhân viên mua hàng', 'nvmh_id', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'select', 1, 0, 6, 0, '2019-05-25', '2019-05-25', 35, NULL, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(152, 38, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 1, 0, '2019-05-25', '2019-05-25', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(153, 38, 'Tên hàng', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 2, 0, '2019-05-25', '2019-05-26', 0, NULL, 0, NULL, 'width02', NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(154, 38, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 6, 0, '2019-05-25', '2019-05-25', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(155, 38, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 7, 0, '2019-05-25', '2019-05-25', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(156, 38, 'Số kiện', 'so_kien', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 3, 0, '2019-05-25', '2019-05-26', 0, NULL, 1, NULL, 'width01', NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(157, 38, 'Đóng gói', 'so_luong_dong_goi', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 4, 0, '2019-05-25', '2019-05-26', 0, NULL, 1, NULL, 'width01', NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(158, 38, 'Số lượng', 'so_luong', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 5, 0, '2019-05-25', '2019-05-26', 0, NULL, 1, NULL, 'width01', NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(159, 38, 'Hàng về', 'hang_ve_id', 'INT', NULL, 1, NULL, 0, NULL, 0, 1, 'select', 0, 0, 0, 0, '2019-05-26', '2019-05-26', 37, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(160, 37, 'sort_order', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'number', 0, 0, 0, 0, '2019-05-26', '2019-05-26', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(161, 39, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 1, 0, '2019-07-30', '2019-07-30', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(162, 39, 'Số phòng', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 2, 0, '2019-07-30', '2019-07-31', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(163, 39, 'parent_id', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'select', 0, 0, 9, 0, '2019-07-30', '2019-07-31', 39, '{ \"parent_id\":\"0\"}', 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(164, 39, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'text', 0, 0, 10, 0, '2019-07-30', '2019-07-30', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(166, 40, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 1, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(167, 40, 'Tiêu đề', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 2, 0, '2019-07-31', '2019-07-31', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0),
+(168, 40, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 6, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(169, 40, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 7, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(170, 40, 'Địa chỉ', 'address', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 4, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(171, 40, 'Giá nhượng lại', 'gia_nhuong', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 3, 0, '2019-07-31', '2019-07-31', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0),
+(173, 40, 'Note', 'note', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 5, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(174, 39, 'Căn hộ', 'apartment_id', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'select', 0, 0, 3, 0, '2019-07-31', '2019-07-31', 40, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(175, 41, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 1, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(176, 41, 'Họ tên', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 2, 0, '2019-07-31', '2019-08-03', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0),
+(177, 41, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 12, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(178, 41, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 13, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(179, 41, 'CMTND', 'cmtnd', 'VARCHAR', '0', 1, 255, 1, NULL, 0, 1, 'number', 0, 0, 8, 0, '2019-07-31', '2019-08-02', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0),
+(180, 41, 'Ngày cấp', 'ngay_cap', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'date', 0, 0, 7, 0, '2019-07-31', '2019-08-02', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0),
+(181, 41, 'Nơi cấp', 'noi_cap', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 9, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(182, 41, 'Địa chỉ', 'address', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 10, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(184, 41, 'Điện thoại', 'mobile', 'VARCHAR', '0', 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 6, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(185, 41, 'Email', 'email', 'TEXT', NULL, 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 5, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(186, 42, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 1, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(187, 42, 'Tiêu đề', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 2, 0, '2019-07-31', '2019-07-31', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(188, 42, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 6, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(189, 42, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 7, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(190, 42, 'TienLQ', 'tienlq', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 3, 0, '2019-07-31', '2019-08-11', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 1),
+(191, 42, 'AnhHT', 'anhht', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 4, 0, '2019-07-31', '2019-08-11', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 1),
+(192, 42, 'Note', 'note', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 5, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(193, 43, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(194, 43, 'Tên trạng thái', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 0, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(195, 43, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(196, 43, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(197, 42, 'Trạng thái', 'status_investment_id', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'select', 1, 0, 0, 0, '2019-07-31', '2019-08-09', 43, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0),
+(198, 44, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(199, 44, 'Tiêu đề', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 0, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0),
+(200, 44, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(201, 44, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(202, 39, 'Trạng thái', 'status_motel_room_id', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'select', 1, 0, 6, 0, '2019-07-31', '2019-07-31', 44, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0),
+(204, 39, 'Ghi chú', 'note', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 11, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0),
+(205, 45, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(206, 45, 'Tiêu đề', 'name', 'VARCHAR', '', 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 0, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(207, 45, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(208, 45, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(209, 46, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(210, 46, 'Tiêu đề', 'name', 'VARCHAR', '', 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 0, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(211, 46, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(212, 46, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(213, 41, 'Trạng thái', 'status_customer_id', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'select', 1, 0, 4, 0, '2019-08-02', '2019-08-02', 46, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0),
+(214, 41, 'Phòng', 'motel_room_id', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'select', 1, 0, 3, 0, '2019-08-02', '2019-08-02', 39, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0),
+(215, 47, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 1, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(216, 47, 'Tiêu đề', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 0, 0, 2, 0, '2019-08-02', '2019-08-09', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0),
+(217, 47, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 13, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(218, 47, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 14, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(219, 47, 'Phòng', 'motel_room_id', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'select', 1, 0, 3, 0, '2019-08-02', '2019-08-02', 39, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0),
+(220, 48, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 1, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(221, 48, 'Tiêu đề', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 2, 0, '2019-08-02', '2019-08-03', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0),
+(222, 48, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 4, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(223, 48, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 5, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(227, 49, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 1, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(228, 49, 'Tiêu đề', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 2, 0, '2019-08-02', '2019-08-03', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0),
+(229, 49, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 11, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(230, 49, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 12, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(231, 49, 'Phòng', 'motel_room_id', 'INT', '0', 1, NULL, 1, NULL, 1, 1, 'select', 1, 0, 5, 0, '2019-08-02', '2019-08-02', 39, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0),
+(232, 49, 'Giá thuê', 'gia_thue', 'INT', '0', 1, NULL, 1, NULL, 1, 1, 'number', 1, 0, 6, 0, '2019-08-02', '2019-08-11', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 1),
+(233, 49, 'Khách hàng', 'customer_id', 'INT', NULL, 1, NULL, 1, NULL, 1, 1, 'select', 1, 0, 3, 0, '2019-08-02', '2019-08-02', 41, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0),
+(236, 49, 'Ngày bắt đầu', 'start_date', 'DATE', NULL, 1, NULL, 1, NULL, 1, 1, 'date', 1, 0, 8, 0, '2019-08-02', '2019-08-03', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0),
+(237, 49, 'Ngày kết thúc', 'end_date', 'DATE', NULL, 1, NULL, 1, NULL, 1, 1, 'date', 1, 0, 9, 0, '2019-08-02', '2019-08-03', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0),
+(240, 50, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(241, 50, 'Tiêu đề', 'name', 'VARCHAR', '', 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 0, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(242, 50, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(243, 50, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(244, 49, 'Tiền đặt cọc', 'tien_dat_coc', 'INT', '0', 1, NULL, 1, NULL, 1, 1, 'number', 1, 0, 7, 0, '2019-08-02', '2019-08-11', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 1),
+(245, 48, 'Phòng', 'motel_room_id', 'INT', '0', 1, NULL, 1, NULL, 1, 1, 'select', 1, 0, 3, 0, '2019-08-03', '2019-08-03', 39, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0),
+(246, 49, 'Số Người', 'so_nguoi', 'INT', '0', 1, NULL, 1, NULL, 1, 1, 'number', 1, 0, 4, 0, '2019-08-03', '2019-08-03', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0),
+(247, 49, 'Ghi chú', 'note', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 10, 0, '2019-08-03', '2019-08-03', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0),
+(248, 41, 'Ghi chú', 'note', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 11, 0, '2019-08-03', '2019-08-03', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0),
+(249, 47, 'Tiền Điện', 'tien_dien', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 6, 0, '2019-08-09', '2019-08-09', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0),
+(250, 47, 'Tiền Nước', 'tien_nuoc', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'text', 1, 0, 7, 0, '2019-08-09', '2019-08-09', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0),
+(251, 47, 'Tiền Phòng', 'tien_phong', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 11, 0, '2019-08-09', '2019-08-09', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0),
+(252, 47, 'Tiền vệ sinh', 'tien_wc', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'text', 1, 0, 8, 0, '2019-08-09', '2019-08-09', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0),
+(253, 47, 'Tiền mạng', 'tien_mang', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 9, 0, '2019-08-09', '2019-08-09', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0),
+(254, 47, 'Tiền điện chung', 'tien_dien_chung', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 10, 0, '2019-08-09', '2019-08-09', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0),
+(255, 47, 'Tổng', 'total', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 5, 0, '2019-08-09', '2019-08-11', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 1),
+(256, 51, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-08-09', '2019-08-09', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(257, 51, 'Tiêu đề', 'name', 'VARCHAR', '', 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 0, 0, '2019-08-09', '2019-08-09', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(258, 51, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-08-09', '2019-08-09', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(259, 51, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-08-09', '2019-08-09', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0),
+(260, 47, 'Trạng thái', 'status_tien_phong_id', 'INT', NULL, 1, NULL, 1, NULL, 1, 1, 'select', 1, 0, 4, 0, '2019-08-09', '2019-08-10', 51, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0),
+(261, 47, 'Ghi chú', 'note', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 12, 0, '2019-08-10', '2019-08-10', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -1140,16 +1186,35 @@ CREATE TABLE `tien_phong` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `motel_room_id` int(11) DEFAULT 0,
   `start_date` date DEFAULT NULL,
-  `so_dien_dau` int(11) DEFAULT 0,
-  `so_dien_cuoi` int(11) DEFAULT 0
+  `tien_dien` int(11) DEFAULT 0,
+  `tien_nuoc` int(11) DEFAULT 0,
+  `tien_phong` int(11) DEFAULT 0,
+  `tien_wc` int(11) DEFAULT NULL,
+  `tien_mang` int(11) DEFAULT 0,
+  `tien_dien_chung` int(11) DEFAULT 0,
+  `total` int(11) DEFAULT NULL,
+  `status_tien_phong_id` int(11) DEFAULT NULL,
+  `note` text COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `tien_phong`
 --
 
-INSERT INTO `tien_phong` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `motel_room_id`, `start_date`, `so_dien_dau`, `so_dien_cuoi`) VALUES
-(1, 'Tháng 8 phòng 101/172', 0, 0, '2019-08-02 04:29:10', '2019-08-02 04:29:10', 2, NULL, 0, 0);
+INSERT INTO `tien_phong` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `motel_room_id`, `start_date`, `tien_dien`, `tien_nuoc`, `tien_phong`, `tien_wc`, `tien_mang`, `tien_dien_chung`, `total`, `status_tien_phong_id`, `note`) VALUES
+(1, 'Tháng 8 phòng 101/172', 0, 0, '2019-08-02 04:29:10', '2019-08-10 05:14:42', 13, NULL, 0, 50000, 1750000, 15000, 15000, 15000, 1850000, 2, 'tinh tien nửa tháng do hđ cũ ký từ ngày 15'),
+(2, NULL, 0, 0, '2019-08-09 04:29:22', '2019-08-10 05:04:44', 12, NULL, 0, 0, 0, 0, 0, 0, 0, 1, NULL),
+(3, NULL, 0, 0, '2019-08-09 04:29:22', '2019-08-10 05:04:10', 11, NULL, 332000, 200000, 3000000, 60000, 100000, 60000, 3680000, 1, '3752000 - 7200 (thang  truoc) = 3680000'),
+(4, NULL, 0, 0, '2019-08-09 04:29:25', '2019-08-09 04:58:08', 10, NULL, 996000, 300000, 3500000, 90000, 100000, 90000, 5656000, 1, NULL),
+(5, NULL, 0, 0, '2019-08-09 04:29:28', '2019-08-09 04:54:49', 9, NULL, 68000, 200000, 3000000, 60000, 100000, 60000, 3948000, 1, NULL),
+(6, NULL, 0, 0, '2019-08-09 04:29:29', '2019-08-10 05:09:51', 8, NULL, 0, 0, 0, 0, 0, 0, 0, 2, NULL),
+(7, NULL, 0, 0, '2019-08-09 04:29:29', '2019-08-09 04:54:55', 6, NULL, 0, 0, 0, 0, 0, 0, 1628000, 1, NULL),
+(8, NULL, 0, 0, '2019-08-09 04:29:30', '2019-08-09 04:55:02', 7, NULL, 0, 0, 0, 0, 0, 0, 2240000, 1, NULL),
+(9, NULL, 0, 0, '2019-08-09 04:29:31', '2019-08-09 04:55:07', 5, NULL, 500000, 300000, 3000000, 90000, 100000, 90000, 4230000, 1, NULL),
+(10, NULL, 0, 0, '2019-08-09 04:29:32', '2019-08-10 05:09:25', 4, NULL, 256000, 200000, 3300000, 60000, 100000, 60000, 3970000, 1, NULL),
+(11, NULL, 0, 0, '2019-08-09 04:29:36', '2019-08-10 05:07:00', 14, NULL, 1436000, 100000, 3000000, 30000, 100000, 30000, 4690000, 1, NULL),
+(12, NULL, 0, 0, '2019-08-09 04:29:37', '2019-08-09 04:43:25', 3, NULL, 0, 0, 0, 0, 0, 0, 4120000, 1, NULL),
+(13, NULL, 0, 0, '2019-08-09 04:29:38', '2019-08-09 04:40:20', 2, NULL, 100000, 100000, 3000000, 30000, 100000, 30000, 3410000, 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -1175,7 +1240,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `username`, `user_type`, `sort_order`) VALUES
-(1, 'tienlq', 'quangtienvkt@gmail.com', '$2y$10$qDSM1xhz.Tk7dgDP1vvIpO7oDFWK7tyqndVivchYpBEHoK62YyvCu', 'haUCnFY9YO6UkR0VatNd46whb4zeo3r0tCxUGRrYpDHBmP8NMAwEegdBTZY4', '2019-01-30 02:49:15', '2019-01-30 02:49:15', 'tienlq', '1', 0),
+(1, 'tienlq', 'quangtienvkt@gmail.com', '$2y$10$qDSM1xhz.Tk7dgDP1vvIpO7oDFWK7tyqndVivchYpBEHoK62YyvCu', 'KDLufd9zkedjUcPbJf24crRtGNmgaHpnar0V4REXcrzTU0jI7fO4IN41JRR7', '2019-01-30 02:49:15', '2019-01-30 02:49:15', 'tienlq', '1', 0),
 (5, 'AnhHT', 'anhht@gmail.com', '$2y$10$S3yMTyYFsExDNOy2Darms.2/l3fKIcTiGiDwpPienOipgFbemULrO', 'Uz0mtsJlN6JeghFgyCPaxffH0DrVGhlO8IKPGkAERjETYyzEZw3lkieaQTu0', '2019-01-30 02:49:15', '2019-08-02 04:21:51', 'anhht', '1', 0);
 
 -- --------------------------------------------------------
@@ -1199,13 +1264,13 @@ CREATE TABLE `__route` (
 --
 
 INSERT INTO `__route` (`id`, `sort_order`, `created_at`, `updated_at`, `name`, `route_name`, `parent_id`) VALUES
-(1, 1, '2019-03-31 16:16:28', '2019-04-06 21:49:39', 'Hiển thị một bài viết', 'about', 0),
-(2, 2, '2019-03-31 16:17:13', '2019-04-06 21:49:53', 'Hiển thị danh sách sản phẩm', 'product', 0),
-(3, 3, '2019-03-31 16:19:43', '2019-04-06 21:50:16', 'Hiển thị  danh Sách Tin Tức', 'news', 0),
-(4, 4, '2019-03-31 16:18:18', '2019-04-06 21:50:02', 'Hiển thị trang liên hệ', 'contact', 0),
-(6, 7, '2019-04-21 18:19:00', '2019-04-21 18:19:00', 'Hiển thị Trang chủ', 'home', 0),
-(7, 5, '2019-04-28 20:08:48', '2019-04-28 20:08:48', 'Dang sách landing page', 'listLandingPage', 0),
-(8, 6, '2019-04-28 20:09:15', '2019-04-28 20:09:15', 'Một trang landing page đơn', 'singleLandingPage', 0);
+(1, 1, '2019-03-31 23:16:28', '2019-04-07 04:49:39', 'Hiển thị một bài viết', 'about', 0),
+(2, 2, '2019-03-31 23:17:13', '2019-04-07 04:49:53', 'Hiển thị danh sách sản phẩm', 'product', 0),
+(3, 3, '2019-03-31 23:19:43', '2019-04-07 04:50:16', 'Hiển thị  danh Sách Tin Tức', 'news', 0),
+(4, 4, '2019-03-31 23:18:18', '2019-04-07 04:50:02', 'Hiển thị trang liên hệ', 'contact', 0),
+(6, 7, '2019-04-22 01:19:00', '2019-04-22 01:19:00', 'Hiển thị Trang chủ', 'home', 0),
+(7, 5, '2019-04-29 03:08:48', '2019-04-29 03:08:48', 'Dang sách landing page', 'listLandingPage', 0),
+(8, 6, '2019-04-29 03:09:15', '2019-04-29 03:09:15', 'Một trang landing page đơn', 'singleLandingPage', 0);
 
 --
 -- Indexes for dumped tables
@@ -1375,6 +1440,12 @@ ALTER TABLE `status_motel_room`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `status_tien_phong`
+--
+ALTER TABLE `status_tien_phong`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tables`
 --
 ALTER TABLE `tables`
@@ -1472,7 +1543,7 @@ ALTER TABLE `hop_dong`
 -- AUTO_INCREMENT for table `investment`
 --
 ALTER TABLE `investment`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `landing_page`
@@ -1559,22 +1630,28 @@ ALTER TABLE `status_motel_room`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `status_tien_phong`
+--
+ALTER TABLE `status_tien_phong`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `tables`
 --
 ALTER TABLE `tables`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `table_column`
 --
 ALTER TABLE `table_column`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=249;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=262;
 
 --
 -- AUTO_INCREMENT for table `tien_phong`
 --
 ALTER TABLE `tien_phong`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`

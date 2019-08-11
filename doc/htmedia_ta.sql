@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 09, 2019 at 09:04 AM
+-- Generation Time: Aug 11, 2019 at 09:04 AM
 -- Server version: 10.2.14-MariaDB
 -- PHP Version: 7.2.17
 
@@ -125,6 +125,38 @@ INSERT INTO `block_item` (`id`, `sort_order`, `created_at`, `updated_at`, `name`
 (13, 1, '2019-04-29 02:39:55', '2019-04-29 02:39:55', 'Tiêu đề', 0, 'text', '3', 'name'),
 (14, 2, '2019-04-29 02:40:34', '2019-04-29 02:40:34', 'Hình ảnh', 0, 'image_laravel', '3', 'image'),
 (15, 3, '2019-04-29 02:40:49', '2019-04-29 02:40:49', 'Mô tả', 0, 'textarea', '3', 'description');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `category`
+--
+
+CREATE TABLE IF NOT EXISTS `category` (
+  `id` int(10) unsigned NOT NULL,
+  `sort_order` int(11) DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `parent_id` int(11) DEFAULT 0,
+  `route_id` int(11) DEFAULT 0,
+  `seo_keyword` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `seo_description` text COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`id`, `sort_order`, `created_at`, `updated_at`, `name`, `parent_id`, `route_id`, `seo_keyword`, `seo_description`) VALUES
+(2, 3, '2019-03-29 23:05:16', '2019-04-09 21:55:47', 'Sản Phẩm', 0, 2, NULL, NULL),
+(3, 4, '2019-03-29 23:05:43', '2019-04-19 22:32:38', 'Tin tức', 0, 3, NULL, NULL),
+(4, 5, '2019-03-29 23:05:26', '2019-04-09 21:43:52', 'Liên Hệ', 0, 4, NULL, NULL),
+(8, 1, '2019-04-14 23:09:32', '2019-04-14 23:09:32', 'Sản Phẩm 1', 2, 2, NULL, NULL),
+(11, 2, '2019-04-14 23:10:32', '2019-04-14 23:10:32', 'Sản Phẩm 2.2', 2, 2, NULL, NULL),
+(12, 3, '2019-04-14 23:10:47', '2019-04-14 23:10:47', 'Sản Phẩm 2.3', 2, 2, NULL, NULL),
+(13, 1, '2019-04-22 01:21:37', '2019-04-22 01:22:12', 'Trang Chủ', 0, 6, NULL, NULL),
+(14, 2, '2019-04-29 03:25:58', '2019-04-29 03:25:58', 'Giới thiệu', 0, 8, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -320,7 +352,7 @@ CREATE TABLE IF NOT EXISTS `investment` (
   `anhht` int(11) DEFAULT 0,
   `note` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `status_investment_id` int(11) DEFAULT 0
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `investment`
@@ -333,7 +365,10 @@ INSERT INTO `investment` (`id`, `name`, `parent_id`, `sort_order`, `created_at`,
 (4, 'Sửa điều hòa phòng 402/217 ngày 27/07/2019', 0, 0, '2019-07-30 21:59:31', '2019-07-30 22:05:08', 0, 100000, NULL, 2),
 (5, 'Sửa điện tầng 1 ngày 27/07/2019', 0, 0, '2019-07-30 22:00:25', '2019-07-30 22:05:12', 0, 600000, NULL, 2),
 (6, 'Tiền sửa khóa vân tay tầng 1', 0, 0, '2019-08-02 21:16:02', '2019-08-02 21:16:02', 0, 1150000, NULL, 2),
-(7, 'nước tẩy, xi măng, bay,...', 0, 0, '2019-08-02 21:17:32', '2019-08-02 21:19:16', 0, 100000, 'đồ để sửa lại tầng 1', 0);
+(7, 'nước tẩy, xi măng, bay,...', 0, 0, '2019-08-02 21:17:32', '2019-08-09 04:09:08', 0, 100000, 'đồ để sửa lại tầng 1', 2),
+(8, 'Sửa Camera', 0, 0, '2019-08-09 04:07:58', '2019-08-09 04:07:58', 1000000, 0, 'Sửa camera tầng 1: 2 cái\r\ntầng thượng: mua mới 1 cái', 2),
+(9, 'Vệ sinh lại tầng 1', 0, 0, '2019-08-09 04:08:57', '2019-08-09 04:12:03', 1500000, 0, 'Vệ sinh tầng 1', 2),
+(10, 'mua quạt thông gió cho tầng 301', 0, 0, '2019-08-09 04:13:01', '2019-08-09 04:13:01', 500000, 0, NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -790,6 +825,29 @@ INSERT INTO `status_motel_room` (`id`, `name`, `parent_id`, `sort_order`, `creat
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `status_tien_phong`
+--
+
+CREATE TABLE IF NOT EXISTS `status_tien_phong` (
+  `id` int(10) unsigned NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `parent_id` int(11) DEFAULT 0,
+  `sort_order` int(11) DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `status_tien_phong`
+--
+
+INSERT INTO `status_tien_phong` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`) VALUES
+(1, 'Đã thanh toán', 0, 0, '2019-08-09 04:38:19', '2019-08-09 04:38:19'),
+(2, 'Chưa thanh toán', 0, 0, '2019-08-09 04:38:28', '2019-08-09 04:38:28');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tables`
 --
 
@@ -815,7 +873,7 @@ CREATE TABLE IF NOT EXISTS `tables` (
   `is_show_btn_edit` tinyint(2) DEFAULT 0,
   `is_edit_express` int(11) DEFAULT 0,
   `is_add_express` int(11) DEFAULT 0
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `tables`
@@ -825,7 +883,7 @@ INSERT INTO `tables` (`id`, `sort_order`, `name`, `display_name`, `is_edit`, `ty
 (12, 3, 'product', 'Quản lí sản phẩm', 1, 'BASIC', 30, 'Product', 26, 1, '2019-02-12', '2019-04-01', NULL, NULL, 0, 0, 0, NULL, 0, 0, 0),
 (14, 5, 'news', 'Quản lí tin tức', 1, NULL, 30, NULL, 26, 1, '2019-03-19', '2019-04-01', NULL, NULL, 0, 0, 0, NULL, 0, 0, 0),
 (16, 2, 'category', 'QL danh mục', 1, '1', 30, NULL, 26, 2, '2019-03-30', '2019-05-01', NULL, NULL, 0, 0, 0, NULL, 0, 0, 0),
-(24, 8, 'route', 'route', 0, '1', 30, NULL, 26, 2, '2019-04-01', '2019-05-01', NULL, NULL, 0, 0, 0, NULL, 0, 0, 0),
+(24, 8, '__route', 'route', 0, '1', 30, NULL, 26, 2, '2019-04-01', '2019-08-10', 0, 0, 0, 0, NULL, NULL, 0, 0, 0),
 (26, 10, 'tables', 'Category', 0, '1', 30, 'Tables', 0, 1, '2019-02-21', '2019-02-21', NULL, NULL, 0, 0, 0, NULL, 0, 0, 0),
 (27, 7, 'configweb', 'Cấu hình website', 1, '5', 30, NULL, 26, 1, '2019-04-06', '2019-05-01', NULL, NULL, 0, 0, 0, NULL, 0, 0, 0),
 (28, 6, 'contact', 'Thư gửi liên hệ', 1, NULL, 30, NULL, 26, 1, '2019-04-07', '2019-04-07', NULL, NULL, 0, 0, 0, NULL, 0, 0, 0),
@@ -839,14 +897,15 @@ INSERT INTO `tables` (`id`, `sort_order`, `name`, `display_name`, `is_edit`, `ty
 (40, 4, 'apartment', 'Căn hộ', 1, '0', 30, NULL, 0, 1, '2019-07-31', '2019-07-31', 0, 0, 1, 1, NULL, NULL, 1, 0, 0),
 (41, 6, 'customer', 'Khách hàng', 1, NULL, 30, NULL, 0, 1, '2019-07-31', '2019-08-02', 1, 1, 1, 1, NULL, NULL, 1, 0, 0),
 (42, 7, 'investment', 'Vốn đầu tư', 1, '0', 30, NULL, 0, 2, '2019-07-31', '2019-07-31', 1, 1, 1, 1, NULL, NULL, 1, 0, 0),
-(43, 3, 'status_investment', 'Trạng thái Vốn đầu tư', 1, '1', 30, NULL, 45, 2, '2019-07-31', '2019-07-31', 0, 0, 1, 1, NULL, NULL, 1, 0, 0),
-(44, 4, 'status_motel_room', 'Trạng thái phòng trọ', 1, '1', 30, NULL, 45, 1, '2019-07-31', '2019-07-31', 0, 0, 1, 1, NULL, NULL, 1, 0, 0),
+(43, 4, 'status_investment', 'Trạng thái Vốn đầu tư', 1, '1', 30, NULL, 45, 2, '2019-07-31', '2019-07-31', 0, 0, 1, 1, NULL, NULL, 1, 0, 0),
+(44, 5, 'status_motel_room', 'Trạng thái phòng trọ', 1, '1', 30, NULL, 45, 1, '2019-07-31', '2019-07-31', 0, 0, 1, 1, NULL, NULL, 1, 0, 0),
 (45, 8, 'status', 'Trạng thái', 1, '1', 30, NULL, 0, 1, '2019-08-02', '2019-08-02', 0, 0, 0, 0, NULL, NULL, 0, 0, 0),
-(46, 2, 'status_customer', 'Trạng thái khách hàng', 1, '1', 30, NULL, 45, 1, '2019-08-02', '2019-08-02', 0, 0, 0, 0, NULL, NULL, 0, 0, 0),
-(47, 1, 'tien_phong', 'Tiền phòng', 1, '0', 30, NULL, 0, 1, '2019-08-02', '2019-08-02', 1, 1, 1, 1, NULL, NULL, 1, 0, 0),
+(46, 3, 'status_customer', 'Trạng thái khách hàng', 1, '1', 30, NULL, 45, 1, '2019-08-02', '2019-08-02', 0, 0, 0, 0, NULL, NULL, 0, 0, 0),
+(47, 1, 'tien_phong', 'Tiền phòng', 1, '0', 30, NULL, 0, 1, '2019-08-02', '2019-08-10', 1, 1, 1, 1, NULL, NULL, 1, 0, 0),
 (48, 2, 'so_dien', 'Số điện', 1, NULL, 30, NULL, 0, 1, '2019-08-02', '2019-08-03', 1, 1, 1, 1, NULL, NULL, 1, 0, 1),
 (49, 3, 'hop_dong', 'Hợp đồng', 1, '0', 30, NULL, 0, 1, '2019-08-02', '2019-08-03', 1, 1, 1, 1, NULL, NULL, 1, 0, 1),
-(50, 1, 'status_hop_dong', 'Trạng thái hợp đồng', 1, '1', 30, NULL, 45, 1, '2019-08-02', '2019-08-02', 0, 0, 0, 0, NULL, NULL, 0, 0, 0);
+(50, 2, 'status_hop_dong', 'Trạng thái hợp đồng', 1, '1', 30, NULL, 45, 1, '2019-08-02', '2019-08-02', 0, 0, 0, 0, NULL, NULL, 0, 0, 0),
+(51, 1, 'status_tien_phong', 'Trạng thái tiền phòng', 1, '1', 30, NULL, 45, 1, '2019-08-09', '2019-08-09', 0, 0, 0, 0, NULL, NULL, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -886,7 +945,7 @@ CREATE TABLE IF NOT EXISTS `table_column` (
   `bg_in_list` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `add_column_in_list` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `column_name_map_to_comment` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=249 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=262 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `table_column`
@@ -1051,7 +1110,7 @@ INSERT INTO `table_column` (`id`, `table_id`, `display_name`, `name`, `type`, `v
 (194, 43, 'Tên trạng thái', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 0, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
 (195, 43, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
 (196, 43, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(197, 42, 'Trạng thái', 'status_investment_id', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'select', 0, 0, 0, 0, '2019-07-31', '2019-07-31', 43, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+(197, 42, 'Trạng thái', 'status_investment_id', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'select', 1, 0, 0, 0, '2019-07-31', '2019-08-09', 43, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
 (198, 44, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
 (199, 44, 'Tiêu đề', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 0, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
 (200, 44, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
@@ -1068,11 +1127,11 @@ INSERT INTO `table_column` (`id`, `table_id`, `display_name`, `name`, `type`, `v
 (212, 46, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
 (213, 41, 'Trạng thái', 'status_customer_id', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'select', 1, 0, 4, 0, '2019-08-02', '2019-08-02', 46, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
 (214, 41, 'Phòng', 'motel_room_id', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'select', 1, 0, 3, 0, '2019-08-02', '2019-08-02', 39, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
-(215, 47, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 3, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(216, 47, 'Tiêu đề', 'name', 'VARCHAR', '', 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 4, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(217, 47, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 6, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(218, 47, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 7, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
-(219, 47, 'Phòng', 'motel_room_id', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'select', 1, 0, 5, 0, '2019-08-02', '2019-08-02', 39, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
+(215, 47, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 1, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+(216, 47, 'Tiêu đề', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 0, 0, 2, 0, '2019-08-02', '2019-08-09', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
+(217, 47, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 13, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+(218, 47, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 14, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+(219, 47, 'Phòng', 'motel_room_id', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'select', 1, 0, 3, 0, '2019-08-02', '2019-08-02', 39, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
 (220, 48, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 1, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
 (221, 48, 'Tiêu đề', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 2, 0, '2019-08-02', '2019-08-03', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
 (222, 48, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 4, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
@@ -1086,8 +1145,6 @@ INSERT INTO `table_column` (`id`, `table_id`, `display_name`, `name`, `type`, `v
 (233, 49, 'Khách hàng', 'customer_id', 'INT', NULL, 1, NULL, 1, NULL, 1, 1, 'select', 1, 0, 3, 0, '2019-08-02', '2019-08-02', 41, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
 (236, 49, 'Ngày bắt đầu', 'start_date', 'DATE', NULL, 1, NULL, 1, NULL, 1, 1, 'date', 1, 0, 8, 0, '2019-08-02', '2019-08-03', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
 (237, 49, 'Ngày kết thúc', 'end_date', 'DATE', NULL, 1, NULL, 1, NULL, 1, 1, 'date', 1, 0, 9, 0, '2019-08-02', '2019-08-03', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
-(238, 47, 'Số điện đầu', 'so_dien_dau', 'INT', '0', 1, 255, 1, NULL, 1, 1, 'text', 1, 0, 1, 0, '2019-08-02', '2019-08-02', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
-(239, 47, 'Số điện cuối', 'so_dien_cuoi', 'INT', '0', 1, 22, 0, NULL, 0, 1, 'number', 0, 0, 2, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
 (240, 50, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
 (241, 50, 'Tiêu đề', 'name', 'VARCHAR', '', 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 0, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
 (242, 50, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
@@ -1096,7 +1153,20 @@ INSERT INTO `table_column` (`id`, `table_id`, `display_name`, `name`, `type`, `v
 (245, 48, 'Phòng', 'motel_room_id', 'INT', '0', 1, NULL, 1, NULL, 1, 1, 'select', 1, 0, 3, 0, '2019-08-03', '2019-08-03', 39, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
 (246, 49, 'Số Người', 'so_nguoi', 'INT', '0', 1, NULL, 1, NULL, 1, 1, 'number', 1, 0, 4, 0, '2019-08-03', '2019-08-03', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
 (247, 49, 'Ghi chú', 'note', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 10, 0, '2019-08-03', '2019-08-03', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
-(248, 41, 'Ghi chú', 'note', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 11, 0, '2019-08-03', '2019-08-03', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL);
+(248, 41, 'Ghi chú', 'note', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 11, 0, '2019-08-03', '2019-08-03', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
+(249, 47, 'Tiền Điện', 'tien_dien', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 6, 0, '2019-08-09', '2019-08-09', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
+(250, 47, 'Tiền Nước', 'tien_nuoc', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'text', 1, 0, 7, 0, '2019-08-09', '2019-08-09', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
+(251, 47, 'Tiền Phòng', 'tien_phong', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 11, 0, '2019-08-09', '2019-08-09', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
+(252, 47, 'Tiền vệ sinh', 'tien_wc', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'text', 1, 0, 8, 0, '2019-08-09', '2019-08-09', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
+(253, 47, 'Tiền mạng', 'tien_mang', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 9, 0, '2019-08-09', '2019-08-09', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
+(254, 47, 'Tiền điện chung', 'tien_dien_chung', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 10, 0, '2019-08-09', '2019-08-09', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
+(255, 47, 'Tổng', 'total', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 5, 0, '2019-08-09', '2019-08-09', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
+(256, 51, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-08-09', '2019-08-09', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+(257, 51, 'Tiêu đề', 'name', 'VARCHAR', '', 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 0, 0, '2019-08-09', '2019-08-09', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+(258, 51, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-08-09', '2019-08-09', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+(259, 51, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-08-09', '2019-08-09', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+(260, 47, 'Trạng thái', 'status_tien_phong_id', 'INT', NULL, 1, NULL, 1, NULL, 1, 1, 'select', 1, 0, 4, 0, '2019-08-09', '2019-08-10', 51, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL),
+(261, 47, 'Ghi chú', 'note', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 12, 0, '2019-08-10', '2019-08-10', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1113,16 +1183,35 @@ CREATE TABLE IF NOT EXISTS `tien_phong` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `motel_room_id` int(11) DEFAULT 0,
   `start_date` date DEFAULT NULL,
-  `so_dien_dau` int(11) DEFAULT 0,
-  `so_dien_cuoi` int(11) DEFAULT 0
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `tien_dien` int(11) DEFAULT 0,
+  `tien_nuoc` int(11) DEFAULT 0,
+  `tien_phong` int(11) DEFAULT 0,
+  `tien_wc` int(11) DEFAULT NULL,
+  `tien_mang` int(11) DEFAULT 0,
+  `tien_dien_chung` int(11) DEFAULT 0,
+  `total` int(11) DEFAULT NULL,
+  `status_tien_phong_id` int(11) DEFAULT NULL,
+  `note` text COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `tien_phong`
 --
 
-INSERT INTO `tien_phong` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `motel_room_id`, `start_date`, `so_dien_dau`, `so_dien_cuoi`) VALUES
-(1, 'Tháng 8 phòng 101/172', 0, 0, '2019-08-02 04:29:10', '2019-08-02 04:29:10', 2, NULL, 0, 0);
+INSERT INTO `tien_phong` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `motel_room_id`, `start_date`, `tien_dien`, `tien_nuoc`, `tien_phong`, `tien_wc`, `tien_mang`, `tien_dien_chung`, `total`, `status_tien_phong_id`, `note`) VALUES
+(1, 'Tháng 8 phòng 101/172', 0, 0, '2019-08-02 04:29:10', '2019-08-10 05:14:42', 13, NULL, 0, 50000, 1750000, 15000, 15000, 15000, 1850000, 2, 'tinh tien nửa tháng do hđ cũ ký từ ngày 15'),
+(2, NULL, 0, 0, '2019-08-09 04:29:22', '2019-08-10 05:04:44', 12, NULL, 0, 0, 0, 0, 0, 0, 0, 1, NULL),
+(3, NULL, 0, 0, '2019-08-09 04:29:22', '2019-08-10 05:04:10', 11, NULL, 332000, 200000, 3000000, 60000, 100000, 60000, 3680000, 1, '3752000 - 7200 (thang  truoc) = 3680000'),
+(4, NULL, 0, 0, '2019-08-09 04:29:25', '2019-08-09 04:58:08', 10, NULL, 996000, 300000, 3500000, 90000, 100000, 90000, 5656000, 1, NULL),
+(5, NULL, 0, 0, '2019-08-09 04:29:28', '2019-08-09 04:54:49', 9, NULL, 68000, 200000, 3000000, 60000, 100000, 60000, 3948000, 1, NULL),
+(6, NULL, 0, 0, '2019-08-09 04:29:29', '2019-08-10 05:09:51', 8, NULL, 0, 0, 0, 0, 0, 0, 0, 2, NULL),
+(7, NULL, 0, 0, '2019-08-09 04:29:29', '2019-08-09 04:54:55', 6, NULL, 0, 0, 0, 0, 0, 0, 1628000, 1, NULL),
+(8, NULL, 0, 0, '2019-08-09 04:29:30', '2019-08-09 04:55:02', 7, NULL, 0, 0, 0, 0, 0, 0, 2240000, 1, NULL),
+(9, NULL, 0, 0, '2019-08-09 04:29:31', '2019-08-09 04:55:07', 5, NULL, 500000, 300000, 3000000, 90000, 100000, 90000, 4230000, 1, NULL),
+(10, NULL, 0, 0, '2019-08-09 04:29:32', '2019-08-10 05:09:25', 4, NULL, 256000, 200000, 3300000, 60000, 100000, 60000, 3970000, 1, NULL),
+(11, NULL, 0, 0, '2019-08-09 04:29:36', '2019-08-10 05:07:00', 14, NULL, 1436000, 100000, 3000000, 30000, 100000, 30000, 4690000, 1, NULL),
+(12, NULL, 0, 0, '2019-08-09 04:29:37', '2019-08-09 04:43:25', 3, NULL, 0, 0, 0, 0, 0, 0, 4120000, 1, NULL),
+(13, NULL, 0, 0, '2019-08-09 04:29:38', '2019-08-09 04:40:20', 2, NULL, 100000, 100000, 3000000, 30000, 100000, 30000, 3410000, 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -1148,8 +1237,37 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `username`, `user_type`, `sort_order`) VALUES
-(1, 'tienlq', 'quangtienvkt@gmail.com', '$2y$10$qDSM1xhz.Tk7dgDP1vvIpO7oDFWK7tyqndVivchYpBEHoK62YyvCu', 'haUCnFY9YO6UkR0VatNd46whb4zeo3r0tCxUGRrYpDHBmP8NMAwEegdBTZY4', '2019-01-30 02:49:15', '2019-01-30 02:49:15', 'tienlq', '1', 0),
+(1, 'tienlq', 'quangtienvkt@gmail.com', '$2y$10$qDSM1xhz.Tk7dgDP1vvIpO7oDFWK7tyqndVivchYpBEHoK62YyvCu', '7xo3OeF5YiWCGQHlii4MOSgy2jjhcNt2vqPe4T4cfbFmdG0GMoXF3zhOamFC', '2019-01-30 02:49:15', '2019-01-30 02:49:15', 'tienlq', '1', 0),
 (5, 'AnhHT', 'anhht@gmail.com', '$2y$10$S3yMTyYFsExDNOy2Darms.2/l3fKIcTiGiDwpPienOipgFbemULrO', 'Uz0mtsJlN6JeghFgyCPaxffH0DrVGhlO8IKPGkAERjETYyzEZw3lkieaQTu0', '2019-01-30 02:49:15', '2019-08-02 04:21:51', 'anhht', '1', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `__route`
+--
+
+CREATE TABLE IF NOT EXISTS `__route` (
+  `id` int(10) unsigned NOT NULL,
+  `sort_order` int(11) DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `route_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `parent_id` int(11) DEFAULT 0
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `__route`
+--
+
+INSERT INTO `__route` (`id`, `sort_order`, `created_at`, `updated_at`, `name`, `route_name`, `parent_id`) VALUES
+(1, 1, '2019-03-31 23:16:28', '2019-04-07 04:49:39', 'Hiển thị một bài viết', 'about', 0),
+(2, 2, '2019-03-31 23:17:13', '2019-04-07 04:49:53', 'Hiển thị danh sách sản phẩm', 'product', 0),
+(3, 3, '2019-03-31 23:19:43', '2019-04-07 04:50:16', 'Hiển thị  danh Sách Tin Tức', 'news', 0),
+(4, 4, '2019-03-31 23:18:18', '2019-04-07 04:50:02', 'Hiển thị trang liên hệ', 'contact', 0),
+(6, 7, '2019-04-22 01:19:00', '2019-04-22 01:19:00', 'Hiển thị Trang chủ', 'home', 0),
+(7, 5, '2019-04-29 03:08:48', '2019-04-29 03:08:48', 'Dang sách landing page', 'listLandingPage', 0),
+(8, 6, '2019-04-29 03:09:15', '2019-04-29 03:09:15', 'Một trang landing page đơn', 'singleLandingPage', 0);
 
 --
 -- Indexes for dumped tables
@@ -1179,7 +1297,11 @@ ALTER TABLE `block`
 ALTER TABLE `block_item`
   ADD PRIMARY KEY (`id`);
 
-
+--
+-- Indexes for table `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `configweb`
@@ -1315,6 +1437,12 @@ ALTER TABLE `status_motel_room`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `status_tien_phong`
+--
+ALTER TABLE `status_tien_phong`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tables`
 --
 ALTER TABLE `tables`
@@ -1336,6 +1464,12 @@ ALTER TABLE `tien_phong`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `__route`
+--
+ALTER TABLE `__route`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1362,7 +1496,11 @@ ALTER TABLE `block`
 --
 ALTER TABLE `block_item`
   MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
-
+--
+-- AUTO_INCREMENT for table `category`
+--
+ALTER TABLE `category`
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `configweb`
 --
@@ -1392,7 +1530,7 @@ ALTER TABLE `hop_dong`
 -- AUTO_INCREMENT for table `investment`
 --
 ALTER TABLE `investment`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `landing_page`
 --
@@ -1433,7 +1571,6 @@ ALTER TABLE `product`
 --
 ALTER TABLE `roles`
   MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `so_dien`
 --
@@ -1465,25 +1602,35 @@ ALTER TABLE `status_investment`
 ALTER TABLE `status_motel_room`
   MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
+-- AUTO_INCREMENT for table `status_tien_phong`
+--
+ALTER TABLE `status_tien_phong`
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `tables`
 --
 ALTER TABLE `tables`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=51;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=52;
 --
 -- AUTO_INCREMENT for table `table_column`
 --
 ALTER TABLE `table_column`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=249;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=262;
 --
 -- AUTO_INCREMENT for table `tien_phong`
 --
 ALTER TABLE `tien_phong`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `__route`
+--
+ALTER TABLE `__route`
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
