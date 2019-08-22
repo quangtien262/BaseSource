@@ -65,6 +65,10 @@
             </div>
         </div>
     <!--end Modal -->
+    <div id="_loading" class="_hidden">
+      <img src="/backend/img/loading01.gif"/>
+  </div>
+
     <!-- Scripts -->
     @include('backend.element.script')
     @yield('script')
