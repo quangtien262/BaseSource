@@ -273,16 +273,31 @@ class RowController extends BackendController
     {
         $week = (intval($request->week) - 1);
         $data = app('EntityCommon')->getMoneyMotelRoomWithWeek($week, $request->year);
+        // dd($data);
         $date = date('Y-m-d h:i:s');
         $dataInsert = [];
         foreach ($data as $d) {
             $tmpData = [];
+            $tmpData['week'] = $request->week;
+            $tmpData['year'] = $request->year;
+            $tmpData['motel_room_id'] = $d->motel_room_id;
+            $tmpData['name'] = 'Tiền dịch vụ tháng '. $week .' Phòng tháng ' . $request->week . ' Phòng ' . $d->name;
+            $tmpData['tien_dien'] = ($d->so_cuoi - $d->so_dau) * 4000;
+            $tmpData['tien_nuoc'] = $d->so_nguoi * 100000;
+            $tmpData['tien_wc'] = $d->so_nguoi * 30000;;
+            $tmpData['tien_mang'] = 100.000;
+            $tmpData['tien_chieu_sang'] = $d->so_nguoi * 30000;
+            $tmpData['tien_phong'] = $d->gia_thue;
+            $tmpData['note'] = 'Số điện đầu: '.$d->so_dau.', Số điện cuối: ' . $d->so_cuoi . ', Tổng số điện xử dụng là: ' . ($d->so_cuoi - $d->so_dau) . ' Số';
+            $tmpData['total'] = $tmpData['tien_dien'] + $tmpData['tien_nuoc'] + $tmpData['tien_wc'] + $tmpData['tien_mang'] + $tmpData['tien_chieu_sang'] + $tmpData['tien_phong'];
             $tmpData['created_at'] = $date;
             $tmpData['updated_at'] = $date;
+            $tmpData['status_tien_phong_id'] = 2;
             //add to data insert
-            $dataInsert = $tmpData;
+            $dataInsert[] = $tmpData;
         }
-        insertData($tblName, $dataInsert);
+        // dd($dataInsert);
+        app('EntityCommon')->insertData('tien_phong', $dataInsert, true);
 
         return back()->withInput();
     }
