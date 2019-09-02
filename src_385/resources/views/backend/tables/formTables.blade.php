@@ -120,6 +120,12 @@
                                                 value="1" type="checkbox" name="is_edit_express" />
                                                 is_edit_express
                                         </label>
+                                        <br/>
+                                        <label>
+                                            <input {{ isset($table->is_show_btn_auto_get_total) && $table->is_show_btn_auto_get_total == 1 ? 'checked="checked"':'' }} 
+                                                value="1" type="checkbox" name="is_show_btn_auto_get_total" />
+                                                is_show_btn_auto_get_total
+                                        </label>
                                         
                                     </div>
                                 </div>

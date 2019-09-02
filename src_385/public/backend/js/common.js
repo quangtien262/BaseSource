@@ -54,8 +54,6 @@ function ajaxSubmitForm(
   urlReload = "",
   addParam = {}
 ) {
-  console.log('form', $( classForm ).serialize() );
-  console.log($('meta[name="csrf-token"]').attr("content"));
   checkLoading();
   $(classForm)
     .ajaxForm({

@@ -5,6 +5,10 @@
 {{-- <script>
     $('.table-responsive').css('max-height', ($(window ).height() * 0.9));
 </script> --}}
+
+<script>
+    $('.panel-heading').removeClass('_hidden');
+</script>
 @endsection
 
 @section('content')
@@ -28,18 +32,32 @@
                             @endif
                         </div>
                         <div class="clean"><hr/></div>
+                        <div class="he">
+                            @if($isSearch)
+                                <button type="submit" class="btn btn-primary btn-left">
+                                    <i class="ion-ios-search-strong"></i>
+                                    Tìm kiếm
+                                </button>
+                            @endif
+                        </div>
                     </form>
-                    <div class="he">
-                            <script>
-                                $('.panel-heading').removeClass('_hidden');
-                            </script>
-                    @if($isSearch)
-                        <button type="submit" class="btn btn-primary btn-left">
-                            <i class="ion-ios-search-strong"></i>
-                            Tìm kiếm
-                        </button>
+                    @if($table->name == 'tien_phong')
+                        <form action="{{ route('generateTienPhong') }}" method="POST">
+                            {{ csrf_field()}}
+                            <button class="btn btn-success">
+                                {{-- <i class="ion-arrow-down-a"></i> --}}
+                                Tính tiền phòng
+                            </button> 
+                            <input type="hidden" name="year" value="{{ date('Y') }}"/>
+                            <select name="week">
+                                <option>Chọn thời gian</option>
+                                @for($i = 1; $i <= 12; $i++)
+                                    <option {{ $i == date('m') ? 'selected':'' }} value="{{ $i }}"> {{ $i . '/' . date('Y') }} </option>
+                                @endfor
+                            </select>
+                        </form>
                     @endif
-                    
+
                     @if($table->have_add_new == 1)
                         @if($table->form_data_type == 1)
                             <a class="btn btn-success btn-right" href="{{ route('formRow', [$tableId, 0]) }}">
@@ -91,6 +109,7 @@
                                         @include('backend.row.addExpress')
                                     @endif
                                     <form method="POST" class="form-option" action="{{ route('listOption') }}">
+                                        {{ csrf_field()}}
                                         @include('backend.row.rowHeader')
                                         <tbody id="main-sub-content">
                                             @include('backend.row.listRow')

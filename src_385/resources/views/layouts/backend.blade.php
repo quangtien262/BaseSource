@@ -1,3 +1,6 @@
+@php
+  $adminConfig = app('EntityCommon')->getDataById('admin_config', 1);
+@endphp
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
@@ -8,18 +11,21 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Admin</title>
+    <title>{{ $adminConfig->name or '' }}</title>
 
     <!-- Styles -->
     @include('backend.element.stylesheet')
 </head>
 <body class="theme-1">
 
-    
+    <div id="main-banner">
+      @if(!empty($adminConfig->banner))
+        <img src="{{ $adminConfig->banner }}"/>
+      @endif
+    </div>
     <div class="layout-container">
       <!-- top navbar-->
       <header class="header-container">
-         
         @include('backend.element.header')
       </header>
       <!-- sidebar-->
@@ -67,7 +73,7 @@
     <!--end Modal -->
     <div id="_loading" class="_hidden">
       <img src="/backend/img/loading01.gif"/>
-  </div>
+    </div>
 
     <!-- Scripts -->
     @include('backend.element.script')

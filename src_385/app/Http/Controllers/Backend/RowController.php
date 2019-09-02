@@ -17,6 +17,28 @@ class RowController extends BackendController
         return back();
     }
 
+    public function listOption(Request $request)
+    {
+        if (!empty($request->rowId)) {
+            $table = app('ClassTables')->getTableByName($request->tblName);
+            if (!empty($request->btnExport)) {
+                // export 2 excel
+                $columns = app('ClassTables')->getColumnByTableId($table->id);
+                $rowsQuery = app('EntityCommon')->getRowsByConditions($table->name, [], 0, ['id', 'desc'], ['id' => $request->rowId]);
+
+                return app('UtilsCommon')->export2Excel($table, $columns, $rowsQuery);
+            } elseif (!empty($request->btnDelete)) {
+                //delete
+                foreach ($request->rowId as $rowId) {
+                    app('UtilsCommon')->emptyFolder("imgs/{$table->id}/{$rowId}/image/*");
+                }
+                app('EntityCommon')->deleteTableByIds($request->tblName, $request->rowId);
+            }
+        }
+
+        return back();
+    }
+
     public function listRow(Request $request, $tableId)
     {
         $table = app('ClassTables')->getTable($tableId);
@@ -87,8 +109,8 @@ class RowController extends BackendController
             if ($column->name == 'id') {
                 continue;
             }
-            if ($column->type_edit == 'encryption' ) {
-                if($dataId > 0 && $request->input($column->name) == '') {
+            if ($column->type_edit == 'encryption') {
+                if ($dataId > 0 && $request->input($column->name) == '') {
                     continue;
                 }
                 $data[$column->name] = bcrypt($request->input($column->name));
@@ -121,19 +143,19 @@ class RowController extends BackendController
                                 app('ClassCommon')->base64ToImage($img, $pathUpload);
                                 $images[] = '/'.$pathUpload;
                             }
-                        } 
+                        }
                         if ($request->input('_avatar')[$idx] == '1') {
                             $avatar = $pathUpload;
                         }
                         $images[] = $pathUpload;
                     }
-                    if($avatar == '' && !empty($images)) {
-                        $avatar =  $images[0];
+                    if ($avatar == '' && !empty($images)) {
+                        $avatar = $images[0];
                     }
                 }
                 $imageArr = [
                     'avatar' => $avatar,
-                    'images' => $images
+                    'images' => $images,
                 ];
                 $data[$column->name] = json_encode($imageArr);
             }
@@ -167,38 +189,39 @@ class RowController extends BackendController
         $filename = $file->getClientOriginalName();
         //get data on import file
         $excelData = \Excel::load($file, function ($reader) {
-                    config(['excel.import.startRow' => 1]);
-                    $results = $reader->get();
-                })->get();
-        $data      = json_decode(json_encode($excelData), true);
+            config(['excel.import.startRow' => 1]);
+            $results = $reader->get();
+        })->get();
+        $data = json_decode(json_encode($excelData), true);
         \DB::beginTransaction();
         try {
             $dataInsert = [];
-            foreach($data as $idx => $d) {
-                if(isset($d['stt'])) {
+            foreach ($data as $idx => $d) {
+                if (isset($d['stt'])) {
                     unset($d['stt']);
                 }
                 //diem thi
-                if($table->name == 'diem_thi_thpt') {
+                if ($table->name == 'diem_thi_thpt') {
                     $d = app('ClassCommon')->getPointFromString($d['diem_thi'], $d);
                 }
 
                 $dataInsert[] = $d;
-                if ($idx % 99 == 0){
+                if ($idx % 99 == 0) {
                     app('EntityCommon')->insertData($table->name, $dataInsert, true);
-                    unset($dataInsert); 
+                    unset($dataInsert);
                     $dataInsert = [];
                 }
             }
-            if(!empty($dataInsert)) {
+            if (!empty($dataInsert)) {
                 app('EntityCommon')->insertData($table->name, $dataInsert, true);
             }
             \DB::commit();
         } catch (\Exception $e) {
             \DB::rollback();
+
             return $e->getMessage();
         }
-        
+
         return back();
     }
 
@@ -244,5 +267,23 @@ class RowController extends BackendController
                 $sheet->setAutoSize(true);
             });
         })->export('xls');
+    }
+
+    public function generateTienPhong(Request $request)
+    {
+        $week = (intval($request->week) - 1);
+        $data = app('EntityCommon')->getMoneyMotelRoomWithWeek($week, $request->year);
+        $date = date('Y-m-d h:i:s');
+        $dataInsert = [];
+        foreach ($data as $d) {
+            $tmpData = [];
+            $tmpData['created_at'] = $date;
+            $tmpData['updated_at'] = $date;
+            //add to data insert
+            $dataInsert = $tmpData;
+        }
+        insertData($tblName, $dataInsert);
+
+        return back()->withInput();
     }
 }

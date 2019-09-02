@@ -57,8 +57,8 @@
                                             $btnSubmit = 'Thêm mới';
                                         }
                                         if(!empty($_GET['popup'])) {
-                                            $type = 'button';
-                                            $onClick = 'ajaxSubmitForm()';
+                                            // $type = 'button';
+                                            // $onClick = 'ajaxSubmitForm()';
                                         }
                                         @endphp
 

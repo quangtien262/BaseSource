@@ -48,3 +48,4 @@
 
 <!-- Application styles-->
 <link rel="stylesheet" href="/backend/css/app.css">
+<link rel="stylesheet" href="/backend/css/tool.css">

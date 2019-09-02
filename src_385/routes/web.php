@@ -14,12 +14,11 @@ Route::group(['middleware' => \App\Http\Middleware\Language::class], function ()
     Route::get('{name}/l{id}.html', 'Frontend\LandingPageController@singleLandingPage')->name('singleLandingPage');
     Route::get('{name}/ll{id}.html', 'Frontend\LandingPageController@listLandingPage')->name('listLandingPage');
 
-    
     Route::get('gio-hang.html', 'Frontend\CartController@index')->name('cart');
     Route::get('dat-hang.html', 'Frontend\CartController@orders')->name('formOrder');
     Route::post('dat-hang.html', 'Frontend\CartController@postOrders');
     Route::get('hoan-tat.html', 'Frontend\CartController@ordersResult')->name('ordersResult');
-    
+
     //contact
     Route::get('lien-he.html', 'Frontend\ContactController@contact')->name('contact');
     // Route::get('{sluggable}/ct{id}.html', 'Frontend\ContactController@index')->name('contact');
@@ -48,17 +47,17 @@ Route::group(['middleware' => \App\Http\Middleware\Language::class], function ()
         Route::post('/configtbl/edit-column', 'Backend\TblController@postSubmitFormColumn')->name('editColumn');
         Route::get('/configtbl/delete-table/', 'Backend\TblController@deleteTable')->name('deleteTable');
         Route::get('/configtbl/delete-column', 'Backend\TblController@deleteColumn')->name('deleteColumn');
-        Route::post('/tbl/delete-multiple-row', 'Backend\RowController@listOption')->name('listOption');
         Route::post('/configtbl/sort-order-table/', 'Backend\TblController@sortOrderTable')->name('sortOrderTable');
         //table
-        Route::get('/tbl/list-row/{tableId}', 'Backend\RowController@listRow')->name('listDataTbl');
-        Route::get('/tbl/edit-row/{tableId}/{dataId}', 'Backend\RowController@formRow')->name('formRow');
-        Route::post('/tbl/edit-row/{tableId}/{dataId}', 'Backend\RowController@submitFormRow');
-        Route::get('/tbl/delete-row/{tableId}/{dataId}', 'Backend\RowController@deleteRow')->name('deleteRow');
-        Route::post('/tbl/sort-order-row/{tableId}', 'Backend\RowController@sortOrderRows')->name('sortOrderRows');
-        Route::post('/configtbl/sort-order-Column/{tableId}', 'Backend\RowController@sortOrderColumn')->name('sortOrderColumn');
-        Route::post('/tbl/update-current-row/{columnName}/{tableId}/{dataId}', 'Backend\RowController@editCurrentRow')->name('editCurrentColumn');
-        
+        Route::get('/list-data/{tableId}', 'Backend\RowController@listRow')->name('listDataTbl');
+        Route::get('/edit-data/{tableId}/{dataId}', 'Backend\RowController@formRow')->name('formRow');
+        Route::post('/edit-data/{tableId}/{dataId}', 'Backend\RowController@submitFormRow');
+        Route::get('/delete-row/{tableId}/{dataId}', 'Backend\RowController@deleteRow')->name('deleteRow');
+        Route::post('/delete-multiple-row', 'Backend\RowController@listOption')->name('listOption');
+        Route::post('/sort-order-row/{tableId}', 'Backend\RowController@sortOrderRows')->name('sortOrderRows');
+        Route::post('/sort-order-Column/{tableId}', 'Backend\RowController@sortOrderColumn')->name('sortOrderColumn');
+        Route::post('/update-current-row/{columnName}/{tableId}/{dataId}', 'Backend\RowController@editCurrentRow')->name('editCurrentColumn');
+
         Route::get('/tbl/import/{tableId}/', 'Backend\RowController@import2Excel')->name('import2Excel');
         Route::post('/tbl/import/{tableId}/', 'Backend\RowController@postImport2Excel');
         Route::get('/tbl/export/{tableId}/', 'Backend\RowController@export2Excel')->name('export2Excel');
@@ -67,8 +66,11 @@ Route::group(['middleware' => \App\Http\Middleware\Language::class], function ()
         Route::get('/tbl/edit-block/{landingPageId}/{blockId}/{landingPageItemId?}', 'Backend\BlockController@formBlock')->name('adminEditBlock');
         Route::post('/tbl/edit-block/{landingPageId}/{blockId}/{landingPageItemId?}', 'Backend\BlockController@submitFormBlock');
 
+        //so dien
+        Route::post('/auto-generate/tien-phong', 'Backend\RowController@generateTienPhong')->name('generateTienPhong');
+
         //upload file
-        Route::post('file/upload','Backend\UploadController@uploadFile');
-        Route::post('file/delete','Backend\UploadController@fileDestroy');
+        Route::post('file/upload', 'Backend\UploadController@uploadFile');
+        Route::post('file/delete', 'Backend\UploadController@fileDestroy');
     });
 // });

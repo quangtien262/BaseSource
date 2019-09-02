@@ -3749,12 +3749,12 @@ fieldset[disabled] .btn-inverse.active {
 }
 
 .theme-1 .layout-container>aside>.sidebar-header {
-    background-color: #1976D2;
+    background-color: #da720c;
     color: #fff;
 }
 
 .theme-1 .layout-container>header {
-    background-color: #1976D2;
+    background-color: #fa7c00;
     color: #fff;
 }
 
@@ -9511,7 +9511,7 @@ textarea.no-resize {
     width: 200px
 }
 .visible-sm {
-    display: block!important;
+    display: none;
 }
 #_loading {
     width: 100%;

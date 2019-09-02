@@ -108,16 +108,23 @@ class AuthController extends Controller {
     }
 
     public function login(LoginRequest $request) {
+        if(empty($request->username)) {
+            return 'Tên đăng nhập không được bỏ trống';
+        }
+        if(empty($request->password)) {
+            return 'Mật khẩu không được bỏ trống';
+        }
         if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
             //check permission, if is admin will do not login in web
             $checkUser = Users::where('username', $request->username)->first();
             if (intval($checkUser->userType) == 1) {
-                return 'ID or password is incorrect .';
+                return 'Tài khoản này không có quyền truy cập vào hệ thống.';
             }
             Auth::login(Auth::user(), true);
-            return redirect(route('adminHome'));
+            return RETURN_SUCCESS;
+            // return redirect(route('adminHome'));
         }
-        return 'ID or password is incorrect .';
+        return 'Tên đăng nhập hoặc mật khẩu không chính xác.';
     }
 
     public function logout() {
@@ -130,9 +137,7 @@ class AuthController extends Controller {
         if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
             $checkUser = Users::where('username', $request->username)->first();
             if (intval($checkUser->userType) == 0) {
-                return view('auth/login', [
-                    'message' => "username or password is incorrect"
-                ]);
+                $message = "username or password is incorrect";
             }
 
             Auth::login(\Auth::user(), true);

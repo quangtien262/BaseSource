@@ -1,0 +1,16 @@
+#main-banner {
+    width: 100%;
+    min-height: 50px
+}
+
+#main-banner img {
+    width: 100%
+}
+
+th div.color-white {
+    color: #000000
+}
+
+td div.color-white a {
+    color: #ffffff
+}

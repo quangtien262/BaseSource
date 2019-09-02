@@ -1,5 +1,3 @@
-
-    
         {{-- content --}}
         
             @foreach($datas as $index => $data)

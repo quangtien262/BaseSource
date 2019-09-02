@@ -406,4 +406,23 @@ class EntityCommon
                     $value.
                 '</a>';
     }
+
+    /**
+     * get thông tin phòng theo tiền điênk.
+     *
+     * @param [type] $week
+     * @param [type] $year
+     */
+    public function getMoneyMotelRoomWithWeek($week, $year)
+    {
+        $result = DB::table('motel_room')
+        ->leftJoin('so_dien', 'motel_room.id', '=', 'so_dien.motel_room_id')
+        ->leftJoin('hop_dong', 'motel_room.id', '=', 'hop_dong.motel_room_id')
+        ->where('so_dien.week', '=', $week)
+        ->where('so_dien.year', '=', $year)
+        ->where('hop_dong.status_hop_dong_id', '=', 1)
+        ->get();
+
+        return $result;
+    }
 }

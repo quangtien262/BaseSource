@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -137,7 +136,6 @@ return [
      */
 
     'providers' => [
-
         /*
          * Laravel Framework Service Providers...
          */
@@ -188,8 +186,7 @@ return [
         // Jenssegers\Agent\AgentServiceProvider::class,
 
         //cart
-        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class
-
+        // Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class
     ],
 
     /*
@@ -204,7 +201,6 @@ return [
      */
 
     'aliases' => [
-
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
@@ -242,7 +238,6 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
         //cart
-        'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
+        // 'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
     ],
-
 ];
