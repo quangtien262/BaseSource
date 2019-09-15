@@ -41,7 +41,8 @@
                             @endif
                         </div>
                     </form>
-                    @if($table->name == 'tien_phong')
+                    {{-- tien_phong --}}
+                    @if($table->name == TIEN_PHONG)
                         <form action="{{ route('generateTienPhong') }}" method="POST">
                             {{ csrf_field()}}
                             <button class="btn btn-success">
@@ -56,6 +57,13 @@
                                 @endfor
                             </select>
                         </form>
+                    @endif
+
+                    {{-- thống kê --}}
+                    @if($table->name == THONG_KE)
+                        <a class="btn btn-success" href="{{ route('thongKe') }}">
+                            Thống kê
+                        </a>
                     @endif
 
                     @if($table->have_add_new == 1)

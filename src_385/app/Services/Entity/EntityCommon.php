@@ -244,21 +244,6 @@ class EntityCommon
         return $html;
     }
 
-    // public function getHtmpOptionByTable($tableName, $keyword = '')
-    // {
-    //     $html = '';
-    //     if (!empty($keyword)) {
-    //         $html .= '<option value="0">'.$keyword.'</option>';
-    //     }
-
-    //     $data = DB::table($tableName)->orderBy('sort_order', 'asc')->get();
-    //     foreach ($data as $d) {
-    //         $html .= '<option value="'.$d->id.'">'.$d->name.'</option>';
-    //     }
-
-    //     return $html;
-    // }
-
     public function getColNameById($selectTableId, $dataId, $colName = 'name')
     {
         $name = '';
@@ -423,6 +408,53 @@ class EntityCommon
         ->where('hop_dong.status_hop_dong_id', '=', 1)
         ->get();
 
+        return $result;
+    }
+
+     /**
+     * get thông tin phòng theo tiền điênk.
+     *
+     * @param [type] $week
+     * @param [type] $year
+     */
+    public function getCurrentMoneyMotelRoom($week, $year, $motelRoomId)
+    {
+        $result = DB::table('motel_room')
+        ->leftJoin('so_dien', 'motel_room.id', '=', 'so_dien.motel_room_id')
+        ->leftJoin('hop_dong', 'motel_room.id', '=', 'hop_dong.motel_room_id')
+        ->where('so_dien.week', '=', $week)
+        ->where('so_dien.year', '=', $year)
+        ->where('hop_dong.status_hop_dong_id', '=', 1)
+        ->where('hop_dong.motel_room_id', '=', $motelRoomId)
+        ->first();
+
+        return $result;
+    }
+
+    /**
+     * get thông tin phòng theo tiền điênk.
+     *
+     * @param [type] $week
+     * @param [type] $year
+     */
+    public function getTotalByCondition($table, $column, $condition = [])
+    {
+        $result = 0;
+        $data = DB::table($table)
+        ->select($column);
+        if(!empty($condition)) {
+            foreach($condition as $key => $val) {
+                $data = $data->where($key, $val);
+            }
+        }
+        $data = $data->get();
+        $data = json_decode(json_encode($data), true);
+        // dd($data);
+        if(!empty($data)) {
+            foreach($data as $d) {
+                $result = $result + $d[$column];
+            }
+        }
         return $result;
     }
 }

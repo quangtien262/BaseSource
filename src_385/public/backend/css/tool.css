@@ -14,3 +14,6 @@ th div.color-white {
 td div.color-white a {
     color: #ffffff
 }
+.item-detail {
+    border-bottom: 1px #ccc solid
+}

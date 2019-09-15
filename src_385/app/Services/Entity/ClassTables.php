@@ -120,6 +120,8 @@ class ClassTables
         $block->add_column_in_list = $request['add_column_in_list'];
         $block->column_name_map_to_comment = $request['column_name_map_to_comment'];
         $block->is_show_total = isset($request['is_show_total']) ? $request['is_show_total'] : 0;
+        $block->is_view_detail = isset($request['is_view_detail']) ? $request['is_view_detail'] : 0;
+        
         $block->save();
 
         return $block;

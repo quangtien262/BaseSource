@@ -18,11 +18,12 @@
 </head>
 <body class="theme-1">
 
-    <div id="main-banner">
+    
       @if(!empty($adminConfig->banner))
-        <img src="{{ $adminConfig->banner }}"/>
+        <div id="main-banner">
+          <img src="{{ $adminConfig->banner }}"/>
+        </div>
       @endif
-    </div>
     <div class="layout-container">
       <!-- top navbar-->
       <header class="header-container">

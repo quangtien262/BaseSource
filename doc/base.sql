@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 02, 2019 at 09:19 PM
+-- Generation Time: Sep 13, 2019 at 09:15 PM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.6
 
@@ -354,12 +354,12 @@ INSERT INTO `hop_dong` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `
 (3, '402/174', 0, 0, '2019-08-03 05:59:54', '2019-09-01 23:33:02', 12, 3200000, 11, '2019-08-01', '2019-10-31', 3200000, 1, NULL, 1),
 (4, '401/174', 0, 0, '2019-08-03 05:59:57', '2019-09-01 23:32:59', 11, 3000000, 9, '2019-08-01', '2019-10-31', 3000000, 2, NULL, 1),
 (5, '303/174', 0, 0, '2019-08-03 05:59:58', '2019-09-01 23:32:57', 10, 3500000, 5, '2019-08-01', '2019-10-31', 3500000, 3, NULL, 1),
-(6, '302/174', 0, 0, '2019-08-03 05:59:59', '2019-09-01 23:33:20', 9, 3000000, 14, '2019-08-01', '2019-10-31', 3000000, 3, NULL, 1),
+(6, '302/174', 0, 0, '2019-08-03 05:59:59', '2019-09-02 21:58:37', 9, 3000000, 14, '2019-08-01', '2019-10-31', 3000000, 2, NULL, 1),
 (7, '301/174', 0, 0, '2019-08-02 18:00:00', '2019-09-01 23:49:32', 8, 3000000, 4, '2019-08-01', '2019-10-31', 3000000, 1, NULL, 1),
 (8, '203/174', 0, 0, '2019-08-02 18:00:04', '2019-09-01 23:32:39', 6, 3000000, 10, '2019-08-01', '2019-01-31', 3000000, 2, NULL, 1),
 (9, '202/174', 0, 0, '2019-08-02 18:00:05', '2019-09-01 23:32:36', 7, 3200000, 6, '2019-08-01', '2019-10-31', 3200000, 1, NULL, 1),
 (10, '201/174', 0, 0, '2019-08-02 18:00:37', '2019-09-01 23:32:33', 5, 3000000, 8, '2019-08-01', '2019-10-31', 3000000, 3, NULL, 1),
-(11, '103/174', 0, 0, '2019-08-02 18:00:39', '2019-09-01 23:32:29', 4, 3500000, 2, '2019-08-01', '2019-10-31', 3500000, 2, NULL, 1),
+(11, '103/174', 0, 0, '2019-08-02 18:00:39', '2019-09-03 04:31:16', 4, 3300000, 2, '2019-08-01', '2019-10-31', 3300000, 2, NULL, 1),
 (12, '102/174', 0, 0, '2019-08-02 18:05:00', '2019-09-01 23:32:20', 3, 3000000, 12, '2019-08-01', '2019-10-31', 3000000, 2, NULL, 1),
 (13, '101/174', 0, 0, '2019-08-02 18:05:01', '2019-09-01 23:32:17', 2, 3000000, 15, '2019-08-01', '2019-10-31', 3000000, 2, NULL, 1),
 (14, '001/174', 0, 0, '2019-08-16 19:33:58', '2019-09-01 23:07:37', 15, 3500000, 16, '2019-08-16', '2019-11-30', 3500000, 2, NULL, 1);
@@ -367,52 +367,28 @@ INSERT INTO `hop_dong` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `investment`
+-- Table structure for table `khoan_thu_khac`
 --
 
-CREATE TABLE `investment` (
+CREATE TABLE `khoan_thu_khac` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `parent_id` int(11) DEFAULT 0,
   `sort_order` int(11) DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `tienlq` int(11) DEFAULT 0,
-  `anhht` int(11) DEFAULT 0,
-  `note` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `status_investment_id` int(11) DEFAULT 0
+  `money` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `investment`
+-- Dumping data for table `khoan_thu_khac`
 --
 
-INSERT INTO `investment` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `tienlq`, `anhht`, `note`, `status_investment_id`) VALUES
-(1, 'Nhượng căn hộ 1A/174 Trần Duy Hưng', 0, 0, '2019-07-30 21:52:34', '2019-07-30 22:04:57', 105000000, 50000000, NULL, 2),
-(2, 'Thuê Căn Hộ 1A/174 Trần Duy Hưng', 0, 0, '2019-07-30 21:54:13', '2019-08-16 20:14:10', 86700000, 12300000, NULL, 2),
-(3, 'Mua phụ kiện cho tầng 1 ngày 27/07/2019', 0, 0, '2019-07-30 21:58:20', '2019-07-30 22:05:04', 60000, 145000, 'T.Anh: 2 bóng đèn tip (110k), 1 bóng tròn (30k), 1 bút thử điện (15k)\r\nTiến: 2 bóng đèn tip: 60k', 2),
-(4, 'Sửa điều hòa phòng 402/217 ngày 27/07/2019', 0, 0, '2019-07-30 21:59:31', '2019-07-30 22:05:08', 0, 100000, NULL, 2),
-(5, 'Sửa điện tầng 1 ngày 27/07/2019', 0, 0, '2019-07-30 22:00:25', '2019-07-30 22:05:12', 0, 600000, NULL, 2),
-(6, 'Tiền sửa khóa vân tay tầng 1', 0, 0, '2019-08-02 21:16:02', '2019-08-02 21:16:02', 0, 1150000, NULL, 2),
-(7, 'nước tẩy, xi măng, bay,...', 0, 0, '2019-08-02 21:17:32', '2019-08-09 04:09:08', 0, 100000, 'đồ để sửa lại tầng 1', 2),
-(8, 'Sửa Camera', 0, 0, '2019-08-09 04:07:58', '2019-08-09 04:07:58', 1000000, 0, 'Sửa camera tầng 1: 2 cái\r\ntầng thượng: mua mới 1 cái', 2),
-(9, 'Vệ sinh lại tầng 1', 0, 0, '2019-08-09 04:08:57', '2019-08-09 04:12:03', 1500000, 0, 'Vệ sinh tầng 1', 2),
-(10, 'mua quạt thông gió cho tầng 301', 0, 0, '2019-08-09 04:13:01', '2019-08-09 04:13:01', 500000, 0, NULL, 2),
-(11, 'Tiền phí mô giới', 0, 0, '2019-08-12 03:41:52', '2019-08-12 03:41:52', 0, 11000000, 'Phí cho bà Lý', 2),
-(12, 'Tiền sang nhượng chuyển trước cho bà Lý hộ ông Phương', 0, 0, '2019-08-12 03:42:51', '2019-08-12 03:42:51', 0, 15000000, NULL, 2),
-(13, 'Vệ sinh điều hòa', 0, 0, '2019-08-12 03:44:12', '2019-08-12 04:04:26', 2000000, 0, NULL, 2),
-(14, 'Trả tiền sửa đh tầng 1', 0, 0, '2019-08-12 03:44:49', '2019-08-12 03:44:49', 0, 4200000, NULL, 2),
-(15, 'Trả tiền dán giấy tầng 1', 0, 0, '2019-08-12 03:45:55', '2019-08-12 04:04:48', 200000, 1500000, 'Ok', 2),
-(16, 'Nâng cấp khóa của chính tầng 1 (Tự động sập khi đóng)', 0, 0, '2019-08-12 04:06:06', '2019-08-12 04:06:06', 500000, 0, NULL, 2),
-(17, 'Mua ga trải giường cho tầng 1', 0, 0, '2019-08-15 00:43:42', '2019-08-15 00:43:42', 250000, 0, NULL, 2),
-(18, 'Mua 2 cái route wifi', 0, 0, '2019-08-15 00:44:07', '2019-08-15 00:44:07', 500000, 0, NULL, 2),
-(19, 'Mua vòi nước cho bồn ở bếp (tầng 1)', 0, 0, '2019-08-16 19:17:37', '2019-08-16 19:17:37', 250000, 0, NULL, 2),
-(20, 'Mua tủ cho tầng 1', 0, 0, '2019-08-16 19:17:58', '2019-08-16 19:17:58', 1400000, 0, NULL, 2),
-(22, 'Tiến Anh thanh toán tiền sửa mạng (200k), Tiền sửa nhà vệ sinh (100k)', 0, 0, '2019-08-19 20:44:59', '2019-08-19 20:44:59', 0, 300000, 'Tiến Anh thanh toán tiền sửa mạng (200k), Tiền sửa nhà vệ sinh (100k)', 2),
-(23, 'Sửa điều hòa phòng 101', 0, 0, '2019-08-22 21:17:41', '2019-08-22 21:17:41', 420000, 0, NULL, 2),
-(24, 'Mua 10m dây mạng', 0, 0, '2019-08-31 19:24:26', '2019-08-31 19:24:26', 50000, 0, NULL, 2),
-(25, 'Mua vòi hoa sen (có kèm dây) cho phòng 403', 0, 0, '2019-08-31 19:25:07', '2019-08-31 19:25:12', 150000, 0, NULL, 2),
-(26, 'Mua cục xả nước ở bồn rửa mặt cho phòng 403', 0, 0, '2019-08-31 19:25:53', '2019-08-31 19:25:53', 250000, 0, NULL, 2);
+INSERT INTO `khoan_thu_khac` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `money`) VALUES
+(1, 'Sơn trả nợ nhượng 174 lần 1', 0, 0, '2019-08-19 20:14:27', '2019-08-20 20:33:16', 40000000),
+(2, 'Sơn trả nợ nhượng 174 lần 2', 0, 0, '2019-08-19 20:16:19', '2019-08-20 20:33:20', 40000000),
+(3, 'Sơn trả nhượng', 0, 0, '2019-08-28 03:24:45', '2019-08-28 03:24:45', 50000000),
+(4, 'Sơn trả nhượng 28.08.2019', 0, 0, '2019-08-28 03:25:00', '2019-08-28 03:25:00', 110000000);
 
 -- --------------------------------------------------------
 
@@ -525,61 +501,6 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (1, 'App\\Model\\User', 2),
 (2, 'App\\Model\\User', 3),
 (2, 'App\\Model\\User', 4);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `money_collected`
---
-
-CREATE TABLE `money_collected` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `parent_id` int(11) DEFAULT 0,
-  `sort_order` int(11) DEFAULT 0,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `money` int(11) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `money_collected`
---
-
-INSERT INTO `money_collected` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `money`) VALUES
-(1, 'Sơn trả nợ nhượng 174 lần 1', 0, 0, '2019-08-19 20:14:27', '2019-08-20 20:33:16', 40000000),
-(2, 'Sơn trả nợ nhượng 174 lần 2', 0, 0, '2019-08-19 20:16:19', '2019-08-20 20:33:20', 40000000),
-(3, 'Sơn trả nhượng', 0, 0, '2019-08-28 03:24:45', '2019-08-28 03:24:45', 50000000),
-(4, 'Sơn trả nhượng 28.08.2019', 0, 0, '2019-08-28 03:25:00', '2019-08-28 03:25:00', 110000000);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `money_spent`
---
-
-CREATE TABLE `money_spent` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `parent_id` int(11) DEFAULT 0,
-  `sort_order` int(11) DEFAULT 0,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `money` int(11) DEFAULT 0,
-  `note` text COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `money_spent`
---
-
-INSERT INTO `money_spent` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `money`, `note`) VALUES
-(1, '[174] Tiền điện tháng 8 nhà 274 (3F)', 0, 0, '2019-08-20 22:49:17', '2019-08-22 01:40:59', 1620000, NULL),
-(2, '[174] Trả tiền coc phòng 403 (21/8/19)', 0, 0, '2019-08-22 01:28:34', '2019-08-22 02:38:09', 3052000, 'Cọc: -3.500.000\r\nĐiện: 58 số: 128.000\r\nNước: 200.000\r\nMạng: 100.000\r\nWC: 60.000\r\nChiếu sáng: 60.000'),
-(3, '[174] Tiền điện tháng 8', 0, 0, '2019-08-22 01:38:12', '2019-08-22 01:40:40', 6823786, NULL),
-(4, '[174] Thanh toán tiền internet tháng 8', 0, 0, '2019-08-22 01:40:23', '2019-08-22 01:40:23', 407000, NULL),
-(5, '[174] Thanh toán tiền nước tháng 8', 0, 0, '2019-08-22 01:42:07', '2019-08-22 01:42:07', 2147604, NULL),
-(6, 'Hỗ trợ Sơn', 0, 0, '2019-08-31 19:23:53', '2019-08-31 19:23:53', 50000000, NULL);
 
 -- --------------------------------------------------------
 
@@ -812,9 +733,9 @@ CREATE TABLE `so_dien` (
 
 INSERT INTO `so_dien` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `motel_room_id`, `week`, `year`, `so_dau`, `so_cuoi`) VALUES
 (1, '', 0, 0, '2019-08-02 18:51:31', '2019-08-31 19:55:04', 15, 8, 2019, 2396, 2644),
-(2, '', 0, 0, '2019-08-02 18:51:34', '2019-08-16 21:15:24', 2, 8, 2019, 3908, 0),
-(3, '', 0, 0, '2019-08-02 18:51:38', '2019-08-16 21:15:17', 3, 8, 2019, 2697, 0),
-(4, '', 0, 0, '2019-08-02 18:51:42', '2019-08-16 21:15:09', 4, 8, 2019, 3058, 0),
+(2, '', 0, 0, '2019-08-02 18:51:34', '2019-09-03 04:25:39', 2, 8, 2019, 3908, 4217),
+(3, '', 0, 0, '2019-08-02 18:51:38', '2019-09-02 21:59:43', 3, 8, 2019, 2697, 2767),
+(4, '', 0, 0, '2019-08-02 18:51:42', '2019-09-03 04:26:23', 4, 8, 2019, 3058, 3125),
 (5, '', 0, 0, '2019-08-16 21:02:03', '2019-08-31 19:54:25', 5, 8, 2019, 4361, 4741),
 (6, '', 0, 0, '2019-08-16 21:02:04', '2019-08-31 19:54:15', 7, 8, 2019, 2139, 2164),
 (7, '', 0, 0, '2019-08-16 21:02:07', '2019-08-31 19:53:57', 6, 8, 2019, 3829, 4008),
@@ -1011,21 +932,21 @@ INSERT INTO `tables` (`id`, `sort_order`, `name`, `display_name`, `is_edit`, `ty
 (39, 6, 'motel_room', 'Phòng cho thuê', 1, '0', 100, NULL, 0, 2, '2019-07-30', '2019-07-31', 1, 1, 1, 1, NULL, NULL, 1, 0, 0),
 (40, 5, 'apartment', 'Căn hộ', 1, '0', 30, NULL, 0, 1, '2019-07-31', '2019-07-31', 0, 0, 1, 1, NULL, NULL, 1, 0, 0),
 (41, 7, 'customer', 'Khách hàng', 1, NULL, 30, NULL, 0, 1, '2019-07-31', '2019-08-02', 1, 1, 1, 1, NULL, NULL, 1, 0, 0),
-(42, 8, 'investment', 'Vốn đầu tư', 1, '0', 30, NULL, 0, 1, '2019-07-31', '2019-08-12', 0, 0, 1, 1, NULL, NULL, 1, 0, 0),
+(42, 8, 'von_dau_tu', 'Vốn đầu tư', 1, '0', 30, NULL, 0, 1, '2019-07-31', '2019-09-13', 0, 0, 1, 1, NULL, NULL, 1, 0, 0),
 (43, 4, 'status_investment', 'Trạng thái Vốn đầu tư', 1, '1', 30, NULL, 45, 2, '2019-07-31', '2019-07-31', 0, 0, 1, 1, NULL, NULL, 1, 0, 0),
 (44, 5, 'status_motel_room', 'Trạng thái phòng trọ', 1, '1', 30, NULL, 45, 1, '2019-07-31', '2019-07-31', 0, 0, 1, 1, NULL, NULL, 1, 0, 0),
 (45, 11, 'status', 'Trạng thái', 1, '1', 30, NULL, 0, 1, '2019-08-02', '2019-08-02', 0, 0, 0, 0, NULL, NULL, 0, 0, 0),
 (46, 3, 'status_customer', 'Trạng thái khách hàng', 1, '1', 30, NULL, 45, 1, '2019-08-02', '2019-08-02', 0, 0, 0, 0, NULL, NULL, 0, 0, 0),
-(47, 1, 'tien_phong', 'Tiền phòng', 1, '0', 30, NULL, 0, 1, '2019-08-02', '2019-08-12', 1, 1, 1, 1, NULL, NULL, 1, 0, 0),
+(47, 1, 'tien_phong', 'Tiền phòng', 1, '0', 30, NULL, 0, 1, '2019-08-02', '2019-09-06', 1, 1, 1, 1, NULL, NULL, 1, 1, 1),
 (48, 9, 'so_dien', 'Số điện', 1, NULL, 30, NULL, 0, 1, '2019-08-02', '2019-08-03', 1, 1, 1, 1, NULL, NULL, 1, 0, 1),
 (49, 4, 'hop_dong', 'Hợp đồng', 1, '0', 30, NULL, 0, 1, '2019-08-02', '2019-08-11', 0, 0, 1, 1, NULL, NULL, 1, 0, 1),
 (50, 2, 'status_hop_dong', 'Trạng thái hợp đồng', 1, '1', 30, NULL, 45, 1, '2019-08-02', '2019-08-02', 0, 0, 0, 0, NULL, NULL, 0, 0, 0),
 (51, 1, 'status_tien_phong', 'Trạng thái tiền phòng', 1, '1', 30, NULL, 45, 1, '2019-08-09', '2019-08-09', 0, 0, 0, 0, NULL, NULL, 0, 0, 0),
-(54, 10, 'van_tay', 'Vân tay', 1, '0', 30, NULL, 0, 1, '2019-08-17', '2019-08-17', 0, 0, 1, 1, NULL, NULL, 1, 0, 0),
-(55, 2, 'money_collected', 'Khoản thu khác', 1, NULL, 30, NULL, 0, 1, '2019-08-20', '2019-08-20', 0, 0, 1, 1, NULL, NULL, 1, 0, 0),
-(56, 3, 'money_spent', 'Tiền chi tiêu', 1, NULL, 30, NULL, 0, 1, '2019-08-20', '2019-08-20', 0, 0, 1, 1, NULL, NULL, 1, 0, 0),
+(54, 10, 'van_tay', 'Vân tay', 1, '0', 30, NULL, 0, 1, '2019-08-17', '2019-09-09', 0, 0, 1, 1, NULL, NULL, 1, 1, 1),
+(55, 2, 'khoan_thu_khac', 'Khoản thu khác', 1, NULL, 30, NULL, 0, 1, '2019-08-20', '2019-09-13', 0, 0, 1, 1, NULL, NULL, 1, 0, 0),
+(56, 3, 'tien_chi_tieu', 'Tiền chi tiêu', 1, NULL, 30, NULL, 0, 1, '2019-08-20', '2019-09-13', 0, 0, 1, 1, NULL, NULL, 1, 0, 0),
 (57, 12, 'admin_config', 'admin_config', 1, '5', 30, NULL, 0, 1, '2019-09-01', '2019-09-01', 0, 0, 0, 1, NULL, NULL, 1, 0, 0),
-(58, 0, 'total', 'Thống kê', 1, '0', 30, NULL, 0, 1, '2019-09-01', '2019-09-01', 0, 0, 0, 1, NULL, NULL, 1, 0, 0);
+(58, 0, 'thong_ke', 'Thống kê', 1, '0', 30, NULL, 0, 1, '2019-09-01', '2019-09-13', 0, 0, 1, 0, NULL, NULL, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -1249,11 +1170,11 @@ INSERT INTO `table_column` (`id`, `table_id`, `display_name`, `name`, `type`, `v
 (212, 46, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL),
 (213, 41, 'Trạng thái', 'status_customer_id', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'select', 1, 0, 4, 0, '2019-08-02', '2019-08-02', 46, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
 (214, 41, 'Phòng', 'motel_room_id', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'select', 1, 0, 3, 0, '2019-08-02', '2019-08-02', 39, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
-(215, 47, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 1, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(216, 47, 'Tiêu đề', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 0, 0, 2, 0, '2019-08-02', '2019-08-09', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
-(217, 47, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 13, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(218, 47, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 14, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(219, 47, 'Phòng', 'motel_room_id', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'select', 1, 0, 3, 0, '2019-08-02', '2019-08-02', 39, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
+(215, 47, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 4, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL),
+(216, 47, 'Tiêu đề', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 10, 0, '2019-08-02', '2019-09-03', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
+(217, 47, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 16, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL),
+(218, 47, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 17, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL),
+(219, 47, 'Phòng', 'motel_room_id', 'INT', '0', 1, NULL, 1, NULL, 1, 1, 'select', 1, 0, 7, 0, '2019-08-02', '2019-09-03', 39, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
 (220, 48, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 1, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL),
 (221, 48, 'Tiêu đề', 'name', 'VARCHAR', NULL, 1, 255, 0, NULL, 0, 1, 'text', 0, 0, 7, 0, '2019-08-02', '2019-08-17', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
 (222, 48, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 8, 0, '2019-08-02', '2019-08-02', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL),
@@ -1276,19 +1197,19 @@ INSERT INTO `table_column` (`id`, `table_id`, `display_name`, `name`, `type`, `v
 (246, 49, 'Số Người', 'so_nguoi', 'INT', '0', 1, NULL, 1, NULL, 1, 1, 'number', 1, 0, 5, 0, '2019-08-03', '2019-08-03', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
 (247, 49, 'Ghi chú', 'note', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 11, 0, '2019-08-03', '2019-08-03', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
 (248, 41, 'Ghi chú', 'note', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 11, 0, '2019-08-03', '2019-08-03', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
-(249, 47, 'Tiền Điện', 'tien_dien', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 6, 0, '2019-08-09', '2019-08-09', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
-(250, 47, 'Tiền Nước', 'tien_nuoc', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'text', 1, 0, 7, 0, '2019-08-09', '2019-08-09', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
-(251, 47, 'Tiền Phòng', 'tien_phong', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 11, 0, '2019-08-09', '2019-08-09', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
-(252, 47, 'Tiền vệ sinh', 'tien_wc', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'text', 1, 0, 8, 0, '2019-08-09', '2019-08-09', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
-(253, 47, 'Tiền mạng', 'tien_mang', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 9, 0, '2019-08-09', '2019-08-09', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
-(254, 47, 'Tiền chiếu sáng', 'tien_chieu_sang', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 10, 0, '2019-08-09', '2019-09-02', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
-(255, 47, 'Tổng', 'total', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 5, 0, '2019-08-09', '2019-08-11', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 1, NULL),
+(249, 47, 'Tiền Điện', 'tien_dien', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 3, 0, '2019-08-09', '2019-09-06', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
+(250, 47, 'Tiền Nước', 'tien_nuoc', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'text', 1, 0, 11, 0, '2019-08-09', '2019-09-03', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
+(251, 47, 'Tiền Phòng', 'tien_phong', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 5, 0, '2019-08-09', '2019-09-03', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
+(252, 47, 'Tiền vệ sinh', 'tien_wc', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'text', 1, 0, 12, 0, '2019-08-09', '2019-09-03', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
+(253, 47, 'Tiền mạng', 'tien_mang', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 13, 0, '2019-08-09', '2019-09-03', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
+(254, 47, 'Tiền chiếu sáng', 'tien_chieu_sang', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 14, 0, '2019-08-09', '2019-09-04', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
+(255, 47, 'Tổng', 'total', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 6, 0, '2019-08-09', '2019-09-03', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 1, NULL),
 (256, 51, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 1, 0, '2019-08-09', '2019-08-09', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL),
 (257, 51, 'Tiêu đề', 'name', 'VARCHAR', '', 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 2, 0, '2019-08-09', '2019-08-09', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL),
 (258, 51, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 4, 0, '2019-08-09', '2019-08-09', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL),
 (259, 51, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 5, 0, '2019-08-09', '2019-08-09', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(260, 47, 'Trạng thái', 'status_tien_phong_id', 'INT', NULL, 1, NULL, 1, NULL, 1, 1, 'select', 1, 0, 4, 0, '2019-08-09', '2019-08-20', 51, NULL, 1, NULL, 'color-white', NULL, 0, NULL, NULL, '1', NULL, NULL, 0, NULL),
-(261, 47, 'Ghi chú', 'note', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 0, 0, 12, 0, '2019-08-10', '2019-08-17', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
+(260, 47, 'Trạng thái', 'status_tien_phong_id', 'INT', NULL, 1, NULL, 1, NULL, 1, 1, 'select', 1, 0, 8, 0, '2019-08-09', '2019-08-20', 51, NULL, 1, NULL, 'color-white', NULL, 0, NULL, NULL, '1', NULL, NULL, 0, NULL),
+(261, 47, 'Ghi chú', 'note', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'textarea', 1, 0, 15, 0, '2019-08-10', '2019-09-03', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
 (262, 52, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-08-17', '2019-08-17', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL),
 (263, 52, 'Tiêu đề', 'name', 'INT', '0', 1, 12, 1, NULL, 0, 1, 'number', 1, 0, 0, 0, '2019-08-17', '2019-08-17', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
 (264, 52, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-08-17', '2019-08-17', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL),
@@ -1302,10 +1223,10 @@ INSERT INTO `table_column` (`id`, `table_id`, `display_name`, `name`, `type`, `v
 (272, 48, 'Số đầu', 'so_dau', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'text', 1, 0, 4, 0, '2019-08-17', '2019-08-17', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
 (273, 48, 'Số cuối', 'so_cuoi', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'text', 1, 0, 5, 0, '2019-08-17', '2019-08-17', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
 (274, 54, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 1, 0, '2019-08-17', '2019-08-17', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(275, 54, 'Tên', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 2, 0, '2019-08-17', '2019-08-17', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
+(275, 54, 'Tên', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 1, 1, 'text', 1, 0, 2, 0, '2019-08-17', '2019-09-09', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
 (276, 54, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 4, 0, '2019-08-17', '2019-08-17', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL),
 (277, 54, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 5, 0, '2019-08-17', '2019-08-17', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(278, 54, 'ID', 'van_tay_id', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 3, 0, '2019-08-17', '2019-09-01', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
+(278, 54, 'ID', 'van_tay_id', 'VARCHAR', NULL, 1, 255, 1, NULL, 1, 1, 'text', 1, 0, 3, 0, '2019-08-17', '2019-09-09', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
 (279, 55, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 1, 0, '2019-08-20', '2019-08-20', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL),
 (280, 55, 'Tiêu đề', 'name', 'VARCHAR', '', 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 2, 0, '2019-08-20', '2019-08-20', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL),
 (281, 55, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 4, 0, '2019-08-20', '2019-08-20', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL),
@@ -1325,15 +1246,86 @@ INSERT INTO `table_column` (`id`, `table_id`, `display_name`, `name`, `type`, `v
 (297, 57, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 5, 0, '2019-09-01', '2019-09-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL),
 (298, 57, 'banner', 'banner', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'image_laravel', 0, 0, 3, 0, '2019-09-01', '2019-09-01', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
 (299, 58, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 1, 0, '2019-09-01', '2019-09-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(300, 58, 'Tiêu đề', 'name', 'VARCHAR', '', 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 2, 0, '2019-09-01', '2019-09-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(301, 58, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 6, 0, '2019-09-01', '2019-09-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(302, 58, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 7, 0, '2019-09-01', '2019-09-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(303, 58, 'Tổng chi', 'tong_chi', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 3, 0, '2019-09-01', '2019-09-01', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
-(304, 58, 'Tổng thu', 'tong_thu', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'text', 1, 0, 4, 0, '2019-09-01', '2019-09-01', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
-(305, 58, 'Tổng', 'total', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 5, 0, '2019-09-01', '2019-09-01', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
-(306, 47, 'Tháng', 'week', 'INT', '0', 1, NULL, 1, NULL, 1, 1, 'text', 1, 0, 0, 0, '2019-09-01', '2019-09-02', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
-(307, 47, 'Năm', 'year', 'INT', '0', 1, 12, 1, NULL, 0, 1, 'text', 0, 0, 0, 0, '2019-09-01', '2019-09-01', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
+(300, 58, 'Tiêu đề', 'name', 'TEXT', NULL, 1, NULL, 1, NULL, 0, 1, 'text', 1, 0, 2, 0, '2019-09-01', '2019-09-13', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
+(301, 58, 'Danh mục cha', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 9, 0, '2019-09-01', '2019-09-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL),
+(302, 58, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 10, 0, '2019-09-01', '2019-09-01', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL),
+(303, 58, 'Tổng chi', 'tong_chi', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 5, 0, '2019-09-01', '2019-09-01', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
+(304, 58, 'Khoản thu khác', 'tong_thu', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'text', 1, 0, 6, 0, '2019-09-01', '2019-09-13', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
+(305, 58, 'Tổng doanh thu tạm tính', 'total', 'INT', NULL, 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 7, 0, '2019-09-01', '2019-09-13', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
+(306, 47, 'Tháng', 'week', 'INT', '0', 1, NULL, 1, NULL, 1, 1, 'number', 1, 0, 1, 0, '2019-09-01', '2019-09-06', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
+(307, 47, 'Năm', 'year', 'INT', '0', 1, 12, 1, NULL, 0, 1, 'text', 0, 0, 2, 0, '2019-09-01', '2019-09-01', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
 (308, 49, 'Trạng thái', 'status_hop_dong_id', 'INT', '0', 1, 12, 1, NULL, 1, 1, 'select', 1, 0, 4, 0, '2019-09-02', '2019-09-02', 50, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL);
+INSERT INTO `table_column` (`id`, `table_id`, `display_name`, `name`, `type`, `value_default`, `is_null`, `max_length`, `edit`, `type_show`, `add2search`, `search_type`, `type_edit`, `show_in_list`, `require`, `sort_order`, `parent_id`, `created_at`, `updated_at`, `select_table_id`, `conditions`, `fast_edit`, `table_link`, `class`, `column_table_link`, `sub_list`, `sub_column_name`, `config_add_sub_table`, `bg_in_list`, `add_column_in_list`, `column_name_map_to_comment`, `is_show_total`, `is_show_btn_auto_get_total`) VALUES
+(309, 47, 'Chi phí khác', 'other', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'text', 0, 0, 9, 0, '2019-09-03', '2019-09-03', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', '{\r\n  \"0\":\"tien_nuoc\",\r\n  \"1\":\"tien_wc\",\r\n  \"2\":\"tien_mang\",\r\n  \"3\":\"tien_chieu_sang\"\r\n}', NULL, 0, NULL),
+(310, 58, 'Tiền phòng đã thu', 'tien_phong_da_thu', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 3, 0, '2019-09-13', '2019-09-13', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
+(311, 58, 'Tiền phòng chưa thu', 'tien_phong_chua_thu', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 4, 0, '2019-09-13', '2019-09-13', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL),
+(312, 58, 'Tổng vốn đầu tư', 'tong_von_dau_tu', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 8, 0, '2019-09-13', '2019-09-13', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `thong_ke`
+--
+
+CREATE TABLE `thong_ke` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `parent_id` int(11) DEFAULT 0,
+  `sort_order` int(11) DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `tong_chi` int(11) DEFAULT NULL,
+  `tong_thu` int(11) DEFAULT NULL,
+  `total` int(11) DEFAULT NULL,
+  `tien_phong_da_thu` int(11) DEFAULT 0,
+  `tien_phong_chua_thu` int(11) DEFAULT 0,
+  `tong_von_dau_tu` int(11) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `thong_ke`
+--
+
+INSERT INTO `thong_ke` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `tong_chi`, `tong_thu`, `total`, `tien_phong_da_thu`, `tien_phong_chua_thu`, `tong_von_dau_tu`) VALUES
+(5, 'Thống kê dữ liệu ngày 13/09/2019 07:12:04', 0, 0, '2019-09-13 00:12:04', '2019-09-13 00:12:04', 109081418, 240000000, 244982582, 92456000, 21608000, 297125000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tien_chi_tieu`
+--
+
+CREATE TABLE `tien_chi_tieu` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `parent_id` int(11) DEFAULT 0,
+  `sort_order` int(11) DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `money` int(11) DEFAULT 0,
+  `note` text COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tien_chi_tieu`
+--
+
+INSERT INTO `tien_chi_tieu` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `money`, `note`) VALUES
+(1, '[174] Tiền điện tháng 8 nhà 274 (3F)', 0, 0, '2019-08-20 22:49:17', '2019-08-22 01:40:59', 1620000, NULL),
+(2, '[174] Trả tiền coc phòng 403 (21/8/19)', 0, 0, '2019-08-22 01:28:34', '2019-08-22 02:38:09', 3052000, 'Cọc: -3.500.000\r\nĐiện: 58 số: 128.000\r\nNước: 200.000\r\nMạng: 100.000\r\nWC: 60.000\r\nChiếu sáng: 60.000'),
+(3, '[174] Tiền điện tháng 8', 0, 0, '2019-08-22 01:38:12', '2019-08-22 01:40:40', 6823786, NULL),
+(4, '[174] Thanh toán tiền internet tháng 8', 0, 0, '2019-08-22 01:40:23', '2019-08-22 01:40:23', 407000, NULL),
+(5, '[174] Thanh toán tiền nước tháng 8', 0, 0, '2019-08-22 01:42:07', '2019-08-22 01:42:07', 2147604, NULL),
+(6, 'Hỗ trợ Sơn', 0, 0, '2019-08-31 19:23:53', '2019-08-31 19:23:53', 50000000, NULL),
+(7, 'Trả lại tiền cho Sơn', 0, 0, '2019-09-12 23:56:42', '2019-09-12 23:56:42', 30000000, 'trả lại 21tr + hỗ trợ thêm 9tr'),
+(8, 'Thanh toán tiền điện 3F (174)', 0, 0, '2019-09-13 00:00:01', '2019-09-13 00:00:01', 6298372, NULL),
+(9, 'Thanh toán tiền điện 1F (174)', 0, 0, '2019-09-13 00:00:44', '2019-09-13 00:00:44', 1914295, NULL),
+(10, 'Thanh toán tiền nước tháng 9 (174)', 0, 0, '2019-09-13 00:01:11', '2019-09-13 00:01:11', 2198361, NULL),
+(11, 'Tiền WC tháng 9', 0, 0, '2019-09-13 00:01:42', '2019-09-13 00:01:42', 300000, NULL),
+(12, 'Tiền mạng internet 6 tháng (174)', 0, 0, '2019-09-13 00:03:34', '2019-09-13 00:03:34', 3000000, NULL),
+(13, 'mua hai bộ vòi hoa sen cho phòng 102 và 203', 0, 0, '2019-09-13 00:07:10', '2019-09-13 00:07:10', 1200000, NULL),
+(14, 'Đánh chìa khóa cho phòng 201 (3)', 0, 0, '2019-09-13 00:09:15', '2019-09-13 00:09:15', 60000, NULL),
+(15, 'Đánh chìa khóa cho phòng 402 (3)', 0, 0, '2019-09-13 00:09:37', '2019-09-13 00:09:37', 60000, NULL);
 
 -- --------------------------------------------------------
 
@@ -1360,46 +1352,43 @@ CREATE TABLE `tien_phong` (
   `status_tien_phong_id` int(11) DEFAULT NULL,
   `note` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `week` int(11) DEFAULT 0,
-  `year` int(11) DEFAULT 0
+  `year` int(11) DEFAULT 0,
+  `other` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `tien_phong`
 --
 
-INSERT INTO `tien_phong` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `motel_room_id`, `start_date`, `tien_dien`, `tien_nuoc`, `tien_phong`, `tien_wc`, `tien_mang`, `tien_chieu_sang`, `total`, `status_tien_phong_id`, `note`, `week`, `year`) VALUES
-(1, 'Tháng 8 phòng 101/172', 0, 0, '2019-08-02 04:29:10', '2019-08-19 20:25:24', 13, NULL, 0, 50000, 1750000, 15000, 15000, 15000, 1850000, 1, 'tinh tien nửa tháng do hđ cũ ký từ ngày 15', 8, 2019),
-(2, NULL, 0, 0, '2019-08-09 04:29:22', '2019-08-15 03:59:34', 12, NULL, 0, 0, 0, 0, 0, 0, 6400000, 1, NULL, 8, 2019),
-(3, NULL, 0, 0, '2019-08-09 04:29:22', '2019-08-10 05:04:10', 11, NULL, 332000, 200000, 3000000, 60000, 100000, 60000, 3680000, 1, '3752000 - 7200 (thang  truoc) = 3680000', 8, 2019),
-(4, NULL, 0, 0, '2019-08-09 04:29:25', '2019-08-09 04:58:08', 10, NULL, 996000, 300000, 3500000, 90000, 100000, 90000, 5656000, 1, NULL, 8, 2019),
-(5, NULL, 0, 0, '2019-08-09 04:29:28', '2019-08-09 04:54:49', 9, NULL, 68000, 200000, 3000000, 60000, 100000, 60000, 3948000, 1, NULL, 8, 2019),
-(6, NULL, 0, 0, '2019-08-09 04:29:29', '2019-08-19 20:25:19', 8, NULL, 0, 0, 0, 0, 0, 0, 4212000, 1, NULL, 8, 2019),
-(7, NULL, 0, 0, '2019-08-09 04:29:29', '2019-08-09 04:54:55', 6, NULL, 0, 0, 0, 0, 0, 0, 1628000, 1, NULL, 8, 2019),
-(8, NULL, 0, 0, '2019-08-09 04:29:30', '2019-08-09 04:55:02', 7, NULL, 0, 0, 0, 0, 0, 0, 2240000, 1, NULL, 8, 2019),
-(9, NULL, 0, 0, '2019-08-09 04:29:31', '2019-08-09 04:55:07', 5, NULL, 500000, 300000, 3000000, 90000, 100000, 90000, 4230000, 1, NULL, 8, 2019),
-(10, NULL, 0, 0, '2019-08-09 04:29:32', '2019-08-10 05:09:25', 4, NULL, 256000, 200000, 3300000, 60000, 100000, 60000, 3970000, 1, NULL, 8, 2019),
-(11, NULL, 0, 0, '2019-08-09 04:29:36', '2019-08-10 05:07:00', 14, NULL, 1436000, 100000, 3000000, 30000, 100000, 30000, 4690000, 1, NULL, 8, 2019),
-(12, NULL, 0, 0, '2019-08-09 04:29:37', '2019-08-09 04:43:25', 3, NULL, 0, 0, 0, 0, 0, 0, 4120000, 1, NULL, 8, 2019),
-(13, NULL, 0, 0, '2019-08-09 04:29:38', '2019-08-19 20:25:10', 2, NULL, 100000, 100000, 3000000, 30000, 100000, 30000, 3410000, 1, NULL, 8, 2019),
-(14, '001/174', 0, 0, '2019-08-16 19:19:42', '2019-08-16 19:20:51', 15, NULL, 0, 0, 0, 0, 0, 0, 5250000, 1, 'tiền cọc: 5.250.000\r\nTiền nhà tháng 8: 1.750.000', 8, 2019);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `total`
---
-
-CREATE TABLE `total` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `parent_id` int(11) DEFAULT 0,
-  `sort_order` int(11) DEFAULT 0,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `tong_chi` int(11) DEFAULT NULL,
-  `tong_thu` int(11) DEFAULT NULL,
-  `total` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+INSERT INTO `tien_phong` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `motel_room_id`, `start_date`, `tien_dien`, `tien_nuoc`, `tien_phong`, `tien_wc`, `tien_mang`, `tien_chieu_sang`, `total`, `status_tien_phong_id`, `note`, `week`, `year`, `other`) VALUES
+(1, 'Tháng 8 phòng 101/172', 0, 0, '2019-08-02 04:29:10', '2019-08-19 20:25:24', 13, NULL, 0, 50000, 1750000, 15000, 15000, 15000, 1850000, 1, 'tinh tien nửa tháng do hđ cũ ký từ ngày 15', 8, 2019, NULL),
+(2, NULL, 0, 0, '2019-08-09 04:29:22', '2019-08-15 03:59:34', 12, NULL, 0, 0, 0, 0, 0, 0, 6400000, 1, NULL, 8, 2019, NULL),
+(3, NULL, 0, 0, '2019-08-09 04:29:22', '2019-08-10 05:04:10', 11, NULL, 332000, 200000, 3000000, 60000, 100000, 60000, 3680000, 1, '3752000 - 7200 (thang  truoc) = 3680000', 8, 2019, NULL),
+(4, NULL, 0, 0, '2019-08-09 04:29:25', '2019-08-09 04:58:08', 10, NULL, 996000, 300000, 3500000, 90000, 100000, 90000, 5656000, 1, NULL, 8, 2019, NULL),
+(5, NULL, 0, 0, '2019-08-09 04:29:28', '2019-08-09 04:54:49', 9, NULL, 68000, 200000, 3000000, 60000, 100000, 60000, 3948000, 1, NULL, 8, 2019, NULL),
+(6, NULL, 0, 0, '2019-08-09 04:29:29', '2019-08-19 20:25:19', 8, NULL, 0, 0, 0, 0, 0, 0, 4212000, 1, NULL, 8, 2019, NULL),
+(7, NULL, 0, 0, '2019-08-09 04:29:29', '2019-08-09 04:54:55', 6, NULL, 0, 0, 0, 0, 0, 0, 1628000, 1, NULL, 8, 2019, NULL),
+(8, NULL, 0, 0, '2019-08-09 04:29:30', '2019-08-09 04:55:02', 7, NULL, 0, 0, 0, 0, 0, 0, 2240000, 1, NULL, 8, 2019, NULL),
+(9, NULL, 0, 0, '2019-08-09 04:29:31', '2019-08-09 04:55:07', 5, NULL, 500000, 300000, 3000000, 90000, 100000, 90000, 4230000, 1, NULL, 8, 2019, NULL),
+(10, NULL, 0, 0, '2019-08-09 04:29:32', '2019-08-10 05:09:25', 4, NULL, 256000, 200000, 3300000, 60000, 100000, 60000, 3970000, 1, NULL, 8, 2019, NULL),
+(11, NULL, 0, 0, '2019-08-09 04:29:36', '2019-08-10 05:07:00', 14, NULL, 1436000, 100000, 3000000, 30000, 100000, 30000, 4690000, 1, NULL, 8, 2019, NULL),
+(12, NULL, 0, 0, '2019-08-09 04:29:37', '2019-08-09 04:43:25', 3, NULL, 0, 0, 0, 0, 0, 0, 4120000, 1, NULL, 8, 2019, NULL),
+(13, NULL, 0, 0, '2019-08-09 04:29:38', '2019-08-19 20:25:10', 2, NULL, 100000, 100000, 3000000, 30000, 100000, 30000, 3410000, 1, NULL, 8, 2019, NULL),
+(14, '001/174', 0, 0, '2019-08-16 19:19:42', '2019-08-16 19:20:51', 15, NULL, 0, 0, 0, 0, 0, 0, 5250000, 1, 'tiền cọc: 5.250.000\r\nTiền nhà tháng 8: 1.750.000', 8, 2019, NULL),
+(155, 'Tiền dịch vụ tháng 8 và tiền phòng tháng 9', 0, 0, '2019-09-02 22:00:32', '2019-09-09 03:56:07', 14, NULL, 1056000, 200000, 3000000, 60000, 100000, 60000, 4476000, 1, 'Số điện đầu: 3674, Số điện cuối: 3938, Tổng số điện xử dụng là: 264 Số', 9, 2019, NULL),
+(156, 'Tiền dịch vụ tháng 8 và tiền phòng tháng 9', 0, 0, '2019-09-02 22:00:32', '2019-09-02 22:00:32', 13, NULL, 40000, 200000, 3500000, 60000, 100000, 60000, 3960000, 2, 'Số điện đầu: 2231, Số điện cuối: 2241, Tổng số điện xử dụng là: 10 Số', 9, 2019, NULL),
+(157, 'Tiền dịch vụ tháng 8 và tiền phòng tháng 9', 0, 0, '2019-09-02 22:00:32', '2019-09-03 19:01:28', 12, NULL, 880000, 100000, 3200000, 30000, 100000, 30000, 4340000, 1, 'Số điện đầu: 3370, Số điện cuối: 3590, Tổng số điện xử dụng là: 220 Số', 9, 2019, NULL),
+(158, 'Tiền dịch vụ tháng 8 và tiền phòng tháng 9', 0, 0, '2019-09-02 22:00:32', '2019-09-03 19:05:27', 11, NULL, 560000, 200000, 3000000, 60000, 100000, 60000, 3980000, 1, 'Số điện đầu: 3154, Số điện cuối: 3294, Tổng số điện xử dụng là: 140 Số', 9, 2019, NULL),
+(159, 'Tiền dịch vụ tháng 8 và tiền phòng tháng 9', 0, 0, '2019-09-02 22:00:32', '2019-09-02 22:00:32', 10, NULL, 956000, 300000, 3500000, 90000, 100000, 90000, 5036000, 2, 'Số điện đầu: 4736, Số điện cuối: 4975, Tổng số điện xử dụng là: 239 Số', 9, 2019, NULL),
+(160, 'Tiền dịch vụ tháng 8 và tiền phòng tháng 9', 0, 0, '2019-09-02 22:00:32', '2019-09-03 18:56:47', 9, NULL, 480000, 200000, 3000000, 60000, 100000, 60000, 3900000, 1, 'Số điện đầu: 2077, Số điện cuối: 2197, Tổng số điện xử dụng là: 120 Số', 9, 2019, NULL),
+(161, 'Tiền dịch vụ tháng 8 và tiền phòng tháng 9', 0, 0, '2019-09-02 22:00:32', '2019-09-02 22:00:32', 8, NULL, 996000, 100000, 3000000, 30000, 100000, 30000, 4256000, 2, 'Số điện đầu: 3277, Số điện cuối: 3526, Tổng số điện xử dụng là: 249 Số', 9, 2019, NULL),
+(162, 'Tiền dịch vụ tháng 8 và tiền phòng tháng 9', 0, 0, '2019-09-02 22:00:32', '2019-09-05 19:16:05', 6, NULL, 716000, 200000, 3000000, 60000, 100000, 60000, 4136000, 1, 'Số điện đầu: 3829, Số điện cuối: 4008, Tổng số điện xử dụng là: 179 Số', 9, 2019, NULL),
+(163, 'Tiền dịch vụ tháng 8 và tiền phòng tháng 9', 0, 0, '2019-09-02 22:00:32', '2019-09-02 22:05:06', 7, NULL, 100000, 100000, 3200000, 30000, 100000, 30000, 3560000, 1, 'Số điện đầu: 2139, Số điện cuối: 2164, Tổng số điện xử dụng là: 25 Số', 9, 2019, NULL),
+(164, 'Tiền dịch vụ tháng 8 và tiền phòng tháng 9', 0, 0, '2019-09-02 22:00:32', '2019-09-12 23:02:26', 5, NULL, 300000, 300000, 3000000, 90000, 100000, 90000, 3880000, 1, 'Số điện đầu: 4361, Số điện cuối: 4741, Tổng số điện xử dụng là: 380 Số.\r\nDo lỗi công tơ nên chỉ tính tiền điện là 300.000', 9, 2019, NULL),
+(165, 'Tiền dịch vụ tháng 8 và tiền phòng tháng 9', 0, 0, '2019-09-02 22:00:32', '2019-09-02 22:04:48', 4, NULL, 268000, 200000, 3300000, 60000, 100000, 60000, 3988000, 1, 'Số điện đầu: 3058, Số điện cuối: 3125, Tổng số điện xử dụng là: 67 Số', 9, 2019, NULL),
+(166, 'Tiền dịch vụ tháng 8 và tiền phòng tháng 9', 0, 0, '2019-09-02 22:00:32', '2019-09-02 22:00:32', 3, NULL, 280000, 200000, 3000000, 60000, 100000, 60000, 3700000, 2, 'Số điện đầu: 2697, Số điện cuối: 2767, Tổng số điện xử dụng là: 70 Số', 9, 2019, NULL),
+(167, 'Tiền dịch vụ tháng 8 và tiền phòng tháng 9', 0, 0, '2019-09-02 22:00:32', '2019-09-02 22:00:32', 2, NULL, 1236000, 200000, 3000000, 60000, 100000, 60000, 4656000, 2, 'Số điện đầu: 3908, Số điện cuối: 4217, Tổng số điện xử dụng là: 309 Số', 9, 2019, NULL),
+(168, 'Tiền dịch vụ tháng 8 và tiền phòng tháng 9', 0, 0, '2019-09-02 22:00:32', '2019-09-05 19:13:54', 15, NULL, 992000, 200000, 3500000, 60000, 100000, 60000, 4912000, 1, 'Số điện đầu: 2396, Số điện cuối: 2644, Tổng số điện xử dụng là: 248 Số', 9, 2019, NULL);
 
 -- --------------------------------------------------------
 
@@ -1425,8 +1414,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `username`, `user_type`, `sort_order`) VALUES
-(1, 'tienlq', 'quangtienvkt@gmail.com', '$2y$10$qDSM1xhz.Tk7dgDP1vvIpO7oDFWK7tyqndVivchYpBEHoK62YyvCu', 'SfQBILj1odJeAmWIMsCTrAlAoYN45V5w8F05AKbdaPCHw8ZdkneD3PkkJmzo', '2019-01-30 02:49:15', '2019-01-30 02:49:15', 'tienlq', '1', 0),
-(5, 'AnhHT', 'anhht@gmail.com', '$2y$10$7qyJAzC1hEZJP11TFH5GVujI2OvNU/KHyc9X7DBR9Xqf6/F3JOCHO', 'Na51w8Jve2dp1tqNNhYJhFfTrM1wqDLoRH0KVgR0KW6ItnmXiGGnVk3oBLu5', '2019-01-30 02:49:15', '2019-08-19 21:18:20', 'anhht', '1', 0);
+(1, 'tienlq', 'quangtienvkt@gmail.com', '$2y$10$qDSM1xhz.Tk7dgDP1vvIpO7oDFWK7tyqndVivchYpBEHoK62YyvCu', 'mP0wqcZf2d8upFNXcDkvRiW9BIhykwW3D8sloSArCEKNoqz3ewrfsHaZ0ytB', '2019-01-30 02:49:15', '2019-01-30 02:49:15', 'tienlq', '1', 0),
+(5, 'AnhHT', 'anhht@gmail.com', '$2y$10$7qyJAzC1hEZJP11TFH5GVujI2OvNU/KHyc9X7DBR9Xqf6/F3JOCHO', 'W8tYRAZC3RFQQISt18RRMfLguWvD1Bmn4AYnTRHazFU0I19DUFxjNPzSutf2', '2019-01-30 02:49:15', '2019-08-19 21:18:20', 'anhht', '1', 0);
 
 -- --------------------------------------------------------
 
@@ -1449,7 +1438,140 @@ CREATE TABLE `van_tay` (
 --
 
 INSERT INTO `van_tay` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `van_tay_id`) VALUES
-(1, 'Thảo 402/174', 0, 0, '2019-08-16 21:58:51', '2019-08-31 19:30:32', '0130');
+(1, 'Thảo 402/174', 0, 0, '2019-08-16 21:58:51', '2019-08-31 19:30:32', '0130'),
+(2, 'Quynh 102', 0, 0, '2019-09-08 19:06:40', '2019-09-08 19:10:18', '1031'),
+(3, 'Phương 103', 0, 0, '2019-09-08 19:07:13', '2019-09-08 19:10:01', '1030'),
+(4, 'Phương 103', 0, 0, '2019-09-08 19:07:14', '2019-09-08 19:09:45', '1023'),
+(5, 'Trâm 201', 0, 0, '2019-09-08 19:07:15', '2019-09-08 19:09:19', '2021'),
+(6, 'Huệ 201', 0, 0, '2019-09-08 19:07:16', '2019-09-08 19:09:01', '1020'),
+(7, 'Hạ 302', 0, 0, '2019-09-08 19:07:16', '2019-09-08 19:08:28', '1012'),
+(8, 'Hà -302', 0, 0, '2019-09-08 19:07:17', '2019-09-08 19:08:18', '1011'),
+(9, 'Dung 201', 0, 0, '2019-09-08 19:10:43', '2019-09-08 19:10:43', '1102'),
+(10, 'Dung 201', 0, 0, '2019-09-08 19:10:56', '2019-09-08 19:10:56', '1103'),
+(11, 'Mai 103', 0, 0, '2019-09-08 19:11:10', '2019-09-08 19:11:21', '1110'),
+(12, 'Mai 103', 0, 0, '2019-09-08 19:11:39', '2019-09-08 19:11:39', '1111'),
+(13, 'Nam - 303', 0, 0, '2019-09-08 19:12:05', '2019-09-08 19:12:05', '1112'),
+(14, 'Nam - 303', 0, 0, '2019-09-08 19:12:49', '2019-09-08 19:12:49', '1120'),
+(15, 'Nam - 303n', 0, 0, '2019-09-08 19:13:52', '2019-09-08 19:13:52', '1121'),
+(16, 'Tiến 303', 0, 0, '2019-09-08 19:14:22', '2019-09-08 19:14:22', '1122'),
+(17, 'Phương 401', 0, 0, '2019-09-08 19:14:45', '2019-09-08 19:14:45', '1123'),
+(18, 'Thảo 402', 0, 0, '2019-09-08 19:15:01', '2019-09-08 19:15:01', '1130'),
+(19, NULL, 0, 0, '2019-09-08 19:15:28', '2019-09-08 19:15:28', '2001'),
+(20, NULL, 0, 0, '2019-09-08 19:15:33', '2019-09-08 19:15:33', '2002'),
+(21, NULL, 0, 0, '2019-09-08 19:15:36', '2019-09-08 19:15:58', '2003'),
+(22, NULL, 0, 0, '2019-09-08 19:16:14', '2019-09-08 19:16:14', '2010'),
+(23, NULL, 0, 0, '2019-09-08 19:16:28', '2019-09-08 19:16:28', '2011'),
+(24, NULL, 0, 0, '2019-09-08 19:16:33', '2019-09-08 19:16:33', '2012'),
+(25, NULL, 0, 0, '2019-09-08 19:16:37', '2019-09-08 19:16:37', '2013'),
+(26, NULL, 0, 0, '2019-09-08 19:16:45', '2019-09-08 19:16:45', '2020'),
+(27, 'C.Ha WC', 0, 0, '2019-09-08 19:16:51', '2019-09-08 19:49:00', '2021'),
+(28, NULL, 0, 0, '2019-09-08 19:16:54', '2019-09-08 19:16:54', '2022'),
+(29, NULL, 0, 0, '2019-09-08 19:16:57', '2019-09-08 19:16:57', '2023'),
+(30, NULL, 0, 0, '2019-09-08 19:17:10', '2019-09-08 19:17:10', '2030'),
+(31, 'Yên 101', 0, 0, '2019-09-08 19:17:13', '2019-09-08 19:45:52', '2031'),
+(32, NULL, 0, 0, '2019-09-08 19:17:16', '2019-09-08 19:17:16', '2032'),
+(33, NULL, 0, 0, '2019-09-08 19:17:18', '2019-09-08 19:17:18', '2033'),
+(34, 'Vy 101', 0, 0, '2019-09-08 19:17:27', '2019-09-08 19:48:07', '2100'),
+(35, NULL, 0, 0, '2019-09-08 19:17:33', '2019-09-08 19:17:33', '2101'),
+(36, NULL, 0, 0, '2019-09-08 19:17:36', '2019-09-08 19:17:36', '2102'),
+(37, NULL, 0, 0, '2019-09-08 19:17:39', '2019-09-08 19:17:39', '2103'),
+(38, NULL, 0, 0, '2019-09-08 19:17:51', '2019-09-08 19:17:51', '2110'),
+(39, NULL, 0, 0, '2019-09-08 19:17:53', '2019-09-08 19:17:53', '2111'),
+(40, NULL, 0, 0, '2019-09-08 19:17:56', '2019-09-08 19:17:56', '2112'),
+(41, NULL, 0, 0, '2019-09-08 19:17:56', '2019-09-08 19:17:56', '2112'),
+(42, NULL, 0, 0, '2019-09-08 19:17:59', '2019-09-08 19:18:12', '2120'),
+(43, 'Kien 303', 0, 0, '2019-09-08 19:18:20', '2019-09-08 19:48:22', '2121'),
+(44, NULL, 0, 0, '2019-09-08 19:18:22', '2019-09-08 19:18:22', '2122'),
+(45, NULL, 0, 0, '2019-09-08 19:18:25', '2019-09-08 19:18:25', '2123'),
+(46, NULL, 0, 0, '2019-09-08 19:18:34', '2019-09-08 19:18:39', '2130'),
+(47, NULL, 0, 0, '2019-09-08 19:18:43', '2019-09-08 19:18:43', '2131'),
+(48, NULL, 0, 0, '2019-09-08 19:18:46', '2019-09-08 19:18:46', '2132'),
+(49, NULL, 0, 0, '2019-09-08 19:18:49', '2019-09-08 19:18:49', '2133'),
+(50, NULL, 0, 0, '2019-09-08 19:39:29', '2019-09-08 19:39:29', '3001'),
+(51, NULL, 0, 0, '2019-09-08 19:39:32', '2019-09-08 19:39:32', '3002'),
+(52, NULL, 0, 0, '2019-09-08 19:39:34', '2019-09-08 19:39:34', '3003'),
+(53, NULL, 0, 0, '2019-09-08 19:39:48', '2019-09-08 19:39:48', '3010'),
+(54, NULL, 0, 0, '2019-09-08 19:39:50', '2019-09-08 19:39:50', '3011'),
+(55, NULL, 0, 0, '2019-09-08 19:39:53', '2019-09-08 19:39:53', '3012'),
+(56, NULL, 0, 0, '2019-09-08 19:39:55', '2019-09-08 19:39:55', '3013'),
+(57, NULL, 0, 0, '2019-09-08 19:40:02', '2019-09-08 19:40:02', '3020'),
+(58, NULL, 0, 0, '2019-09-08 19:40:06', '2019-09-08 19:40:06', '3021'),
+(59, NULL, 0, 0, '2019-09-08 19:40:08', '2019-09-08 19:40:08', '3022'),
+(60, NULL, 0, 0, '2019-09-08 19:40:12', '2019-09-08 19:40:12', '3023'),
+(61, 'Nam (2) 303', 0, 0, '2019-09-08 19:40:21', '2019-09-08 19:47:43', '3030'),
+(62, NULL, 0, 0, '2019-09-08 19:40:24', '2019-09-08 19:40:24', '3031'),
+(63, NULL, 0, 0, '2019-09-08 19:40:26', '2019-09-08 19:40:26', '3032'),
+(64, 'Nguyen 202/174', 0, 0, '2019-09-08 19:40:29', '2019-09-09 18:06:52', '3033'),
+(65, NULL, 0, 0, '2019-09-08 19:40:42', '2019-09-08 19:40:42', '3100'),
+(66, NULL, 0, 0, '2019-09-08 19:40:46', '2019-09-08 19:40:46', '3101'),
+(67, NULL, 0, 0, '2019-09-08 19:40:48', '2019-09-08 19:40:48', '3102'),
+(68, NULL, 0, 0, '2019-09-08 19:40:52', '2019-09-08 19:40:52', '3103'),
+(69, NULL, 0, 0, '2019-09-08 19:41:14', '2019-09-08 19:41:14', '3110'),
+(70, 'Vân Anh 501/174', 0, 0, '2019-09-08 19:41:17', '2019-09-10 04:35:33', '3111'),
+(71, NULL, 0, 0, '2019-09-08 19:41:19', '2019-09-08 19:41:19', '3112'),
+(72, 'Trường thợ điện', 0, 0, '2019-09-08 19:41:24', '2019-09-10 03:51:44', '3113'),
+(73, NULL, 0, 0, '2019-09-08 19:42:50', '2019-09-08 19:42:50', '3132'),
+(74, 'Yến 101', 0, 0, '2019-09-08 19:46:13', '2019-09-08 19:46:13', '1021'),
+(75, 'Ánh 101', 0, 0, '2019-09-08 19:47:10', '2019-09-08 19:47:10', '1013'),
+(76, 'Tiệp 203', 0, 0, '2019-09-08 19:49:26', '2019-09-08 19:49:26', '3121'),
+(77, 'Bảo Trân 302', 0, 0, '2019-09-08 19:49:58', '2019-09-08 19:49:58', '3122'),
+(78, 'Nam - 102', 0, 0, '2019-09-08 19:50:35', '2019-09-08 19:50:35', '3130'),
+(79, 'Quang - 102', 0, 0, '2019-09-08 19:50:47', '2019-09-08 19:50:47', '3131'),
+(80, 'Trường 102', 0, 0, '2019-09-08 19:50:57', '2019-09-08 19:50:57', '3132'),
+(81, 'Hoa 001', 0, 0, '2019-09-08 19:51:23', '2019-09-08 19:51:23', '1131'),
+(82, 'Hoa 001', 0, 0, '2019-09-08 19:51:42', '2019-09-08 19:51:42', '1132'),
+(83, 'Phương 401', 0, 0, '2019-09-08 19:52:23', '2019-09-08 19:54:19', '0113'),
+(84, 'Phương 401', 0, 0, '2019-09-08 19:52:36', '2019-09-08 19:54:15', '0123');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `von_dau_tu`
+--
+
+CREATE TABLE `von_dau_tu` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `parent_id` int(11) DEFAULT 0,
+  `sort_order` int(11) DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `tienlq` int(11) DEFAULT 0,
+  `anhht` int(11) DEFAULT 0,
+  `note` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status_investment_id` int(11) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `von_dau_tu`
+--
+
+INSERT INTO `von_dau_tu` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `tienlq`, `anhht`, `note`, `status_investment_id`) VALUES
+(1, 'Nhượng căn hộ 1A/174 Trần Duy Hưng', 0, 0, '2019-07-30 21:52:34', '2019-07-30 22:04:57', 105000000, 50000000, NULL, 2),
+(2, 'Thuê Căn Hộ 1A/174 Trần Duy Hưng', 0, 0, '2019-07-30 21:54:13', '2019-08-16 20:14:10', 86700000, 12300000, NULL, 2),
+(3, 'Mua phụ kiện cho tầng 1 ngày 27/07/2019', 0, 0, '2019-07-30 21:58:20', '2019-07-30 22:05:04', 60000, 145000, 'T.Anh: 2 bóng đèn tip (110k), 1 bóng tròn (30k), 1 bút thử điện (15k)\r\nTiến: 2 bóng đèn tip: 60k', 2),
+(4, 'Sửa điều hòa phòng 402/217 ngày 27/07/2019', 0, 0, '2019-07-30 21:59:31', '2019-07-30 22:05:08', 0, 100000, NULL, 2),
+(5, 'Sửa điện tầng 1 ngày 27/07/2019', 0, 0, '2019-07-30 22:00:25', '2019-07-30 22:05:12', 0, 600000, NULL, 2),
+(6, 'Tiền sửa khóa vân tay tầng 1', 0, 0, '2019-08-02 21:16:02', '2019-08-02 21:16:02', 0, 1150000, NULL, 2),
+(7, 'nước tẩy, xi măng, bay,...', 0, 0, '2019-08-02 21:17:32', '2019-08-09 04:09:08', 0, 100000, 'đồ để sửa lại tầng 1', 2),
+(8, 'Sửa Camera', 0, 0, '2019-08-09 04:07:58', '2019-08-09 04:07:58', 1000000, 0, 'Sửa camera tầng 1: 2 cái\r\ntầng thượng: mua mới 1 cái', 2),
+(9, 'Vệ sinh lại tầng 1', 0, 0, '2019-08-09 04:08:57', '2019-08-09 04:12:03', 1500000, 0, 'Vệ sinh tầng 1', 2),
+(10, 'mua quạt thông gió cho tầng 301', 0, 0, '2019-08-09 04:13:01', '2019-08-09 04:13:01', 500000, 0, NULL, 2),
+(11, 'Tiền phí mô giới', 0, 0, '2019-08-12 03:41:52', '2019-08-12 03:41:52', 0, 11000000, 'Phí cho bà Lý', 2),
+(12, 'Tiền sang nhượng chuyển trước cho bà Lý hộ ông Phương', 0, 0, '2019-08-12 03:42:51', '2019-08-12 03:42:51', 0, 15000000, NULL, 2),
+(13, 'Vệ sinh điều hòa', 0, 0, '2019-08-12 03:44:12', '2019-08-12 04:04:26', 2000000, 0, NULL, 2),
+(14, 'Trả tiền sửa đh tầng 1', 0, 0, '2019-08-12 03:44:49', '2019-08-12 03:44:49', 0, 4200000, NULL, 2),
+(15, 'Trả tiền dán giấy tầng 1', 0, 0, '2019-08-12 03:45:55', '2019-08-12 04:04:48', 200000, 1500000, 'Ok', 2),
+(16, 'Nâng cấp khóa của chính tầng 1 (Tự động sập khi đóng)', 0, 0, '2019-08-12 04:06:06', '2019-08-12 04:06:06', 500000, 0, NULL, 2),
+(17, 'Mua ga trải giường cho tầng 1', 0, 0, '2019-08-15 00:43:42', '2019-08-15 00:43:42', 250000, 0, NULL, 2),
+(18, 'Mua 2 cái route wifi', 0, 0, '2019-08-15 00:44:07', '2019-08-15 00:44:07', 500000, 0, NULL, 2),
+(19, 'Mua vòi nước cho bồn ở bếp (tầng 1)', 0, 0, '2019-08-16 19:17:37', '2019-08-16 19:17:37', 250000, 0, NULL, 2),
+(20, 'Mua tủ cho tầng 1', 0, 0, '2019-08-16 19:17:58', '2019-08-16 19:17:58', 1400000, 0, NULL, 2),
+(22, 'Tiến Anh thanh toán tiền sửa mạng (200k), Tiền sửa nhà vệ sinh (100k)', 0, 0, '2019-08-19 20:44:59', '2019-08-19 20:44:59', 0, 300000, 'Tiến Anh thanh toán tiền sửa mạng (200k), Tiền sửa nhà vệ sinh (100k)', 2),
+(23, 'Sửa điều hòa phòng 101', 0, 0, '2019-08-22 21:17:41', '2019-08-22 21:17:41', 420000, 0, NULL, 2),
+(24, 'Mua 10m dây mạng', 0, 0, '2019-08-31 19:24:26', '2019-08-31 19:24:26', 50000, 0, NULL, 2),
+(25, 'Mua vòi hoa sen (có kèm dây) cho phòng 403', 0, 0, '2019-08-31 19:25:07', '2019-08-31 19:25:12', 150000, 0, NULL, 2),
+(26, 'Mua cục xả nước ở bồn rửa mặt cho phòng 403', 0, 0, '2019-08-31 19:25:53', '2019-08-31 19:25:53', 250000, 0, NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -1551,9 +1673,9 @@ ALTER TABLE `hop_dong`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `investment`
+-- Indexes for table `khoan_thu_khac`
 --
-ALTER TABLE `investment`
+ALTER TABLE `khoan_thu_khac`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1572,18 +1694,6 @@ ALTER TABLE `landing_page_item`
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `money_collected`
---
-ALTER TABLE `money_collected`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `money_spent`
---
-ALTER TABLE `money_spent`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1684,15 +1794,21 @@ ALTER TABLE `table_column`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tien_phong`
+-- Indexes for table `thong_ke`
 --
-ALTER TABLE `tien_phong`
+ALTER TABLE `thong_ke`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `total`
+-- Indexes for table `tien_chi_tieu`
 --
-ALTER TABLE `total`
+ALTER TABLE `tien_chi_tieu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tien_phong`
+--
+ALTER TABLE `tien_phong`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1705,6 +1821,12 @@ ALTER TABLE `users`
 -- Indexes for table `van_tay`
 --
 ALTER TABLE `van_tay`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `von_dau_tu`
+--
+ALTER TABLE `von_dau_tu`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1784,10 +1906,10 @@ ALTER TABLE `hop_dong`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT for table `investment`
+-- AUTO_INCREMENT for table `khoan_thu_khac`
 --
-ALTER TABLE `investment`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+ALTER TABLE `khoan_thu_khac`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `landing_page`
@@ -1806,18 +1928,6 @@ ALTER TABLE `landing_page_item`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `money_collected`
---
-ALTER TABLE `money_collected`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `money_spent`
---
-ALTER TABLE `money_spent`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `motel_room`
@@ -1901,19 +2011,25 @@ ALTER TABLE `tables`
 -- AUTO_INCREMENT for table `table_column`
 --
 ALTER TABLE `table_column`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=309;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=313;
+
+--
+-- AUTO_INCREMENT for table `thong_ke`
+--
+ALTER TABLE `thong_ke`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `tien_chi_tieu`
+--
+ALTER TABLE `tien_chi_tieu`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `tien_phong`
 --
 ALTER TABLE `tien_phong`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
-
---
--- AUTO_INCREMENT for table `total`
---
-ALTER TABLE `total`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -1925,7 +2041,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `van_tay`
 --
 ALTER TABLE `van_tay`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+
+--
+-- AUTO_INCREMENT for table `von_dau_tu`
+--
+ALTER TABLE `von_dau_tu`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `__route`

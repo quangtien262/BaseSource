@@ -50,6 +50,7 @@ Route::group(['middleware' => \App\Http\Middleware\Language::class], function ()
         Route::post('/configtbl/sort-order-table/', 'Backend\TblController@sortOrderTable')->name('sortOrderTable');
         //table
         Route::get('/list-data/{tableId}', 'Backend\RowController@listRow')->name('listDataTbl');
+        Route::get('/detail/{tableId}/{dataId}', 'Backend\RowController@detailRow')->name('detailRow');
         Route::get('/edit-data/{tableId}/{dataId}', 'Backend\RowController@formRow')->name('formRow');
         Route::post('/edit-data/{tableId}/{dataId}', 'Backend\RowController@submitFormRow');
         Route::get('/delete-row/{tableId}/{dataId}', 'Backend\RowController@deleteRow')->name('deleteRow');
@@ -68,7 +69,10 @@ Route::group(['middleware' => \App\Http\Middleware\Language::class], function ()
 
         //so dien
         Route::post('/auto-generate/tien-phong', 'Backend\RowController@generateTienPhong')->name('generateTienPhong');
-
+        Route::get('/generate/tien-phong/{id}', 'Backend\RowController@generateCurrenTienPhong')->name('generateCurrenTienPhong');
+        //thong ke
+        Route::get('/auto-generate/thong-ke', 'Backend\RowController@thongKe')->name('thongKe');
+        
         //upload file
         Route::post('file/upload', 'Backend\UploadController@uploadFile');
         Route::post('file/delete', 'Backend\UploadController@fileDestroy');

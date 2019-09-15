@@ -299,6 +299,12 @@
                                                  value="1" type="checkbox" name="is_show_total" />
                                                  is_show_total
                                         </label>
+                                        <br/>
+                                        <label>
+                                            <input {{ isset($column->is_view_detail) && $column->is_view_detail == 1 ? 'checked="checked"':'' }}
+                                                 value="1" type="checkbox" name="is_view_detail" />
+                                                 is_view_detail
+                                        </label>
                                     </div>
                                 </div>
                                 <div class="row">

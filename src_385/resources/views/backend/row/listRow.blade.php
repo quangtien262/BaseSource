@@ -47,7 +47,15 @@
                                         @if(empty($col->add_column_in_list))
                                             {{-- show name --}}
                                             <div class="{{ $col->class or '' }}">
-                                                {!! $col->fast_edit == '1' ? app('UtilsCommon')->xEditTable( $tableId, $col, $data) : $data[$col->name] !!}
+                                                @if($col->fast_edit == '1')
+                                                    {!! app('UtilsCommon')->xEditTable( $tableId, $col, $data) !!}
+                                                @elseif($col->is_view_detail == '1')
+                                                    <a href="{{ route('detailRow', [$tableId, $data['id']]) }}">
+                                                        {{ $col->type == "INT" ? number_format($data[$col->name]) : $data[$col->name] }}
+                                                    </a>
+                                                @else
+                                                    {{ $col->type == "INT" ? number_format($data[$col->name]) : $data[$col->name] }}
+                                                @endif
                                             </div>
                                             
                                             {!! app('UtilsCommon')->inputFastEdit($col, $data[$col->name], $tableId, $data['id']) !!}
@@ -101,6 +109,12 @@
                             <i class="ion-trash-a"></i>
                             Xoá
                         </a> --}}
+                        @if($table->name == TIEN_PHONG)
+                                <a class="btn btn-success" href="{{ route('generateCurrenTienPhong', [$data['id']]) }}">
+                                    <i class="ion-social-usd"></i>
+                                    Tính lại tiền phòng
+                                </a> 
+                        @endif
                     </td>
                 @endif
             </tr>

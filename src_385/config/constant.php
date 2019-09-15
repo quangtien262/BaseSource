@@ -3,6 +3,10 @@ define('LAYOUT_BACKEND_01', 'Layouts.main');
 define('LAYOUT_BACKEND_02', 'Layouts.backend');
 define('LAYOUT_POPUP', 'Layouts.popup');
 
+//table đặc biệt
+define('THONG_KE', 'thong_ke');
+define('TIEN_PHONG', 'tien_phong');
+
 //return code
 define('RETURN_SUCCESS', 'success');
 define('RETURN_ERROR', 'error');
