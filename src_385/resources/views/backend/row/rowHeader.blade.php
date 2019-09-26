@@ -1,4 +1,4 @@
-
+{{ csrf_field()}}
 <input type="hidden" name="tblName" value="{{ $table->name }}"/>
 {{-- modal confirm delete --}}
 <div tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" class="modal fade confirm-delete in">
