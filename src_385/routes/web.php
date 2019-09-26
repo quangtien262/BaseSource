@@ -38,6 +38,7 @@ Route::group(['middleware' => \App\Http\Middleware\Language::class], function ()
 });
 //backend
 // Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', 'Backend\PagesController@home')->name('home');
     Route::group(['prefix' => 'admin'], function () {
         Route::get('/', 'Backend\PagesController@home')->name('adminHome');
         //config tbl
