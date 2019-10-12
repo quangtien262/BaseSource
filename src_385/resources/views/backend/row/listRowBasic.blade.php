@@ -102,6 +102,12 @@
                             </label>
                         </a> 
                     @endif
+
+                    @if($table->name == SO_DIEN)
+                        <a class="btn btn-success btn-right">
+                            Tự động tạo số điện theo dữ liệu của tháng trước
+                        </a> 
+                    @endif
                     </div>
                 </div>
                 <div>

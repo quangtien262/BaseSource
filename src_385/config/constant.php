@@ -6,6 +6,7 @@ define('LAYOUT_POPUP', 'Layouts.popup');
 //table đặc biệt
 define('THONG_KE', 'thong_ke');
 define('TIEN_PHONG', 'tien_phong');
+define('SO_DIEN', 'so_dien');
 
 //return code
 define('RETURN_SUCCESS', 'success');
