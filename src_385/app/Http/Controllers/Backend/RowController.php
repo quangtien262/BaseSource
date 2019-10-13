@@ -284,17 +284,17 @@ class RowController extends BackendController
 
     public function generateTienPhong(Request $request)
     {
-        $week = (intval($request->week) - 1);
-        $data = app('EntityCommon')->getMoneyMotelRoomWithWeek($week, $request->year);
+        $month = (intval($request->month) - 1);
+        $data = app('EntityCommon')->getMoneyMotelRoomWithMonth($month, $request->year);
         // dd($data);
         $date = date('Y-m-d h:i:s');
         $dataInsert = [];
         foreach ($data as $d) {
             $tmpData = [];
-            $tmpData['week'] = $request->week;
+            $tmpData['month'] = $request->month;
             $tmpData['year'] = $request->year;
             $tmpData['motel_room_id'] = $d->motel_room_id;
-            $tmpData['name'] = 'Tiền dịch vụ tháng '. $week .' và tiền phòng tháng ' . $request->week ;
+            $tmpData['name'] = 'Tiền dịch vụ tháng '. $month .' và tiền phòng tháng ' . $request->month ;
             $tmpData['tien_dien'] = ($d->so_cuoi - $d->so_dau) * 4000;
             $tmpData['tien_nuoc'] = $d->so_nguoi * 100000;
             $tmpData['tien_wc'] = $d->so_nguoi * 30000;;
@@ -318,14 +318,14 @@ class RowController extends BackendController
     public function generateCurrenTienPhong($id)
     {
         $data = app('EntityCommon')->getDataById('tien_phong', $id);
-        $week = ($data->week - 1);
+        $month = ($data->month - 1);
         $conditions = [
-            'week' => $week,
+            'month' => $month,
             'year' => $data->year,
             'motel_room_id' => $data->motel_room_id,
         ];
         echo $data->motel_room_id;
-        $d = app('EntityCommon')->getCurrentMoneyMotelRoom($week, $data->year, $data->motel_room_id);
+        $d = app('EntityCommon')->getCurrentMoneyMotelRoom($month, $data->year, $data->motel_room_id);
         // dd($d);
         // die($id);
         // dd($data);
@@ -367,6 +367,34 @@ class RowController extends BackendController
         $tmpData['total'] = $tmpData['tong_thu'] + $tmpData['tien_phong_da_thu'] - $tmpData['tong_chi'];
         // dd($tmpData);
         app('EntityCommon')->insertData('thong_ke', $tmpData);
+
+        return back()->withInput();
+    }
+
+    public function generateSodien()
+    {
+        $month = intval(date('m'));
+        $year = intval(date('Y'));
+        $preMonth = $month - 1;
+        if ($month == 1) {
+            $preMonth = 12;
+        }
+        $preSodien = app('EntityCommon')->getRowsByConditions(SO_DIEN, ['month' => $preMonth], $limit = 0, ['id', 'asc']);
+        
+        $data = [];
+        foreach($preSodien as $sd) {
+            // tính tổng lại tất cả số điện
+            // $tmpData['tong_so_dien'] = $sd->so_cuoi - $sd->so_dau;
+            // app('EntityCommon')->updateData('so_dien', $sd->id, $tmpData);
+            $data[] = [
+                'month' => $month,
+                'motel_room_id' => $sd->motel_room_id,
+                'so_dau' => $sd->so_cuoi,
+                'year' => $year,
+                'name' => 'Số điện tháng ' . $month . '/' . $year
+            ];
+        }
+        app('EntityCommon')->insertData('so_dien', $data, true);
 
         return back()->withInput();
     }

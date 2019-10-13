@@ -71,6 +71,7 @@ Route::group(['middleware' => \App\Http\Middleware\Language::class], function ()
         //so dien
         Route::post('/auto-generate/tien-phong', 'Backend\RowController@generateTienPhong')->name('generateTienPhong');
         Route::get('/generate/tien-phong/{id}', 'Backend\RowController@generateCurrenTienPhong')->name('generateCurrenTienPhong');
+        Route::get('/generate/so-dien', 'Backend\RowController@generateSodien')->name('generateSodien');
         //thong ke
         Route::get('/auto-generate/thong-ke', 'Backend\RowController@thongKe')->name('thongKe');
         

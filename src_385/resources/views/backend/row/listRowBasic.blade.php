@@ -50,7 +50,7 @@
                                 Tính tiền phòng
                             </button> 
                             <input type="hidden" name="year" value="{{ date('Y') }}"/>
-                            <select name="week">
+                            <select name="month">
                                 <option>Chọn thời gian</option>
                                 @for($i = 1; $i <= 12; $i++)
                                     <option {{ $i == date('m') ? 'selected':'' }} value="{{ $i }}"> {{ $i . '/' . date('Y') }} </option>
@@ -104,7 +104,7 @@
                     @endif
 
                     @if($table->name == SO_DIEN)
-                        <a class="btn btn-success btn-right">
+                        <a href="{{ route('generateSodien') }}" class="btn btn-success btn-right">
                             Tự động tạo số điện theo dữ liệu của tháng trước
                         </a> 
                     @endif

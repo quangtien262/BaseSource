@@ -23,6 +23,7 @@ class HomeController extends Controller
         $landingPage = LandingPage::getLandingPageByCategoryId(13);
         $landingPageItem = LandingPageItem::getByLandingPageId($landingPage->landingPageId);
         $agent = new Agent();
-        return view('frontend.home', compact('landingPageItem', 'news', 'product', 'agent'));
+        return redirect('/admin');
+        // return view('frontend.home', compact('landingPageItem', 'news', 'product', 'agent'));
     }
 }
