@@ -295,14 +295,33 @@ class RowController extends BackendController
             $tmpData['year'] = $request->year;
             $tmpData['motel_room_id'] = $d->motel_room_id;
             $tmpData['name'] = 'Tiền dịch vụ tháng '. $month .' và tiền phòng tháng ' . $request->month ;
-            $tmpData['tien_dien'] = ($d->so_cuoi - $d->so_dau) * 4000;
-            $tmpData['tien_nuoc'] = $d->so_nguoi * 100000;
-            $tmpData['tien_wc'] = $d->so_nguoi * 30000;;
-            $tmpData['tien_mang'] = 100000;
-            $tmpData['tien_chieu_sang'] = $d->so_nguoi * 30000;
             $tmpData['tien_phong'] = $d->gia_thue;
+            
+            $tmpData['apartment_id'] = $d->apartment_id;
+            //tien dien
+            $tmpData['tien_dien'] = ($d->so_cuoi - $d->so_dau) * 4000;
+            $tmpData['tong_so_dien'] = $d->so_cuoi - $d->so_dau;
             $tmpData['note'] = 'Số điện đầu: '.$d->so_dau.',<br/> Số điện cuối: ' . $d->so_cuoi . ',<br/> Tổng số điện xử dụng là: ' . ($d->so_cuoi - $d->so_dau) . ' Số';
-            $tmpData['total'] = $tmpData['tien_dien'] + $tmpData['tien_nuoc'] + $tmpData['tien_wc'] + $tmpData['tien_mang'] + $tmpData['tien_chieu_sang'] + $tmpData['tien_phong'];
+
+            //dich vu khac
+            $tienDichVu = app('EntityCommon')->getRowsByConditions('loai_tien_phong');
+            $totalDichVu = 0;
+            foreach($tienDichVu as $dv) {
+                $price = $dv->price;
+                if(!empty($dv->tinh_theo_so_nguoi)) {
+                    $price = $d->so_nguoi * $dv->price;
+                }
+                $totalDichVu += $price;
+                $tmpData[$dv->name] = $price;
+            }
+            // dd($totalDichVu);
+            // $tmpData['tien_nuoc'] = $d->so_nguoi * 100000;
+            // $tmpData['tien_wc'] = $d->so_nguoi * 30000;;
+            // $tmpData['tien_mang'] = 100000;
+            // $tmpData['tien_chieu_sang'] = $d->so_nguoi * 30000;
+
+            //total
+            $tmpData['total'] = $totalDichVu + $tmpData['tien_dien'] + $tmpData['tien_phong'];
             $tmpData['created_at'] = $date;
             $tmpData['updated_at'] = $date;
             $tmpData['status_tien_phong_id'] = 2;
@@ -324,20 +343,24 @@ class RowController extends BackendController
             'year' => $data->year,
             'motel_room_id' => $data->motel_room_id,
         ];
-        echo $data->motel_room_id;
         $d = app('EntityCommon')->getCurrentMoneyMotelRoom($month, $data->year, $data->motel_room_id);
-        // dd($d);
-        // die($id);
-        // dd($data);
         $date = date('Y-m-d h:i:s');
         $tmpData = [];
+        $tmpData['apartment_id'] = $d->apartment_id;
         $tmpData['tien_dien'] = ($d->so_cuoi - $d->so_dau) * 4000;
-        $tmpData['tien_nuoc'] = $d->so_nguoi * 100000;
-        $tmpData['tien_wc'] = $d->so_nguoi * 30000;;
-        $tmpData['tien_mang'] = 100000;
-        $tmpData['tien_chieu_sang'] = $d->so_nguoi * 30000;
+        $tmpData['tong_so_dien'] = $d->so_cuoi - $d->so_dau;
         $tmpData['tien_phong'] = $d->gia_thue;
         $tmpData['note'] = 'Số điện đầu: '.$d->so_dau.',<br/> Số điện cuối: ' . $d->so_cuoi . ',<br/> Tổng số điện xử dụng là: ' . ($d->so_cuoi - $d->so_dau) . ' Số';
+        $tienDichVu = app('EntityCommon')->getRowsByConditions('loai_tien_phong');
+        $totalDichVu = 0;
+        foreach($tienDichVu as $dv) {
+            $price = $dv->price;
+            if(!empty($dv->tinh_theo_so_nguoi)) {
+                $price = $d->so_nguoi * $dv->price;
+            }
+            $totalDichVu += $price;
+            $tmpData[$dv->name] = $price;
+        }
         $tmpData['total'] = $tmpData['tien_dien'] + $tmpData['tien_nuoc'] + $tmpData['tien_wc'] + $tmpData['tien_mang'] + $tmpData['tien_chieu_sang'] + $tmpData['tien_phong'];
         $tmpData['created_at'] = $date;
         $tmpData['updated_at'] = $date;
