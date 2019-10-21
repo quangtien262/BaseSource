@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
--- https://www.phpmyadmin.net/
+-- version 4.4.15
+-- http://www.phpmyadmin.net
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 13, 2019 lúc 01:23 PM
--- Phiên bản máy phục vụ: 10.3.16-MariaDB
--- Phiên bản PHP: 7.3.6
+-- Host: localhost
+-- Generation Time: Oct 20, 2019 at 11:26 PM
+-- Server version: 10.2.14-MariaDB
+-- PHP Version: 7.2.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,17 +17,17 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `base`
+-- Database: `htmedia_ta`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `about`
+-- Table structure for table `about`
 --
 
-CREATE TABLE `about` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `about` (
+  `id` int(10) unsigned NOT NULL,
   `sort_order` int(11) DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -42,21 +40,21 @@ CREATE TABLE `about` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `admin_config`
+-- Table structure for table `admin_config`
 --
 
-CREATE TABLE `admin_config` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `admin_config` (
+  `id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `parent_id` int(11) DEFAULT 0,
   `sort_order` int(11) DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `banner` text COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `admin_config`
+-- Dumping data for table `admin_config`
 --
 
 INSERT INTO `admin_config` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `banner`) VALUES
@@ -65,11 +63,11 @@ INSERT INTO `admin_config` (`id`, `name`, `parent_id`, `sort_order`, `created_at
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `apartment`
+-- Table structure for table `apartment`
 --
 
-CREATE TABLE `apartment` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `apartment` (
+  `id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `parent_id` int(11) DEFAULT 0,
   `sort_order` int(11) DEFAULT 0,
@@ -80,10 +78,10 @@ CREATE TABLE `apartment` (
   `note` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `gia_thue` int(11) DEFAULT 0,
   `color` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `apartment`
+-- Dumping data for table `apartment`
 --
 
 INSERT INTO `apartment` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `address`, `gia_nhuong`, `note`, `gia_thue`, `color`) VALUES
@@ -93,21 +91,21 @@ INSERT INTO `apartment` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `block`
+-- Table structure for table `block`
 --
 
-CREATE TABLE `block` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `block` (
+  `id` int(10) unsigned NOT NULL,
   `sort_order` int(11) DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `parent_id` int(11) DEFAULT 0,
   `image` text COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `block`
+-- Dumping data for table `block`
 --
 
 INSERT INTO `block` (`id`, `sort_order`, `created_at`, `updated_at`, `name`, `parent_id`, `image`) VALUES
@@ -119,11 +117,11 @@ INSERT INTO `block` (`id`, `sort_order`, `created_at`, `updated_at`, `name`, `pa
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `block_item`
+-- Table structure for table `block_item`
 --
 
-CREATE TABLE `block_item` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `block_item` (
+  `id` int(10) unsigned NOT NULL,
   `sort_order` int(11) DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -132,10 +130,10 @@ CREATE TABLE `block_item` (
   `input_type` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `block_type_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `input_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `block_item`
+-- Dumping data for table `block_item`
 --
 
 INSERT INTO `block_item` (`id`, `sort_order`, `created_at`, `updated_at`, `name`, `parent_id`, `input_type`, `block_type_id`, `input_name`) VALUES
@@ -157,11 +155,11 @@ INSERT INTO `block_item` (`id`, `sort_order`, `created_at`, `updated_at`, `name`
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `category`
+-- Table structure for table `category`
 --
 
-CREATE TABLE `category` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `category` (
+  `id` int(10) unsigned NOT NULL,
   `sort_order` int(11) DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -170,10 +168,10 @@ CREATE TABLE `category` (
   `route_id` int(11) DEFAULT 0,
   `seo_keyword` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `seo_description` text COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `category`
+-- Dumping data for table `category`
 --
 
 INSERT INTO `category` (`id`, `sort_order`, `created_at`, `updated_at`, `name`, `parent_id`, `route_id`, `seo_keyword`, `seo_description`) VALUES
@@ -189,11 +187,11 @@ INSERT INTO `category` (`id`, `sort_order`, `created_at`, `updated_at`, `name`, 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `configweb`
+-- Table structure for table `configweb`
 --
 
-CREATE TABLE `configweb` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `configweb` (
+  `id` int(10) unsigned NOT NULL,
   `sort_order` int(11) DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -205,10 +203,10 @@ CREATE TABLE `configweb` (
   `youtube` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `instagram` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `phone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `configweb`
+-- Dumping data for table `configweb`
 --
 
 INSERT INTO `configweb` (`id`, `sort_order`, `created_at`, `updated_at`, `name`, `address`, `email`, `logo`, `facebook`, `youtube`, `instagram`, `phone`) VALUES
@@ -217,11 +215,11 @@ INSERT INTO `configweb` (`id`, `sort_order`, `created_at`, `updated_at`, `name`,
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `contact`
+-- Table structure for table `contact`
 --
 
-CREATE TABLE `contact` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `contact` (
+  `id` int(10) unsigned NOT NULL,
   `sort_order` int(11) DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -234,11 +232,11 @@ CREATE TABLE `contact` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `customer`
+-- Table structure for table `customer`
 --
 
-CREATE TABLE `customer` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `customer` (
+  `id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `parent_id` int(11) DEFAULT 0,
   `sort_order` int(11) DEFAULT 0,
@@ -253,10 +251,10 @@ CREATE TABLE `customer` (
   `status_customer_id` int(11) DEFAULT 0,
   `motel_room_id` int(11) DEFAULT 0,
   `note` text COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `customer`
+-- Dumping data for table `customer`
 --
 
 INSERT INTO `customer` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `cmtnd`, `ngay_cap`, `noi_cap`, `address`, `mobile`, `email`, `status_customer_id`, `motel_room_id`, `note`) VALUES
@@ -288,11 +286,11 @@ INSERT INTO `customer` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `doi_tac`
+-- Table structure for table `doi_tac`
 --
 
-CREATE TABLE `doi_tac` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `doi_tac` (
+  `id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `parent_id` int(11) DEFAULT 0,
   `sort_order` int(11) DEFAULT 0,
@@ -300,10 +298,10 @@ CREATE TABLE `doi_tac` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `note` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `phone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `doi_tac`
+-- Dumping data for table `doi_tac`
 --
 
 INSERT INTO `doi_tac` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `note`, `phone`) VALUES
@@ -313,21 +311,21 @@ INSERT INTO `doi_tac` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `u
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `footer`
+-- Table structure for table `footer`
 --
 
-CREATE TABLE `footer` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `footer` (
+  `id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `parent_id` int(11) DEFAULT 0,
   `sort_order` int(11) DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `link` text COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `footer`
+-- Dumping data for table `footer`
 --
 
 INSERT INTO `footer` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `link`) VALUES
@@ -359,11 +357,11 @@ INSERT INTO `footer` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `up
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `hop_dong`
+-- Table structure for table `hop_dong`
 --
 
-CREATE TABLE `hop_dong` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `hop_dong` (
+  `id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `parent_id` int(11) DEFAULT 0,
   `sort_order` int(11) DEFAULT 0,
@@ -379,44 +377,44 @@ CREATE TABLE `hop_dong` (
   `note` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `status_hop_dong_id` int(11) DEFAULT 0,
   `apartment_id` int(11) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `hop_dong`
+-- Dumping data for table `hop_dong`
 --
 
 INSERT INTO `hop_dong` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `motel_room_id`, `gia_thue`, `customer_id`, `start_date`, `end_date`, `tien_dat_coc`, `so_nguoi`, `note`, `status_hop_dong_id`, `apartment_id`) VALUES
-(1, '501/174', 0, 0, '2019-08-01 19:20:02', '2019-09-01 23:49:08', 14, 3000000, 3, '2019-08-01', '2019-10-31', 3000000, 2, NULL, 1, 1),
+(1, '501/174', 0, 0, '2019-08-01 19:20:02', '2019-10-18 03:21:59', 14, 3000000, 3, '2019-08-01', '2019-10-31', 3000000, 2, NULL, 4, 1),
 (2, '403/174', 0, 0, '2019-08-03 05:58:19', '2019-10-01 19:13:16', 13, 3000000, 13, '2019-08-01', '2019-10-31', 3000000, 3, NULL, 1, 1),
 (3, '402/174', 0, 0, '2019-08-03 05:59:54', '2019-10-04 02:52:10', 12, 3000000, 11, '2019-08-01', '2020-01-27', 3000000, 1, NULL, 1, 1),
-(4, '401/174', 0, 0, '2019-08-03 05:59:57', '2019-09-01 23:32:59', 11, 3000000, 9, '2019-08-01', '2019-10-31', 3000000, 2, NULL, 1, 1),
-(5, '303/174', 0, 0, '2019-08-03 05:59:58', '2019-10-01 19:17:28', 10, 3500000, 5, '2019-08-01', '2019-10-31', 3500000, 3, NULL, 2, 1),
+(4, '401/174', 0, 0, '2019-08-03 05:59:57', '2019-10-18 03:30:53', 11, 3000000, 9, '2019-08-01', '2019-10-31', 3000000, 2, NULL, 1, 1),
+(5, '303/174', 0, 0, '2019-08-03 05:59:58', '2019-10-18 03:21:35', 10, 3500000, 5, '2019-08-01', '2019-10-31', 3500000, 3, NULL, 1, 1),
 (6, '302/174', 0, 0, '2019-08-03 05:59:59', '2019-10-01 20:34:11', 9, 3000000, 14, '2019-08-01', '2019-10-31', 3000000, 3, NULL, 1, 1),
 (7, '301/174', 0, 0, '2019-08-02 18:00:00', '2019-10-01 19:12:10', 8, 0, 17, '2019-08-01', '2019-10-31', 0, 2, NULL, 1, 1),
 (8, '203/174', 0, 0, '2019-08-02 18:00:04', '2019-09-01 23:32:39', 6, 3000000, 10, '2019-08-01', '2019-01-31', 3000000, 2, NULL, 1, 1),
 (9, '202/174', 0, 0, '2019-08-02 18:00:05', '2019-09-01 23:32:36', 7, 3200000, 6, '2019-08-01', '2019-10-31', 3200000, 1, NULL, 1, 1),
-(10, '201/174', 0, 0, '2019-08-02 18:00:37', '2019-09-01 23:32:33', 5, 3000000, 8, '2019-08-01', '2019-10-31', 3000000, 3, NULL, 1, 1),
-(11, '103/174', 0, 0, '2019-08-02 18:00:39', '2019-09-03 04:31:16', 4, 3300000, 2, '2019-08-01', '2019-10-31', 3300000, 2, NULL, 1, 1),
-(12, '102/174', 0, 0, '2019-08-02 18:05:00', '2019-10-01 19:35:51', 3, 3000000, 12, '2019-08-01', '2019-10-31', 3000000, 4, NULL, 1, 1),
+(10, '201/174', 0, 0, '2019-08-02 18:00:37', '2019-10-18 03:21:26', 5, 3000000, 8, '2019-08-01', '2019-10-31', 3000000, 3, NULL, 4, 1),
+(11, '103/174', 0, 0, '2019-08-02 18:00:39', '2019-10-18 03:22:20', 4, 3300000, 2, '2019-08-01', '2019-10-31', 3300000, 2, NULL, 1, 1),
+(12, '102/174', 0, 0, '2019-08-02 18:05:00', '2019-10-18 03:21:10', 3, 3000000, 12, '2019-08-01', '2019-10-31', 3000000, 4, NULL, 4, 1),
 (13, '101/174', 0, 0, '2019-08-02 18:05:01', '2019-10-01 19:23:53', 2, 3000000, 15, '2019-08-01', '2019-10-31', 3000000, 3, NULL, 1, 1),
 (14, '001/174', 0, 0, '2019-08-16 19:33:58', '2019-10-08 20:31:33', 15, 3500000, 16, '2019-08-16', '2019-11-30', 3500000, 2, NULL, 1, 1),
 (15, '101/204', 0, 0, '2019-10-01 21:12:49', '2019-10-04 02:52:56', 23, 1600000, 18, '2019-10-01', '2020-10-01', 1600000, 2, NULL, 1, 2),
 (16, '201/204', 0, 0, '2019-10-01 23:34:00', '2019-10-04 01:24:02', 22, 3500000, 22, NULL, NULL, 3500000, 2, NULL, 1, 2),
-(17, '301/204', 0, 0, '2019-10-01 23:35:31', '2019-10-04 01:23:58', 21, 2500000, 21, NULL, NULL, 2500000, 1, NULL, 1, 2),
+(17, '301/204', 0, 0, '2019-10-01 23:35:31', '2019-10-18 03:20:54', 21, 2500000, 21, NULL, NULL, 2500000, 1, NULL, 4, 2),
 (18, '302/204', 0, 0, '2019-10-01 23:36:17', '2019-10-04 01:23:56', 20, 2500000, 20, NULL, NULL, 2500000, 1, NULL, 1, 2),
 (19, '401/204', 0, 0, '2019-10-01 23:37:01', '2019-10-04 01:23:52', 19, 2500000, 19, NULL, NULL, 2500000, 1, NULL, 1, 2),
 (20, '402/204', 0, 0, '2019-10-01 23:37:55', '2019-10-04 01:23:50', 18, 2300000, 18, NULL, NULL, 2300000, 2, NULL, 1, 2),
-(21, '501/204', 0, 0, '2019-10-01 23:38:55', '2019-10-04 01:23:48', 17, 0, 23, '2019-09-18', '2020-01-18', 4200000, 7, NULL, 1, 2),
+(21, '501/204', 0, 0, '2019-10-01 23:38:55', '2019-10-19 22:41:35', 17, 4200000, 23, '2019-09-18', '2020-01-18', 4200000, 7, NULL, 1, 2),
 (22, '601/204', 0, 0, '2019-10-01 23:39:37', '2019-10-04 01:23:46', 16, 2500000, 24, NULL, NULL, 2500000, 4, NULL, 1, 2);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `khoan_thu_khac`
+-- Table structure for table `khoan_thu_khac`
 --
 
-CREATE TABLE `khoan_thu_khac` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `khoan_thu_khac` (
+  `id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `parent_id` int(11) DEFAULT 0,
   `sort_order` int(11) DEFAULT 0,
@@ -425,10 +423,10 @@ CREATE TABLE `khoan_thu_khac` (
   `money` int(11) DEFAULT 0,
   `apartment_id` int(11) DEFAULT 0,
   `note` text COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `khoan_thu_khac`
+-- Dumping data for table `khoan_thu_khac`
 --
 
 INSERT INTO `khoan_thu_khac` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `money`, `apartment_id`, `note`) VALUES
@@ -440,11 +438,11 @@ INSERT INTO `khoan_thu_khac` (`id`, `name`, `parent_id`, `sort_order`, `created_
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `landing_page`
+-- Table structure for table `landing_page`
 --
 
-CREATE TABLE `landing_page` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `landing_page` (
+  `id` int(10) unsigned NOT NULL,
   `sort_order` int(11) DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -453,10 +451,10 @@ CREATE TABLE `landing_page` (
   `image` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `category_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `blocks` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `landing_page`
+-- Dumping data for table `landing_page`
 --
 
 INSERT INTO `landing_page` (`id`, `sort_order`, `created_at`, `updated_at`, `name`, `parent_id`, `image`, `category_id`, `blocks`) VALUES
@@ -466,11 +464,11 @@ INSERT INTO `landing_page` (`id`, `sort_order`, `created_at`, `updated_at`, `nam
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `landing_page_item`
+-- Table structure for table `landing_page_item`
 --
 
-CREATE TABLE `landing_page_item` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `landing_page_item` (
+  `id` int(10) unsigned NOT NULL,
   `sort_order` int(11) DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -479,36 +477,36 @@ CREATE TABLE `landing_page_item` (
   `landing_page_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `data` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `block_id` int(11) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `landing_page_item`
+-- Dumping data for table `landing_page_item`
 --
 
 INSERT INTO `landing_page_item` (`id`, `sort_order`, `created_at`, `updated_at`, `name`, `parent_id`, `landing_page_id`, `data`, `block_id`) VALUES
-(12, 0, '2019-04-28 21:43:04', '2019-04-29 00:31:36', NULL, '0', '1', '{\"_token\":\"vexR2xDM1EJWTjWIO6N2vzHewnwuxFE6ufMFOT94\",\"tabIndex\":\"0\",\"title\":\"Slide h\\u00ecnh \\u1ea3nh\",\"name\":[\"\",\"\"],\"image\":[\"\\/photos\\/1\\/slide\\/RE2lEVR.jpg\",\"\\/photos\\/1\\/slide\\/RW67SS.jpg\"],\"description\":[\"\",\"\"],\"path\":[\"#\",\"\\u01b0\"]}', 1),
-(15, 0, '2019-04-29 01:21:35', '2019-04-29 02:31:08', 'Sắp kết thúc thời gian hỗ trợ', '0', '1', '{\"_token\":\"Eb1uoKkzROWaKYGx3EaRgtmeTUUA7O67XP5DNoWw\",\"tabIndex\":\"0\",\"title\":\"Cho c\\u00f4ng vi\\u1ec7c\",\"name\":[\"S\\u1eafp k\\u1ebft th\\u00fac th\\u1eddi gian h\\u1ed7 tr\\u1ee3\",\"T\\u1ea3i Visual Studio 2019\",\"Office 365 cho Doanh nghi\\u1ec7p\",\"Windows 10 Enterprise\"],\"path\":[\"#\",\"\",\"\",\"\"],\"image\":[\"https:\\/\\/img-prod-cms-rt-microsoft-com.akamaized.net\\/cms\\/api\\/am\\/imageFileData\\/RE2OfW4?ver=3149&q=90&m=6&h=201&w=358&b=%23FFFFFFFF&l=f&o=t&aim=true\",\"https:\\/\\/img-prod-cms-rt-microsoft-com.akamaized.net\\/cms\\/api\\/am\\/imageFileData\\/RE2n9C8?ver=4d49&q=90&m=6&h=201&w=358&b=%23FFFFFFFF&l=f&o=t&aim=true\",\"https:\\/\\/img-prod-cms-rt-microsoft-com.akamaized.net\\/cms\\/api\\/am\\/imageFileData\\/RE2mheW?ver=527a&q=90&m=6&h=201&w=358&b=%23FFFFFFFF&l=f&o=t&x=444&y=171&aim=true\",\"https:\\/\\/img-prod-cms-rt-microsoft-com.akamaized.net\\/cms\\/api\\/am\\/imageFileData\\/RE1CmIw?ver=e555&q=90&m=6&h=201&w=358&b=%23FFFFFFFF&l=f&o=t&aim=true\"],\"description\":[\"SQL Server v\\u00e0 Windows Server 2008 s\\u1ebd kh\\u00f4ng c\\u00f2n \\u0111\\u01b0\\u1ee3c h\\u1ed7 tr\\u1ee3 trong th\\u1eddi gian t\\u1edbi\\u2014\\u0111\\u00e3 t\\u1edbi l\\u00fac c\\u1ea7n n\\u00e2ng c\\u1ea5p\",\"T\\u1ea3i Visual Studio 2019, m\\u1ed9t IDE c\\u1ea3i ti\\u1ebfn, hi\\u1ec7n \\u0111\\u1ea1i, gi\\u00fap t\\u0103ng n\\u0103ng su\\u1ea5t l\\u00e0m vi\\u1ec7c.\",\"Truy c\\u1eadp v\\u00e0o t\\u1ec7p tin t\\u1eeb m\\u1ecdi n\\u01a1i, d\\u00f9 tr\\u1ef1c tuy\\u1ebfn hay ngo\\u1ea1i tuy\\u1ebfn.\",\"T\\u1ea3i xu\\u1ed1ng b\\u1ea3n \\u0111\\u00e1nh gi\\u00e1 90 ng\\u00e0y mi\\u1ec5n ph\\u00ed cho chuy\\u00ean gia CNTT.\"]}', 2),
-(16, 0, '2019-04-29 02:38:15', '2019-04-29 02:38:37', 'Tổng hợp suy nghĩ, rồi phát triển chúng hơn nữa', '0', '1', '{\"_token\":\"Eb1uoKkzROWaKYGx3EaRgtmeTUUA7O67XP5DNoWw\",\"tabIndex\":\"0\",\"title\":\"Block 04\",\"name\":[\"T\\u1ed5ng h\\u1ee3p suy ngh\\u0129, r\\u1ed3i ph\\u00e1t tri\\u1ec3n ch\\u00fang h\\u01a1n n\\u1eefa\"],\"descriptiondes\":[\"S\\u1eeda l\\u1ea1i c\\u00e1c ghi ch\\u00fa c\\u1ee7a b\\u1ea1n b\\u1eb1ng c\\u00e1ch nh\\u1eadp, t\\u00f4 s\\u00e1ng ho\\u1eb7c vi\\u1ebft tay ch\\u00fa th\\u00edch. Nh\\u1edd c\\u00f3 OneNote tr\\u00ean m\\u1ecdi thi\\u1ebft b\\u1ecb, b\\u1ea1n s\\u1ebd kh\\u00f4ng b\\u1ecf l\\u1ee1 tia c\\u1ea3m h\\u1ee9ng n\\u00e0o.\"],\"image\":[\"https:\\/\\/img-prod-cms-rt-microsoft-com.akamaized.net\\/cms\\/api\\/am\\/imageFileData\\/RE2lrfB?ver=899f&q=90&h=675&w=830&b=%23FFFFFFFF&aim=true\"]}', 4),
-(17, 0, '2019-04-29 02:42:33', '2019-04-29 02:42:33', 'Sắp xếp khoa học mọi nội dung của bạn', '0', '1', '{\"_token\":\"Eb1uoKkzROWaKYGx3EaRgtmeTUUA7O67XP5DNoWw\",\"tabIndex\":\"0\",\"title\":\"\",\"name\":[\"S\\u1eafp x\\u1ebfp khoa h\\u1ecdc m\\u1ecdi n\\u1ed9i dung c\\u1ee7a b\\u1ea1n\"],\"image\":[\"https:\\/\\/img-prod-cms-rt-microsoft-com.akamaized.net\\/cms\\/api\\/am\\/imageFileData\\/RE2lwga?ver=afbc&q=90&h=675&w=830&b=%23FFFFFFFF&aim=true\"],\"description\":[\"\\u0110\\u1ec3 s\\u1eafp x\\u1ebfp khoa h\\u1ecdc trong s\\u1ed5 tay, b\\u1ea1n c\\u00f3 th\\u1ec3 chia s\\u1ed5 tay th\\u00e0nh c\\u00e1c m\\u1ee5c v\\u00e0 trang. B\\u1ea1n s\\u1ebd lu\\u00f4n t\\u00ecm \\u0111\\u01b0\\u1ee3c ghi ch\\u00fa ngay t\\u1ea1i v\\u1ecb tr\\u00ed m\\u00ecnh \\u0111\\u00e3 t\\u1ea1m d\\u1eebng nh\\u1edd kh\\u1ea3 n\\u0103ng d\\u1eabn h\\u01b0\\u1edbng v\\u00e0 t\\u00ecm ki\\u1ebfm d\\u1ec5 d\\u00e0ng.\"]}', 3),
-(18, 1, '2019-04-28 21:43:04', '2019-04-29 00:32:23', NULL, '0', '2', '{\"_token\":\"vexR2xDM1EJWTjWIO6N2vzHewnwuxFE6ufMFOT94\",\"tabIndex\":\"0\",\"title\":\"Slide h\\u00ecnh \\u1ea3nh\",\"name\":[\"\",\"\"],\"image\":[\"\\/photos\\/1\\/slide\\/RW67SS.jpg\",\"\\/photos\\/1\\/slide\\/RE2lEVR.jpg\"],\"description\":[\"\",\"\"],\"path\":[\"\",\"\"]}', 1),
-(19, 3, '2019-04-29 01:21:35', '2019-04-29 02:31:08', 'Sắp kết thúc thời gian hỗ trợ', '0', '2', '{\"_token\":\"Eb1uoKkzROWaKYGx3EaRgtmeTUUA7O67XP5DNoWw\",\"tabIndex\":\"0\",\"title\":\"Cho c\\u00f4ng vi\\u1ec7c\",\"name\":[\"S\\u1eafp k\\u1ebft th\\u00fac th\\u1eddi gian h\\u1ed7 tr\\u1ee3\",\"T\\u1ea3i Visual Studio 2019\",\"Office 365 cho Doanh nghi\\u1ec7p\",\"Windows 10 Enterprise\"],\"path\":[\"#\",\"\",\"\",\"\"],\"image\":[\"https:\\/\\/img-prod-cms-rt-microsoft-com.akamaized.net\\/cms\\/api\\/am\\/imageFileData\\/RE2OfW4?ver=3149&q=90&m=6&h=201&w=358&b=%23FFFFFFFF&l=f&o=t&aim=true\",\"https:\\/\\/img-prod-cms-rt-microsoft-com.akamaized.net\\/cms\\/api\\/am\\/imageFileData\\/RE2n9C8?ver=4d49&q=90&m=6&h=201&w=358&b=%23FFFFFFFF&l=f&o=t&aim=true\",\"https:\\/\\/img-prod-cms-rt-microsoft-com.akamaized.net\\/cms\\/api\\/am\\/imageFileData\\/RE2mheW?ver=527a&q=90&m=6&h=201&w=358&b=%23FFFFFFFF&l=f&o=t&x=444&y=171&aim=true\",\"https:\\/\\/img-prod-cms-rt-microsoft-com.akamaized.net\\/cms\\/api\\/am\\/imageFileData\\/RE1CmIw?ver=e555&q=90&m=6&h=201&w=358&b=%23FFFFFFFF&l=f&o=t&aim=true\"],\"description\":[\"SQL Server v\\u00e0 Windows Server 2008 s\\u1ebd kh\\u00f4ng c\\u00f2n \\u0111\\u01b0\\u1ee3c h\\u1ed7 tr\\u1ee3 trong th\\u1eddi gian t\\u1edbi\\u2014\\u0111\\u00e3 t\\u1edbi l\\u00fac c\\u1ea7n n\\u00e2ng c\\u1ea5p\",\"T\\u1ea3i Visual Studio 2019, m\\u1ed9t IDE c\\u1ea3i ti\\u1ebfn, hi\\u1ec7n \\u0111\\u1ea1i, gi\\u00fap t\\u0103ng n\\u0103ng su\\u1ea5t l\\u00e0m vi\\u1ec7c.\",\"Truy c\\u1eadp v\\u00e0o t\\u1ec7p tin t\\u1eeb m\\u1ecdi n\\u01a1i, d\\u00f9 tr\\u1ef1c tuy\\u1ebfn hay ngo\\u1ea1i tuy\\u1ebfn.\",\"T\\u1ea3i xu\\u1ed1ng b\\u1ea3n \\u0111\\u00e1nh gi\\u00e1 90 ng\\u00e0y mi\\u1ec5n ph\\u00ed cho chuy\\u00ean gia CNTT.\"]}', 2),
-(20, 2, '2019-04-29 02:38:15', '2019-04-29 02:38:37', 'Tổng hợp suy nghĩ, rồi phát triển chúng hơn nữa', '0', '2', '{\"_token\":\"Eb1uoKkzROWaKYGx3EaRgtmeTUUA7O67XP5DNoWw\",\"tabIndex\":\"0\",\"title\":\"Block 04\",\"name\":[\"T\\u1ed5ng h\\u1ee3p suy ngh\\u0129, r\\u1ed3i ph\\u00e1t tri\\u1ec3n ch\\u00fang h\\u01a1n n\\u1eefa\"],\"descriptiondes\":[\"S\\u1eeda l\\u1ea1i c\\u00e1c ghi ch\\u00fa c\\u1ee7a b\\u1ea1n b\\u1eb1ng c\\u00e1ch nh\\u1eadp, t\\u00f4 s\\u00e1ng ho\\u1eb7c vi\\u1ebft tay ch\\u00fa th\\u00edch. Nh\\u1edd c\\u00f3 OneNote tr\\u00ean m\\u1ecdi thi\\u1ebft b\\u1ecb, b\\u1ea1n s\\u1ebd kh\\u00f4ng b\\u1ecf l\\u1ee1 tia c\\u1ea3m h\\u1ee9ng n\\u00e0o.\"],\"image\":[\"https:\\/\\/img-prod-cms-rt-microsoft-com.akamaized.net\\/cms\\/api\\/am\\/imageFileData\\/RE2lrfB?ver=899f&q=90&h=675&w=830&b=%23FFFFFFFF&aim=true\"]}', 4),
-(21, 4, '2019-04-29 02:42:33', '2019-04-29 02:42:33', 'Sắp xếp khoa học mọi nội dung của bạn', '0', '2', '{\"_token\":\"Eb1uoKkzROWaKYGx3EaRgtmeTUUA7O67XP5DNoWw\",\"tabIndex\":\"0\",\"title\":\"\",\"name\":[\"S\\u1eafp x\\u1ebfp khoa h\\u1ecdc m\\u1ecdi n\\u1ed9i dung c\\u1ee7a b\\u1ea1n\"],\"image\":[\"https:\\/\\/img-prod-cms-rt-microsoft-com.akamaized.net\\/cms\\/api\\/am\\/imageFileData\\/RE2lwga?ver=afbc&q=90&h=675&w=830&b=%23FFFFFFFF&aim=true\"],\"description\":[\"\\u0110\\u1ec3 s\\u1eafp x\\u1ebfp khoa h\\u1ecdc trong s\\u1ed5 tay, b\\u1ea1n c\\u00f3 th\\u1ec3 chia s\\u1ed5 tay th\\u00e0nh c\\u00e1c m\\u1ee5c v\\u00e0 trang. B\\u1ea1n s\\u1ebd lu\\u00f4n t\\u00ecm \\u0111\\u01b0\\u1ee3c ghi ch\\u00fa ngay t\\u1ea1i v\\u1ecb tr\\u00ed m\\u00ecnh \\u0111\\u00e3 t\\u1ea1m d\\u1eebng nh\\u1edd kh\\u1ea3 n\\u0103ng d\\u1eabn h\\u01b0\\u1edbng v\\u00e0 t\\u00ecm ki\\u1ebfm d\\u1ec5 d\\u00e0ng.\"]}', 3);
+(12, 0, '2019-04-28 21:43:04', '2019-04-29 00:31:36', NULL, '0', '1', '{"_token":"vexR2xDM1EJWTjWIO6N2vzHewnwuxFE6ufMFOT94","tabIndex":"0","title":"Slide h\\u00ecnh \\u1ea3nh","name":["",""],"image":["\\/photos\\/1\\/slide\\/RE2lEVR.jpg","\\/photos\\/1\\/slide\\/RW67SS.jpg"],"description":["",""],"path":["#","\\u01b0"]}', 1),
+(15, 0, '2019-04-29 01:21:35', '2019-04-29 02:31:08', 'Sắp kết thúc thời gian hỗ trợ', '0', '1', '{"_token":"Eb1uoKkzROWaKYGx3EaRgtmeTUUA7O67XP5DNoWw","tabIndex":"0","title":"Cho c\\u00f4ng vi\\u1ec7c","name":["S\\u1eafp k\\u1ebft th\\u00fac th\\u1eddi gian h\\u1ed7 tr\\u1ee3","T\\u1ea3i Visual Studio 2019","Office 365 cho Doanh nghi\\u1ec7p","Windows 10 Enterprise"],"path":["#","","",""],"image":["https:\\/\\/img-prod-cms-rt-microsoft-com.akamaized.net\\/cms\\/api\\/am\\/imageFileData\\/RE2OfW4?ver=3149&q=90&m=6&h=201&w=358&b=%23FFFFFFFF&l=f&o=t&aim=true","https:\\/\\/img-prod-cms-rt-microsoft-com.akamaized.net\\/cms\\/api\\/am\\/imageFileData\\/RE2n9C8?ver=4d49&q=90&m=6&h=201&w=358&b=%23FFFFFFFF&l=f&o=t&aim=true","https:\\/\\/img-prod-cms-rt-microsoft-com.akamaized.net\\/cms\\/api\\/am\\/imageFileData\\/RE2mheW?ver=527a&q=90&m=6&h=201&w=358&b=%23FFFFFFFF&l=f&o=t&x=444&y=171&aim=true","https:\\/\\/img-prod-cms-rt-microsoft-com.akamaized.net\\/cms\\/api\\/am\\/imageFileData\\/RE1CmIw?ver=e555&q=90&m=6&h=201&w=358&b=%23FFFFFFFF&l=f&o=t&aim=true"],"description":["SQL Server v\\u00e0 Windows Server 2008 s\\u1ebd kh\\u00f4ng c\\u00f2n \\u0111\\u01b0\\u1ee3c h\\u1ed7 tr\\u1ee3 trong th\\u1eddi gian t\\u1edbi\\u2014\\u0111\\u00e3 t\\u1edbi l\\u00fac c\\u1ea7n n\\u00e2ng c\\u1ea5p","T\\u1ea3i Visual Studio 2019, m\\u1ed9t IDE c\\u1ea3i ti\\u1ebfn, hi\\u1ec7n \\u0111\\u1ea1i, gi\\u00fap t\\u0103ng n\\u0103ng su\\u1ea5t l\\u00e0m vi\\u1ec7c.","Truy c\\u1eadp v\\u00e0o t\\u1ec7p tin t\\u1eeb m\\u1ecdi n\\u01a1i, d\\u00f9 tr\\u1ef1c tuy\\u1ebfn hay ngo\\u1ea1i tuy\\u1ebfn.","T\\u1ea3i xu\\u1ed1ng b\\u1ea3n \\u0111\\u00e1nh gi\\u00e1 90 ng\\u00e0y mi\\u1ec5n ph\\u00ed cho chuy\\u00ean gia CNTT."]}', 2),
+(16, 0, '2019-04-29 02:38:15', '2019-04-29 02:38:37', 'Tổng hợp suy nghĩ, rồi phát triển chúng hơn nữa', '0', '1', '{"_token":"Eb1uoKkzROWaKYGx3EaRgtmeTUUA7O67XP5DNoWw","tabIndex":"0","title":"Block 04","name":["T\\u1ed5ng h\\u1ee3p suy ngh\\u0129, r\\u1ed3i ph\\u00e1t tri\\u1ec3n ch\\u00fang h\\u01a1n n\\u1eefa"],"descriptiondes":["S\\u1eeda l\\u1ea1i c\\u00e1c ghi ch\\u00fa c\\u1ee7a b\\u1ea1n b\\u1eb1ng c\\u00e1ch nh\\u1eadp, t\\u00f4 s\\u00e1ng ho\\u1eb7c vi\\u1ebft tay ch\\u00fa th\\u00edch. Nh\\u1edd c\\u00f3 OneNote tr\\u00ean m\\u1ecdi thi\\u1ebft b\\u1ecb, b\\u1ea1n s\\u1ebd kh\\u00f4ng b\\u1ecf l\\u1ee1 tia c\\u1ea3m h\\u1ee9ng n\\u00e0o."],"image":["https:\\/\\/img-prod-cms-rt-microsoft-com.akamaized.net\\/cms\\/api\\/am\\/imageFileData\\/RE2lrfB?ver=899f&q=90&h=675&w=830&b=%23FFFFFFFF&aim=true"]}', 4),
+(17, 0, '2019-04-29 02:42:33', '2019-04-29 02:42:33', 'Sắp xếp khoa học mọi nội dung của bạn', '0', '1', '{"_token":"Eb1uoKkzROWaKYGx3EaRgtmeTUUA7O67XP5DNoWw","tabIndex":"0","title":"","name":["S\\u1eafp x\\u1ebfp khoa h\\u1ecdc m\\u1ecdi n\\u1ed9i dung c\\u1ee7a b\\u1ea1n"],"image":["https:\\/\\/img-prod-cms-rt-microsoft-com.akamaized.net\\/cms\\/api\\/am\\/imageFileData\\/RE2lwga?ver=afbc&q=90&h=675&w=830&b=%23FFFFFFFF&aim=true"],"description":["\\u0110\\u1ec3 s\\u1eafp x\\u1ebfp khoa h\\u1ecdc trong s\\u1ed5 tay, b\\u1ea1n c\\u00f3 th\\u1ec3 chia s\\u1ed5 tay th\\u00e0nh c\\u00e1c m\\u1ee5c v\\u00e0 trang. B\\u1ea1n s\\u1ebd lu\\u00f4n t\\u00ecm \\u0111\\u01b0\\u1ee3c ghi ch\\u00fa ngay t\\u1ea1i v\\u1ecb tr\\u00ed m\\u00ecnh \\u0111\\u00e3 t\\u1ea1m d\\u1eebng nh\\u1edd kh\\u1ea3 n\\u0103ng d\\u1eabn h\\u01b0\\u1edbng v\\u00e0 t\\u00ecm ki\\u1ebfm d\\u1ec5 d\\u00e0ng."]}', 3),
+(18, 1, '2019-04-28 21:43:04', '2019-04-29 00:32:23', NULL, '0', '2', '{"_token":"vexR2xDM1EJWTjWIO6N2vzHewnwuxFE6ufMFOT94","tabIndex":"0","title":"Slide h\\u00ecnh \\u1ea3nh","name":["",""],"image":["\\/photos\\/1\\/slide\\/RW67SS.jpg","\\/photos\\/1\\/slide\\/RE2lEVR.jpg"],"description":["",""],"path":["",""]}', 1),
+(19, 3, '2019-04-29 01:21:35', '2019-04-29 02:31:08', 'Sắp kết thúc thời gian hỗ trợ', '0', '2', '{"_token":"Eb1uoKkzROWaKYGx3EaRgtmeTUUA7O67XP5DNoWw","tabIndex":"0","title":"Cho c\\u00f4ng vi\\u1ec7c","name":["S\\u1eafp k\\u1ebft th\\u00fac th\\u1eddi gian h\\u1ed7 tr\\u1ee3","T\\u1ea3i Visual Studio 2019","Office 365 cho Doanh nghi\\u1ec7p","Windows 10 Enterprise"],"path":["#","","",""],"image":["https:\\/\\/img-prod-cms-rt-microsoft-com.akamaized.net\\/cms\\/api\\/am\\/imageFileData\\/RE2OfW4?ver=3149&q=90&m=6&h=201&w=358&b=%23FFFFFFFF&l=f&o=t&aim=true","https:\\/\\/img-prod-cms-rt-microsoft-com.akamaized.net\\/cms\\/api\\/am\\/imageFileData\\/RE2n9C8?ver=4d49&q=90&m=6&h=201&w=358&b=%23FFFFFFFF&l=f&o=t&aim=true","https:\\/\\/img-prod-cms-rt-microsoft-com.akamaized.net\\/cms\\/api\\/am\\/imageFileData\\/RE2mheW?ver=527a&q=90&m=6&h=201&w=358&b=%23FFFFFFFF&l=f&o=t&x=444&y=171&aim=true","https:\\/\\/img-prod-cms-rt-microsoft-com.akamaized.net\\/cms\\/api\\/am\\/imageFileData\\/RE1CmIw?ver=e555&q=90&m=6&h=201&w=358&b=%23FFFFFFFF&l=f&o=t&aim=true"],"description":["SQL Server v\\u00e0 Windows Server 2008 s\\u1ebd kh\\u00f4ng c\\u00f2n \\u0111\\u01b0\\u1ee3c h\\u1ed7 tr\\u1ee3 trong th\\u1eddi gian t\\u1edbi\\u2014\\u0111\\u00e3 t\\u1edbi l\\u00fac c\\u1ea7n n\\u00e2ng c\\u1ea5p","T\\u1ea3i Visual Studio 2019, m\\u1ed9t IDE c\\u1ea3i ti\\u1ebfn, hi\\u1ec7n \\u0111\\u1ea1i, gi\\u00fap t\\u0103ng n\\u0103ng su\\u1ea5t l\\u00e0m vi\\u1ec7c.","Truy c\\u1eadp v\\u00e0o t\\u1ec7p tin t\\u1eeb m\\u1ecdi n\\u01a1i, d\\u00f9 tr\\u1ef1c tuy\\u1ebfn hay ngo\\u1ea1i tuy\\u1ebfn.","T\\u1ea3i xu\\u1ed1ng b\\u1ea3n \\u0111\\u00e1nh gi\\u00e1 90 ng\\u00e0y mi\\u1ec5n ph\\u00ed cho chuy\\u00ean gia CNTT."]}', 2),
+(20, 2, '2019-04-29 02:38:15', '2019-04-29 02:38:37', 'Tổng hợp suy nghĩ, rồi phát triển chúng hơn nữa', '0', '2', '{"_token":"Eb1uoKkzROWaKYGx3EaRgtmeTUUA7O67XP5DNoWw","tabIndex":"0","title":"Block 04","name":["T\\u1ed5ng h\\u1ee3p suy ngh\\u0129, r\\u1ed3i ph\\u00e1t tri\\u1ec3n ch\\u00fang h\\u01a1n n\\u1eefa"],"descriptiondes":["S\\u1eeda l\\u1ea1i c\\u00e1c ghi ch\\u00fa c\\u1ee7a b\\u1ea1n b\\u1eb1ng c\\u00e1ch nh\\u1eadp, t\\u00f4 s\\u00e1ng ho\\u1eb7c vi\\u1ebft tay ch\\u00fa th\\u00edch. Nh\\u1edd c\\u00f3 OneNote tr\\u00ean m\\u1ecdi thi\\u1ebft b\\u1ecb, b\\u1ea1n s\\u1ebd kh\\u00f4ng b\\u1ecf l\\u1ee1 tia c\\u1ea3m h\\u1ee9ng n\\u00e0o."],"image":["https:\\/\\/img-prod-cms-rt-microsoft-com.akamaized.net\\/cms\\/api\\/am\\/imageFileData\\/RE2lrfB?ver=899f&q=90&h=675&w=830&b=%23FFFFFFFF&aim=true"]}', 4),
+(21, 4, '2019-04-29 02:42:33', '2019-04-29 02:42:33', 'Sắp xếp khoa học mọi nội dung của bạn', '0', '2', '{"_token":"Eb1uoKkzROWaKYGx3EaRgtmeTUUA7O67XP5DNoWw","tabIndex":"0","title":"","name":["S\\u1eafp x\\u1ebfp khoa h\\u1ecdc m\\u1ecdi n\\u1ed9i dung c\\u1ee7a b\\u1ea1n"],"image":["https:\\/\\/img-prod-cms-rt-microsoft-com.akamaized.net\\/cms\\/api\\/am\\/imageFileData\\/RE2lwga?ver=afbc&q=90&h=675&w=830&b=%23FFFFFFFF&aim=true"],"description":["\\u0110\\u1ec3 s\\u1eafp x\\u1ebfp khoa h\\u1ecdc trong s\\u1ed5 tay, b\\u1ea1n c\\u00f3 th\\u1ec3 chia s\\u1ed5 tay th\\u00e0nh c\\u00e1c m\\u1ee5c v\\u00e0 trang. B\\u1ea1n s\\u1ebd lu\\u00f4n t\\u00ecm \\u0111\\u01b0\\u1ee3c ghi ch\\u00fa ngay t\\u1ea1i v\\u1ecb tr\\u00ed m\\u00ecnh \\u0111\\u00e3 t\\u1ea1m d\\u1eebng nh\\u1edd kh\\u1ea3 n\\u0103ng d\\u1eabn h\\u01b0\\u1edbng v\\u00e0 t\\u00ecm ki\\u1ebfm d\\u1ec5 d\\u00e0ng."]}', 3);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `migrations`
+-- Table structure for table `migrations`
 --
 
-CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `migrations` (
+  `id` int(10) unsigned NOT NULL,
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -519,29 +517,29 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `model_has_permissions`
+-- Table structure for table `model_has_permissions`
 --
 
-CREATE TABLE `model_has_permissions` (
-  `permission_id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `model_has_permissions` (
+  `permission_id` int(10) unsigned NOT NULL,
   `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `model_id` bigint(20) UNSIGNED NOT NULL
+  `model_id` bigint(20) unsigned NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `model_has_roles`
+-- Table structure for table `model_has_roles`
 --
 
-CREATE TABLE `model_has_roles` (
-  `role_id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `model_has_roles` (
+  `role_id` int(10) unsigned NOT NULL,
   `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `model_id` bigint(20) UNSIGNED NOT NULL
+  `model_id` bigint(20) unsigned NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `model_has_roles`
+-- Dumping data for table `model_has_roles`
 --
 
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
@@ -552,11 +550,11 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `motel_room`
+-- Table structure for table `motel_room`
 --
 
-CREATE TABLE `motel_room` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `motel_room` (
+  `id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `parent_id` int(11) DEFAULT 0,
   `sort_order` int(11) DEFAULT 0,
@@ -565,10 +563,10 @@ CREATE TABLE `motel_room` (
   `apartment_id` int(11) DEFAULT NULL,
   `status_motel_room_id` int(11) DEFAULT 0,
   `note` text COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `motel_room`
+-- Dumping data for table `motel_room`
 --
 
 INSERT INTO `motel_room` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `apartment_id`, `status_motel_room_id`, `note`) VALUES
@@ -598,11 +596,11 @@ INSERT INTO `motel_room` (`id`, `name`, `parent_id`, `sort_order`, `created_at`,
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `news`
+-- Table structure for table `news`
 --
 
-CREATE TABLE `news` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `news` (
+  `id` int(10) unsigned NOT NULL,
   `sort_order` int(11) DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -613,40 +611,40 @@ CREATE TABLE `news` (
   `category_id` int(11) DEFAULT NULL,
   `seo_keyword` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `seo_description` text COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `news`
+-- Dumping data for table `news`
 --
 
 INSERT INTO `news` (`id`, `sort_order`, `created_at`, `updated_at`, `title`, `image`, `content`, `summary`, `category_id`, `seo_keyword`, `seo_description`) VALUES
-(4, 0, '2019-03-19 20:22:05', '2019-04-22 00:55:10', 'Laporte: \'Man City mạnh hơn Liverpool\'', '/photos/1/hi-res-8a7cae324bacba9b17177b2-2578-7496-1554699289_500x300.png', '<h1>Laporte: &#39;Man City mạnh hơn Liverpool&#39;</h1>\r\n\r\n<p>Trung vệ Man City muốn đội nh&agrave; đoạt mọi danh hiệu m&ugrave;a n&agrave;y.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&quot;Khi gi&agrave;nh chiến thắng mọi trận đấu, ch&uacute;ng t&ocirc;i cảm thấy l&agrave; đội b&oacute;ng lớn. Ch&uacute;ng t&ocirc;i sẽ giữ vững phong độ v&agrave; gi&agrave;nh mọi danh hiệu, đ&oacute; l&agrave; điều to&agrave;n đội mong muốn&quot;,&nbsp;Aymeric Laporte n&oacute;i với tờ&nbsp;<em>Telefoot</em>. &quot;Trở th&agrave;nh đội hay nhất ở Ngoại hạng Anh l&agrave; phần thưởng quan trọng, v&agrave; t&ocirc;i hy vọng Man City sẽ kết th&uacute;c m&ugrave;a giải với v&agrave;i danh hiệu&quot;.</p>\r\n\r\n<p>Man City đang tr&ecirc;n đường chinh phục c&uacute; ăn bốn ở m&ugrave;a giải n&agrave;y. Đội b&oacute;ng vừa lọt v&agrave;o chung kết Cup FA, sau khi đoạt Cup Li&ecirc;n đo&agrave;n Anh. Man City cũng chuẩn bị thi đấu ở tứ kết Champions League, v&agrave; đang đua tranh ng&ocirc;i v&ocirc; địch Ngoại hạng Anh c&ugrave;ng Liverpool.</p>\r\n\r\n<table align=\"center\" border=\"0\" cellpadding=\"3\" cellspacing=\"0\" style=\"width:500px\">\r\n	<tbody>\r\n		<tr>\r\n			<td><img alt=\"Laporte là một trong những trụ cột ở hàng thủ Man City. Ảnh: AFP.\" src=\"https://i-thethao.vnecdn.net/2019/04/08/hi-res-8a7cae324bacba9b17177b2-2832-1770-1554699289.png\" style=\"margin:0px\" /></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n			<p>Laporte l&agrave; một trong những trụ cột ở h&agrave;ng thủ Man City. Ảnh:&nbsp;<em>AFP.</em></p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>&quot;Liệu ch&uacute;ng t&ocirc;i c&oacute; mạnh hơn Liverpool? T&ocirc;i cho rằng đ&uacute;ng như vậy. Liverpool c&oacute; đội h&igrave;nh rất chất lượng nhưng t&ocirc;i hy vọng Man City sẽ l&agrave;m n&ecirc;n kh&aacute;c biệt. T&ocirc;i tới Man City để gi&agrave;nh mọi danh hiệu, bao gồm cả Champions League. Mục ti&ecirc;u trước mắt l&agrave; tiến tới trận chung kết&quot;, Laporte n&oacute;i trước trận tứ kết lượt đi tr&ecirc;n s&acirc;n Tottenham.</p>\r\n\r\n<p>Trong khi Man City chơi trận b&aacute;n kết Cup FA v&agrave;o cuối tuần trước, Liverpool đ&atilde; tận dụng thời cơ vươn l&ecirc;n vị tr&iacute; dẫn đầu Ngoại hạng Anh. Liverpool đang hơn Man City hai điểm, nhưng chơi nhiều hơn một trận.</p>', 'Man City đang trên đường chinh phục cú ăn bốn ở mùa giải này. Đội bóng vừa lọt vào chung kết Cup FA,', 3, NULL, NULL),
+(4, 0, '2019-03-19 20:22:05', '2019-04-22 00:55:10', 'Laporte: ''Man City mạnh hơn Liverpool''', '/photos/1/hi-res-8a7cae324bacba9b17177b2-2578-7496-1554699289_500x300.png', '<h1>Laporte: &#39;Man City mạnh hơn Liverpool&#39;</h1>\r\n\r\n<p>Trung vệ Man City muốn đội nh&agrave; đoạt mọi danh hiệu m&ugrave;a n&agrave;y.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&quot;Khi gi&agrave;nh chiến thắng mọi trận đấu, ch&uacute;ng t&ocirc;i cảm thấy l&agrave; đội b&oacute;ng lớn. Ch&uacute;ng t&ocirc;i sẽ giữ vững phong độ v&agrave; gi&agrave;nh mọi danh hiệu, đ&oacute; l&agrave; điều to&agrave;n đội mong muốn&quot;,&nbsp;Aymeric Laporte n&oacute;i với tờ&nbsp;<em>Telefoot</em>. &quot;Trở th&agrave;nh đội hay nhất ở Ngoại hạng Anh l&agrave; phần thưởng quan trọng, v&agrave; t&ocirc;i hy vọng Man City sẽ kết th&uacute;c m&ugrave;a giải với v&agrave;i danh hiệu&quot;.</p>\r\n\r\n<p>Man City đang tr&ecirc;n đường chinh phục c&uacute; ăn bốn ở m&ugrave;a giải n&agrave;y. Đội b&oacute;ng vừa lọt v&agrave;o chung kết Cup FA, sau khi đoạt Cup Li&ecirc;n đo&agrave;n Anh. Man City cũng chuẩn bị thi đấu ở tứ kết Champions League, v&agrave; đang đua tranh ng&ocirc;i v&ocirc; địch Ngoại hạng Anh c&ugrave;ng Liverpool.</p>\r\n\r\n<table align="center" border="0" cellpadding="3" cellspacing="0" style="width:500px">\r\n	<tbody>\r\n		<tr>\r\n			<td><img alt="Laporte là một trong những trụ cột ở hàng thủ Man City. Ảnh: AFP." src="https://i-thethao.vnecdn.net/2019/04/08/hi-res-8a7cae324bacba9b17177b2-2832-1770-1554699289.png" style="margin:0px" /></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n			<p>Laporte l&agrave; một trong những trụ cột ở h&agrave;ng thủ Man City. Ảnh:&nbsp;<em>AFP.</em></p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>&quot;Liệu ch&uacute;ng t&ocirc;i c&oacute; mạnh hơn Liverpool? T&ocirc;i cho rằng đ&uacute;ng như vậy. Liverpool c&oacute; đội h&igrave;nh rất chất lượng nhưng t&ocirc;i hy vọng Man City sẽ l&agrave;m n&ecirc;n kh&aacute;c biệt. T&ocirc;i tới Man City để gi&agrave;nh mọi danh hiệu, bao gồm cả Champions League. Mục ti&ecirc;u trước mắt l&agrave; tiến tới trận chung kết&quot;, Laporte n&oacute;i trước trận tứ kết lượt đi tr&ecirc;n s&acirc;n Tottenham.</p>\r\n\r\n<p>Trong khi Man City chơi trận b&aacute;n kết Cup FA v&agrave;o cuối tuần trước, Liverpool đ&atilde; tận dụng thời cơ vươn l&ecirc;n vị tr&iacute; dẫn đầu Ngoại hạng Anh. Liverpool đang hơn Man City hai điểm, nhưng chơi nhiều hơn một trận.</p>', 'Man City đang trên đường chinh phục cú ăn bốn ở mùa giải này. Đội bóng vừa lọt vào chung kết Cup FA,', 3, NULL, NULL),
 (5, 0, '2019-03-21 02:18:27', '2019-04-21 03:11:09', 'Thương  Hiệu Suzaran', '/photos/1/Nhandienthuonghieu3-ID2984.png', '<p>Sản phẩm b&ocirc;ng tẩy trang được sản xuất bằng c&ocirc;ng nghệ y tế</p>\r\n\r\n<p>Trụ sở ch&iacute;nh của ch&uacute;ng t&ocirc;i được đặt tại Nhật Bản, Suzaran cung cấp những sản phẩm đảm bảo ti&ecirc;u chuẩn tr&ecirc;n thị trường.</p>\r\n\r\n<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->Lời ch&agrave;o</p>\r\n\r\n<p>Suzaran tự tin về c&aacute;c sản phẩm của m&igrave;nh tr&ecirc;n thị trường. B&ocirc;ng Tẩy Trang Lily Bell được thiết kế sử dụng trong l&agrave;m đẹp v&agrave; xuất ph&aacute;t từ một lịch sử l&acirc;u đời: Đ&oacute; ch&iacute;nh l&agrave; miếng Gạc Y tế được sử dụng trong c&aacute;c t&igrave;nh huống quan trọng v&agrave; sản xuất ra c&aacute;c sản phẩm an to&agrave;n d&ugrave;ng cho em b&eacute;. Được bắt đầu sản xuất tại Nhật Bản từ 180 năm trước, Suzaran tự h&agrave;o mang đến Việt Nam những miếng b&ocirc;ng chất lượng.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Suzaran lu&ocirc;n theo đ&ocirc;ng h&agrave;nh c&ugrave;ng kh&aacute;ch h&agrave;ng để đ&aacute;p ứng những nhu cầu ti&ecirc;u chuẩn m&agrave; kh&aacute;ch h&agrave;ng đề ra. Thương hiệu B&ocirc;ng t&acirc;y trang Lily Bell được người ti&ecirc;u d&ugrave;ng y&ecirc;u th&iacute;ch với c&ocirc;ng dụng gi&uacute;p chăm s&oacute;c da, l&agrave;m sạch da. Suzaran Việt Nam hứa hẹn sẽ mang đến những sản phẩm chất lượng đến kh&aacute;ch h&agrave;ng.</p>', 'Sản phẩm bông tẩy trang được sản xuất bằng công nghệ y tế\r\nTrụ sở chính của chúng tôi được đặt tại Nhật Bản', 4, NULL, NULL),
 (6, 0, '2019-04-06 20:58:36', '2019-04-21 03:11:24', 'Chứng nhận An toàn', '/photos/1/giay-chung-nhan-ve-sinh-an-toan-thuc-pham.jpg', '<p>1. Sản phẩm uy t&iacute;n&nbsp;</p>\r\n\r\n<p>2. Chất lượng đạt chuẩn</p>\r\n\r\n<p>3. l&agrave;m việc với ti&ecirc;u ch&iacute; &quot;c&ugrave;ng đồng h&agrave;nh v&agrave; ph&aacute;t triển&quot;</p>', 'mang đến cho khách hàng những sản phẩm thảo dược được điều chế hoàn toàn 100% từ thiên nhiên', 4, NULL, NULL),
-(7, 0, '2019-04-21 03:15:05', '2019-04-22 01:12:55', 'Nông dân vượt dốc đào măng đắng vào cuối vụ ở Thanh Hóa', '/photos/1/20190416095816-1555493123-5172-1555493171_380x228.jpg', '<p>Ng&agrave;y 22/4, Bộ trưởng Gi&aacute;o dục v&agrave; Đ&agrave;o tạo Ph&ugrave;ng Xu&acirc;n Nhạ đ&atilde; trả lời b&aacute;o ch&iacute;&nbsp;về việc xử l&yacute; những người li&ecirc;n quan đến gian lận điểm thi ở H&agrave; Giang, Sơn La v&agrave; H&ograve;a B&igrave;nh.&nbsp;</p>\r\n\r\n<p><em>- 16 c&aacute;n bộ gi&aacute;o dục, c&ocirc;ng an ở ba tỉnh đ&atilde; bị khởi tố v&igrave; li&ecirc;n quan gian lận điểm thi THPT Quốc gia, nhưng Chủ tịch Hội đồng thi, người đứng đầu ng&agrave;nh gi&aacute;o dục địa phương, phụ huynh trong ng&agrave;nh c&oacute; con em được n&acirc;ng điểm chưa bị xử l&yacute;. L&agrave; Chủ tịch Hội đồng thi THPT quốc gia, Bộ trưởng c&oacute; &yacute; kiến thế n&agrave;o với địa phương?</em></p>\r\n\r\n<p>- T&ocirc;i rất đau l&ograve;ng v&agrave; kh&ocirc;ng chấp nhận những c&aacute;n bộ, vi&ecirc;n chức ng&agrave;nh gi&aacute;o dục c&oacute; h&agrave;nh vi gian lận điểm thi cho th&iacute; sinh. H&agrave;nh vi n&agrave;y vi phạm đạo đức nh&agrave; gi&aacute;o, vi phạm ph&aacute;p luật nghi&ecirc;m trọng.&nbsp;</p>\r\n\r\n<p>Bộ đề nghị c&aacute;c địa phương xem x&eacute;t xử l&yacute; nghi&ecirc;m c&aacute;n bộ, c&ocirc;ng chức, vi&ecirc;n chức trong ng&agrave;nh gi&aacute;o dục c&oacute; h&agrave;nh vi gian lận điểm thi cho con em m&igrave;nh, tinh thần l&agrave; cương quyết đưa ra khỏi ng&agrave;nh những c&aacute;n bộ n&agrave;y.&nbsp;Bộ cũng đang t&iacute;ch cực phối hợp với Bộ C&ocirc;ng an x&aacute;c định đối tượng vi phạm để xử l&yacute; c&ocirc;ng bằng, ch&iacute;nh x&aacute;c, kh&ocirc;ng bao che v&agrave; minh bạch.</p>\r\n\r\n<table align=\"center\" border=\"0\" cellpadding=\"3\" cellspacing=\"0\">\r\n	<tbody>\r\n		<tr>\r\n			<td><img alt=\"Bộ trưởng Phùng Xuân Nhạ. Ảnh: Võ Hải.\" src=\"https://i-vnexpress.vnecdn.net/2019/04/22/ong-nha-8650-1555909769.jpg\" /></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n			<p>Bộ trưởng Ph&ugrave;ng Xu&acirc;n Nhạ. Ảnh:&nbsp;<em>V&otilde; Hải.</em></p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p><em>- 222 t</em><em>h&iacute; sinh sai điểm thi ở H&agrave; Giang, Sơn La, H&ograve;a B&igrave;nh vẫn được x&eacute;t tuyển đại học, trong khi những em mang điện thoại v&agrave;o ph&ograve;ng thi, d&ugrave; chưa sử dụng đ&atilde; bị đ&igrave;nh chỉ, hủy kết quả thi. Bộ trưởng nghĩ sao về hai c&aacute;ch xử l&yacute; n&agrave;y?</em></p>\r\n\r\n<p>-&nbsp;Tất cả h&agrave;nh vi gian lận trong kỳ thi THPT quốc gia n&oacute;i ri&ecirc;ng v&agrave; bất cứ kỳ thi n&agrave;o kh&aacute;c đều sẽ bị xử l&yacute; nghi&ecirc;m.&nbsp;C&aacute;c đại học khối c&ocirc;ng an đ&atilde; hủy kết quả tr&uacute;ng tuyển, trả về địa phương th&iacute; sinh được n&acirc;ng điểm. C&aacute;c trường khối d&acirc;n sự cũng hủy kết quả tr&uacute;ng tuyển với th&iacute; sinh c&oacute; điểm chấm thẩm định thấp hơn điểm chuẩn.</p>\r\n\r\n<p>Ri&ecirc;ng 12 th&iacute; sinh c&oacute; điểm chấm thẩm định kh&ocirc;ng thấp hơn điểm chuẩn th&igrave; trước mắt c&aacute;c trường đang cho tiếp tục theo học. Tuy nhi&ecirc;n, khi c&oacute; kết luận của cơ quan điều tra, em n&agrave;o c&oacute; tham gia v&agrave;o qu&aacute; tr&igrave;nh gian lận sẽ bị xử l&yacute; theo ph&aacute;p luật.</p>\r\n\r\n<p>Quan điểm của Bộ Gi&aacute;o dục v&agrave; Đ&agrave;o tạo l&agrave; xử l&yacute; nghi&ecirc;m khắc, xem x&eacute;t cho th&ocirc;i học những th&iacute; sinh c&oacute; kết luận li&ecirc;n quan đến gian lận thi cử.</p>\r\n\r\n<p><em>-&nbsp;Tại sao việc xử l&yacute; kh&ocirc;ng sớm hơn để đỡ tốn c&ocirc;ng sức, tiền bạc khi c&aacute;c em học tiếp?</em></p>\r\n\r\n<p>-&nbsp;Xử l&yacute; sai phạm li&ecirc;n quan đến kết quả thi THPT quốc gia của th&iacute; sinh kh&ocirc;ng chỉ được &aacute;p dụng bởi Quy chế thi THPT quốc gia m&agrave; c&ograve;n nhiều văn bản quy phạm ph&aacute;p luật v&agrave; c&aacute;c quy định kh&aacute;c của cơ sở gi&aacute;o dục đại học. Khi xử l&yacute; một trường hợp, ch&uacute;ng ta phải &aacute;p dụng nhiều quy định để đảm bảo t&iacute;nh ch&iacute;nh x&aacute;c, c&ocirc;ng bằng, nghi&ecirc;m minh.</p>\r\n\r\n<p>Theo Luật Gi&aacute;o dục đại học, việc tuyển sinh thuộc quyền tự chủ của cơ sở gi&aacute;o dục đại học. C&aacute;c cơ sở gi&aacute;o dục đại học c&oacute; quyền v&agrave; tr&aacute;ch nhiệm xử l&yacute;, kh&ocirc;ng thụ động ngồi đợi chỉ đạo của Bộ. Vừa qua, c&aacute;c đại học khối c&ocirc;ng an đ&atilde; chủ động xử l&yacute; theo quyền v&agrave; tr&aacute;ch nhiệm của họ. T&ocirc;i ủng hộ c&aacute;ch xử l&yacute; của c&aacute;c trường n&agrave;y.</p>\r\n\r\n<p>Ch&uacute;ng t&ocirc;i đang r&agrave; so&aacute;t, tham khảo &yacute; kiến chuy&ecirc;n gia ph&aacute;p luật để ho&agrave;n thiện c&aacute;c quy chế của ng&agrave;nh nhằm giải quyết những vấn đề thực tế ph&aacute;t sinh khi thực hiện cơ chế tự chủ đại học, đặc biệt l&agrave; quy định c&aacute;c chế t&agrave;i đủ mạnh để răn đe, xử l&yacute; ngay với c&aacute;c loại vi phạm gi&aacute;n tiếp trong thi cử.</p>\r\n\r\n<table align=\"center\" border=\"0\" cellpadding=\"3\" cellspacing=\"0\">\r\n	<tbody>\r\n		<tr>\r\n			<td><a href=\"https://vnexpress.net/infographics/222-thi-sinh-duoc-nang-diem-bi-xu-ly-the-nao-3911339.html\"><img alt=\"222 thí sinh được nâng điểm đang bị xử lý như thế nào? Đồ họa: Tiến Thành\" src=\"https://i-vnexpress.vnecdn.net/2019/04/22/thi-sinh-vi-pham-5511-15557623-6234-6850-1555906557.jpg\" /></a></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n			<p>222 th&iacute; sinh được n&acirc;ng điểm đang bị xử l&yacute; như thế n&agrave;o? Đồ họa:&nbsp;<em>Tiến Th&agrave;nh</em></p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p><em>- Hai th&aacute;ng nữa l&agrave; diễn ra kỳ thi THPT quốc gia 2019, Bộ Gi&aacute;o dục v&agrave; Đ&agrave;o tạo đ&atilde; chuẩn bị như thế n&agrave;o để ngăn chặn gian lận?</em></p>\r\n\r\n<p>-&nbsp;T&ocirc;i lu&ocirc;n qu&aacute;n triệt với c&aacute;n bộ tham gia v&agrave;o c&ocirc;ng t&aacute;c thi rằng việc tổ chức kỳ thi THPT quốc gia v&agrave; tuyển sinh đại học kh&ocirc;ng chỉ l&agrave; nhiệm vụ chuy&ecirc;n m&ocirc;n của ng&agrave;nh gi&aacute;o dục, m&agrave; c&ograve;n l&agrave; nhiệm vụ ch&iacute;nh trị, tr&aacute;ch nhiệm với x&atilde; hội. Do đ&oacute;, việc n&agrave;y phải đặc biệt được coi trọng để đảm bảo t&iacute;nh an to&agrave;n, nghi&ecirc;m t&uacute;c, c&ocirc;ng bằng, ch&iacute;nh x&aacute;c.</p>\r\n\r\n<p>Những &quot;lỗ hổng&quot; về mặt quy tr&igrave;nh, kỹ thuật trong tổ chức thi THPT quốc gia 2018 hiện đ&atilde; được ng&agrave;nh gi&aacute;o dục khắc phục. Ch&uacute;ng t&ocirc;i cũng tăng cường ứng dụng c&ocirc;ng nghệ th&ocirc;ng tin v&agrave; sử dụng c&aacute;c thiết bị kỹ thuật để đảm bảo an ninh, an to&agrave;n trong tổ chức thi; n&acirc;ng cấp phần mềm để ngăn chặn v&agrave; hỗ trợ ph&aacute;t hiện gian lận trong qu&aacute; tr&igrave;nh chấm thi.</p>\r\n\r\n<p>Tuy nhi&ecirc;n, kỹ thuật, c&ocirc;ng nghệ c&oacute; tốt đến đ&acirc;u, con người tham gia v&agrave;o l&agrave;m thi m&agrave; kh&ocirc;ng tốt, cố &yacute; vi phạm th&igrave; ti&ecirc;u cực vẫn c&oacute; thể xảy đến. Do đ&oacute;, trong c&aacute;c cuộc họp chuẩn bị cho kỳ thi năm nay, t&ocirc;i lu&ocirc;n đặc biệt y&ecirc;u cầu lựa chọn c&aacute;n bộ c&oacute; năng lực, tr&aacute;ch nhiệm, phẩm chất ch&iacute;nh trị tốt để tham gia l&agrave;m thi v&agrave; phải chịu tr&aacute;ch nhiệm trực tiếp trước ph&aacute;p luật.</p>\r\n\r\n<p>Bộ Gi&aacute;o dục v&agrave; Đ&agrave;o tạo mong c&aacute;c bộ ng&agrave;nh, địa phương v&agrave; người d&acirc;n cả nước đồng h&agrave;nh, gi&aacute;m s&aacute;t, để việc tổ chức kỳ thi THPT quốc gia v&agrave; tuyển sinh đại học, cao đẳng 2019 th&agrave;nh c&ocirc;ng tốt đẹp.</p>', 'Gia đình ông Phạm Văn Ý vượt sườn dốc trơn trượt, tìm đào măng đắng vào cuối vụ. Thân măng dài 20-30 cm trọng', 3, NULL, NULL),
-(8, 0, '2019-04-21 23:07:12', '2019-04-21 23:07:12', 'Fognini vô địch Monte Carlo 2019', '/photos/1/20001-1555870122-1555870136-7229-1555870146_180x108.png', '<p>Tay vợt Italy lần đầu v&ocirc; địch một giải ATP 1000, sau khi hạ Dusan Lajovic 6-3, 6-4 tại chung kết giải Monte Carlo.</p>\r\n\r\n<p>Một ng&agrave;y sau khi g&acirc;y sốc bằng việc loại Rafael Nadal ở b&aacute;n kết, Fabio Fognini c&oacute; được danh hiệu lớn nhất trong sự nghiệp từ trước đến nay. Tay vợt Italy nhẹ nh&agrave;ng vượt qua &quot;hiện tượng&quot; Dusan Lajovic trong trận ATP 1000 đầu ti&ecirc;n m&agrave; cả hai g&oacute;p mặt.</p>\r\n\r\n<p>Ở ba lần hạ Nadal trước đ&oacute;, Fognini đều thua nhanh ở v&ograve;ng đấu kế tiếp. Tay vợt Italy khiến người h&acirc;m mộ lo ngại điều tương tự sẽ lặp lại, khi đ&aacute;nh mất game giao b&oacute;ng thứ hai trong trận.</p>\r\n\r\n<p>Nhưng Lajovic cũng mới lần đầu dự chung kết ATP 1000 v&agrave; kh&ocirc;ng vững v&agrave;ng về t&acirc;m l&yacute;. Tay vợt Serbia c&oacute; hai game-point để dẫn 3-1 nhưng đều bỏ lỡ. Anh đ&aacute;nh hỏng qu&aacute; nhiều, để Fognini thắng liền bốn game v&agrave; dẫn ngược 5-2.</p>\r\n\r\n<table align=\"center\" border=\"0\" cellpadding=\"3\" cellspacing=\"0\">\r\n	<tbody>\r\n		<tr>\r\n			<td><img alt=\"Lajovic mắc tới 36 lỗi tự đánh hỏng ở trận chung kết, nhiều hơn Fognini 13 lỗi. Ảnh: AP.\" src=\"https://i-thethao.vnecdn.net/2019/04/22/2000-jpeg-1555869978-2434-1555870145.png\" /></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n			<p>Lajovic mắc tới 36 lỗi tự đ&aacute;nh hỏng ở trận chung kết, nhiều hơn Fognini 13 lỗi. Ảnh:&nbsp;<em>AP</em>.</p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>Fognini c&agrave;ng chơi c&agrave;ng lấy lại sự b&igrave;nh tĩnh. Anh cứu th&agrave;nh c&ocirc;ng break-point ở game giao quyết định, trước khi thắng set đầu 6-3 nhờ điểm winner thứ 12.</p>\r\n\r\n<p>Lajovic đuối hơn trong c&aacute;c pha đ&ocirc;i c&ocirc;ng cuối s&acirc;n nhưng cũng kh&ocirc;ng dễ đầu h&agrave;ng. Tay vợt số 48 thế giới mất game giao b&oacute;ng đầu set hai, nhưng gỡ h&ograve;a ngay sau đ&oacute;. Chỉ khi Fognini thắng th&ecirc;m một game giao b&oacute;ng nữa v&agrave; vươn l&ecirc;n dẫn 3-2, thế trận mới tuột khỏi tầm tay Lajovic. Tay vợt Serbia g&aacute;c vợt chung cuộc với tỷ số 3-6, 4-6.</p>\r\n\r\n<p>&quot;Lần đầu v&agrave;o chung kết ATP 1000 l&agrave; trải nghiệm tuyệt vời với t&ocirc;i&quot;, Lajovic chia sẻ. &quot;Gi&oacute; tại Monte Carlo kh&aacute; to v&agrave; Fognini l&agrave; người gi&agrave;u kinh nghiệm hơn ở điều kiện thời tiết như h&ocirc;m nay. C&aacute;c c&uacute; quả v&agrave; khả năng di chuyển của anh ấy cũng rất tốt. T&ocirc;i c&oacute; cảm gi&aacute;c rằng m&igrave;nh vất vả hơn anh ấy trong việc gi&agrave;nh điểm. Đ&oacute; l&agrave; điểm mấu chốt trong thất bại n&agrave;y&quot;.</p>\r\n\r\n<p>Fognini l&agrave; hạt giống thấp nhất đăng quang tại Monte Carlo trong 20 năm qua. Anh gi&agrave;nh số tiền thưởng 958.000 đ&ocirc;la c&ugrave;ng 1000 điểm thưởng ATP &ndash; số điểm gi&uacute;p tay vợt Italy vươn l&ecirc;n thứ 12 thế giới v&agrave;o tuần n&agrave;y.</p>\r\n\r\n<table align=\"center\" border=\"0\" cellpadding=\"3\" cellspacing=\"0\">\r\n	<tbody>\r\n		<tr>\r\n			<td><img alt=\"Fognini lên ngôi xứng đáng tại Monte Carlo. Ảnh: AP.\" src=\"https://i-thethao.vnecdn.net/2019/04/22/2000-1-jpeg-1555870095-5370-1555870146.png\" /></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n			<p>Fognini l&ecirc;n ng&ocirc;i xứng đ&aacute;ng tại Monte Carlo. Ảnh<em>:&nbsp;AP.</em></p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>&quot;T&ocirc;i phải chuẩn bị kỹ c&agrave;ng cho trận đấu n&agrave;y v&igrave; HLV cũ của t&ocirc;i đang l&agrave;m việc c&ugrave;ng Lajovic&quot;, Fognini chia sẻ. &quot;T&ocirc;i đ&atilde; cố gắng kh&ocirc;ng để bị bắt b&agrave;i. Đ&acirc;y l&agrave; th&agrave;nh tựu to lớn sau một giải đấu kh&oacute; khăn. T&ocirc;i rất hạnh ph&uacute;c&quot;.</p>\r\n\r\n<p>Danh hiệu ATP 1000 đầu ti&ecirc;n sẽ mang đến sự tự tin cho Fognini trong phần c&ograve;n lại của m&ugrave;a đất nện. Tay vợt mới trở lại sau chấn thương từng hai lần su&yacute;t bị loại tại Monte Carlo năm nay. Anh bị Andrey Rubley dẫn 6-4, 4-1 ở v&ograve;ng một v&agrave; bị Borna Coric dẫn 6-1, 2-0 ở tứ kết. Fognini thắng ngược cả hai trận đấu đ&oacute;, rồi hạ &quot;Vua đất nện&quot; Nadal chỉ sau hai set v&agrave; cuối c&ugrave;ng c&oacute; danh hiệu lớn nhất sự nghiệp từ trước đến nay</p>', 'Tay vợt Italy lần đầu vô địch một giải ATP 1000, sau khi hạ Dusan Lajovic 6-3, 6-4 tại chung kết giải Monte Carlo.', 3, NULL, NULL),
-(9, 0, '2019-04-21 23:08:43', '2019-04-21 23:08:43', 'Ronaldo cam kết ở lại Juventus', '/photos/1/ronaldo-1555823369-1555823379-8659-1555823432.png', '<p>Si&ecirc;u sao 34 tuổi sẽ gắn b&oacute; với &quot;L&atilde;o B&agrave;&quot; th&ecirc;m &iacute;t nhất một m&ugrave;a giải để chinh phục Champions League.</p>\r\n\r\n<p>&quot;Chắc chắn 1000 phần trăm l&agrave; t&ocirc;i sẽ ở lại Juventus m&ugrave;a tới&quot;, Cristiano Ronaldo n&oacute;i sau khi c&ugrave;ng Juventus v&ocirc; địch Serie A 2018-2019. Đường căng ngang của anh khiến hậu vệ Fiorentina phản lưới, ấn định thắng lợi 2-1 cho Juventus ở v&ograve;ng 33. Chiến thắng gi&uacute;p CLB th&agrave;nh Turin hơn nh&igrave; bảng Napoli 20 điểm, v&ocirc; địch sớm năm v&ograve;ng.</p>\r\n\r\n<table align=\"center\" border=\"0\" cellpadding=\"3\" cellspacing=\"0\">\r\n	<tbody>\r\n		<tr>\r\n			<td><img alt=\"Ronaldo (số 7) sẽ không rời Juventus hè 2019. Ảnh: Reuters.\" src=\"https://i-thethao.vnecdn.net/2019/04/21/ronaldo-1555823369-1555823379-8659-1555823432.png\" /></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n			<p>Ronaldo (số 7) sẽ kh&ocirc;ng rời Juventus h&egrave; 2019. Ảnh:&nbsp;<em>Reuters</em>.</p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>Tương lai của Ronaldo tại Turin bị đặt dấu hỏi, sau khi Juventus bị Ajax loại ở tứ kết Champions League. Ch&acirc;u &Acirc;u l&agrave; mục ti&ecirc;u chinh phục của Juventus m&ugrave;a n&agrave;y, sau bảy năm li&ecirc;n tiếp đoạt Scudetto. Nhưng, sự hiện diện của Ronaldo chưa đủ để gi&uacute;p &quot;L&atilde;o B&agrave;&quot; ho&agrave;n th&agrave;nh ước nguyện. Danh hiệu Serie A của Juventus gần bằng Inter v&agrave; AC Milan cộng lại, nhưng họ thua hai CLB th&agrave;nh Milan ở danh hiệu Champions League.</p>\r\n\r\n<p>Ronaldo cũng coi trọng Champions League hơn danh hiệu quốc gia, nhưng đ&acirc;y l&agrave; lần đầu anh v&ocirc; địch Serie A. Si&ecirc;u sao người Bồ Đ&agrave;o Nha trở th&agrave;nh cầu thủ đầu ti&ecirc;n v&ocirc; địch Anh, T&acirc;y Ban Nha v&agrave; Italy. Juventus c&oacute; thể sẽ lột x&aacute;c trong h&egrave; 2019, để chinh phục Champions League sau 24 năm dang dở.</p>\r\n\r\n<p>Ronaldo cập bến Juventus h&egrave; 2018 với gi&aacute; 120 triệu đ&ocirc;la. Mục ti&ecirc;u của anh l&agrave; đi t&igrave;m thử th&aacute;ch mới.</p>', 'Siêu sao 34 tuổi sẽ gắn bó với \"Lão Bà\" thêm ít nhất một mùa giải để chinh phục Champions League.', 3, NULL, NULL),
-(10, 0, '2019-04-21 23:11:53', '2019-04-21 23:11:53', 'Golfer Đài Loan vô địch RBC Heritage', '/photos/1/2000-1555910972-2965-1555910996_180x108.jpg', '<p>Cheng-tsung Pan lần đầu v&ocirc; địch một giải PGA Tour, khi đạt điểm -12 qua bốn v&ograve;ng tại RBC Heritage.</p>\r\n\r\n<p>Sau 32 năm, Đ&agrave;i Loan mới c&oacute; th&ecirc;m một golfer v&ocirc; địch PGA Tour. C.T. Pan tạo ra bất ngờ lớn khi vượt mặt golfer số một thế giới Dustin Johnson c&ugrave;ng những t&ecirc;n tuổi kh&aacute;c để gi&agrave;nh số tiền thưởng 1,242 triệu đ&ocirc;la cho nh&agrave; v&ocirc; địch.</p>\r\n\r\n<p>Năm birdie v&agrave; một bogey ở v&ograve;ng cuối l&agrave; đủ để Pan l&ecirc;n ng&ocirc;i với tổng điểm -12, c&aacute;ch đ&uacute;ng một gậy so với nh&igrave; bảng Matt Kuchar. Chiến thắng tại s&acirc;n Harbour Town khiến sự nghiệp của golfer Đ&agrave;i Loan sang trang. Anh được đảm bảo quyền dự PGA Tour đến năm 2021, gi&agrave;nh v&eacute; dự hai major PGA Championship 2019 v&agrave; Masters 2020. B&ecirc;n cạnh đ&oacute;, Pan cũng s&aacute;ng cửa lọt v&agrave;o đội h&igrave;nh tuyển Quốc tế dự Presidents Cup v&agrave;o cuối năm.</p>\r\n\r\n<p>&quot;Đ&acirc;y l&agrave; chiến thắng kh&oacute; tin&quot;, Pan chia sẻ ngay sau giải. &quot;Điện thoại của t&ocirc;i đổ chu&ocirc;ng li&ecirc;n tục trong 10 ph&uacute;t vừa qua. T&ocirc;i rất hạnh ph&uacute;c với chiến thắng đầu ti&ecirc;n tr&ecirc;n Tour&quot;.</p>\r\n\r\n<table align=\"center\" border=\"0\" cellpadding=\"3\" cellspacing=\"0\">\r\n	<tbody>\r\n		<tr>\r\n			<td><img alt=\"C.T. Pan là golfer thứ 14 lần đầu vô địch PGA Tour tại RBC Heritage. Ảnh: AP.\" src=\"https://i-thethao.vnecdn.net/2019/04/22/2000-jpeg-1555910946-4777-1555910996.png\" /></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n			<p>C.T. Pan l&agrave; golfer thứ 14 lần đầu v&ocirc; địch PGA Tour tại RBC Heritage. Ảnh:&nbsp;<em>AP.</em></p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>Danh hiệu tại RBC Heritage cũng giải tỏa phần n&agrave;o cho C.T. Pan, người đ&aacute;nh kh&ocirc;ng tốt từ đầu năm với bốn giải kh&ocirc;ng qua cắt v&agrave; chỉ c&oacute; ba lần lọt top 25 ở c&aacute;c giải tham dự.</p>\r\n\r\n<p>Matt Kuchar đứng thứ hai với điểm -11, trong khi Patrick Cantlay, Scott Piercy v&agrave; Shane Lowry xếp T3 với một gậy nhiều hơn. Golfer dẫn đầu v&ograve;ng ba Dustin Johnson th&igrave; g&acirc;y thất vọng tr&agrave;n trề. Số một thế giới bogey ba lần v&agrave; bogey k&eacute;p hai lần chỉ trong năm hố, từ hố 11 đến 15, qua đ&oacute; đạt điểm +6 ở v&ograve;ng cuối v&agrave; rớt xuống T28 chung cuộc với tổng -4.</p>\r\n\r\n<p>Tuần n&agrave;y, c&aacute;c golfer sẽ c&oacute; mặt tại Louisiana, Mỹ để dự giải đấu đ&ocirc;i Zurich Classic of New Orleans. Đ&acirc;y l&agrave; sự kiện duy nhất trong m&ugrave;a giải diễn ra với thể thức gh&eacute;p cặp golfer qua bốn v&ograve;ng</p>', 'Cheng-tsung Pan lần đầu vô địch một giải PGA Tour, khi đạt điểm -12 qua bốn vòng tại RBC Heritage.', 3, NULL, NULL),
-(11, 0, '2019-04-21 23:13:53', '2019-04-21 23:28:03', 'Mourinho không bất ngờ nếu Ajax hay Tottenham vô địch Champions League', '/photos/1/untitled-1555833729-5394-1555833820_180x108.png', '<p>HLV người Bồ Đ&agrave;o Nha tin hai đội b&oacute;ng bị xem l&agrave; cửa dưới c&oacute; cơ hội ngang ngửa với Liverpool v&agrave; Barca.</p>\r\n\r\n<p>&quot;T&ocirc;i thực sự vui cho Ajax v&agrave; Tottenham. Một khi bạn v&agrave;o tới tứ kết, phải c&oacute; l&yacute; do n&agrave;o đ&oacute; để điều đ&oacute; xảy ra. Ở v&ograve;ng bảng, đ&ocirc;i khi bạn gặp may, đ&ocirc;i khi đối thủ chơi kh&ocirc;ng tốt như kỳ vọng, đ&ocirc;i khi bạn gặp may khi bốc thăm v&ograve;ng 1/8. Nhưng khi v&agrave;o tới tứ kết, theo một c&aacute;ch đ&aacute;ng t&ocirc;n trọng, t&ocirc;i lu&ocirc;n tin rằng mỗi đội c&oacute; 12,5% cơ hội v&ocirc; địch&quot;, Jose Mourinho n&oacute;i.</p>\r\n\r\n<table align=\"center\" border=\"0\" cellpadding=\"3\" cellspacing=\"0\">\r\n	<tbody>\r\n		<tr>\r\n			<td><img alt=\"Mourinho tin rằng Ajax và Tottenham đủ sức vô địch Champions League. Ảnh: Reuters.\" src=\"https://i-thethao.vnecdn.net/2019/04/21/Untitled-7836-1555833819.jpg\" /></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n			<p>Mourinho tin rằng Ajax v&agrave; Tottenham đủ sức v&ocirc; địch Champions League. Ảnh:&nbsp;<em>Reuters</em>.</p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>Ajax li&ecirc;n tiếp tạo ra hai cơn địa chấn khi đ&aacute;nh bại Real Madrid ở v&ograve;ng 1/8 v&agrave; Juventus ở tứ kết. Tottenham cũng g&acirc;y sốc khi loại Man City của Pep Guardiola để g&oacute;p mặt tại b&aacute;n kết.</p>\r\n\r\n<p>&quot;Khi bạn v&agrave;o b&aacute;n kết, cơ hội thậm ch&iacute; lớn hơn, l&agrave; 25% cho mỗi đội&quot;, Mourinho n&oacute;i th&ecirc;m. &quot;T&ocirc;i sẽ kh&ocirc;ng bất ngờ nếu Ajax hay Tottenham v&ocirc; địch. Được rồi, c&oacute; lẽ t&ocirc;i sẽ bất ngờ một ch&uacute;t nhưng t&ocirc;i sẽ kh&ocirc;ng sốc v&igrave; hai đội đ&oacute; đ&atilde; v&agrave;o b&aacute;n kết v&agrave; một trong hai sẽ v&agrave;o chung kết. Trận chung kết l&agrave; trận đấu cuối c&ugrave;ng, chỉ một trận. N&oacute; chỉ k&eacute;o d&agrave;i 90 ph&uacute;t v&agrave; đ&oacute; l&agrave; trận đấu cả đời của đa số cầu thủ&quot;.</p>\r\n\r\n<p>&quot;T&ocirc;i nghĩ cả hai đội đều đang mơ về chức v&ocirc; địch v&agrave; họ c&oacute; l&yacute; do tốt để mơ về n&oacute;. Ajax l&agrave; chuy&ecirc;n gia loại c&aacute;c đội lớn. C&ograve;n Tottenham, ch&uacute;ng ta kh&ocirc;ng thể xem họ l&agrave; đội b&oacute;ng &#39;s&aacute;t &ocirc;ng lớn&#39; v&igrave; Man City kh&ocirc;ng c&oacute; truyền thống tại Champions League. Nhưng dẫu sao Man City vẫn l&agrave; đội b&oacute;ng h&agrave;ng đầu ở Anh, v&agrave; Tottenham vẫn c&oacute; thể đ&aacute;nh bại họ. Cho n&ecirc;n, t&ocirc;i nghĩ cơ hội v&ocirc; địch của Tottenham l&agrave; 50-50&quot;, &ocirc;ng n&oacute;i tiếp.</p>', 'HLV người Bồ Đào Nha tin hai đội bóng bị xem là cửa dưới có cơ hội ngang ngửa với Liverpool và Barca.', 3, NULL, NULL),
-(12, 0, '2019-04-21 23:07:12', '2019-04-21 23:07:12', 'Fognini vô địch Monte Carlo 2019', '/photos/1/20001-1555870122-1555870136-7229-1555870146_180x108.png', '<p>Tay vợt Italy lần đầu v&ocirc; địch một giải ATP 1000, sau khi hạ Dusan Lajovic 6-3, 6-4 tại chung kết giải Monte Carlo.</p>\r\n\r\n<p>Một ng&agrave;y sau khi g&acirc;y sốc bằng việc loại Rafael Nadal ở b&aacute;n kết, Fabio Fognini c&oacute; được danh hiệu lớn nhất trong sự nghiệp từ trước đến nay. Tay vợt Italy nhẹ nh&agrave;ng vượt qua &quot;hiện tượng&quot; Dusan Lajovic trong trận ATP 1000 đầu ti&ecirc;n m&agrave; cả hai g&oacute;p mặt.</p>\r\n\r\n<p>Ở ba lần hạ Nadal trước đ&oacute;, Fognini đều thua nhanh ở v&ograve;ng đấu kế tiếp. Tay vợt Italy khiến người h&acirc;m mộ lo ngại điều tương tự sẽ lặp lại, khi đ&aacute;nh mất game giao b&oacute;ng thứ hai trong trận.</p>\r\n\r\n<p>Nhưng Lajovic cũng mới lần đầu dự chung kết ATP 1000 v&agrave; kh&ocirc;ng vững v&agrave;ng về t&acirc;m l&yacute;. Tay vợt Serbia c&oacute; hai game-point để dẫn 3-1 nhưng đều bỏ lỡ. Anh đ&aacute;nh hỏng qu&aacute; nhiều, để Fognini thắng liền bốn game v&agrave; dẫn ngược 5-2.</p>\r\n\r\n<table align=\"center\" border=\"0\" cellpadding=\"3\" cellspacing=\"0\">\r\n	<tbody>\r\n		<tr>\r\n			<td><img alt=\"Lajovic mắc tới 36 lỗi tự đánh hỏng ở trận chung kết, nhiều hơn Fognini 13 lỗi. Ảnh: AP.\" src=\"https://i-thethao.vnecdn.net/2019/04/22/2000-jpeg-1555869978-2434-1555870145.png\" /></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n			<p>Lajovic mắc tới 36 lỗi tự đ&aacute;nh hỏng ở trận chung kết, nhiều hơn Fognini 13 lỗi. Ảnh:&nbsp;<em>AP</em>.</p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>Fognini c&agrave;ng chơi c&agrave;ng lấy lại sự b&igrave;nh tĩnh. Anh cứu th&agrave;nh c&ocirc;ng break-point ở game giao quyết định, trước khi thắng set đầu 6-3 nhờ điểm winner thứ 12.</p>\r\n\r\n<p>Lajovic đuối hơn trong c&aacute;c pha đ&ocirc;i c&ocirc;ng cuối s&acirc;n nhưng cũng kh&ocirc;ng dễ đầu h&agrave;ng. Tay vợt số 48 thế giới mất game giao b&oacute;ng đầu set hai, nhưng gỡ h&ograve;a ngay sau đ&oacute;. Chỉ khi Fognini thắng th&ecirc;m một game giao b&oacute;ng nữa v&agrave; vươn l&ecirc;n dẫn 3-2, thế trận mới tuột khỏi tầm tay Lajovic. Tay vợt Serbia g&aacute;c vợt chung cuộc với tỷ số 3-6, 4-6.</p>\r\n\r\n<p>&quot;Lần đầu v&agrave;o chung kết ATP 1000 l&agrave; trải nghiệm tuyệt vời với t&ocirc;i&quot;, Lajovic chia sẻ. &quot;Gi&oacute; tại Monte Carlo kh&aacute; to v&agrave; Fognini l&agrave; người gi&agrave;u kinh nghiệm hơn ở điều kiện thời tiết như h&ocirc;m nay. C&aacute;c c&uacute; quả v&agrave; khả năng di chuyển của anh ấy cũng rất tốt. T&ocirc;i c&oacute; cảm gi&aacute;c rằng m&igrave;nh vất vả hơn anh ấy trong việc gi&agrave;nh điểm. Đ&oacute; l&agrave; điểm mấu chốt trong thất bại n&agrave;y&quot;.</p>\r\n\r\n<p>Fognini l&agrave; hạt giống thấp nhất đăng quang tại Monte Carlo trong 20 năm qua. Anh gi&agrave;nh số tiền thưởng 958.000 đ&ocirc;la c&ugrave;ng 1000 điểm thưởng ATP &ndash; số điểm gi&uacute;p tay vợt Italy vươn l&ecirc;n thứ 12 thế giới v&agrave;o tuần n&agrave;y.</p>\r\n\r\n<table align=\"center\" border=\"0\" cellpadding=\"3\" cellspacing=\"0\">\r\n	<tbody>\r\n		<tr>\r\n			<td><img alt=\"Fognini lên ngôi xứng đáng tại Monte Carlo. Ảnh: AP.\" src=\"https://i-thethao.vnecdn.net/2019/04/22/2000-1-jpeg-1555870095-5370-1555870146.png\" /></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n			<p>Fognini l&ecirc;n ng&ocirc;i xứng đ&aacute;ng tại Monte Carlo. Ảnh<em>:&nbsp;AP.</em></p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>&quot;T&ocirc;i phải chuẩn bị kỹ c&agrave;ng cho trận đấu n&agrave;y v&igrave; HLV cũ của t&ocirc;i đang l&agrave;m việc c&ugrave;ng Lajovic&quot;, Fognini chia sẻ. &quot;T&ocirc;i đ&atilde; cố gắng kh&ocirc;ng để bị bắt b&agrave;i. Đ&acirc;y l&agrave; th&agrave;nh tựu to lớn sau một giải đấu kh&oacute; khăn. T&ocirc;i rất hạnh ph&uacute;c&quot;.</p>\r\n\r\n<p>Danh hiệu ATP 1000 đầu ti&ecirc;n sẽ mang đến sự tự tin cho Fognini trong phần c&ograve;n lại của m&ugrave;a đất nện. Tay vợt mới trở lại sau chấn thương từng hai lần su&yacute;t bị loại tại Monte Carlo năm nay. Anh bị Andrey Rubley dẫn 6-4, 4-1 ở v&ograve;ng một v&agrave; bị Borna Coric dẫn 6-1, 2-0 ở tứ kết. Fognini thắng ngược cả hai trận đấu đ&oacute;, rồi hạ &quot;Vua đất nện&quot; Nadal chỉ sau hai set v&agrave; cuối c&ugrave;ng c&oacute; danh hiệu lớn nhất sự nghiệp từ trước đến nay</p>', 'Tay vợt Italy lần đầu vô địch một giải ATP 1000, sau khi hạ Dusan Lajovic 6-3, 6-4 tại chung kết giải Monte Carlo.', 3, NULL, NULL),
-(13, 0, '2019-04-21 23:08:43', '2019-04-21 23:08:43', 'Ronaldo cam kết ở lại Juventus', '/photos/1/ronaldo-1555823369-1555823379-8659-1555823432.png', '<p>Si&ecirc;u sao 34 tuổi sẽ gắn b&oacute; với &quot;L&atilde;o B&agrave;&quot; th&ecirc;m &iacute;t nhất một m&ugrave;a giải để chinh phục Champions League.</p>\r\n\r\n<p>&quot;Chắc chắn 1000 phần trăm l&agrave; t&ocirc;i sẽ ở lại Juventus m&ugrave;a tới&quot;, Cristiano Ronaldo n&oacute;i sau khi c&ugrave;ng Juventus v&ocirc; địch Serie A 2018-2019. Đường căng ngang của anh khiến hậu vệ Fiorentina phản lưới, ấn định thắng lợi 2-1 cho Juventus ở v&ograve;ng 33. Chiến thắng gi&uacute;p CLB th&agrave;nh Turin hơn nh&igrave; bảng Napoli 20 điểm, v&ocirc; địch sớm năm v&ograve;ng.</p>\r\n\r\n<table align=\"center\" border=\"0\" cellpadding=\"3\" cellspacing=\"0\">\r\n	<tbody>\r\n		<tr>\r\n			<td><img alt=\"Ronaldo (số 7) sẽ không rời Juventus hè 2019. Ảnh: Reuters.\" src=\"https://i-thethao.vnecdn.net/2019/04/21/ronaldo-1555823369-1555823379-8659-1555823432.png\" /></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n			<p>Ronaldo (số 7) sẽ kh&ocirc;ng rời Juventus h&egrave; 2019. Ảnh:&nbsp;<em>Reuters</em>.</p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>Tương lai của Ronaldo tại Turin bị đặt dấu hỏi, sau khi Juventus bị Ajax loại ở tứ kết Champions League. Ch&acirc;u &Acirc;u l&agrave; mục ti&ecirc;u chinh phục của Juventus m&ugrave;a n&agrave;y, sau bảy năm li&ecirc;n tiếp đoạt Scudetto. Nhưng, sự hiện diện của Ronaldo chưa đủ để gi&uacute;p &quot;L&atilde;o B&agrave;&quot; ho&agrave;n th&agrave;nh ước nguyện. Danh hiệu Serie A của Juventus gần bằng Inter v&agrave; AC Milan cộng lại, nhưng họ thua hai CLB th&agrave;nh Milan ở danh hiệu Champions League.</p>\r\n\r\n<p>Ronaldo cũng coi trọng Champions League hơn danh hiệu quốc gia, nhưng đ&acirc;y l&agrave; lần đầu anh v&ocirc; địch Serie A. Si&ecirc;u sao người Bồ Đ&agrave;o Nha trở th&agrave;nh cầu thủ đầu ti&ecirc;n v&ocirc; địch Anh, T&acirc;y Ban Nha v&agrave; Italy. Juventus c&oacute; thể sẽ lột x&aacute;c trong h&egrave; 2019, để chinh phục Champions League sau 24 năm dang dở.</p>\r\n\r\n<p>Ronaldo cập bến Juventus h&egrave; 2018 với gi&aacute; 120 triệu đ&ocirc;la. Mục ti&ecirc;u của anh l&agrave; đi t&igrave;m thử th&aacute;ch mới.</p>', 'Siêu sao 34 tuổi sẽ gắn bó với \"Lão Bà\" thêm ít nhất một mùa giải để chinh phục Champions League.', 3, NULL, NULL),
-(14, 0, '2019-04-21 23:11:53', '2019-04-21 23:11:53', 'Golfer Đài Loan vô địch RBC Heritage', '/photos/1/2000-1555910972-2965-1555910996_180x108.jpg', '<p>Cheng-tsung Pan lần đầu v&ocirc; địch một giải PGA Tour, khi đạt điểm -12 qua bốn v&ograve;ng tại RBC Heritage.</p>\r\n\r\n<p>Sau 32 năm, Đ&agrave;i Loan mới c&oacute; th&ecirc;m một golfer v&ocirc; địch PGA Tour. C.T. Pan tạo ra bất ngờ lớn khi vượt mặt golfer số một thế giới Dustin Johnson c&ugrave;ng những t&ecirc;n tuổi kh&aacute;c để gi&agrave;nh số tiền thưởng 1,242 triệu đ&ocirc;la cho nh&agrave; v&ocirc; địch.</p>\r\n\r\n<p>Năm birdie v&agrave; một bogey ở v&ograve;ng cuối l&agrave; đủ để Pan l&ecirc;n ng&ocirc;i với tổng điểm -12, c&aacute;ch đ&uacute;ng một gậy so với nh&igrave; bảng Matt Kuchar. Chiến thắng tại s&acirc;n Harbour Town khiến sự nghiệp của golfer Đ&agrave;i Loan sang trang. Anh được đảm bảo quyền dự PGA Tour đến năm 2021, gi&agrave;nh v&eacute; dự hai major PGA Championship 2019 v&agrave; Masters 2020. B&ecirc;n cạnh đ&oacute;, Pan cũng s&aacute;ng cửa lọt v&agrave;o đội h&igrave;nh tuyển Quốc tế dự Presidents Cup v&agrave;o cuối năm.</p>\r\n\r\n<p>&quot;Đ&acirc;y l&agrave; chiến thắng kh&oacute; tin&quot;, Pan chia sẻ ngay sau giải. &quot;Điện thoại của t&ocirc;i đổ chu&ocirc;ng li&ecirc;n tục trong 10 ph&uacute;t vừa qua. T&ocirc;i rất hạnh ph&uacute;c với chiến thắng đầu ti&ecirc;n tr&ecirc;n Tour&quot;.</p>\r\n\r\n<table align=\"center\" border=\"0\" cellpadding=\"3\" cellspacing=\"0\">\r\n	<tbody>\r\n		<tr>\r\n			<td><img alt=\"C.T. Pan là golfer thứ 14 lần đầu vô địch PGA Tour tại RBC Heritage. Ảnh: AP.\" src=\"https://i-thethao.vnecdn.net/2019/04/22/2000-jpeg-1555910946-4777-1555910996.png\" /></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n			<p>C.T. Pan l&agrave; golfer thứ 14 lần đầu v&ocirc; địch PGA Tour tại RBC Heritage. Ảnh:&nbsp;<em>AP.</em></p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>Danh hiệu tại RBC Heritage cũng giải tỏa phần n&agrave;o cho C.T. Pan, người đ&aacute;nh kh&ocirc;ng tốt từ đầu năm với bốn giải kh&ocirc;ng qua cắt v&agrave; chỉ c&oacute; ba lần lọt top 25 ở c&aacute;c giải tham dự.</p>\r\n\r\n<p>Matt Kuchar đứng thứ hai với điểm -11, trong khi Patrick Cantlay, Scott Piercy v&agrave; Shane Lowry xếp T3 với một gậy nhiều hơn. Golfer dẫn đầu v&ograve;ng ba Dustin Johnson th&igrave; g&acirc;y thất vọng tr&agrave;n trề. Số một thế giới bogey ba lần v&agrave; bogey k&eacute;p hai lần chỉ trong năm hố, từ hố 11 đến 15, qua đ&oacute; đạt điểm +6 ở v&ograve;ng cuối v&agrave; rớt xuống T28 chung cuộc với tổng -4.</p>\r\n\r\n<p>Tuần n&agrave;y, c&aacute;c golfer sẽ c&oacute; mặt tại Louisiana, Mỹ để dự giải đấu đ&ocirc;i Zurich Classic of New Orleans. Đ&acirc;y l&agrave; sự kiện duy nhất trong m&ugrave;a giải diễn ra với thể thức gh&eacute;p cặp golfer qua bốn v&ograve;ng</p>', 'Cheng-tsung Pan lần đầu vô địch một giải PGA Tour, khi đạt điểm -12 qua bốn vòng tại RBC Heritage.', 3, NULL, NULL),
-(15, 0, '2019-04-21 23:13:53', '2019-04-21 23:28:35', 'Mourinho không bất ngờ nếu Ajax hay Tottenham vô địch Champions League', '/photos/1/untitled-1555833729-5394-1555833820_180x108.png', '<p>HLV người Bồ Đ&agrave;o Nha tin hai đội b&oacute;ng bị xem l&agrave; cửa dưới c&oacute; cơ hội ngang ngửa với Liverpool v&agrave; Barca.</p>\r\n\r\n<p>&quot;T&ocirc;i thực sự vui cho Ajax v&agrave; Tottenham. Một khi bạn v&agrave;o tới tứ kết, phải c&oacute; l&yacute; do n&agrave;o đ&oacute; để điều đ&oacute; xảy ra. Ở v&ograve;ng bảng, đ&ocirc;i khi bạn gặp may, đ&ocirc;i khi đối thủ chơi kh&ocirc;ng tốt như kỳ vọng, đ&ocirc;i khi bạn gặp may khi bốc thăm v&ograve;ng 1/8. Nhưng khi v&agrave;o tới tứ kết, theo một c&aacute;ch đ&aacute;ng t&ocirc;n trọng, t&ocirc;i lu&ocirc;n tin rằng mỗi đội c&oacute; 12,5% cơ hội v&ocirc; địch&quot;, Jose Mourinho n&oacute;i.</p>\r\n\r\n<table align=\"center\" border=\"0\" cellpadding=\"3\" cellspacing=\"0\">\r\n	<tbody>\r\n		<tr>\r\n			<td><img alt=\"Mourinho tin rằng Ajax và Tottenham đủ sức vô địch Champions League. Ảnh: Reuters.\" src=\"https://i-thethao.vnecdn.net/2019/04/21/Untitled-7836-1555833819.jpg\" /></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n			<p>Mourinho tin rằng Ajax v&agrave; Tottenham đủ sức v&ocirc; địch Champions League. Ảnh:&nbsp;<em>Reuters</em>.</p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>Ajax li&ecirc;n tiếp tạo ra hai cơn địa chấn khi đ&aacute;nh bại Real Madrid ở v&ograve;ng 1/8 v&agrave; Juventus ở tứ kết. Tottenham cũng g&acirc;y sốc khi loại Man City của Pep Guardiola để g&oacute;p mặt tại b&aacute;n kết.</p>\r\n\r\n<p>&quot;Khi bạn v&agrave;o b&aacute;n kết, cơ hội thậm ch&iacute; lớn hơn, l&agrave; 25% cho mỗi đội&quot;, Mourinho n&oacute;i th&ecirc;m. &quot;T&ocirc;i sẽ kh&ocirc;ng bất ngờ nếu Ajax hay Tottenham v&ocirc; địch. Được rồi, c&oacute; lẽ t&ocirc;i sẽ bất ngờ một ch&uacute;t nhưng t&ocirc;i sẽ kh&ocirc;ng sốc v&igrave; hai đội đ&oacute; đ&atilde; v&agrave;o b&aacute;n kết v&agrave; một trong hai sẽ v&agrave;o chung kết. Trận chung kết l&agrave; trận đấu cuối c&ugrave;ng, chỉ một trận. N&oacute; chỉ k&eacute;o d&agrave;i 90 ph&uacute;t v&agrave; đ&oacute; l&agrave; trận đấu cả đời của đa số cầu thủ&quot;.</p>\r\n\r\n<p>&quot;T&ocirc;i nghĩ cả hai đội đều đang mơ về chức v&ocirc; địch v&agrave; họ c&oacute; l&yacute; do tốt để mơ về n&oacute;. Ajax l&agrave; chuy&ecirc;n gia loại c&aacute;c đội lớn. C&ograve;n Tottenham, ch&uacute;ng ta kh&ocirc;ng thể xem họ l&agrave; đội b&oacute;ng &#39;s&aacute;t &ocirc;ng lớn&#39; v&igrave; Man City kh&ocirc;ng c&oacute; truyền thống tại Champions League. Nhưng dẫu sao Man City vẫn l&agrave; đội b&oacute;ng h&agrave;ng đầu ở Anh, v&agrave; Tottenham vẫn c&oacute; thể đ&aacute;nh bại họ. Cho n&ecirc;n, t&ocirc;i nghĩ cơ hội v&ocirc; địch của Tottenham l&agrave; 50-50&quot;, &ocirc;ng n&oacute;i tiếp.</p>', 'HLV người Bồ Đào Nha tin hai đội bóng bị xem là cửa dưới có cơ hội ngang ngửa với Liverpool và Barca.', 3, NULL, NULL);
+(7, 0, '2019-04-21 03:15:05', '2019-04-22 01:12:55', 'Nông dân vượt dốc đào măng đắng vào cuối vụ ở Thanh Hóa', '/photos/1/20190416095816-1555493123-5172-1555493171_380x228.jpg', '<p>Ng&agrave;y 22/4, Bộ trưởng Gi&aacute;o dục v&agrave; Đ&agrave;o tạo Ph&ugrave;ng Xu&acirc;n Nhạ đ&atilde; trả lời b&aacute;o ch&iacute;&nbsp;về việc xử l&yacute; những người li&ecirc;n quan đến gian lận điểm thi ở H&agrave; Giang, Sơn La v&agrave; H&ograve;a B&igrave;nh.&nbsp;</p>\r\n\r\n<p><em>- 16 c&aacute;n bộ gi&aacute;o dục, c&ocirc;ng an ở ba tỉnh đ&atilde; bị khởi tố v&igrave; li&ecirc;n quan gian lận điểm thi THPT Quốc gia, nhưng Chủ tịch Hội đồng thi, người đứng đầu ng&agrave;nh gi&aacute;o dục địa phương, phụ huynh trong ng&agrave;nh c&oacute; con em được n&acirc;ng điểm chưa bị xử l&yacute;. L&agrave; Chủ tịch Hội đồng thi THPT quốc gia, Bộ trưởng c&oacute; &yacute; kiến thế n&agrave;o với địa phương?</em></p>\r\n\r\n<p>- T&ocirc;i rất đau l&ograve;ng v&agrave; kh&ocirc;ng chấp nhận những c&aacute;n bộ, vi&ecirc;n chức ng&agrave;nh gi&aacute;o dục c&oacute; h&agrave;nh vi gian lận điểm thi cho th&iacute; sinh. H&agrave;nh vi n&agrave;y vi phạm đạo đức nh&agrave; gi&aacute;o, vi phạm ph&aacute;p luật nghi&ecirc;m trọng.&nbsp;</p>\r\n\r\n<p>Bộ đề nghị c&aacute;c địa phương xem x&eacute;t xử l&yacute; nghi&ecirc;m c&aacute;n bộ, c&ocirc;ng chức, vi&ecirc;n chức trong ng&agrave;nh gi&aacute;o dục c&oacute; h&agrave;nh vi gian lận điểm thi cho con em m&igrave;nh, tinh thần l&agrave; cương quyết đưa ra khỏi ng&agrave;nh những c&aacute;n bộ n&agrave;y.&nbsp;Bộ cũng đang t&iacute;ch cực phối hợp với Bộ C&ocirc;ng an x&aacute;c định đối tượng vi phạm để xử l&yacute; c&ocirc;ng bằng, ch&iacute;nh x&aacute;c, kh&ocirc;ng bao che v&agrave; minh bạch.</p>\r\n\r\n<table align="center" border="0" cellpadding="3" cellspacing="0">\r\n	<tbody>\r\n		<tr>\r\n			<td><img alt="Bộ trưởng Phùng Xuân Nhạ. Ảnh: Võ Hải." src="https://i-vnexpress.vnecdn.net/2019/04/22/ong-nha-8650-1555909769.jpg" /></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n			<p>Bộ trưởng Ph&ugrave;ng Xu&acirc;n Nhạ. Ảnh:&nbsp;<em>V&otilde; Hải.</em></p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p><em>- 222 t</em><em>h&iacute; sinh sai điểm thi ở H&agrave; Giang, Sơn La, H&ograve;a B&igrave;nh vẫn được x&eacute;t tuyển đại học, trong khi những em mang điện thoại v&agrave;o ph&ograve;ng thi, d&ugrave; chưa sử dụng đ&atilde; bị đ&igrave;nh chỉ, hủy kết quả thi. Bộ trưởng nghĩ sao về hai c&aacute;ch xử l&yacute; n&agrave;y?</em></p>\r\n\r\n<p>-&nbsp;Tất cả h&agrave;nh vi gian lận trong kỳ thi THPT quốc gia n&oacute;i ri&ecirc;ng v&agrave; bất cứ kỳ thi n&agrave;o kh&aacute;c đều sẽ bị xử l&yacute; nghi&ecirc;m.&nbsp;C&aacute;c đại học khối c&ocirc;ng an đ&atilde; hủy kết quả tr&uacute;ng tuyển, trả về địa phương th&iacute; sinh được n&acirc;ng điểm. C&aacute;c trường khối d&acirc;n sự cũng hủy kết quả tr&uacute;ng tuyển với th&iacute; sinh c&oacute; điểm chấm thẩm định thấp hơn điểm chuẩn.</p>\r\n\r\n<p>Ri&ecirc;ng 12 th&iacute; sinh c&oacute; điểm chấm thẩm định kh&ocirc;ng thấp hơn điểm chuẩn th&igrave; trước mắt c&aacute;c trường đang cho tiếp tục theo học. Tuy nhi&ecirc;n, khi c&oacute; kết luận của cơ quan điều tra, em n&agrave;o c&oacute; tham gia v&agrave;o qu&aacute; tr&igrave;nh gian lận sẽ bị xử l&yacute; theo ph&aacute;p luật.</p>\r\n\r\n<p>Quan điểm của Bộ Gi&aacute;o dục v&agrave; Đ&agrave;o tạo l&agrave; xử l&yacute; nghi&ecirc;m khắc, xem x&eacute;t cho th&ocirc;i học những th&iacute; sinh c&oacute; kết luận li&ecirc;n quan đến gian lận thi cử.</p>\r\n\r\n<p><em>-&nbsp;Tại sao việc xử l&yacute; kh&ocirc;ng sớm hơn để đỡ tốn c&ocirc;ng sức, tiền bạc khi c&aacute;c em học tiếp?</em></p>\r\n\r\n<p>-&nbsp;Xử l&yacute; sai phạm li&ecirc;n quan đến kết quả thi THPT quốc gia của th&iacute; sinh kh&ocirc;ng chỉ được &aacute;p dụng bởi Quy chế thi THPT quốc gia m&agrave; c&ograve;n nhiều văn bản quy phạm ph&aacute;p luật v&agrave; c&aacute;c quy định kh&aacute;c của cơ sở gi&aacute;o dục đại học. Khi xử l&yacute; một trường hợp, ch&uacute;ng ta phải &aacute;p dụng nhiều quy định để đảm bảo t&iacute;nh ch&iacute;nh x&aacute;c, c&ocirc;ng bằng, nghi&ecirc;m minh.</p>\r\n\r\n<p>Theo Luật Gi&aacute;o dục đại học, việc tuyển sinh thuộc quyền tự chủ của cơ sở gi&aacute;o dục đại học. C&aacute;c cơ sở gi&aacute;o dục đại học c&oacute; quyền v&agrave; tr&aacute;ch nhiệm xử l&yacute;, kh&ocirc;ng thụ động ngồi đợi chỉ đạo của Bộ. Vừa qua, c&aacute;c đại học khối c&ocirc;ng an đ&atilde; chủ động xử l&yacute; theo quyền v&agrave; tr&aacute;ch nhiệm của họ. T&ocirc;i ủng hộ c&aacute;ch xử l&yacute; của c&aacute;c trường n&agrave;y.</p>\r\n\r\n<p>Ch&uacute;ng t&ocirc;i đang r&agrave; so&aacute;t, tham khảo &yacute; kiến chuy&ecirc;n gia ph&aacute;p luật để ho&agrave;n thiện c&aacute;c quy chế của ng&agrave;nh nhằm giải quyết những vấn đề thực tế ph&aacute;t sinh khi thực hiện cơ chế tự chủ đại học, đặc biệt l&agrave; quy định c&aacute;c chế t&agrave;i đủ mạnh để răn đe, xử l&yacute; ngay với c&aacute;c loại vi phạm gi&aacute;n tiếp trong thi cử.</p>\r\n\r\n<table align="center" border="0" cellpadding="3" cellspacing="0">\r\n	<tbody>\r\n		<tr>\r\n			<td><a href="https://vnexpress.net/infographics/222-thi-sinh-duoc-nang-diem-bi-xu-ly-the-nao-3911339.html"><img alt="222 thí sinh được nâng điểm đang bị xử lý như thế nào? Đồ họa: Tiến Thành" src="https://i-vnexpress.vnecdn.net/2019/04/22/thi-sinh-vi-pham-5511-15557623-6234-6850-1555906557.jpg" /></a></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n			<p>222 th&iacute; sinh được n&acirc;ng điểm đang bị xử l&yacute; như thế n&agrave;o? Đồ họa:&nbsp;<em>Tiến Th&agrave;nh</em></p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p><em>- Hai th&aacute;ng nữa l&agrave; diễn ra kỳ thi THPT quốc gia 2019, Bộ Gi&aacute;o dục v&agrave; Đ&agrave;o tạo đ&atilde; chuẩn bị như thế n&agrave;o để ngăn chặn gian lận?</em></p>\r\n\r\n<p>-&nbsp;T&ocirc;i lu&ocirc;n qu&aacute;n triệt với c&aacute;n bộ tham gia v&agrave;o c&ocirc;ng t&aacute;c thi rằng việc tổ chức kỳ thi THPT quốc gia v&agrave; tuyển sinh đại học kh&ocirc;ng chỉ l&agrave; nhiệm vụ chuy&ecirc;n m&ocirc;n của ng&agrave;nh gi&aacute;o dục, m&agrave; c&ograve;n l&agrave; nhiệm vụ ch&iacute;nh trị, tr&aacute;ch nhiệm với x&atilde; hội. Do đ&oacute;, việc n&agrave;y phải đặc biệt được coi trọng để đảm bảo t&iacute;nh an to&agrave;n, nghi&ecirc;m t&uacute;c, c&ocirc;ng bằng, ch&iacute;nh x&aacute;c.</p>\r\n\r\n<p>Những &quot;lỗ hổng&quot; về mặt quy tr&igrave;nh, kỹ thuật trong tổ chức thi THPT quốc gia 2018 hiện đ&atilde; được ng&agrave;nh gi&aacute;o dục khắc phục. Ch&uacute;ng t&ocirc;i cũng tăng cường ứng dụng c&ocirc;ng nghệ th&ocirc;ng tin v&agrave; sử dụng c&aacute;c thiết bị kỹ thuật để đảm bảo an ninh, an to&agrave;n trong tổ chức thi; n&acirc;ng cấp phần mềm để ngăn chặn v&agrave; hỗ trợ ph&aacute;t hiện gian lận trong qu&aacute; tr&igrave;nh chấm thi.</p>\r\n\r\n<p>Tuy nhi&ecirc;n, kỹ thuật, c&ocirc;ng nghệ c&oacute; tốt đến đ&acirc;u, con người tham gia v&agrave;o l&agrave;m thi m&agrave; kh&ocirc;ng tốt, cố &yacute; vi phạm th&igrave; ti&ecirc;u cực vẫn c&oacute; thể xảy đến. Do đ&oacute;, trong c&aacute;c cuộc họp chuẩn bị cho kỳ thi năm nay, t&ocirc;i lu&ocirc;n đặc biệt y&ecirc;u cầu lựa chọn c&aacute;n bộ c&oacute; năng lực, tr&aacute;ch nhiệm, phẩm chất ch&iacute;nh trị tốt để tham gia l&agrave;m thi v&agrave; phải chịu tr&aacute;ch nhiệm trực tiếp trước ph&aacute;p luật.</p>\r\n\r\n<p>Bộ Gi&aacute;o dục v&agrave; Đ&agrave;o tạo mong c&aacute;c bộ ng&agrave;nh, địa phương v&agrave; người d&acirc;n cả nước đồng h&agrave;nh, gi&aacute;m s&aacute;t, để việc tổ chức kỳ thi THPT quốc gia v&agrave; tuyển sinh đại học, cao đẳng 2019 th&agrave;nh c&ocirc;ng tốt đẹp.</p>', 'Gia đình ông Phạm Văn Ý vượt sườn dốc trơn trượt, tìm đào măng đắng vào cuối vụ. Thân măng dài 20-30 cm trọng', 3, NULL, NULL),
+(8, 0, '2019-04-21 23:07:12', '2019-04-21 23:07:12', 'Fognini vô địch Monte Carlo 2019', '/photos/1/20001-1555870122-1555870136-7229-1555870146_180x108.png', '<p>Tay vợt Italy lần đầu v&ocirc; địch một giải ATP 1000, sau khi hạ Dusan Lajovic 6-3, 6-4 tại chung kết giải Monte Carlo.</p>\r\n\r\n<p>Một ng&agrave;y sau khi g&acirc;y sốc bằng việc loại Rafael Nadal ở b&aacute;n kết, Fabio Fognini c&oacute; được danh hiệu lớn nhất trong sự nghiệp từ trước đến nay. Tay vợt Italy nhẹ nh&agrave;ng vượt qua &quot;hiện tượng&quot; Dusan Lajovic trong trận ATP 1000 đầu ti&ecirc;n m&agrave; cả hai g&oacute;p mặt.</p>\r\n\r\n<p>Ở ba lần hạ Nadal trước đ&oacute;, Fognini đều thua nhanh ở v&ograve;ng đấu kế tiếp. Tay vợt Italy khiến người h&acirc;m mộ lo ngại điều tương tự sẽ lặp lại, khi đ&aacute;nh mất game giao b&oacute;ng thứ hai trong trận.</p>\r\n\r\n<p>Nhưng Lajovic cũng mới lần đầu dự chung kết ATP 1000 v&agrave; kh&ocirc;ng vững v&agrave;ng về t&acirc;m l&yacute;. Tay vợt Serbia c&oacute; hai game-point để dẫn 3-1 nhưng đều bỏ lỡ. Anh đ&aacute;nh hỏng qu&aacute; nhiều, để Fognini thắng liền bốn game v&agrave; dẫn ngược 5-2.</p>\r\n\r\n<table align="center" border="0" cellpadding="3" cellspacing="0">\r\n	<tbody>\r\n		<tr>\r\n			<td><img alt="Lajovic mắc tới 36 lỗi tự đánh hỏng ở trận chung kết, nhiều hơn Fognini 13 lỗi. Ảnh: AP." src="https://i-thethao.vnecdn.net/2019/04/22/2000-jpeg-1555869978-2434-1555870145.png" /></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n			<p>Lajovic mắc tới 36 lỗi tự đ&aacute;nh hỏng ở trận chung kết, nhiều hơn Fognini 13 lỗi. Ảnh:&nbsp;<em>AP</em>.</p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>Fognini c&agrave;ng chơi c&agrave;ng lấy lại sự b&igrave;nh tĩnh. Anh cứu th&agrave;nh c&ocirc;ng break-point ở game giao quyết định, trước khi thắng set đầu 6-3 nhờ điểm winner thứ 12.</p>\r\n\r\n<p>Lajovic đuối hơn trong c&aacute;c pha đ&ocirc;i c&ocirc;ng cuối s&acirc;n nhưng cũng kh&ocirc;ng dễ đầu h&agrave;ng. Tay vợt số 48 thế giới mất game giao b&oacute;ng đầu set hai, nhưng gỡ h&ograve;a ngay sau đ&oacute;. Chỉ khi Fognini thắng th&ecirc;m một game giao b&oacute;ng nữa v&agrave; vươn l&ecirc;n dẫn 3-2, thế trận mới tuột khỏi tầm tay Lajovic. Tay vợt Serbia g&aacute;c vợt chung cuộc với tỷ số 3-6, 4-6.</p>\r\n\r\n<p>&quot;Lần đầu v&agrave;o chung kết ATP 1000 l&agrave; trải nghiệm tuyệt vời với t&ocirc;i&quot;, Lajovic chia sẻ. &quot;Gi&oacute; tại Monte Carlo kh&aacute; to v&agrave; Fognini l&agrave; người gi&agrave;u kinh nghiệm hơn ở điều kiện thời tiết như h&ocirc;m nay. C&aacute;c c&uacute; quả v&agrave; khả năng di chuyển của anh ấy cũng rất tốt. T&ocirc;i c&oacute; cảm gi&aacute;c rằng m&igrave;nh vất vả hơn anh ấy trong việc gi&agrave;nh điểm. Đ&oacute; l&agrave; điểm mấu chốt trong thất bại n&agrave;y&quot;.</p>\r\n\r\n<p>Fognini l&agrave; hạt giống thấp nhất đăng quang tại Monte Carlo trong 20 năm qua. Anh gi&agrave;nh số tiền thưởng 958.000 đ&ocirc;la c&ugrave;ng 1000 điểm thưởng ATP &ndash; số điểm gi&uacute;p tay vợt Italy vươn l&ecirc;n thứ 12 thế giới v&agrave;o tuần n&agrave;y.</p>\r\n\r\n<table align="center" border="0" cellpadding="3" cellspacing="0">\r\n	<tbody>\r\n		<tr>\r\n			<td><img alt="Fognini lên ngôi xứng đáng tại Monte Carlo. Ảnh: AP." src="https://i-thethao.vnecdn.net/2019/04/22/2000-1-jpeg-1555870095-5370-1555870146.png" /></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n			<p>Fognini l&ecirc;n ng&ocirc;i xứng đ&aacute;ng tại Monte Carlo. Ảnh<em>:&nbsp;AP.</em></p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>&quot;T&ocirc;i phải chuẩn bị kỹ c&agrave;ng cho trận đấu n&agrave;y v&igrave; HLV cũ của t&ocirc;i đang l&agrave;m việc c&ugrave;ng Lajovic&quot;, Fognini chia sẻ. &quot;T&ocirc;i đ&atilde; cố gắng kh&ocirc;ng để bị bắt b&agrave;i. Đ&acirc;y l&agrave; th&agrave;nh tựu to lớn sau một giải đấu kh&oacute; khăn. T&ocirc;i rất hạnh ph&uacute;c&quot;.</p>\r\n\r\n<p>Danh hiệu ATP 1000 đầu ti&ecirc;n sẽ mang đến sự tự tin cho Fognini trong phần c&ograve;n lại của m&ugrave;a đất nện. Tay vợt mới trở lại sau chấn thương từng hai lần su&yacute;t bị loại tại Monte Carlo năm nay. Anh bị Andrey Rubley dẫn 6-4, 4-1 ở v&ograve;ng một v&agrave; bị Borna Coric dẫn 6-1, 2-0 ở tứ kết. Fognini thắng ngược cả hai trận đấu đ&oacute;, rồi hạ &quot;Vua đất nện&quot; Nadal chỉ sau hai set v&agrave; cuối c&ugrave;ng c&oacute; danh hiệu lớn nhất sự nghiệp từ trước đến nay</p>', 'Tay vợt Italy lần đầu vô địch một giải ATP 1000, sau khi hạ Dusan Lajovic 6-3, 6-4 tại chung kết giải Monte Carlo.', 3, NULL, NULL),
+(9, 0, '2019-04-21 23:08:43', '2019-04-21 23:08:43', 'Ronaldo cam kết ở lại Juventus', '/photos/1/ronaldo-1555823369-1555823379-8659-1555823432.png', '<p>Si&ecirc;u sao 34 tuổi sẽ gắn b&oacute; với &quot;L&atilde;o B&agrave;&quot; th&ecirc;m &iacute;t nhất một m&ugrave;a giải để chinh phục Champions League.</p>\r\n\r\n<p>&quot;Chắc chắn 1000 phần trăm l&agrave; t&ocirc;i sẽ ở lại Juventus m&ugrave;a tới&quot;, Cristiano Ronaldo n&oacute;i sau khi c&ugrave;ng Juventus v&ocirc; địch Serie A 2018-2019. Đường căng ngang của anh khiến hậu vệ Fiorentina phản lưới, ấn định thắng lợi 2-1 cho Juventus ở v&ograve;ng 33. Chiến thắng gi&uacute;p CLB th&agrave;nh Turin hơn nh&igrave; bảng Napoli 20 điểm, v&ocirc; địch sớm năm v&ograve;ng.</p>\r\n\r\n<table align="center" border="0" cellpadding="3" cellspacing="0">\r\n	<tbody>\r\n		<tr>\r\n			<td><img alt="Ronaldo (số 7) sẽ không rời Juventus hè 2019. Ảnh: Reuters." src="https://i-thethao.vnecdn.net/2019/04/21/ronaldo-1555823369-1555823379-8659-1555823432.png" /></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n			<p>Ronaldo (số 7) sẽ kh&ocirc;ng rời Juventus h&egrave; 2019. Ảnh:&nbsp;<em>Reuters</em>.</p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>Tương lai của Ronaldo tại Turin bị đặt dấu hỏi, sau khi Juventus bị Ajax loại ở tứ kết Champions League. Ch&acirc;u &Acirc;u l&agrave; mục ti&ecirc;u chinh phục của Juventus m&ugrave;a n&agrave;y, sau bảy năm li&ecirc;n tiếp đoạt Scudetto. Nhưng, sự hiện diện của Ronaldo chưa đủ để gi&uacute;p &quot;L&atilde;o B&agrave;&quot; ho&agrave;n th&agrave;nh ước nguyện. Danh hiệu Serie A của Juventus gần bằng Inter v&agrave; AC Milan cộng lại, nhưng họ thua hai CLB th&agrave;nh Milan ở danh hiệu Champions League.</p>\r\n\r\n<p>Ronaldo cũng coi trọng Champions League hơn danh hiệu quốc gia, nhưng đ&acirc;y l&agrave; lần đầu anh v&ocirc; địch Serie A. Si&ecirc;u sao người Bồ Đ&agrave;o Nha trở th&agrave;nh cầu thủ đầu ti&ecirc;n v&ocirc; địch Anh, T&acirc;y Ban Nha v&agrave; Italy. Juventus c&oacute; thể sẽ lột x&aacute;c trong h&egrave; 2019, để chinh phục Champions League sau 24 năm dang dở.</p>\r\n\r\n<p>Ronaldo cập bến Juventus h&egrave; 2018 với gi&aacute; 120 triệu đ&ocirc;la. Mục ti&ecirc;u của anh l&agrave; đi t&igrave;m thử th&aacute;ch mới.</p>', 'Siêu sao 34 tuổi sẽ gắn bó với "Lão Bà" thêm ít nhất một mùa giải để chinh phục Champions League.', 3, NULL, NULL),
+(10, 0, '2019-04-21 23:11:53', '2019-04-21 23:11:53', 'Golfer Đài Loan vô địch RBC Heritage', '/photos/1/2000-1555910972-2965-1555910996_180x108.jpg', '<p>Cheng-tsung Pan lần đầu v&ocirc; địch một giải PGA Tour, khi đạt điểm -12 qua bốn v&ograve;ng tại RBC Heritage.</p>\r\n\r\n<p>Sau 32 năm, Đ&agrave;i Loan mới c&oacute; th&ecirc;m một golfer v&ocirc; địch PGA Tour. C.T. Pan tạo ra bất ngờ lớn khi vượt mặt golfer số một thế giới Dustin Johnson c&ugrave;ng những t&ecirc;n tuổi kh&aacute;c để gi&agrave;nh số tiền thưởng 1,242 triệu đ&ocirc;la cho nh&agrave; v&ocirc; địch.</p>\r\n\r\n<p>Năm birdie v&agrave; một bogey ở v&ograve;ng cuối l&agrave; đủ để Pan l&ecirc;n ng&ocirc;i với tổng điểm -12, c&aacute;ch đ&uacute;ng một gậy so với nh&igrave; bảng Matt Kuchar. Chiến thắng tại s&acirc;n Harbour Town khiến sự nghiệp của golfer Đ&agrave;i Loan sang trang. Anh được đảm bảo quyền dự PGA Tour đến năm 2021, gi&agrave;nh v&eacute; dự hai major PGA Championship 2019 v&agrave; Masters 2020. B&ecirc;n cạnh đ&oacute;, Pan cũng s&aacute;ng cửa lọt v&agrave;o đội h&igrave;nh tuyển Quốc tế dự Presidents Cup v&agrave;o cuối năm.</p>\r\n\r\n<p>&quot;Đ&acirc;y l&agrave; chiến thắng kh&oacute; tin&quot;, Pan chia sẻ ngay sau giải. &quot;Điện thoại của t&ocirc;i đổ chu&ocirc;ng li&ecirc;n tục trong 10 ph&uacute;t vừa qua. T&ocirc;i rất hạnh ph&uacute;c với chiến thắng đầu ti&ecirc;n tr&ecirc;n Tour&quot;.</p>\r\n\r\n<table align="center" border="0" cellpadding="3" cellspacing="0">\r\n	<tbody>\r\n		<tr>\r\n			<td><img alt="C.T. Pan là golfer thứ 14 lần đầu vô địch PGA Tour tại RBC Heritage. Ảnh: AP." src="https://i-thethao.vnecdn.net/2019/04/22/2000-jpeg-1555910946-4777-1555910996.png" /></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n			<p>C.T. Pan l&agrave; golfer thứ 14 lần đầu v&ocirc; địch PGA Tour tại RBC Heritage. Ảnh:&nbsp;<em>AP.</em></p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>Danh hiệu tại RBC Heritage cũng giải tỏa phần n&agrave;o cho C.T. Pan, người đ&aacute;nh kh&ocirc;ng tốt từ đầu năm với bốn giải kh&ocirc;ng qua cắt v&agrave; chỉ c&oacute; ba lần lọt top 25 ở c&aacute;c giải tham dự.</p>\r\n\r\n<p>Matt Kuchar đứng thứ hai với điểm -11, trong khi Patrick Cantlay, Scott Piercy v&agrave; Shane Lowry xếp T3 với một gậy nhiều hơn. Golfer dẫn đầu v&ograve;ng ba Dustin Johnson th&igrave; g&acirc;y thất vọng tr&agrave;n trề. Số một thế giới bogey ba lần v&agrave; bogey k&eacute;p hai lần chỉ trong năm hố, từ hố 11 đến 15, qua đ&oacute; đạt điểm +6 ở v&ograve;ng cuối v&agrave; rớt xuống T28 chung cuộc với tổng -4.</p>\r\n\r\n<p>Tuần n&agrave;y, c&aacute;c golfer sẽ c&oacute; mặt tại Louisiana, Mỹ để dự giải đấu đ&ocirc;i Zurich Classic of New Orleans. Đ&acirc;y l&agrave; sự kiện duy nhất trong m&ugrave;a giải diễn ra với thể thức gh&eacute;p cặp golfer qua bốn v&ograve;ng</p>', 'Cheng-tsung Pan lần đầu vô địch một giải PGA Tour, khi đạt điểm -12 qua bốn vòng tại RBC Heritage.', 3, NULL, NULL),
+(11, 0, '2019-04-21 23:13:53', '2019-04-21 23:28:03', 'Mourinho không bất ngờ nếu Ajax hay Tottenham vô địch Champions League', '/photos/1/untitled-1555833729-5394-1555833820_180x108.png', '<p>HLV người Bồ Đ&agrave;o Nha tin hai đội b&oacute;ng bị xem l&agrave; cửa dưới c&oacute; cơ hội ngang ngửa với Liverpool v&agrave; Barca.</p>\r\n\r\n<p>&quot;T&ocirc;i thực sự vui cho Ajax v&agrave; Tottenham. Một khi bạn v&agrave;o tới tứ kết, phải c&oacute; l&yacute; do n&agrave;o đ&oacute; để điều đ&oacute; xảy ra. Ở v&ograve;ng bảng, đ&ocirc;i khi bạn gặp may, đ&ocirc;i khi đối thủ chơi kh&ocirc;ng tốt như kỳ vọng, đ&ocirc;i khi bạn gặp may khi bốc thăm v&ograve;ng 1/8. Nhưng khi v&agrave;o tới tứ kết, theo một c&aacute;ch đ&aacute;ng t&ocirc;n trọng, t&ocirc;i lu&ocirc;n tin rằng mỗi đội c&oacute; 12,5% cơ hội v&ocirc; địch&quot;, Jose Mourinho n&oacute;i.</p>\r\n\r\n<table align="center" border="0" cellpadding="3" cellspacing="0">\r\n	<tbody>\r\n		<tr>\r\n			<td><img alt="Mourinho tin rằng Ajax và Tottenham đủ sức vô địch Champions League. Ảnh: Reuters." src="https://i-thethao.vnecdn.net/2019/04/21/Untitled-7836-1555833819.jpg" /></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n			<p>Mourinho tin rằng Ajax v&agrave; Tottenham đủ sức v&ocirc; địch Champions League. Ảnh:&nbsp;<em>Reuters</em>.</p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>Ajax li&ecirc;n tiếp tạo ra hai cơn địa chấn khi đ&aacute;nh bại Real Madrid ở v&ograve;ng 1/8 v&agrave; Juventus ở tứ kết. Tottenham cũng g&acirc;y sốc khi loại Man City của Pep Guardiola để g&oacute;p mặt tại b&aacute;n kết.</p>\r\n\r\n<p>&quot;Khi bạn v&agrave;o b&aacute;n kết, cơ hội thậm ch&iacute; lớn hơn, l&agrave; 25% cho mỗi đội&quot;, Mourinho n&oacute;i th&ecirc;m. &quot;T&ocirc;i sẽ kh&ocirc;ng bất ngờ nếu Ajax hay Tottenham v&ocirc; địch. Được rồi, c&oacute; lẽ t&ocirc;i sẽ bất ngờ một ch&uacute;t nhưng t&ocirc;i sẽ kh&ocirc;ng sốc v&igrave; hai đội đ&oacute; đ&atilde; v&agrave;o b&aacute;n kết v&agrave; một trong hai sẽ v&agrave;o chung kết. Trận chung kết l&agrave; trận đấu cuối c&ugrave;ng, chỉ một trận. N&oacute; chỉ k&eacute;o d&agrave;i 90 ph&uacute;t v&agrave; đ&oacute; l&agrave; trận đấu cả đời của đa số cầu thủ&quot;.</p>\r\n\r\n<p>&quot;T&ocirc;i nghĩ cả hai đội đều đang mơ về chức v&ocirc; địch v&agrave; họ c&oacute; l&yacute; do tốt để mơ về n&oacute;. Ajax l&agrave; chuy&ecirc;n gia loại c&aacute;c đội lớn. C&ograve;n Tottenham, ch&uacute;ng ta kh&ocirc;ng thể xem họ l&agrave; đội b&oacute;ng &#39;s&aacute;t &ocirc;ng lớn&#39; v&igrave; Man City kh&ocirc;ng c&oacute; truyền thống tại Champions League. Nhưng dẫu sao Man City vẫn l&agrave; đội b&oacute;ng h&agrave;ng đầu ở Anh, v&agrave; Tottenham vẫn c&oacute; thể đ&aacute;nh bại họ. Cho n&ecirc;n, t&ocirc;i nghĩ cơ hội v&ocirc; địch của Tottenham l&agrave; 50-50&quot;, &ocirc;ng n&oacute;i tiếp.</p>', 'HLV người Bồ Đào Nha tin hai đội bóng bị xem là cửa dưới có cơ hội ngang ngửa với Liverpool và Barca.', 3, NULL, NULL),
+(12, 0, '2019-04-21 23:07:12', '2019-04-21 23:07:12', 'Fognini vô địch Monte Carlo 2019', '/photos/1/20001-1555870122-1555870136-7229-1555870146_180x108.png', '<p>Tay vợt Italy lần đầu v&ocirc; địch một giải ATP 1000, sau khi hạ Dusan Lajovic 6-3, 6-4 tại chung kết giải Monte Carlo.</p>\r\n\r\n<p>Một ng&agrave;y sau khi g&acirc;y sốc bằng việc loại Rafael Nadal ở b&aacute;n kết, Fabio Fognini c&oacute; được danh hiệu lớn nhất trong sự nghiệp từ trước đến nay. Tay vợt Italy nhẹ nh&agrave;ng vượt qua &quot;hiện tượng&quot; Dusan Lajovic trong trận ATP 1000 đầu ti&ecirc;n m&agrave; cả hai g&oacute;p mặt.</p>\r\n\r\n<p>Ở ba lần hạ Nadal trước đ&oacute;, Fognini đều thua nhanh ở v&ograve;ng đấu kế tiếp. Tay vợt Italy khiến người h&acirc;m mộ lo ngại điều tương tự sẽ lặp lại, khi đ&aacute;nh mất game giao b&oacute;ng thứ hai trong trận.</p>\r\n\r\n<p>Nhưng Lajovic cũng mới lần đầu dự chung kết ATP 1000 v&agrave; kh&ocirc;ng vững v&agrave;ng về t&acirc;m l&yacute;. Tay vợt Serbia c&oacute; hai game-point để dẫn 3-1 nhưng đều bỏ lỡ. Anh đ&aacute;nh hỏng qu&aacute; nhiều, để Fognini thắng liền bốn game v&agrave; dẫn ngược 5-2.</p>\r\n\r\n<table align="center" border="0" cellpadding="3" cellspacing="0">\r\n	<tbody>\r\n		<tr>\r\n			<td><img alt="Lajovic mắc tới 36 lỗi tự đánh hỏng ở trận chung kết, nhiều hơn Fognini 13 lỗi. Ảnh: AP." src="https://i-thethao.vnecdn.net/2019/04/22/2000-jpeg-1555869978-2434-1555870145.png" /></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n			<p>Lajovic mắc tới 36 lỗi tự đ&aacute;nh hỏng ở trận chung kết, nhiều hơn Fognini 13 lỗi. Ảnh:&nbsp;<em>AP</em>.</p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>Fognini c&agrave;ng chơi c&agrave;ng lấy lại sự b&igrave;nh tĩnh. Anh cứu th&agrave;nh c&ocirc;ng break-point ở game giao quyết định, trước khi thắng set đầu 6-3 nhờ điểm winner thứ 12.</p>\r\n\r\n<p>Lajovic đuối hơn trong c&aacute;c pha đ&ocirc;i c&ocirc;ng cuối s&acirc;n nhưng cũng kh&ocirc;ng dễ đầu h&agrave;ng. Tay vợt số 48 thế giới mất game giao b&oacute;ng đầu set hai, nhưng gỡ h&ograve;a ngay sau đ&oacute;. Chỉ khi Fognini thắng th&ecirc;m một game giao b&oacute;ng nữa v&agrave; vươn l&ecirc;n dẫn 3-2, thế trận mới tuột khỏi tầm tay Lajovic. Tay vợt Serbia g&aacute;c vợt chung cuộc với tỷ số 3-6, 4-6.</p>\r\n\r\n<p>&quot;Lần đầu v&agrave;o chung kết ATP 1000 l&agrave; trải nghiệm tuyệt vời với t&ocirc;i&quot;, Lajovic chia sẻ. &quot;Gi&oacute; tại Monte Carlo kh&aacute; to v&agrave; Fognini l&agrave; người gi&agrave;u kinh nghiệm hơn ở điều kiện thời tiết như h&ocirc;m nay. C&aacute;c c&uacute; quả v&agrave; khả năng di chuyển của anh ấy cũng rất tốt. T&ocirc;i c&oacute; cảm gi&aacute;c rằng m&igrave;nh vất vả hơn anh ấy trong việc gi&agrave;nh điểm. Đ&oacute; l&agrave; điểm mấu chốt trong thất bại n&agrave;y&quot;.</p>\r\n\r\n<p>Fognini l&agrave; hạt giống thấp nhất đăng quang tại Monte Carlo trong 20 năm qua. Anh gi&agrave;nh số tiền thưởng 958.000 đ&ocirc;la c&ugrave;ng 1000 điểm thưởng ATP &ndash; số điểm gi&uacute;p tay vợt Italy vươn l&ecirc;n thứ 12 thế giới v&agrave;o tuần n&agrave;y.</p>\r\n\r\n<table align="center" border="0" cellpadding="3" cellspacing="0">\r\n	<tbody>\r\n		<tr>\r\n			<td><img alt="Fognini lên ngôi xứng đáng tại Monte Carlo. Ảnh: AP." src="https://i-thethao.vnecdn.net/2019/04/22/2000-1-jpeg-1555870095-5370-1555870146.png" /></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n			<p>Fognini l&ecirc;n ng&ocirc;i xứng đ&aacute;ng tại Monte Carlo. Ảnh<em>:&nbsp;AP.</em></p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>&quot;T&ocirc;i phải chuẩn bị kỹ c&agrave;ng cho trận đấu n&agrave;y v&igrave; HLV cũ của t&ocirc;i đang l&agrave;m việc c&ugrave;ng Lajovic&quot;, Fognini chia sẻ. &quot;T&ocirc;i đ&atilde; cố gắng kh&ocirc;ng để bị bắt b&agrave;i. Đ&acirc;y l&agrave; th&agrave;nh tựu to lớn sau một giải đấu kh&oacute; khăn. T&ocirc;i rất hạnh ph&uacute;c&quot;.</p>\r\n\r\n<p>Danh hiệu ATP 1000 đầu ti&ecirc;n sẽ mang đến sự tự tin cho Fognini trong phần c&ograve;n lại của m&ugrave;a đất nện. Tay vợt mới trở lại sau chấn thương từng hai lần su&yacute;t bị loại tại Monte Carlo năm nay. Anh bị Andrey Rubley dẫn 6-4, 4-1 ở v&ograve;ng một v&agrave; bị Borna Coric dẫn 6-1, 2-0 ở tứ kết. Fognini thắng ngược cả hai trận đấu đ&oacute;, rồi hạ &quot;Vua đất nện&quot; Nadal chỉ sau hai set v&agrave; cuối c&ugrave;ng c&oacute; danh hiệu lớn nhất sự nghiệp từ trước đến nay</p>', 'Tay vợt Italy lần đầu vô địch một giải ATP 1000, sau khi hạ Dusan Lajovic 6-3, 6-4 tại chung kết giải Monte Carlo.', 3, NULL, NULL),
+(13, 0, '2019-04-21 23:08:43', '2019-04-21 23:08:43', 'Ronaldo cam kết ở lại Juventus', '/photos/1/ronaldo-1555823369-1555823379-8659-1555823432.png', '<p>Si&ecirc;u sao 34 tuổi sẽ gắn b&oacute; với &quot;L&atilde;o B&agrave;&quot; th&ecirc;m &iacute;t nhất một m&ugrave;a giải để chinh phục Champions League.</p>\r\n\r\n<p>&quot;Chắc chắn 1000 phần trăm l&agrave; t&ocirc;i sẽ ở lại Juventus m&ugrave;a tới&quot;, Cristiano Ronaldo n&oacute;i sau khi c&ugrave;ng Juventus v&ocirc; địch Serie A 2018-2019. Đường căng ngang của anh khiến hậu vệ Fiorentina phản lưới, ấn định thắng lợi 2-1 cho Juventus ở v&ograve;ng 33. Chiến thắng gi&uacute;p CLB th&agrave;nh Turin hơn nh&igrave; bảng Napoli 20 điểm, v&ocirc; địch sớm năm v&ograve;ng.</p>\r\n\r\n<table align="center" border="0" cellpadding="3" cellspacing="0">\r\n	<tbody>\r\n		<tr>\r\n			<td><img alt="Ronaldo (số 7) sẽ không rời Juventus hè 2019. Ảnh: Reuters." src="https://i-thethao.vnecdn.net/2019/04/21/ronaldo-1555823369-1555823379-8659-1555823432.png" /></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n			<p>Ronaldo (số 7) sẽ kh&ocirc;ng rời Juventus h&egrave; 2019. Ảnh:&nbsp;<em>Reuters</em>.</p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>Tương lai của Ronaldo tại Turin bị đặt dấu hỏi, sau khi Juventus bị Ajax loại ở tứ kết Champions League. Ch&acirc;u &Acirc;u l&agrave; mục ti&ecirc;u chinh phục của Juventus m&ugrave;a n&agrave;y, sau bảy năm li&ecirc;n tiếp đoạt Scudetto. Nhưng, sự hiện diện của Ronaldo chưa đủ để gi&uacute;p &quot;L&atilde;o B&agrave;&quot; ho&agrave;n th&agrave;nh ước nguyện. Danh hiệu Serie A của Juventus gần bằng Inter v&agrave; AC Milan cộng lại, nhưng họ thua hai CLB th&agrave;nh Milan ở danh hiệu Champions League.</p>\r\n\r\n<p>Ronaldo cũng coi trọng Champions League hơn danh hiệu quốc gia, nhưng đ&acirc;y l&agrave; lần đầu anh v&ocirc; địch Serie A. Si&ecirc;u sao người Bồ Đ&agrave;o Nha trở th&agrave;nh cầu thủ đầu ti&ecirc;n v&ocirc; địch Anh, T&acirc;y Ban Nha v&agrave; Italy. Juventus c&oacute; thể sẽ lột x&aacute;c trong h&egrave; 2019, để chinh phục Champions League sau 24 năm dang dở.</p>\r\n\r\n<p>Ronaldo cập bến Juventus h&egrave; 2018 với gi&aacute; 120 triệu đ&ocirc;la. Mục ti&ecirc;u của anh l&agrave; đi t&igrave;m thử th&aacute;ch mới.</p>', 'Siêu sao 34 tuổi sẽ gắn bó với "Lão Bà" thêm ít nhất một mùa giải để chinh phục Champions League.', 3, NULL, NULL),
+(14, 0, '2019-04-21 23:11:53', '2019-04-21 23:11:53', 'Golfer Đài Loan vô địch RBC Heritage', '/photos/1/2000-1555910972-2965-1555910996_180x108.jpg', '<p>Cheng-tsung Pan lần đầu v&ocirc; địch một giải PGA Tour, khi đạt điểm -12 qua bốn v&ograve;ng tại RBC Heritage.</p>\r\n\r\n<p>Sau 32 năm, Đ&agrave;i Loan mới c&oacute; th&ecirc;m một golfer v&ocirc; địch PGA Tour. C.T. Pan tạo ra bất ngờ lớn khi vượt mặt golfer số một thế giới Dustin Johnson c&ugrave;ng những t&ecirc;n tuổi kh&aacute;c để gi&agrave;nh số tiền thưởng 1,242 triệu đ&ocirc;la cho nh&agrave; v&ocirc; địch.</p>\r\n\r\n<p>Năm birdie v&agrave; một bogey ở v&ograve;ng cuối l&agrave; đủ để Pan l&ecirc;n ng&ocirc;i với tổng điểm -12, c&aacute;ch đ&uacute;ng một gậy so với nh&igrave; bảng Matt Kuchar. Chiến thắng tại s&acirc;n Harbour Town khiến sự nghiệp của golfer Đ&agrave;i Loan sang trang. Anh được đảm bảo quyền dự PGA Tour đến năm 2021, gi&agrave;nh v&eacute; dự hai major PGA Championship 2019 v&agrave; Masters 2020. B&ecirc;n cạnh đ&oacute;, Pan cũng s&aacute;ng cửa lọt v&agrave;o đội h&igrave;nh tuyển Quốc tế dự Presidents Cup v&agrave;o cuối năm.</p>\r\n\r\n<p>&quot;Đ&acirc;y l&agrave; chiến thắng kh&oacute; tin&quot;, Pan chia sẻ ngay sau giải. &quot;Điện thoại của t&ocirc;i đổ chu&ocirc;ng li&ecirc;n tục trong 10 ph&uacute;t vừa qua. T&ocirc;i rất hạnh ph&uacute;c với chiến thắng đầu ti&ecirc;n tr&ecirc;n Tour&quot;.</p>\r\n\r\n<table align="center" border="0" cellpadding="3" cellspacing="0">\r\n	<tbody>\r\n		<tr>\r\n			<td><img alt="C.T. Pan là golfer thứ 14 lần đầu vô địch PGA Tour tại RBC Heritage. Ảnh: AP." src="https://i-thethao.vnecdn.net/2019/04/22/2000-jpeg-1555910946-4777-1555910996.png" /></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n			<p>C.T. Pan l&agrave; golfer thứ 14 lần đầu v&ocirc; địch PGA Tour tại RBC Heritage. Ảnh:&nbsp;<em>AP.</em></p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>Danh hiệu tại RBC Heritage cũng giải tỏa phần n&agrave;o cho C.T. Pan, người đ&aacute;nh kh&ocirc;ng tốt từ đầu năm với bốn giải kh&ocirc;ng qua cắt v&agrave; chỉ c&oacute; ba lần lọt top 25 ở c&aacute;c giải tham dự.</p>\r\n\r\n<p>Matt Kuchar đứng thứ hai với điểm -11, trong khi Patrick Cantlay, Scott Piercy v&agrave; Shane Lowry xếp T3 với một gậy nhiều hơn. Golfer dẫn đầu v&ograve;ng ba Dustin Johnson th&igrave; g&acirc;y thất vọng tr&agrave;n trề. Số một thế giới bogey ba lần v&agrave; bogey k&eacute;p hai lần chỉ trong năm hố, từ hố 11 đến 15, qua đ&oacute; đạt điểm +6 ở v&ograve;ng cuối v&agrave; rớt xuống T28 chung cuộc với tổng -4.</p>\r\n\r\n<p>Tuần n&agrave;y, c&aacute;c golfer sẽ c&oacute; mặt tại Louisiana, Mỹ để dự giải đấu đ&ocirc;i Zurich Classic of New Orleans. Đ&acirc;y l&agrave; sự kiện duy nhất trong m&ugrave;a giải diễn ra với thể thức gh&eacute;p cặp golfer qua bốn v&ograve;ng</p>', 'Cheng-tsung Pan lần đầu vô địch một giải PGA Tour, khi đạt điểm -12 qua bốn vòng tại RBC Heritage.', 3, NULL, NULL),
+(15, 0, '2019-04-21 23:13:53', '2019-04-21 23:28:35', 'Mourinho không bất ngờ nếu Ajax hay Tottenham vô địch Champions League', '/photos/1/untitled-1555833729-5394-1555833820_180x108.png', '<p>HLV người Bồ Đ&agrave;o Nha tin hai đội b&oacute;ng bị xem l&agrave; cửa dưới c&oacute; cơ hội ngang ngửa với Liverpool v&agrave; Barca.</p>\r\n\r\n<p>&quot;T&ocirc;i thực sự vui cho Ajax v&agrave; Tottenham. Một khi bạn v&agrave;o tới tứ kết, phải c&oacute; l&yacute; do n&agrave;o đ&oacute; để điều đ&oacute; xảy ra. Ở v&ograve;ng bảng, đ&ocirc;i khi bạn gặp may, đ&ocirc;i khi đối thủ chơi kh&ocirc;ng tốt như kỳ vọng, đ&ocirc;i khi bạn gặp may khi bốc thăm v&ograve;ng 1/8. Nhưng khi v&agrave;o tới tứ kết, theo một c&aacute;ch đ&aacute;ng t&ocirc;n trọng, t&ocirc;i lu&ocirc;n tin rằng mỗi đội c&oacute; 12,5% cơ hội v&ocirc; địch&quot;, Jose Mourinho n&oacute;i.</p>\r\n\r\n<table align="center" border="0" cellpadding="3" cellspacing="0">\r\n	<tbody>\r\n		<tr>\r\n			<td><img alt="Mourinho tin rằng Ajax và Tottenham đủ sức vô địch Champions League. Ảnh: Reuters." src="https://i-thethao.vnecdn.net/2019/04/21/Untitled-7836-1555833819.jpg" /></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n			<p>Mourinho tin rằng Ajax v&agrave; Tottenham đủ sức v&ocirc; địch Champions League. Ảnh:&nbsp;<em>Reuters</em>.</p>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>Ajax li&ecirc;n tiếp tạo ra hai cơn địa chấn khi đ&aacute;nh bại Real Madrid ở v&ograve;ng 1/8 v&agrave; Juventus ở tứ kết. Tottenham cũng g&acirc;y sốc khi loại Man City của Pep Guardiola để g&oacute;p mặt tại b&aacute;n kết.</p>\r\n\r\n<p>&quot;Khi bạn v&agrave;o b&aacute;n kết, cơ hội thậm ch&iacute; lớn hơn, l&agrave; 25% cho mỗi đội&quot;, Mourinho n&oacute;i th&ecirc;m. &quot;T&ocirc;i sẽ kh&ocirc;ng bất ngờ nếu Ajax hay Tottenham v&ocirc; địch. Được rồi, c&oacute; lẽ t&ocirc;i sẽ bất ngờ một ch&uacute;t nhưng t&ocirc;i sẽ kh&ocirc;ng sốc v&igrave; hai đội đ&oacute; đ&atilde; v&agrave;o b&aacute;n kết v&agrave; một trong hai sẽ v&agrave;o chung kết. Trận chung kết l&agrave; trận đấu cuối c&ugrave;ng, chỉ một trận. N&oacute; chỉ k&eacute;o d&agrave;i 90 ph&uacute;t v&agrave; đ&oacute; l&agrave; trận đấu cả đời của đa số cầu thủ&quot;.</p>\r\n\r\n<p>&quot;T&ocirc;i nghĩ cả hai đội đều đang mơ về chức v&ocirc; địch v&agrave; họ c&oacute; l&yacute; do tốt để mơ về n&oacute;. Ajax l&agrave; chuy&ecirc;n gia loại c&aacute;c đội lớn. C&ograve;n Tottenham, ch&uacute;ng ta kh&ocirc;ng thể xem họ l&agrave; đội b&oacute;ng &#39;s&aacute;t &ocirc;ng lớn&#39; v&igrave; Man City kh&ocirc;ng c&oacute; truyền thống tại Champions League. Nhưng dẫu sao Man City vẫn l&agrave; đội b&oacute;ng h&agrave;ng đầu ở Anh, v&agrave; Tottenham vẫn c&oacute; thể đ&aacute;nh bại họ. Cho n&ecirc;n, t&ocirc;i nghĩ cơ hội v&ocirc; địch của Tottenham l&agrave; 50-50&quot;, &ocirc;ng n&oacute;i tiếp.</p>', 'HLV người Bồ Đào Nha tin hai đội bóng bị xem là cửa dưới có cơ hội ngang ngửa với Liverpool và Barca.', 3, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `password_resets`
+-- Table structure for table `password_resets`
 --
 
-CREATE TABLE `password_resets` (
+CREATE TABLE IF NOT EXISTS `password_resets` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `password_resets`
+-- Dumping data for table `password_resets`
 --
 
 INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
@@ -655,19 +653,19 @@ INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `permissions`
+-- Table structure for table `permissions`
 --
 
-CREATE TABLE `permissions` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `permissions` (
+  `id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `permissions`
+-- Dumping data for table `permissions`
 --
 
 INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
@@ -681,20 +679,20 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `phan_loai_chi_tieu`
+-- Table structure for table `phan_loai_chi_tieu`
 --
 
-CREATE TABLE `phan_loai_chi_tieu` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `phan_loai_chi_tieu` (
+  `id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `parent_id` int(11) DEFAULT 0,
   `sort_order` int(11) DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `phan_loai_chi_tieu`
+-- Dumping data for table `phan_loai_chi_tieu`
 --
 
 INSERT INTO `phan_loai_chi_tieu` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`) VALUES
@@ -706,11 +704,11 @@ INSERT INTO `phan_loai_chi_tieu` (`id`, `name`, `parent_id`, `sort_order`, `crea
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `product`
+-- Table structure for table `product`
 --
 
-CREATE TABLE `product` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `product` (
+  `id` int(10) unsigned NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -722,10 +720,10 @@ CREATE TABLE `product` (
   `category_id` int(11) DEFAULT NULL,
   `seo_keyword` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `seo_description` text COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `product`
+-- Dumping data for table `product`
 --
 
 INSERT INTO `product` (`id`, `created_at`, `updated_at`, `name`, `image`, `content`, `summary`, `sort_order`, `images`, `category_id`, `seo_keyword`, `seo_description`) VALUES
@@ -733,28 +731,28 @@ INSERT INTO `product` (`id`, `created_at`, `updated_at`, `name`, `image`, `conte
 (2, '2019-04-14 21:26:16', '2019-04-22 02:28:02', 'Sữa Nghệ CurCuMilk Collagen', '/photos/1/Sản phẩm/1.jpg', '<h1><strong>SỮA NGHỆ CURCUMILK COLLAGEN</strong></h1>\r\n\r\n<p>Củ nghệ chứa Curcumin với h&agrave;m lượng 1-3%, đ&acirc;y l&agrave; hoạt chất qu&yacute; c&oacute; t&aacute;c dụng sinh học ch&iacute;nh nhưng &iacute;t tan, hấp thụ k&eacute;m chỉ đạt 1-2%.</p>\r\n\r\n<p>Nano Curcumin với k&iacute;ch thước si&ecirc;u nhỏ được nghi&ecirc;n cứu v&agrave; sản xuất bở Viện H&agrave;n L&acirc;m Khoa học &amp; C&ocirc;ng nghệ Việt Nam gi&uacute;p thẩm thấu v&agrave;o m&aacute;u nhanh ch&oacute;ng, hấp thụ tới 90-95%, độ tan tăng 4500 &ndash; 7500 lần so với bột nghệ th&ocirc;ng thường.</p>\r\n\r\n<p>CurcuMilk Collagen l&agrave; sự kết hợp ho&agrave;n hảo của Sữa gầy, Nano Curcumin, Collagen, Vitamin, đường cỏ ngọt Stevia thay thế cho tinh bột nghệ, ngon hơn hiệu quả hơn. Sử dụng l&acirc;u d&agrave;i m&agrave; kh&ocirc;ng lo ngại vấn đề tiểu đường v&agrave; tăng c&acirc;n.</p>\r\n\r\n<p><strong>Th&agrave;nh phần</strong></p>\r\n\r\n<p>Sữa gầy (98%)</p>\r\n\r\n<p>Nano Curcumin (1%)</p>\r\n\r\n<p>Collagen, Vitamin E, Đường cỏ ngọt.</p>\r\n\r\n<p>Phụ liệu: nipazil, nipazol vừa đủ.</p>\r\n\r\n<p><strong>C&ocirc;ng dụng:</strong></p>\r\n\r\n<p>&nbsp; Bổ sung dinh dưỡng bồi bổ cơ thể, n&acirc;ng cao sức khỏe v&agrave; thể trạng, hỗ trợ tăng cường ti&ecirc;u h&oacute;a, gi&uacute;p nhanh l&agrave;nh vết thương.</p>\r\n\r\n<p>&nbsp; H&agrave;m lượng Curcumin c&oacute; trong sản phẩm gi&uacute;p da hồng h&agrave;o, giảm t&agrave;n nhang, n&aacute;m m&aacute;, hỗ trợ l&agrave;m giảm c&aacute;c triệu chứng của bệnh dạ d&agrave;y, giảm h&agrave;m lượng cholesterol trong m&aacute;u. Ngăn ngừa ung thư.</p>\r\n\r\n<p><strong>Đối tượng sử dụng</strong></p>\r\n\r\n<p>D&ugrave;ng cho người từ 18 tuổi trở l&ecirc;n: Phụ nữ sau sinh, người sau phẫu thuật, người gi&agrave;, người sức khỏe yếu, người bị bệnh dạ d&agrave;y, người kh&iacute; huyết k&eacute;m, da k&eacute;m sắc, dạ bị sạm, t&agrave;n nhang, n&aacute;m m&aacute;. Người bị mỡ m&aacute;u cao, người ung thư v&agrave; người cần ngăn ngừa ung thư. D&ugrave;ng được cho người tiểu đường.</p>\r\n\r\n<p><strong>Hướng dẫn sử dụng</strong></p>\r\n\r\n<p>&nbsp; &nbsp; &nbsp; Pha 4 muỗng c&agrave; ph&ecirc; (20gr) v&agrave;o ly nước ấm 180ml (khoảng 50oC), khấy đều đến khi tan ho&agrave;n&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;to&agrave;n&nbsp; v&agrave; uống.</p>\r\n\r\n<p>&nbsp; &nbsp; &nbsp; &nbsp;Ng&agrave;y d&ugrave;ng 1 ly. Kh&ocirc;ng sử dụng nếu dị ứng với bất kỳ th&agrave;nh phần của sản phẩm</p>\r\n\r\n<p><strong>&nbsp;Hướng dẫn bảo quản:</strong></p>\r\n\r\n<p>&nbsp; Sản phẩm được l&agrave;m từ sữa, h&uacute;t ẩm mạnh, bảo quản sản phẩm nơi kh&ocirc; r&aacute;o, tho&aacute;ng m&aacute;t, tr&aacute;nh&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &aacute;nh nắng mặt trời. Kh&ocirc;ng bảo quản trong tủ lạnh. D&ugrave;ng trong v&ograve;ng 30 ng&agrave;y sau khi mở nắp.&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Đ&oacute;ng&nbsp; chặt nắp sau khi sử dụng.</p>\r\n\r\n<p><br />\r\n<em>*<strong>Ch&uacute; &yacute;</strong></em><strong>:</strong>&nbsp;Thực phẩm n&agrave;y kh&ocirc;ng phải l&agrave; thuốc, kh&ocirc;ng c&oacute; t&aacute;c dụng thay thế thuốc chữa bệnh.</p>', 'CurcuMilk Collagen là sự kết hợp hoàn hảo của Sữa gầy, Nano Curcumin', 0, '[]', 8, NULL, NULL),
 (3, '2019-04-21 03:17:23', '2019-04-21 03:17:23', 'Gel Phụ Khoa Vương Hậu', '/photos/1/IMG_376462.jpg', NULL, 'Dung dịch vệ sinh phụ nữ Vương Hậu là sản phẩm dùng để vệ sinh vùng kín hàng ngày,', 0, '[]', 8, NULL, NULL),
 (4, '2019-04-21 03:18:11', '2019-04-21 03:18:11', 'Kem Sẹo Doctor A', '/photos/1/Untitled-2.jpg', NULL, 'Kem trị sẹo Doctor A là giải pháp hoàn hảo nhất cho người bị sẹo', 0, '[]', 8, NULL, NULL),
-(5, '2019-03-17 20:55:36', '2019-04-20 21:36:00', 'Sản phẩm đầu tiên', '/photos/1/ｾｫﾐﾞﾕﾕﾆｬ-ﾍ・ﾉｰ・104634-1-min.jpg', '<p>&nbsp;</p>\r\n\r\n<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->B&ocirc;ng tẩy trang được l&agrave;m từ 100% Cotton&nbsp; nguy&ecirc;n chất từ thi&ecirc;n nhi&ecirc;n, kh&ocirc;ng g&acirc;y k&iacute;ch ứng cho da.</p>\r\n\r\n<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->Được thiết kế 3 lớp. Miếng b&ocirc;ng mềm mịn v&agrave; phần viền bồng được dập cả 4 viền gi&uacute;p cho b&ocirc;ng kh&ocirc;ng bị xơ đem tới cảm gi&aacute;c dễ chịu v&agrave; th&acirc;n thiện cho da</p>\r\n\r\n<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->Chất lượng đ&aacute;p ứng ti&ecirc;u chuẩn của Nhật Bản. Tạo cảm gi&aacute;c nhẹ nh&agrave;ng v&agrave; mềm mại khi sử dụng.</p>\r\n\r\n<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->Độ thấm vừa phải gi&uacute;p tiết kiệm hơn trong việc sử dụng toner hoặc nước tẩy trang.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->K&iacute;ch thước miếng b&ocirc;ng ho&agrave;n hảo, vừa tay v&agrave; đặc biết t&uacute;i co d&acirc;y r&uacute;t c&oacute; thể k&eacute;o lại được v&igrave; vậy rất tiện dụng khi mang đi du lịch.</p>', 'được làm từ 100% Cotton nguyên chất từ thiên nhiên, không gây kích ứng cho da. Được thiết kế 3 lớp. Miếng bông mềm mị', 0, '[\"\\/imgs\\/12\\/0-1554777833.jpeg\",\"\\/imgs\\/12\\/1-1554777833.jpeg\",\"\\/imgs\\/12\\/2-1554777833.jpeg\",\"\\/imgs\\/12\\/3-1554777833.jpeg\",\"\\/imgs\\/12\\/4-1554777833.jpeg\"]', 8, NULL, NULL),
+(5, '2019-03-17 20:55:36', '2019-04-20 21:36:00', 'Sản phẩm đầu tiên', '/photos/1/ｾｫﾐﾞﾕﾕﾆｬ-ﾍ・ﾉｰ・104634-1-min.jpg', '<p>&nbsp;</p>\r\n\r\n<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->B&ocirc;ng tẩy trang được l&agrave;m từ 100% Cotton&nbsp; nguy&ecirc;n chất từ thi&ecirc;n nhi&ecirc;n, kh&ocirc;ng g&acirc;y k&iacute;ch ứng cho da.</p>\r\n\r\n<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->Được thiết kế 3 lớp. Miếng b&ocirc;ng mềm mịn v&agrave; phần viền bồng được dập cả 4 viền gi&uacute;p cho b&ocirc;ng kh&ocirc;ng bị xơ đem tới cảm gi&aacute;c dễ chịu v&agrave; th&acirc;n thiện cho da</p>\r\n\r\n<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->Chất lượng đ&aacute;p ứng ti&ecirc;u chuẩn của Nhật Bản. Tạo cảm gi&aacute;c nhẹ nh&agrave;ng v&agrave; mềm mại khi sử dụng.</p>\r\n\r\n<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->Độ thấm vừa phải gi&uacute;p tiết kiệm hơn trong việc sử dụng toner hoặc nước tẩy trang.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->K&iacute;ch thước miếng b&ocirc;ng ho&agrave;n hảo, vừa tay v&agrave; đặc biết t&uacute;i co d&acirc;y r&uacute;t c&oacute; thể k&eacute;o lại được v&igrave; vậy rất tiện dụng khi mang đi du lịch.</p>', 'được làm từ 100% Cotton nguyên chất từ thiên nhiên, không gây kích ứng cho da. Được thiết kế 3 lớp. Miếng bông mềm mị', 0, '["\\/imgs\\/12\\/0-1554777833.jpeg","\\/imgs\\/12\\/1-1554777833.jpeg","\\/imgs\\/12\\/2-1554777833.jpeg","\\/imgs\\/12\\/3-1554777833.jpeg","\\/imgs\\/12\\/4-1554777833.jpeg"]', 8, NULL, NULL),
 (11, '2019-04-21 03:18:11', '2019-04-21 03:18:11', 'Kem Sẹo Doctor A', '/photos/1/Untitled-2.jpg', NULL, 'Kem trị sẹo Doctor A là giải pháp hoàn hảo nhất cho người bị sẹo', 0, '[]', 8, NULL, NULL),
-(12, '2019-03-17 20:55:36', '2019-04-20 21:36:25', 'Sản phẩm đầu tiên', '/photos/1/ｾｫﾐﾞﾕﾕﾆｬ-ﾍ・ﾉｰ・104634-1-min.jpg', '<p>&nbsp;</p>\r\n\r\n<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->B&ocirc;ng tẩy trang được l&agrave;m từ 100% Cotton&nbsp; nguy&ecirc;n chất từ thi&ecirc;n nhi&ecirc;n, kh&ocirc;ng g&acirc;y k&iacute;ch ứng cho da.</p>\r\n\r\n<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->Được thiết kế 3 lớp. Miếng b&ocirc;ng mềm mịn v&agrave; phần viền bồng được dập cả 4 viền gi&uacute;p cho b&ocirc;ng kh&ocirc;ng bị xơ đem tới cảm gi&aacute;c dễ chịu v&agrave; th&acirc;n thiện cho da</p>\r\n\r\n<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->Chất lượng đ&aacute;p ứng ti&ecirc;u chuẩn của Nhật Bản. Tạo cảm gi&aacute;c nhẹ nh&agrave;ng v&agrave; mềm mại khi sử dụng.</p>\r\n\r\n<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->Độ thấm vừa phải gi&uacute;p tiết kiệm hơn trong việc sử dụng toner hoặc nước tẩy trang.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->K&iacute;ch thước miếng b&ocirc;ng ho&agrave;n hảo, vừa tay v&agrave; đặc biết t&uacute;i co d&acirc;y r&uacute;t c&oacute; thể k&eacute;o lại được v&igrave; vậy rất tiện dụng khi mang đi du lịch.</p>', 'được làm từ 100% Cotton nguyên chất từ thiên nhiên, không gây kích ứng cho da. Được thiết kế 3 lớp. Miếng bông mềm mị', 0, '[\"\\/imgs\\/12\\/0-1554777833.jpeg\",\"\\/imgs\\/12\\/1-1554777833.jpeg\",\"\\/imgs\\/12\\/2-1554777833.jpeg\",\"\\/imgs\\/12\\/3-1554777833.jpeg\",\"\\/imgs\\/12\\/4-1554777833.jpeg\"]', 8, NULL, NULL),
-(13, '2019-03-17 20:55:36', '2019-04-20 21:36:30', 'Sản phẩm đầu tiên', '/photos/1/ｾｫﾐﾞﾕﾕﾆｬ-ﾍ・ﾉｰ・104634-1-min.jpg', '<p>&nbsp;</p>\r\n\r\n<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->B&ocirc;ng tẩy trang được l&agrave;m từ 100% Cotton&nbsp; nguy&ecirc;n chất từ thi&ecirc;n nhi&ecirc;n, kh&ocirc;ng g&acirc;y k&iacute;ch ứng cho da.</p>\r\n\r\n<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->Được thiết kế 3 lớp. Miếng b&ocirc;ng mềm mịn v&agrave; phần viền bồng được dập cả 4 viền gi&uacute;p cho b&ocirc;ng kh&ocirc;ng bị xơ đem tới cảm gi&aacute;c dễ chịu v&agrave; th&acirc;n thiện cho da</p>\r\n\r\n<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->Chất lượng đ&aacute;p ứng ti&ecirc;u chuẩn của Nhật Bản. Tạo cảm gi&aacute;c nhẹ nh&agrave;ng v&agrave; mềm mại khi sử dụng.</p>\r\n\r\n<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->Độ thấm vừa phải gi&uacute;p tiết kiệm hơn trong việc sử dụng toner hoặc nước tẩy trang.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->K&iacute;ch thước miếng b&ocirc;ng ho&agrave;n hảo, vừa tay v&agrave; đặc biết t&uacute;i co d&acirc;y r&uacute;t c&oacute; thể k&eacute;o lại được v&igrave; vậy rất tiện dụng khi mang đi du lịch.</p>', 'được làm từ 100% Cotton nguyên chất từ thiên nhiên, không gây kích ứng cho da. Được thiết kế 3 lớp. Miếng bông mềm mị', 0, '[\"\\/imgs\\/12\\/0-1554777833.jpeg\",\"\\/imgs\\/12\\/1-1554777833.jpeg\",\"\\/imgs\\/12\\/2-1554777833.jpeg\",\"\\/imgs\\/12\\/3-1554777833.jpeg\",\"\\/imgs\\/12\\/4-1554777833.jpeg\"]', 8, NULL, NULL),
+(12, '2019-03-17 20:55:36', '2019-04-20 21:36:25', 'Sản phẩm đầu tiên', '/photos/1/ｾｫﾐﾞﾕﾕﾆｬ-ﾍ・ﾉｰ・104634-1-min.jpg', '<p>&nbsp;</p>\r\n\r\n<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->B&ocirc;ng tẩy trang được l&agrave;m từ 100% Cotton&nbsp; nguy&ecirc;n chất từ thi&ecirc;n nhi&ecirc;n, kh&ocirc;ng g&acirc;y k&iacute;ch ứng cho da.</p>\r\n\r\n<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->Được thiết kế 3 lớp. Miếng b&ocirc;ng mềm mịn v&agrave; phần viền bồng được dập cả 4 viền gi&uacute;p cho b&ocirc;ng kh&ocirc;ng bị xơ đem tới cảm gi&aacute;c dễ chịu v&agrave; th&acirc;n thiện cho da</p>\r\n\r\n<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->Chất lượng đ&aacute;p ứng ti&ecirc;u chuẩn của Nhật Bản. Tạo cảm gi&aacute;c nhẹ nh&agrave;ng v&agrave; mềm mại khi sử dụng.</p>\r\n\r\n<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->Độ thấm vừa phải gi&uacute;p tiết kiệm hơn trong việc sử dụng toner hoặc nước tẩy trang.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->K&iacute;ch thước miếng b&ocirc;ng ho&agrave;n hảo, vừa tay v&agrave; đặc biết t&uacute;i co d&acirc;y r&uacute;t c&oacute; thể k&eacute;o lại được v&igrave; vậy rất tiện dụng khi mang đi du lịch.</p>', 'được làm từ 100% Cotton nguyên chất từ thiên nhiên, không gây kích ứng cho da. Được thiết kế 3 lớp. Miếng bông mềm mị', 0, '["\\/imgs\\/12\\/0-1554777833.jpeg","\\/imgs\\/12\\/1-1554777833.jpeg","\\/imgs\\/12\\/2-1554777833.jpeg","\\/imgs\\/12\\/3-1554777833.jpeg","\\/imgs\\/12\\/4-1554777833.jpeg"]', 8, NULL, NULL),
+(13, '2019-03-17 20:55:36', '2019-04-20 21:36:30', 'Sản phẩm đầu tiên', '/photos/1/ｾｫﾐﾞﾕﾕﾆｬ-ﾍ・ﾉｰ・104634-1-min.jpg', '<p>&nbsp;</p>\r\n\r\n<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->B&ocirc;ng tẩy trang được l&agrave;m từ 100% Cotton&nbsp; nguy&ecirc;n chất từ thi&ecirc;n nhi&ecirc;n, kh&ocirc;ng g&acirc;y k&iacute;ch ứng cho da.</p>\r\n\r\n<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->Được thiết kế 3 lớp. Miếng b&ocirc;ng mềm mịn v&agrave; phần viền bồng được dập cả 4 viền gi&uacute;p cho b&ocirc;ng kh&ocirc;ng bị xơ đem tới cảm gi&aacute;c dễ chịu v&agrave; th&acirc;n thiện cho da</p>\r\n\r\n<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->Chất lượng đ&aacute;p ứng ti&ecirc;u chuẩn của Nhật Bản. Tạo cảm gi&aacute;c nhẹ nh&agrave;ng v&agrave; mềm mại khi sử dụng.</p>\r\n\r\n<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->Độ thấm vừa phải gi&uacute;p tiết kiệm hơn trong việc sử dụng toner hoặc nước tẩy trang.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><!--[if !supportLists]-->-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[endif]-->K&iacute;ch thước miếng b&ocirc;ng ho&agrave;n hảo, vừa tay v&agrave; đặc biết t&uacute;i co d&acirc;y r&uacute;t c&oacute; thể k&eacute;o lại được v&igrave; vậy rất tiện dụng khi mang đi du lịch.</p>', 'được làm từ 100% Cotton nguyên chất từ thiên nhiên, không gây kích ứng cho da. Được thiết kế 3 lớp. Miếng bông mềm mị', 0, '["\\/imgs\\/12\\/0-1554777833.jpeg","\\/imgs\\/12\\/1-1554777833.jpeg","\\/imgs\\/12\\/2-1554777833.jpeg","\\/imgs\\/12\\/3-1554777833.jpeg","\\/imgs\\/12\\/4-1554777833.jpeg"]', 8, NULL, NULL),
 (14, '2019-04-21 03:17:23', '2019-04-21 03:17:23', 'Gel Phụ Khoa Vương Hậu', '/photos/1/IMG_376462.jpg', NULL, 'Dung dịch vệ sinh phụ nữ Vương Hậu là sản phẩm dùng để vệ sinh vùng kín hàng ngày,', 0, '[]', 8, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `roles`
+-- Table structure for table `roles`
 --
 
-CREATE TABLE `roles` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `roles` (
+  `id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `roles`
+-- Dumping data for table `roles`
 --
 
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
@@ -764,16 +762,16 @@ INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VAL
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `role_has_permissions`
+-- Table structure for table `role_has_permissions`
 --
 
-CREATE TABLE `role_has_permissions` (
-  `permission_id` int(10) UNSIGNED NOT NULL,
-  `role_id` int(10) UNSIGNED NOT NULL
+CREATE TABLE IF NOT EXISTS `role_has_permissions` (
+  `permission_id` int(10) unsigned NOT NULL,
+  `role_id` int(10) unsigned NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `role_has_permissions`
+-- Dumping data for table `role_has_permissions`
 --
 
 INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
@@ -790,11 +788,11 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `so_dien`
+-- Table structure for table `so_dien`
 --
 
-CREATE TABLE `so_dien` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `so_dien` (
+  `id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `parent_id` int(11) DEFAULT 0,
   `sort_order` int(11) DEFAULT 0,
@@ -807,10 +805,10 @@ CREATE TABLE `so_dien` (
   `so_cuoi` int(11) DEFAULT 0,
   `apartment_id` int(11) DEFAULT 0,
   `tong_so_dien` int(11) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=119 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `so_dien`
+-- Dumping data for table `so_dien`
 --
 
 INSERT INTO `so_dien` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `motel_room_id`, `month`, `year`, `so_dau`, `so_cuoi`, `apartment_id`, `tong_so_dien`) VALUES
@@ -843,7 +841,7 @@ INSERT INTO `so_dien` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `u
 (29, NULL, 0, 0, '2019-10-01 18:43:49', '2019-10-13 04:16:49', 14, 9, 2019, 3938, 4189, 1, 251),
 (30, NULL, 0, 0, '2019-10-01 18:45:35', '2019-10-13 04:16:49', 2, 9, 2019, 4217, 4533, 1, 316),
 (31, NULL, 0, 0, '2019-10-01 18:47:33', '2019-10-13 04:16:49', 16, 9, 2019, 4454, 4500, 2, 46),
-(32, NULL, 0, 0, '2019-10-01 18:47:45', '2019-10-13 04:16:49', 17, 9, 2019, 12355, 12424, 2, 69),
+(32, NULL, 0, 0, '2019-10-01 18:47:45', '2019-10-18 04:29:33', 17, 9, 2019, 12355, 12443, 2, 69),
 (33, NULL, 0, 0, '2019-10-01 18:47:53', '2019-10-13 04:16:49', 18, 9, 2019, 140946, 140946, 2, 0),
 (34, NULL, 0, 0, '2019-10-01 18:48:03', '2019-10-13 04:16:49', 19, 9, 2019, 541, 596, 2, 55),
 (35, NULL, 0, 0, '2019-10-01 18:48:12', '2019-10-13 04:16:49', 20, 9, 2019, 5139, 5212, 2, 73),
@@ -854,11 +852,11 @@ INSERT INTO `so_dien` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `u
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `status`
+-- Table structure for table `status`
 --
 
-CREATE TABLE `status` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `status` (
+  `id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `parent_id` int(11) DEFAULT 0,
   `sort_order` int(11) DEFAULT 0,
@@ -869,20 +867,20 @@ CREATE TABLE `status` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `status_customer`
+-- Table structure for table `status_customer`
 --
 
-CREATE TABLE `status_customer` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `status_customer` (
+  `id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `parent_id` int(11) DEFAULT 0,
   `sort_order` int(11) DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `status_customer`
+-- Dumping data for table `status_customer`
 --
 
 INSERT INTO `status_customer` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`) VALUES
@@ -892,45 +890,46 @@ INSERT INTO `status_customer` (`id`, `name`, `parent_id`, `sort_order`, `created
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `status_hop_dong`
+-- Table structure for table `status_hop_dong`
 --
 
-CREATE TABLE `status_hop_dong` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `status_hop_dong` (
+  `id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `parent_id` int(11) DEFAULT 0,
   `sort_order` int(11) DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `color` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `status_hop_dong`
+-- Dumping data for table `status_hop_dong`
 --
 
 INSERT INTO `status_hop_dong` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `color`) VALUES
-(1, 'Đang hoạt động', 0, 0, '2019-08-01 19:22:14', '2019-09-24 01:38:12', '#09e305'),
-(2, 'Đã hết hạn', 0, 0, '2019-08-01 19:22:25', '2019-09-24 01:36:08', '#fe8900'),
-(3, 'Huỷ hợp đồng', 0, 0, '2019-08-01 19:22:35', '2019-09-24 01:36:14', '#fa0000');
+(1, 'Đang hoạt động', 0, 1, '2019-08-01 19:22:14', '2019-09-24 01:38:12', '#09e305'),
+(2, 'Đã hết hạn', 0, 3, '2019-08-01 19:22:25', '2019-09-24 01:36:08', '#fe8900'),
+(3, 'Huỷ hợp đồng', 0, 4, '2019-08-01 19:22:35', '2019-09-24 01:36:14', '#fa0000'),
+(4, 'Sắp hết hạn', 0, 2, '2019-10-18 03:20:26', '2019-10-18 03:20:26', '#f2e206');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `status_investment`
+-- Table structure for table `status_investment`
 --
 
-CREATE TABLE `status_investment` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `status_investment` (
+  `id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `parent_id` int(11) DEFAULT 0,
   `sort_order` int(11) DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `status_investment`
+-- Dumping data for table `status_investment`
 --
 
 INSERT INTO `status_investment` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`) VALUES
@@ -940,21 +939,21 @@ INSERT INTO `status_investment` (`id`, `name`, `parent_id`, `sort_order`, `creat
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `status_motel_room`
+-- Table structure for table `status_motel_room`
 --
 
-CREATE TABLE `status_motel_room` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `status_motel_room` (
+  `id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `parent_id` int(11) DEFAULT 0,
   `sort_order` int(11) DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `color` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `status_motel_room`
+-- Dumping data for table `status_motel_room`
 --
 
 INSERT INTO `status_motel_room` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `color`) VALUES
@@ -965,21 +964,21 @@ INSERT INTO `status_motel_room` (`id`, `name`, `parent_id`, `sort_order`, `creat
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `status_tien_phong`
+-- Table structure for table `status_tien_phong`
 --
 
-CREATE TABLE `status_tien_phong` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `status_tien_phong` (
+  `id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `parent_id` int(11) DEFAULT 0,
   `sort_order` int(11) DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `color` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `status_tien_phong`
+-- Dumping data for table `status_tien_phong`
 --
 
 INSERT INTO `status_tien_phong` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `color`) VALUES
@@ -989,10 +988,10 @@ INSERT INTO `status_tien_phong` (`id`, `name`, `parent_id`, `sort_order`, `creat
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tables`
+-- Table structure for table `tables`
 --
 
-CREATE TABLE `tables` (
+CREATE TABLE IF NOT EXISTS `tables` (
   `id` int(15) NOT NULL,
   `sort_order` int(11) DEFAULT 0,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1014,10 +1013,10 @@ CREATE TABLE `tables` (
   `is_show_btn_edit` tinyint(2) DEFAULT 0,
   `is_edit_express` int(11) DEFAULT 0,
   `is_add_express` int(11) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tables`
+-- Dumping data for table `tables`
 --
 
 INSERT INTO `tables` (`id`, `sort_order`, `name`, `display_name`, `is_edit`, `type_show`, `count_item_of_page`, `model_name`, `parent_id`, `form_data_type`, `created_at`, `updated_at`, `import`, `export`, `have_delete`, `have_add_new`, `table_tab`, `table_tab_map_column`, `is_show_btn_edit`, `is_edit_express`, `is_add_express`) VALUES
@@ -1059,10 +1058,10 @@ INSERT INTO `tables` (`id`, `sort_order`, `name`, `display_name`, `is_edit`, `ty
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `table_column`
+-- Table structure for table `table_column`
 --
 
-CREATE TABLE `table_column` (
+CREATE TABLE IF NOT EXISTS `table_column` (
   `id` int(11) NOT NULL,
   `table_id` int(11) DEFAULT NULL,
   `display_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -1097,10 +1096,10 @@ CREATE TABLE `table_column` (
   `is_show_total` tinyint(2) DEFAULT 0,
   `is_show_btn_auto_get_total` tinyint(3) DEFAULT NULL,
   `is_view_detail` tinyint(2) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=344 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `table_column`
+-- Dumping data for table `table_column`
 --
 
 INSERT INTO `table_column` (`id`, `table_id`, `display_name`, `name`, `type`, `value_default`, `is_null`, `max_length`, `edit`, `type_show`, `add2search`, `search_type`, `type_edit`, `show_in_list`, `require`, `sort_order`, `parent_id`, `created_at`, `updated_at`, `select_table_id`, `conditions`, `fast_edit`, `table_link`, `class`, `column_table_link`, `sub_list`, `sub_column_name`, `config_add_sub_table`, `bg_in_list`, `add_column_in_list`, `column_name_map_to_comment`, `is_show_total`, `is_show_btn_auto_get_total`, `is_view_detail`) VALUES
@@ -1231,7 +1230,7 @@ INSERT INTO `table_column` (`id`, `table_id`, `display_name`, `name`, `type`, `v
 (160, 37, 'sort_order', 'sort_order', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'number', 0, 0, 0, 0, '2019-05-26', '2019-05-26', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0),
 (161, 39, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 1, 0, '2019-07-30', '2019-07-30', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0),
 (162, 39, 'Số phòng', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 2, 0, '2019-07-30', '2019-09-30', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL, 0),
-(163, 39, 'parent_id', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'select', 0, 0, 9, 0, '2019-07-30', '2019-07-31', 39, '{ \"parent_id\":\"0\"}', 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0),
+(163, 39, 'parent_id', 'parent_id', 'INT', '0', 1, NULL, 0, NULL, 0, 1, 'select', 0, 0, 9, 0, '2019-07-30', '2019-07-31', 39, '{ "parent_id":"0"}', 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0),
 (164, 39, 'Thứ tự sắp sếp', 'sort_order', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'text', 0, 0, 10, 0, '2019-07-30', '2019-07-30', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0),
 (166, 40, 'ID', 'id', 'INT', '', 1, NULL, 0, NULL, 0, 1, 'text', 0, 0, 1, 0, '2019-07-31', '2019-07-31', 0, NULL, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0),
 (167, 40, 'Tiêu đề', 'name', 'VARCHAR', NULL, 1, 255, 1, NULL, 0, 1, 'text', 1, 0, 2, 0, '2019-07-31', '2019-09-30', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL, 1),
@@ -1364,7 +1363,7 @@ INSERT INTO `table_column` (`id`, `table_id`, `display_name`, `name`, `type`, `v
 INSERT INTO `table_column` (`id`, `table_id`, `display_name`, `name`, `type`, `value_default`, `is_null`, `max_length`, `edit`, `type_show`, `add2search`, `search_type`, `type_edit`, `show_in_list`, `require`, `sort_order`, `parent_id`, `created_at`, `updated_at`, `select_table_id`, `conditions`, `fast_edit`, `table_link`, `class`, `column_table_link`, `sub_list`, `sub_column_name`, `config_add_sub_table`, `bg_in_list`, `add_column_in_list`, `column_name_map_to_comment`, `is_show_total`, `is_show_btn_auto_get_total`, `is_view_detail`) VALUES
 (307, 47, 'Năm', 'year', 'INT', '0', 1, 12, 1, NULL, 0, 1, 'text', 0, 0, 6, 0, '2019-09-01', '2019-09-01', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL, 0),
 (308, 49, 'Trạng thái', 'status_hop_dong_id', 'INT', '0', 1, 12, 1, NULL, 1, 1, 'select', 1, 0, 4, 0, '2019-09-02', '2019-09-24', 50, NULL, 1, NULL, 'color-white', NULL, 0, NULL, NULL, '1', NULL, NULL, 0, NULL, 0),
-(309, 47, 'Chi phí khác', 'other', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'text', 0, 0, 11, 0, '2019-09-03', '2019-09-03', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', '{\r\n  \"0\":\"tien_nuoc\",\r\n  \"1\":\"tien_wc\",\r\n  \"2\":\"tien_mang\",\r\n  \"3\":\"tien_chieu_sang\"\r\n}', NULL, 0, NULL, 0),
+(309, 47, 'Chi phí khác', 'other', 'VARCHAR', NULL, 1, NULL, 1, NULL, 0, 1, 'text', 0, 0, 11, 0, '2019-09-03', '2019-09-03', 0, NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, '0', '{\r\n  "0":"tien_nuoc",\r\n  "1":"tien_wc",\r\n  "2":"tien_mang",\r\n  "3":"tien_chieu_sang"\r\n}', NULL, 0, NULL, 0),
 (310, 58, 'Tiền phòng đã thu', 'tien_phong_da_thu', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 3, 0, '2019-09-13', '2019-09-13', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL, 0),
 (311, 58, 'Tiền phòng chưa thu', 'tien_phong_chua_thu', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 4, 0, '2019-09-13', '2019-09-13', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL, 0),
 (312, 58, 'Tổng vốn đầu tư', 'tong_von_dau_tu', 'INT', '0', 1, NULL, 1, NULL, 0, 1, 'number', 1, 0, 8, 0, '2019-09-13', '2019-09-13', 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, '0', NULL, NULL, 0, NULL, 0),
@@ -1403,11 +1402,11 @@ INSERT INTO `table_column` (`id`, `table_id`, `display_name`, `name`, `type`, `v
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `thong_ke`
+-- Table structure for table `thong_ke`
 --
 
-CREATE TABLE `thong_ke` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `thong_ke` (
+  `id` int(10) unsigned NOT NULL,
   `name` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `parent_id` int(11) DEFAULT 0,
   `sort_order` int(11) DEFAULT 0,
@@ -1419,10 +1418,10 @@ CREATE TABLE `thong_ke` (
   `tien_phong_da_thu` int(11) DEFAULT 0,
   `tien_phong_chua_thu` int(11) DEFAULT 0,
   `tong_von_dau_tu` int(11) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `thong_ke`
+-- Dumping data for table `thong_ke`
 --
 
 INSERT INTO `thong_ke` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `tong_chi`, `tong_thu`, `total`, `tien_phong_da_thu`, `tien_phong_chua_thu`, `tong_von_dau_tu`) VALUES
@@ -1439,16 +1438,19 @@ INSERT INTO `thong_ke` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `
 (22, 'Thống kê dữ liệu ngày 09/10/2019 04:10:34', 0, 0, '2019-10-08 21:10:34', '2019-10-08 21:10:34', 211841418, 240000000, 213726582, 185568000, 27916000, 341048000),
 (23, 'Thống kê dữ liệu ngày 11/10/2019 11:46:28', 0, 0, '2019-10-11 04:46:28', '2019-10-11 04:46:28', 211841418, 240000000, 230546582, 202388000, 17096000, 341048000),
 (24, 'Thống kê dữ liệu ngày 13/10/2019 10:53:35', 0, 0, '2019-10-13 03:53:35', '2019-10-13 03:53:35', 211841418, 240000000, 230546582, 202388000, 17096000, 341048000),
-(25, 'Thống kê dữ liệu ngày 13/10/2019 11:20:37', 0, 0, '2019-10-13 04:20:37', '2019-10-13 04:20:37', 211841418, 240000000, 230546582, 202388000, 17096000, 341048000);
+(25, 'Thống kê dữ liệu ngày 13/10/2019 11:20:37', 0, 0, '2019-10-13 04:20:37', '2019-10-13 04:20:37', 211841418, 240000000, 230546582, 202388000, 17096000, 341048000),
+(26, 'Thống kê dữ liệu ngày 16/10/2019 01:30:07', 0, 0, '2019-10-15 18:30:07', '2019-10-15 18:30:07', 212411418, 240000000, 234068582, 206480000, 13004000, 341048000),
+(27, 'Thống kê dữ liệu ngày 20/10/2019 05:56:26', 0, 0, '2019-10-19 22:56:26', '2019-10-19 22:56:26', 212411418, 240000000, 232572582, 204984000, 14576000, 341048000),
+(28, 'Thống kê dữ liệu ngày 20/10/2019 05:56:29', 0, 0, '2019-10-19 22:56:29', '2019-10-19 22:56:29', 212411418, 240000000, 232572582, 204984000, 14576000, 341048000);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tien_chi_tieu`
+-- Table structure for table `tien_chi_tieu`
 --
 
-CREATE TABLE `tien_chi_tieu` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `tien_chi_tieu` (
+  `id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `parent_id` int(11) DEFAULT 0,
   `sort_order` int(11) DEFAULT 0,
@@ -1458,10 +1460,10 @@ CREATE TABLE `tien_chi_tieu` (
   `note` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `apartment_id` int(11) DEFAULT 0,
   `phan_loai_chi_tieu_id` int(11) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tien_chi_tieu`
+-- Dumping data for table `tien_chi_tieu`
 --
 
 INSERT INTO `tien_chi_tieu` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `money`, `note`, `apartment_id`, `phan_loai_chi_tieu_id`) VALUES
@@ -1487,16 +1489,17 @@ INSERT INTO `tien_chi_tieu` (`id`, `name`, `parent_id`, `sort_order`, `created_a
 (20, 'Trả lại Tiến Anh tiền đầu tư ban đầu', 0, 0, '2019-10-03 01:25:40', '2019-10-03 01:25:40', 96000000, NULL, 1, 3),
 (21, 'Trả tiền xe ba gác đổ rác từ tầng 1 xuống', 0, 0, '2019-10-03 20:52:46', '2019-10-03 20:52:46', 500000, NULL, 1, 4),
 (22, 'Trả tiền xe 3 gác đổ rác từ tầng thượng đi', 0, 0, '2019-10-03 20:53:15', '2019-10-03 20:53:22', 100000, NULL, 2, 4),
-(23, 'Thuê Tùng chuyển rác từ tầng thượng xuống', 0, 0, '2019-10-03 20:54:28', '2019-10-03 20:55:12', 500000, NULL, 1, 4);
+(23, 'Thuê Tùng chuyển rác từ tầng thượng xuống', 0, 0, '2019-10-03 20:54:28', '2019-10-03 20:55:12', 500000, NULL, 1, 4),
+(24, 'Sửa điều hòa phòng 301 và 202', 0, 0, '2019-10-13 20:32:45', '2019-10-13 20:32:45', 570000, NULL, 1, 4);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tien_phong`
+-- Table structure for table `tien_phong`
 --
 
-CREATE TABLE `tien_phong` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `tien_phong` (
+  `id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `parent_id` int(11) DEFAULT 0,
   `sort_order` int(11) DEFAULT 0,
@@ -1517,10 +1520,10 @@ CREATE TABLE `tien_phong` (
   `year` int(11) DEFAULT 0,
   `other` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `apartment_id` int(11) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=275 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tien_phong`
+-- Dumping data for table `tien_phong`
 --
 
 INSERT INTO `tien_phong` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `motel_room_id`, `start_date`, `tien_dien`, `tien_nuoc`, `tien_phong`, `tien_wc`, `tien_mang`, `tien_chieu_sang`, `total`, `status_tien_phong_id`, `note`, `month`, `year`, `other`, `apartment_id`) VALUES
@@ -1553,9 +1556,9 @@ INSERT INTO `tien_phong` (`id`, `name`, `parent_id`, `sort_order`, `created_at`,
 (168, 'Tiền dịch vụ tháng 8 và tiền phòng tháng 9', 0, 0, '2019-09-21 04:33:02', '2019-09-21 04:33:21', 15, NULL, 992000, 100000, 3500000, 30000, 100000, 30000, 4752000, 1, 'Số điện đầu: 2396,<br/> Số điện cuối: 2644,<br/> Tổng số điện xử dụng là: 248 Số', 9, 2019, NULL, 1),
 (198, 'Cọc tiền phòng 403/174', 0, 0, '2019-09-26 04:45:37', '2019-09-26 04:55:11', 13, NULL, 0, 0, 0, 0, 0, 0, 3000000, 1, NULL, 9, 2019, NULL, 1),
 (199, 'Tiền dịch vụ tháng 9 và tiền phòng tháng 10', 0, 0, '2019-10-08 20:31:58', '2019-10-10 19:41:35', 15, NULL, 1456000, 200000, 3500000, 60000, 100000, 60000, 5376000, 1, 'Số điện đầu: 2644,<br/> Số điện cuối: 3008,<br/> Tổng số điện xử dụng là: 364 Số', 10, 2019, NULL, 1),
-(200, 'Tiền dịch vụ tháng 9 và tiền phòng tháng 10', 0, 0, '2019-10-01 19:35:59', '2019-10-01 19:35:59', 3, NULL, 352000, 400000, 3000000, 120000, 100000, 120000, 4092000, 2, 'Số điện đầu: 2767,<br/> Số điện cuối: 2855,<br/> Tổng số điện xử dụng là: 88 Số', 10, 2019, NULL, 1),
+(200, 'Tiền dịch vụ tháng 9 và tiền phòng tháng 10', 0, 0, '2019-10-01 19:35:59', '2019-10-13 20:35:49', 3, NULL, 352000, 400000, 3000000, 120000, 100000, 120000, 4092000, 1, 'Số điện đầu: 2767,<br/> Số điện cuối: 2855,<br/> Tổng số điện xử dụng là: 88 Số', 10, 2019, NULL, 1),
 (201, 'Tiền dịch vụ tháng 9 và tiền phòng tháng 10', 0, 0, '2019-10-01 19:25:16', '2019-10-01 20:41:12', 4, NULL, 236000, 200000, 3300000, 60000, 100000, 60000, 3956000, 1, 'Số điện đầu: 3125,<br/> Số điện cuối: 3184,<br/> Tổng số điện xử dụng là: 59 Số', 10, 2019, NULL, 1),
-(202, 'Tiền dịch vụ tháng 9 và tiền phòng tháng 10', 0, 0, '2019-10-01 19:57:18', '2019-10-03 20:33:51', 5, NULL, 156000, 300000, 3000000, 90000, 100000, 90000, 3736000, 2, '<p>Số điện đầu: 116,<br />\r\nSố điện cuối: 155,<br />\r\nTổng số điện xử dụng l&agrave;: 39 Số</p>\r\n\r\n<p>Kh&aacute;ch hẹn mồng 10 đ&oacute;ng</p>', 10, 2019, NULL, 1),
+(202, 'Tiền dịch vụ tháng 9 và tiền phòng tháng 10', 0, 0, '2019-10-01 19:57:18', '2019-10-19 04:33:35', 5, NULL, 156000, 300000, 3000000, 90000, 100000, 90000, 3736000, 2, '<p>Số điện đầu: 116,<br />\r\nSố điện cuối: 155,<br />\r\nTổng số điện xử dụng l&agrave;: 39 Số</p>\r\n\r\n<p>Kh&aacute;ch hẹn mồng 10 đ&oacute;ng</p>\r\n\r\n<p>đ&atilde; đ&oacute;ng trước 2,5tr</p>\r\n\r\n<p>20/10/2019: 1tr</p>', 10, 2019, NULL, 1),
 (203, 'Tiền dịch vụ tháng 9 và tiền phòng tháng 10', 0, 0, '2019-10-01 19:25:16', '2019-10-03 20:32:41', 7, NULL, 96000, 100000, 3200000, 30000, 100000, 30000, 3556000, 1, 'Số điện đầu: 2164,<br/> Số điện cuối: 2188,<br/> Tổng số điện xử dụng là: 24 Số', 10, 2019, NULL, 1),
 (204, 'Tiền dịch vụ tháng 9 và tiền phòng tháng 10', 0, 0, '2019-10-01 19:25:16', '2019-10-07 04:52:12', 6, NULL, 1260000, 200000, 3000000, 60000, 100000, 60000, 4680000, 1, 'Số điện đầu: 4008,<br/> Số điện cuối: 4323,<br/> Tổng số điện xử dụng là: 315 Số', 10, 2019, NULL, 1),
 (205, 'Tiền dịch vụ tháng 9 và tiền phòng tháng 10', 0, 0, '2019-10-01 19:25:16', '2019-10-10 19:46:00', 8, NULL, 0, 0, 6000000, 0, 0, 0, 6000000, 1, '<p>Tiền ph&ograve;ng 3tr<br />\r\nTiền cọc 3tr</p>', 10, 2019, NULL, 1),
@@ -1564,9 +1567,9 @@ INSERT INTO `tien_phong` (`id`, `name`, `parent_id`, `sort_order`, `created_at`,
 (208, 'Tiền dịch vụ tháng 9 và tiền phòng tháng 10', 0, 0, '2019-10-01 20:49:53', '2019-10-01 21:04:25', 12, NULL, 880000, 100000, 3000000, 30000, 100000, 30000, 4140000, 1, 'Số điện đầu: 3590,<br/> Số điện cuối: 3810,<br/> Tổng số điện xử dụng là: 220 Số', 10, 2019, NULL, 1),
 (209, 'Tiền dịch vụ tháng 9 và tiền phòng tháng 10', 0, 0, '2019-10-01 20:49:10', '2019-10-03 19:51:16', 13, NULL, 0, 0, 3000000, 0, 0, 0, 3000000, 1, '<p>Do mới chuyển đến, n&ecirc;n th&aacute;ng n&agrave;y tạm thời ko thu tiền dịch vụ</p>', 10, 2019, NULL, 1),
 (210, 'Tiền dịch vụ tháng 9 và tiền phòng tháng 10', 0, 0, '2019-10-01 19:25:16', '2019-10-01 19:25:16', 14, NULL, 1004000, 200000, 3000000, 60000, 100000, 60000, 4424000, 2, 'Số điện đầu: 3938,<br/> Số điện cuối: 4189,<br/> Tổng số điện xử dụng là: 251 Số', 10, 2019, NULL, 1),
-(211, 'Tiền dịch vụ tháng 9 và tiền phòng tháng 10', 0, 0, '2019-10-01 19:25:16', '2019-10-01 19:25:16', 2, NULL, 1264000, 300000, 3000000, 90000, 100000, 90000, 4844000, 2, 'Số điện đầu: 4217,<br/> Số điện cuối: 4533,<br/> Tổng số điện xử dụng là: 316 Số', 10, 2019, NULL, 1),
+(211, 'Tiền dịch vụ tháng 9 và tiền phòng tháng 10', 0, 0, '2019-10-01 19:25:16', '2019-10-17 04:01:33', 2, NULL, 1264000, 300000, 3000000, 90000, 100000, 90000, 4844000, 2, '<p>Số điện đầu: 4217,<br />\r\nSố điện cuối: 4533,<br />\r\nTổng số điện xử dụng l&agrave;: 316 Số</p>\r\n\r\n<p>Đ&atilde; đ&oacute;ng trươc 2 triệu</p>\r\n\r\n<p>17/10: đ&oacute;ng th&ecirc;m 2tr</p>', 10, 2019, NULL, 1),
 (225, 'Tiền dịch vụ tháng 9 và tiền phòng tháng 10', 0, 0, '2019-10-01 23:43:09', '2019-10-08 03:03:18', 16, NULL, 184000, 400000, 2500000, 120000, 100000, 120000, 4324000, 1, '<p>Số điện đầu: 4454,<br />\r\nSố điện cuối: 4500,<br />\r\nTổng số điện xử dụng l&agrave;: 46 Số</p>\r\n\r\n<p>Đ&oacute;ng th&ecirc;m 900.000 tiền cọc</p>', 10, 2019, '900000', 2),
-(226, 'Tiền dịch vụ tháng 9 và tiền phòng tháng 10', 0, 0, '2019-10-02 00:14:37', '2019-10-10 19:41:57', 17, NULL, 276000, 700000, 0, 210000, 100000, 210000, 1496000, 1, 'Số điện đầu: 12355,<br/> Số điện cuối: 12424,<br/> Tổng số điện xử dụng là: 69 Số', 10, 2019, NULL, 2),
+(226, 'Tiền dịch vụ tháng 9 và tiền phòng tháng 10', 0, 0, '2019-10-18 04:30:05', '2019-10-18 04:30:05', 17, NULL, 352000, 700000, 0, 210000, 100000, 210000, 1572000, 2, 'Số điện đầu: 12355,<br/> Số điện cuối: 12443,<br/> Tổng số điện xử dụng là: 88 Số', 10, 2019, NULL, 2),
 (227, 'Tiền dịch vụ tháng 9 và tiền phòng tháng 10', 0, 0, '2019-10-02 04:53:39', '2019-10-04 02:26:32', 18, NULL, 0, 200000, 2300000, 60000, 100000, 60000, 2720000, 1, 'Số điện đầu: 140946,<br/> Số điện cuối: 140946,<br/> Tổng số điện xử dụng là: 0 Số', 10, 2019, NULL, 2),
 (228, 'Tiền dịch vụ tháng 9 và tiền phòng tháng 10', 0, 0, '2019-10-01 23:43:09', '2019-10-04 02:26:51', 19, NULL, 220000, 100000, 2500000, 30000, 100000, 30000, 2980000, 1, 'Số điện đầu: 541,<br/> Số điện cuối: 596,<br/> Tổng số điện xử dụng là: 55 Số', 10, 2019, NULL, 2),
 (229, 'Tiền dịch vụ tháng 9 và tiền phòng tháng 10', 0, 0, '2019-10-01 23:43:09', '2019-10-05 19:00:11', 20, NULL, 292000, 100000, 2500000, 30000, 100000, 30000, 3052000, 1, 'Số điện đầu: 5139,<br/> Số điện cuối: 5212,<br/> Tổng số điện xử dụng là: 73 Số', 10, 2019, NULL, 2),
@@ -1579,11 +1582,11 @@ INSERT INTO `tien_phong` (`id`, `name`, `parent_id`, `sort_order`, `created_at`,
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `users`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -1593,34 +1596,34 @@ CREATE TABLE `users` (
   `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `user_type` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT '0',
   `sort_order` int(11) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `username`, `user_type`, `sort_order`) VALUES
-(1, 'tienlq', 'quangtienvkt@gmail.com', '$2y$10$qDSM1xhz.Tk7dgDP1vvIpO7oDFWK7tyqndVivchYpBEHoK62YyvCu', 'vb84x6r7HfAcMiw2uvDyEPMygrut53zJBHm0KmhmgCX46oI32Vqs3tszuQca', '2019-01-30 02:49:15', '2019-01-30 02:49:15', 'tienlq', '1', 0),
+(1, 'tienlq', 'quangtienvkt@gmail.com', '$2y$10$qDSM1xhz.Tk7dgDP1vvIpO7oDFWK7tyqndVivchYpBEHoK62YyvCu', 'fBVNtfEQJnU2tUuW30UAfXaVR0dVXCEj5bre0d2A1u9QPvhfrTpJ7OJSPhBG', '2019-01-30 02:49:15', '2019-01-30 02:49:15', 'tienlq', '1', 0),
 (5, 'AnhHT', 'anhht@gmail.com', '$2y$10$7qyJAzC1hEZJP11TFH5GVujI2OvNU/KHyc9X7DBR9Xqf6/F3JOCHO', 'pupElssAPygS3FaCi1WCo0zjV6R6H8Nw9XpC0Gb45CIRkUTPQ4iARkuC11r5', '2019-01-30 02:49:15', '2019-08-19 21:18:20', 'anhht', '1', 0);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `van_tay`
+-- Table structure for table `van_tay`
 --
 
-CREATE TABLE `van_tay` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `van_tay` (
+  `id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `parent_id` int(11) DEFAULT 0,
   `sort_order` int(11) DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `van_tay_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `van_tay`
+-- Dumping data for table `van_tay`
 --
 
 INSERT INTO `van_tay` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `van_tay_id`) VALUES
@@ -1656,9 +1659,9 @@ INSERT INTO `van_tay` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `u
 (30, NULL, 0, 0, '2019-09-08 19:17:10', '2019-09-08 19:17:10', '2030'),
 (31, 'Yên 101', 0, 0, '2019-09-08 19:17:13', '2019-09-08 19:45:52', '2031'),
 (32, NULL, 0, 0, '2019-09-08 19:17:16', '2019-09-08 19:17:16', '2032'),
-(33, NULL, 0, 0, '2019-09-08 19:17:18', '2019-09-08 19:17:18', '2033'),
+(33, 'Giang 501', 0, 0, '2019-09-08 19:17:18', '2019-10-16 04:43:52', '2033'),
 (34, 'Vy 101', 0, 0, '2019-09-08 19:17:27', '2019-09-08 19:48:07', '2100'),
-(35, NULL, 0, 0, '2019-09-08 19:17:33', '2019-09-08 19:17:33', '2101'),
+(35, 'Hỏng', 0, 0, '2019-09-08 19:17:33', '2019-10-16 04:43:17', '2101'),
 (36, 'Quyết 303', 0, 0, '2019-09-08 19:17:36', '2019-10-07 05:30:41', '2102'),
 (37, 'cô Hiên wc', 0, 0, '2019-09-08 19:17:39', '2019-10-05 00:55:52', '2103'),
 (38, 'hỏng', 0, 0, '2019-09-08 19:17:51', '2019-10-05 00:54:57', '2110'),
@@ -1712,11 +1715,11 @@ INSERT INTO `van_tay` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `u
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `von_dau_tu`
+-- Table structure for table `von_dau_tu`
 --
 
-CREATE TABLE `von_dau_tu` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `von_dau_tu` (
+  `id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `parent_id` int(11) DEFAULT 0,
   `sort_order` int(11) DEFAULT 0,
@@ -1728,10 +1731,10 @@ CREATE TABLE `von_dau_tu` (
   `thuongn` int(11) DEFAULT 0,
   `apartment_id` int(11) DEFAULT 0,
   `anhht` int(11) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `von_dau_tu`
+-- Dumping data for table `von_dau_tu`
 --
 
 INSERT INTO `von_dau_tu` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `tienlq`, `note`, `status_investment_id`, `thuongn`, `apartment_id`, `anhht`) VALUES
@@ -1793,11 +1796,11 @@ INSERT INTO `von_dau_tu` (`id`, `name`, `parent_id`, `sort_order`, `created_at`,
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `wifi`
+-- Table structure for table `wifi`
 --
 
-CREATE TABLE `wifi` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `wifi` (
+  `id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `parent_id` int(11) DEFAULT 0,
   `sort_order` int(11) DEFAULT 0,
@@ -1806,10 +1809,10 @@ CREATE TABLE `wifi` (
   `note` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `wifi_password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `apartment_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `wifi`
+-- Dumping data for table `wifi`
 --
 
 INSERT INTO `wifi` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `updated_at`, `note`, `wifi_password`, `apartment_id`) VALUES
@@ -1820,21 +1823,21 @@ INSERT INTO `wifi` (`id`, `name`, `parent_id`, `sort_order`, `created_at`, `upda
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `__route`
+-- Table structure for table `__route`
 --
 
-CREATE TABLE `__route` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `__route` (
+  `id` int(10) unsigned NOT NULL,
   `sort_order` int(11) DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `route_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `parent_id` int(11) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `__route`
+-- Dumping data for table `__route`
 --
 
 INSERT INTO `__route` (`id`, `sort_order`, `created_at`, `updated_at`, `name`, `route_name`, `parent_id`) VALUES
@@ -1847,495 +1850,455 @@ INSERT INTO `__route` (`id`, `sort_order`, `created_at`, `updated_at`, `name`, `
 (8, 6, '2019-04-29 03:09:15', '2019-04-29 03:09:15', 'Một trang landing page đơn', 'singleLandingPage', 0);
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `about`
+-- Indexes for table `about`
 --
 ALTER TABLE `about`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `admin_config`
+-- Indexes for table `admin_config`
 --
 ALTER TABLE `admin_config`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `apartment`
+-- Indexes for table `apartment`
 --
 ALTER TABLE `apartment`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `block`
+-- Indexes for table `block`
 --
 ALTER TABLE `block`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `block_item`
+-- Indexes for table `block_item`
 --
 ALTER TABLE `block_item`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `category`
+-- Indexes for table `category`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `configweb`
+-- Indexes for table `configweb`
 --
 ALTER TABLE `configweb`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `contact`
+-- Indexes for table `contact`
 --
 ALTER TABLE `contact`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `customer`
+-- Indexes for table `customer`
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `doi_tac`
+-- Indexes for table `doi_tac`
 --
 ALTER TABLE `doi_tac`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `footer`
+-- Indexes for table `footer`
 --
 ALTER TABLE `footer`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `hop_dong`
+-- Indexes for table `hop_dong`
 --
 ALTER TABLE `hop_dong`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `khoan_thu_khac`
+-- Indexes for table `khoan_thu_khac`
 --
 ALTER TABLE `khoan_thu_khac`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `landing_page`
+-- Indexes for table `landing_page`
 --
 ALTER TABLE `landing_page`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `landing_page_item`
+-- Indexes for table `landing_page_item`
 --
 ALTER TABLE `landing_page_item`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `migrations`
+-- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `motel_room`
+-- Indexes for table `motel_room`
 --
 ALTER TABLE `motel_room`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `news`
+-- Indexes for table `news`
 --
 ALTER TABLE `news`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `password_resets`
+-- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`(191));
 
 --
--- Chỉ mục cho bảng `permissions`
+-- Indexes for table `permissions`
 --
 ALTER TABLE `permissions`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `phan_loai_chi_tieu`
+-- Indexes for table `phan_loai_chi_tieu`
 --
 ALTER TABLE `phan_loai_chi_tieu`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `product`
+-- Indexes for table `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `roles`
+-- Indexes for table `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `role_has_permissions`
+-- Indexes for table `role_has_permissions`
 --
 ALTER TABLE `role_has_permissions`
   ADD PRIMARY KEY (`permission_id`,`role_id`),
   ADD KEY `role_has_permissions_role_id_foreign` (`role_id`);
 
 --
--- Chỉ mục cho bảng `so_dien`
+-- Indexes for table `so_dien`
 --
 ALTER TABLE `so_dien`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `status`
+-- Indexes for table `status`
 --
 ALTER TABLE `status`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `status_customer`
+-- Indexes for table `status_customer`
 --
 ALTER TABLE `status_customer`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `status_hop_dong`
+-- Indexes for table `status_hop_dong`
 --
 ALTER TABLE `status_hop_dong`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `status_investment`
+-- Indexes for table `status_investment`
 --
 ALTER TABLE `status_investment`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `status_motel_room`
+-- Indexes for table `status_motel_room`
 --
 ALTER TABLE `status_motel_room`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `status_tien_phong`
+-- Indexes for table `status_tien_phong`
 --
 ALTER TABLE `status_tien_phong`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `tables`
+-- Indexes for table `tables`
 --
 ALTER TABLE `tables`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `table_column`
+-- Indexes for table `table_column`
 --
 ALTER TABLE `table_column`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `thong_ke`
+-- Indexes for table `thong_ke`
 --
 ALTER TABLE `thong_ke`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `tien_chi_tieu`
+-- Indexes for table `tien_chi_tieu`
 --
 ALTER TABLE `tien_chi_tieu`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `tien_phong`
+-- Indexes for table `tien_phong`
 --
 ALTER TABLE `tien_phong`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `van_tay`
+-- Indexes for table `van_tay`
 --
 ALTER TABLE `van_tay`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `von_dau_tu`
+-- Indexes for table `von_dau_tu`
 --
 ALTER TABLE `von_dau_tu`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `wifi`
+-- Indexes for table `wifi`
 --
 ALTER TABLE `wifi`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `__route`
+-- Indexes for table `__route`
 --
 ALTER TABLE `__route`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `about`
+-- AUTO_INCREMENT for table `about`
 --
 ALTER TABLE `about`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT cho bảng `admin_config`
+-- AUTO_INCREMENT for table `admin_config`
 --
 ALTER TABLE `admin_config`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT cho bảng `apartment`
+-- AUTO_INCREMENT for table `apartment`
 --
 ALTER TABLE `apartment`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT cho bảng `block`
+-- AUTO_INCREMENT for table `block`
 --
 ALTER TABLE `block`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT cho bảng `block_item`
+-- AUTO_INCREMENT for table `block_item`
 --
 ALTER TABLE `block_item`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 --
--- AUTO_INCREMENT cho bảng `category`
+-- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 --
--- AUTO_INCREMENT cho bảng `configweb`
+-- AUTO_INCREMENT for table `configweb`
 --
 ALTER TABLE `configweb`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT cho bảng `contact`
+-- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT cho bảng `customer`
+-- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 --
--- AUTO_INCREMENT cho bảng `doi_tac`
+-- AUTO_INCREMENT for table `doi_tac`
 --
 ALTER TABLE `doi_tac`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT cho bảng `footer`
+-- AUTO_INCREMENT for table `footer`
 --
 ALTER TABLE `footer`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 --
--- AUTO_INCREMENT cho bảng `hop_dong`
+-- AUTO_INCREMENT for table `hop_dong`
 --
 ALTER TABLE `hop_dong`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
 --
--- AUTO_INCREMENT cho bảng `khoan_thu_khac`
+-- AUTO_INCREMENT for table `khoan_thu_khac`
 --
 ALTER TABLE `khoan_thu_khac`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT cho bảng `landing_page`
+-- AUTO_INCREMENT for table `landing_page`
 --
 ALTER TABLE `landing_page`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT cho bảng `landing_page_item`
+-- AUTO_INCREMENT for table `landing_page_item`
 --
 ALTER TABLE `landing_page_item`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
 --
--- AUTO_INCREMENT cho bảng `migrations`
+-- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT cho bảng `motel_room`
+-- AUTO_INCREMENT for table `motel_room`
 --
 ALTER TABLE `motel_room`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
 --
--- AUTO_INCREMENT cho bảng `news`
+-- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 --
--- AUTO_INCREMENT cho bảng `permissions`
+-- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT cho bảng `phan_loai_chi_tieu`
+-- AUTO_INCREMENT for table `phan_loai_chi_tieu`
 --
 ALTER TABLE `phan_loai_chi_tieu`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT cho bảng `product`
+-- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 --
--- AUTO_INCREMENT cho bảng `roles`
+-- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT cho bảng `so_dien`
+-- AUTO_INCREMENT for table `so_dien`
 --
 ALTER TABLE `so_dien`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=119;
 --
--- AUTO_INCREMENT cho bảng `status`
+-- AUTO_INCREMENT for table `status`
 --
 ALTER TABLE `status`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT cho bảng `status_customer`
+-- AUTO_INCREMENT for table `status_customer`
 --
 ALTER TABLE `status_customer`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT cho bảng `status_hop_dong`
+-- AUTO_INCREMENT for table `status_hop_dong`
 --
 ALTER TABLE `status_hop_dong`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT cho bảng `status_investment`
+-- AUTO_INCREMENT for table `status_investment`
 --
 ALTER TABLE `status_investment`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT cho bảng `status_motel_room`
+-- AUTO_INCREMENT for table `status_motel_room`
 --
 ALTER TABLE `status_motel_room`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT cho bảng `status_tien_phong`
+-- AUTO_INCREMENT for table `status_tien_phong`
 --
 ALTER TABLE `status_tien_phong`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT cho bảng `tables`
+-- AUTO_INCREMENT for table `tables`
 --
 ALTER TABLE `tables`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
-
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=62;
 --
--- AUTO_INCREMENT cho bảng `table_column`
+-- AUTO_INCREMENT for table `table_column`
 --
 ALTER TABLE `table_column`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=344;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=344;
 --
--- AUTO_INCREMENT cho bảng `thong_ke`
+-- AUTO_INCREMENT for table `thong_ke`
 --
 ALTER TABLE `thong_ke`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
 --
--- AUTO_INCREMENT cho bảng `tien_chi_tieu`
+-- AUTO_INCREMENT for table `tien_chi_tieu`
 --
 ALTER TABLE `tien_chi_tieu`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 --
--- AUTO_INCREMENT cho bảng `tien_phong`
+-- AUTO_INCREMENT for table `tien_phong`
 --
 ALTER TABLE `tien_phong`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=257;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=275;
 --
--- AUTO_INCREMENT cho bảng `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT cho bảng `van_tay`
+-- AUTO_INCREMENT for table `van_tay`
 --
 ALTER TABLE `van_tay`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=85;
 --
--- AUTO_INCREMENT cho bảng `von_dau_tu`
+-- AUTO_INCREMENT for table `von_dau_tu`
 --
 ALTER TABLE `von_dau_tu`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=57;
 --
--- AUTO_INCREMENT cho bảng `wifi`
+-- AUTO_INCREMENT for table `wifi`
 --
 ALTER TABLE `wifi`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT cho bảng `__route`
+-- AUTO_INCREMENT for table `__route`
 --
 ALTER TABLE `__route`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-COMMIT;
-
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
