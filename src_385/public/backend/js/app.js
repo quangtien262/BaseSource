@@ -26,12 +26,12 @@ $( function() {
     $(".datepicker01").datepicker({
         changeMonth: true,
         changeYear: true,
-        format: 'yyyy-mm-dd'
+        format: 'yy-mm-dd'
     });
     $(".datepicker02").datepicker({
         changeMonth: true,
         changeYear: true,
-        dateFormat: 'dd-mm-yyyy'
+        dateFormat: 'dd/mm/yy'
     });
 });
 

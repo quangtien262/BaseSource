@@ -131,9 +131,17 @@ class RowController extends BackendController
             }
             if ($column->type == 'INT') {
                 $data[$column->name] = intval($request->input($column->name));
-            } else {
-                $data[$column->name] = $request->input($column->name);
+                continue;
             }
+            if (!empty($data[$column->name]) && $column->type == 'DATE') {
+                $date = date('Y-m-d', strtotime($data[$column->name]));
+                die($date);
+                $data[$column->name] = intval($date);
+                continue;
+            }
+
+            $data[$column->name] = $request->input($column->name);
+
             //upload images if exist
             if ($column->type_edit == 'images') {
                 $images = [];

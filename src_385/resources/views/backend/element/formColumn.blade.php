@@ -142,7 +142,12 @@
         <div class="col-md-6">
             <br/>
             <label>{{ $col->display_name or $col->name }}</label>
-            <input name="{{ $col->name or '' }}" value="{{ $data[$col->name] or '' }}" placeholder="{{ $data[$col->display_name] or '' }}" autocomplete="off" class="form-control datepicker01" type="text"/>
+            <input name="{{ $col->name or '' }}" 
+                value="{{ $data[$col->name] or '' }}" 
+                placeholder="{{ $data[$col->display_name] or '' }}" 
+                autocomplete="off" 
+                class="form-control datepicker02" 
+                type="text"/>
         </div>
     @elseif($col->type_edit == 'input')
         <div class="col-md-6">
