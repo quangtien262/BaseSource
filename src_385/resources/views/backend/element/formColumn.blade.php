@@ -143,7 +143,7 @@
             <br/>
             <label>{{ $col->display_name or $col->name }}</label>
             <input name="{{ $col->name or '' }}" 
-                value="{{ $data[$col->name] or '' }}" 
+                value="{{ empty($data[$col->name]) ? '':date_format(date_create($data[$col->name]), 'd-m-Y') }}" 
                 placeholder="{{ $data[$col->display_name] or '' }}" 
                 autocomplete="off" 
                 class="form-control datepicker02" 

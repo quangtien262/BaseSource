@@ -133,10 +133,9 @@ class RowController extends BackendController
                 $data[$column->name] = intval($request->input($column->name));
                 continue;
             }
-            if (!empty($data[$column->name]) && $column->type == 'DATE') {
-                $date = date('Y-m-d', strtotime($data[$column->name]));
-                die($date);
-                $data[$column->name] = intval($date);
+            if (!empty($request->input($column->name)) && $column->type == 'DATE') {
+                $date = date('Y-m-d', strtotime($request->input($column->name)));
+                $data[$column->name] = $date;
                 continue;
             }
 
@@ -302,32 +301,26 @@ class RowController extends BackendController
             $tmpData['month'] = $request->month;
             $tmpData['year'] = $request->year;
             $tmpData['motel_room_id'] = $d->motel_room_id;
-            $tmpData['name'] = 'Tiền dịch vụ tháng '. $month .' và tiền phòng tháng ' . $request->month ;
+            $tmpData['name'] = 'Tiền dịch vụ tháng '.$month.' và tiền phòng tháng '.$request->month;
             $tmpData['tien_phong'] = $d->gia_thue;
-            
+
             $tmpData['apartment_id'] = $d->apartment_id;
             //tien dien
             $tmpData['tien_dien'] = ($d->so_cuoi - $d->so_dau) * 4000;
             $tmpData['tong_so_dien'] = $d->so_cuoi - $d->so_dau;
-            $tmpData['note'] = 'Số điện đầu: '.$d->so_dau.',<br/> Số điện cuối: ' . $d->so_cuoi . ',<br/> Tổng số điện xử dụng là: ' . ($d->so_cuoi - $d->so_dau) . ' Số';
+            $tmpData['note'] = 'Số điện đầu: '.$d->so_dau.',<br/> Số điện cuối: '.$d->so_cuoi.',<br/> Tổng số điện xử dụng là: '.($d->so_cuoi - $d->so_dau).' Số';
 
             //dich vu khac
             $tienDichVu = app('EntityCommon')->getRowsByConditions('loai_tien_phong');
             $totalDichVu = 0;
-            foreach($tienDichVu as $dv) {
+            foreach ($tienDichVu as $dv) {
                 $price = $dv->price;
-                if(!empty($dv->tinh_theo_so_nguoi)) {
+                if (!empty($dv->tinh_theo_so_nguoi)) {
                     $price = $d->so_nguoi * $dv->price;
                 }
                 $totalDichVu += $price;
                 $tmpData[$dv->name] = $price;
             }
-            // dd($totalDichVu);
-            // $tmpData['tien_nuoc'] = $d->so_nguoi * 100000;
-            // $tmpData['tien_wc'] = $d->so_nguoi * 30000;;
-            // $tmpData['tien_mang'] = 100000;
-            // $tmpData['tien_chieu_sang'] = $d->so_nguoi * 30000;
-
             //total
             $tmpData['total'] = $totalDichVu + $tmpData['tien_dien'] + $tmpData['tien_phong'];
             $tmpData['created_at'] = $date;
@@ -358,12 +351,12 @@ class RowController extends BackendController
         $tmpData['tien_dien'] = ($d->so_cuoi - $d->so_dau) * 4000;
         $tmpData['tong_so_dien'] = $d->so_cuoi - $d->so_dau;
         $tmpData['tien_phong'] = $d->gia_thue;
-        $tmpData['note'] = 'Số điện đầu: '.$d->so_dau.',<br/> Số điện cuối: ' . $d->so_cuoi . ',<br/> Tổng số điện xử dụng là: ' . ($d->so_cuoi - $d->so_dau) . ' Số';
+        $tmpData['note'] = 'Số điện đầu: '.$d->so_dau.',<br/> Số điện cuối: '.$d->so_cuoi.',<br/> Tổng số điện xử dụng là: '.($d->so_cuoi - $d->so_dau).' Số';
         $tienDichVu = app('EntityCommon')->getRowsByConditions('loai_tien_phong');
         $totalDichVu = 0;
-        foreach($tienDichVu as $dv) {
+        foreach ($tienDichVu as $dv) {
             $price = $dv->price;
-            if(!empty($dv->tinh_theo_so_nguoi)) {
+            if (!empty($dv->tinh_theo_so_nguoi)) {
                 $price = $d->so_nguoi * $dv->price;
             }
             $totalDichVu += $price;
@@ -384,13 +377,13 @@ class RowController extends BackendController
         $date = date('d/m/Y h:i:s');
         // dd($data);
         $tmpData = [];
-        $tmpData['name'] = 'Thống kê dữ liệu ngày ' . $date;
+        $tmpData['name'] = 'Thống kê dữ liệu ngày '.$date;
         $tmpData['tong_chi'] = app('EntityCommon')->getTotalByCondition('tien_chi_tieu', 'money');
         $tmpData['tong_thu'] = app('EntityCommon')->getTotalByCondition('khoan_thu_khac', 'money');
         $tmpData['tien_phong_da_thu'] = app('EntityCommon')->getTotalByCondition('tien_phong', 'total', ['status_tien_phong_id' => 1]);
         $tmpData['tien_phong_chua_thu'] = app('EntityCommon')->getTotalByCondition('tien_phong', 'total', ['status_tien_phong_id' => 2]);
         //von dau tu
-        $tienlq= app('EntityCommon')->getTotalByCondition('von_dau_tu', 'tienlq');
+        $tienlq = app('EntityCommon')->getTotalByCondition('von_dau_tu', 'tienlq');
         $anhht = app('EntityCommon')->getTotalByCondition('von_dau_tu', 'anhht');
         $thuongn = app('EntityCommon')->getTotalByCondition('von_dau_tu', 'thuongn');
         $tmpData['tong_von_dau_tu'] = $tienlq + $anhht + $thuongn;
@@ -411,9 +404,9 @@ class RowController extends BackendController
             $preMonth = 12;
         }
         $preSodien = app('EntityCommon')->getRowsByConditions(SO_DIEN, ['month' => $preMonth], $limit = 0, ['id', 'asc']);
-        
+
         $data = [];
-        foreach($preSodien as $sd) {
+        foreach ($preSodien as $sd) {
             // tính tổng lại tất cả số điện
             // $tmpData['tong_so_dien'] = $sd->so_cuoi - $sd->so_dau;
             // app('EntityCommon')->updateData('so_dien', $sd->id, $tmpData);
@@ -422,7 +415,7 @@ class RowController extends BackendController
                 'motel_room_id' => $sd->motel_room_id,
                 'so_dau' => $sd->so_cuoi,
                 'year' => $year,
-                'name' => 'Số điện tháng ' . $month . '/' . $year
+                'name' => 'Số điện tháng '.$month.'/'.$year,
             ];
         }
         app('EntityCommon')->insertData('so_dien', $data, true);
