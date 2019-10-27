@@ -7,6 +7,11 @@ define('LAYOUT_POPUP', 'Layouts.popup');
 define('THONG_KE', 'thong_ke');
 define('TIEN_PHONG', 'tien_phong');
 define('SO_DIEN', 'so_dien');
+define('TBL_LOAI_TIEN_PHONG', 'loai_tien_phong');
+
+//Loaị hình kinh doanh
+define('CHO_THUE_CHDV', 1);
+define('CHO_THUE_SAN_KINH_DOANH', 2);
 
 //return code
 define('RETURN_SUCCESS', 'success');

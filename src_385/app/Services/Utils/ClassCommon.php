@@ -97,4 +97,99 @@ class ClassCommon
         return $randomString;
     }
 
+    function tienPhongCHDV($d, $month, $year, $date) { 
+        $tmpData = [];
+        $totalDichVu = $d->gia_thue;
+        $tmpData['month'] = $month;
+        $tmpData['year'] = $year;
+        $tmpData['motel_room_id'] = $d->motel_room_id;
+        $tmpData['name'] = 'Tiền dịch vụ tháng '.$month.' và tiền phòng tháng '. ($month - 1);
+        $tmpData['tien_phong'] = $d->gia_thue;
+
+        $tmpData['apartment_id'] = $d->apartment_id;
+        //tien dien
+        $tmpData['tien_dien'] = ($d->so_cuoi - $d->so_dau) * 4000;
+        $totalDichVu += $tmpData['tien_dien'];
+        $tmpData['tong_so_dien'] = $d->so_cuoi - $d->so_dau;
+        $tmpData['note'] = 'Số điện đầu: '.$d->so_dau.',<br/> Số điện cuối: '.$d->so_cuoi.',<br/> Tổng số điện xử dụng là: '.($d->so_cuoi - $d->so_dau).' Số';
+
+        //fix data
+        $tmpData['created_at'] = $date;
+        $tmpData['updated_at'] = $date;
+        $tmpData['status_tien_phong_id'] = 2;
+
+        //dich vu khac
+        $tienDichVu = app('EntityCommon')->getRowsByConditions(TBL_LOAI_TIEN_PHONG, ['type_business_id' => CHO_THUE_CHDV]);
+        
+        foreach ($tienDichVu as $dv) {
+            if ($dv->name == 'may_giat') {
+                if($d->is_may_giat == 1) {
+                    $tmpData[$dv->name] = $dv->price;
+                    $totalDichVu += $dv->price;
+                } else {
+                    $tmpData[$dv->name] = 0;
+                }
+            } else {
+                $price = $dv->price;
+                if (!empty($dv->tinh_theo_so_nguoi)) {
+                    $price = $d->so_nguoi * $dv->price;
+                }
+                $totalDichVu += $price;
+                $tmpData[$dv->name] = $price;
+            }
+            
+        }
+
+        //total
+        $tmpData['total'] = $totalDichVu;
+        return $tmpData;
+    }
+
+    function tienPhongKinhDoanh($d, $month, $year, $date, $h2o = null) { 
+        $tmpData = [];
+
+        $tmpData['month'] = ($month);
+        $tmpData['year'] = $year;
+        $tmpData['motel_room_id'] = $d->motel_room_id;
+        $tmpData['name'] = 'Tiền dịch vụ tháng '.$month.' và tiền phòng tháng '. ($month - 1);
+        $tmpData['tien_phong'] = $d->gia_thue;
+        $tmpData['apartment_id'] = $d->apartment_id;
+        $tmpData['created_at'] = $date;
+        $tmpData['updated_at'] = $date;
+        $tmpData['status_tien_phong_id'] = 2;
+        
+        $totalDichVu = $tmpData['tien_phong'];
+        //tien dien
+        $tmpData['tien_dien'] = ($d->so_cuoi - $d->so_dau) * 4000;
+        $totalDichVu += $tmpData['tien_dien'];
+        $tmpData['tong_so_dien'] = $d->so_cuoi - $d->so_dau;
+        $note = 'Số điện đầu: '.$d->so_dau.
+                ',<br/> Số điện cuối: '.$d->so_cuoi.
+                ',<br/> <b>Tổng số điện xử dụng là</b>: '.($d->so_cuoi - $d->so_dau).' (Số)';
+        //Tiền nước
+        if(!empty($h2o)) {
+            $soNuoc = $h2o->so_nuoc_cuoi - $h2o->so_nuoc_dau;
+            $tmpData['tien_nuoc'] = $soNuoc * 25000;
+            $totalDichVu += $tmpData['tien_nuoc'];
+            $note .= ',<br/> Số nước đầu: '.$h2o->so_nuoc_dau.
+                     ',<br/> Số nước cuối: '.$h2o->so_nuoc_cuoi.
+                     ',<br/> <b>Tổng số nước xử dụng là</b>: ' . $soNuoc . ' (Số)';
+        }
+        $tmpData['note'] = $note;
+        
+        //dich vu khac
+        $tienDichVu = app('EntityCommon')->getRowsByConditions(TBL_LOAI_TIEN_PHONG, ['type_business_id' => CHO_THUE_SAN_KINH_DOANH]);
+        foreach ($tienDichVu as $dv) {
+            $price = $dv->price;
+            if (!empty($dv->tinh_theo_so_nguoi)) {
+                $price = $d->so_nguoi * $dv->price;
+            }
+            $totalDichVu += $price;
+            $tmpData[$dv->name] = $price;
+        }
+        
+        //total
+        $tmpData['total'] = $totalDichVu;
+        return $tmpData;
+    }
 }
