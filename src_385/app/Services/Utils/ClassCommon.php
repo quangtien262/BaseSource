@@ -4,7 +4,6 @@ namespace App\Services\Utils;
 
 class ClassCommon
 {
-
     public function formatText($string, $ext = '')
     {
         // remove all characters that aren"t a-z, 0-9, dash, underscore or space
@@ -20,7 +19,8 @@ class ClassCommon
         $string = preg_replace('#[-_]+#', '-', $string);
         $string = str_replace(' ', '-', $string);
         $string = preg_replace('#[-]+#', '-', $string);
-        return strtolower($string . $ext);
+
+        return strtolower($string.$ext);
     }
 
     public static function _utf8ToAscii($str)
@@ -37,18 +37,19 @@ class ClassCommon
         foreach ($chars as $key => $arr) {
             $str = str_replace($arr, $key, $str);
         }
+
         return $str;
     }
 
     public function base64ToImage($base64, $output_file)
     {
-        $file = fopen($output_file, "wb");
+        $file = fopen($output_file, 'wb');
 
         $data = explode(',', $base64);
 
         fwrite($file, base64_decode($data[1]));
         fclose($file);
-        
+
         return true;
     }
 
@@ -68,18 +69,18 @@ class ClassCommon
                     $subData .= '<dd><a href="'.$sub->link.'" title="'.$sub->name.'">'.$sub->name.'</a></dd>';
                 }
             }
-            //
-            if($idx == 0 || $idx == 3 || $idx ==6 || $idx ==9  || $idx ==12) {
+
+            if ($idx == 0 || $idx == 3 || $idx == 6 || $idx == 9 || $idx == 12) {
                 $html .= '<div class="col-xs-6">';
             }
 
             $html .= '<div class="col-md-4"><dl><dt>'.$cate->name.'</dt>'.$subData.'</dl></div>';
 
-            if($idx == 2 || $idx == 5  || $idx == 8 || $idx == 11) {
+            if ($idx == 2 || $idx == 5 || $idx == 8 || $idx == 11) {
                 $html .= '</div>';
             }
         }
-        if($idx != 2 || $idx != 5  || $idx != 8 || $idx != 11) {
+        if ($idx != 2 || $idx != 5 || $idx != 8 || $idx != 11) {
             $html .= '</div>';
         }
         $html .= '</div>';
@@ -87,23 +88,26 @@ class ClassCommon
         return $html;
     }
 
-    function generateRandomString($length = 5) {
+    public function generateRandomString($length = 5)
+    {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $randomString = '';
-        for ($i = 0; $i < $length; $i++) {
+        for ($i = 0; $i < $length; ++$i) {
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
+
         return $randomString;
     }
 
-    function tienPhongCHDV($d, $month, $year, $date) { 
+    public function tienPhongCHDV($d, $month, $year, $date)
+    {
         $tmpData = [];
         $totalDichVu = $d->gia_thue;
         $tmpData['month'] = $month;
         $tmpData['year'] = $year;
         $tmpData['motel_room_id'] = $d->motel_room_id;
-        $tmpData['name'] = 'Tiền dịch vụ tháng '.$month.' và tiền phòng tháng '. ($month - 1);
+        $tmpData['name'] = 'Tiền dịch vụ tháng '.$month.' và tiền phòng tháng '.($month - 1);
         $tmpData['tien_phong'] = $d->gia_thue;
 
         $tmpData['apartment_id'] = $d->apartment_id;
@@ -120,10 +124,10 @@ class ClassCommon
 
         //dich vu khac
         $tienDichVu = app('EntityCommon')->getRowsByConditions(TBL_LOAI_TIEN_PHONG, ['type_business_id' => CHO_THUE_CHDV]);
-        
+
         foreach ($tienDichVu as $dv) {
             if ($dv->name == 'may_giat') {
-                if($d->is_may_giat == 1) {
+                if ($d->is_may_giat == 1) {
                     $tmpData[$dv->name] = $dv->price;
                     $totalDichVu += $dv->price;
                 } else {
@@ -137,27 +141,28 @@ class ClassCommon
                 $totalDichVu += $price;
                 $tmpData[$dv->name] = $price;
             }
-            
         }
 
         //total
         $tmpData['total'] = $totalDichVu;
+
         return $tmpData;
     }
 
-    function tienPhongKinhDoanh($d, $month, $year, $date, $h2o = null) { 
+    public function tienPhongKinhDoanh($d, $month, $year, $date, $h2o = null)
+    {
         $tmpData = [];
 
         $tmpData['month'] = ($month);
         $tmpData['year'] = $year;
         $tmpData['motel_room_id'] = $d->motel_room_id;
-        $tmpData['name'] = 'Tiền dịch vụ tháng '.$month.' và tiền phòng tháng '. ($month - 1);
+        $tmpData['name'] = 'Tiền dịch vụ tháng '.$month.' và tiền phòng tháng '.($month - 1);
         $tmpData['tien_phong'] = $d->gia_thue;
         $tmpData['apartment_id'] = $d->apartment_id;
         $tmpData['created_at'] = $date;
         $tmpData['updated_at'] = $date;
         $tmpData['status_tien_phong_id'] = 2;
-        
+
         $totalDichVu = $tmpData['tien_phong'];
         //tien dien
         $tmpData['tien_dien'] = ($d->so_cuoi - $d->so_dau) * 4000;
@@ -167,16 +172,18 @@ class ClassCommon
                 ',<br/> Số điện cuối: '.$d->so_cuoi.
                 ',<br/> <b>Tổng số điện xử dụng là</b>: '.($d->so_cuoi - $d->so_dau).' (Số)';
         //Tiền nước
-        if(!empty($h2o)) {
+        if (!empty($h2o)) {
             $soNuoc = $h2o->so_nuoc_cuoi - $h2o->so_nuoc_dau;
             $tmpData['tien_nuoc'] = $soNuoc * 25000;
             $totalDichVu += $tmpData['tien_nuoc'];
+            // echo $tmpData['tien_nuoc'];
+            // die;
             $note .= ',<br/> Số nước đầu: '.$h2o->so_nuoc_dau.
                      ',<br/> Số nước cuối: '.$h2o->so_nuoc_cuoi.
-                     ',<br/> <b>Tổng số nước xử dụng là</b>: ' . $soNuoc . ' (Số)';
+                     ',<br/> <b>Tổng số nước xử dụng là</b>: '.$soNuoc.' (Số)';
         }
         $tmpData['note'] = $note;
-        
+
         //dich vu khac
         $tienDichVu = app('EntityCommon')->getRowsByConditions(TBL_LOAI_TIEN_PHONG, ['type_business_id' => CHO_THUE_SAN_KINH_DOANH]);
         foreach ($tienDichVu as $dv) {
@@ -187,9 +194,10 @@ class ClassCommon
             $totalDichVu += $price;
             $tmpData[$dv->name] = $price;
         }
-        
+
         //total
         $tmpData['total'] = $totalDichVu;
+
         return $tmpData;
     }
 }

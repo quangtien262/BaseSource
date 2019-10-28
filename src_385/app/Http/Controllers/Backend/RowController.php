@@ -151,7 +151,7 @@ class RowController extends BackendController
                 $avatar = '';
                 // create directory if not exist
                 if (!empty($request->input('_images'))) {
-                    $directoryUpload = 'imgs/' . $tableId;
+                    $directoryUpload = 'imgs/'.$tableId;
                     if (!file_exists($directoryUpload)) {
                         mkdir($directoryUpload, 0777, true);
                     }
@@ -162,10 +162,10 @@ class RowController extends BackendController
                             //case image is base64
                             $fileType = mime_content_type($img);
                             if (substr($fileType, 0, 5) == 'image') {
-                                $fileName = $idx . '-' . time() . '.' . str_replace('image/', '', $fileType);
-                                $pathUpload = $directoryUpload . '/' . $fileName;
+                                $fileName = $idx.'-'.time().'.'.str_replace('image/', '', $fileType);
+                                $pathUpload = $directoryUpload.'/'.$fileName;
                                 app('ClassCommon')->base64ToImage($img, $pathUpload);
-                                $images[] = '/' . $pathUpload;
+                                $images[] = '/'.$pathUpload;
                             }
                         }
                         if ($request->input('_avatar')[$idx] == '1') {
@@ -299,24 +299,22 @@ class RowController extends BackendController
         $data = app('EntityCommon')->getMoneyMotelRoomWithMonth($preMonth, $request->year);
         // dd($data);
         $date = date('Y-m-d h:i:s');
-        $dataInsert = [];
+
         foreach ($data as $d) {
             //add to data insert
-            
             if ($d->type_business_id == CHO_THUE_CHDV) {
-                $dataInsert[] = app('ClassCommon')->tienPhongCHDV($d, $request->month, $request->year, $date);
-            } elseif ($d->type_business_id == CHO_THUE_SAN_KINH_DOANH) { 
+                $dataInsert = app('ClassCommon')->tienPhongCHDV($d, $request->month, $request->year, $date);
+            } elseif ($d->type_business_id == CHO_THUE_SAN_KINH_DOANH) {
                 $conditionsTienNuoc = [
                     'motel_room_id' => $d->motel_room_id,
-                    'month' => ($data->month - 1),
-                    'year' => $d->year
+                    'month' => $preMonth,
+                    'year' => $d->year,
                 ];
                 $h2o = app('EntityCommon')->findDataLatestByCondition('so_nuoc', $conditionsTienNuoc);
-                $dataInsert = app('ClassCommon')->tienPhongKinhDoanh($d, $data->month, $d->year, $date, $h2o);
+                $dataInsert = app('ClassCommon')->tienPhongKinhDoanh($d, $request->month, $d->year, $date, $h2o);
             }
+            app('EntityCommon')->insertData('tien_phong', $dataInsert);
         }
-        // dd($dataInsert);
-        app('EntityCommon')->insertData('tien_phong', $dataInsert, true);
 
         return back()->withInput();
     }
@@ -331,11 +329,11 @@ class RowController extends BackendController
         //format data
         if ($d->type_business_id == CHO_THUE_CHDV) {
             $tmpData = app('ClassCommon')->tienPhongCHDV($d, $month, $d->year, $date);
-        } elseif ($d->type_business_id == CHO_THUE_SAN_KINH_DOANH) { 
+        } elseif ($d->type_business_id == CHO_THUE_SAN_KINH_DOANH) {
             $conditionsTienNuoc = [
                 'motel_room_id' => $d->motel_room_id,
                 'month' => ($data->month - 1),
-                'year' => $d->year
+                'year' => $d->year,
             ];
             $h2o = app('EntityCommon')->findDataLatestByCondition('so_nuoc', $conditionsTienNuoc);
             $tmpData = app('ClassCommon')->tienPhongKinhDoanh($d, $data->month, $d->year, $date, $h2o);
@@ -351,7 +349,7 @@ class RowController extends BackendController
         $date = date('d/m/Y h:i:s');
         // dd($data);
         $tmpData = [];
-        $tmpData['name'] = 'Thống kê dữ liệu ngày ' . $date;
+        $tmpData['name'] = 'Thống kê dữ liệu ngày '.$date;
         $tmpData['tong_chi'] = app('EntityCommon')->getTotalByCondition('tien_chi_tieu', 'money');
         $tmpData['tong_thu'] = app('EntityCommon')->getTotalByCondition('khoan_thu_khac', 'money');
         $tmpData['tien_phong_da_thu'] = app('EntityCommon')->getTotalByCondition('tien_phong', 'total', ['status_tien_phong_id' => 1]);
@@ -389,7 +387,7 @@ class RowController extends BackendController
                 'motel_room_id' => $sd->motel_room_id,
                 'so_dau' => $sd->so_cuoi,
                 'year' => $year,
-                'name' => 'Số điện tháng ' . $month . '/' . $year,
+                'name' => 'Số điện tháng '.$month.'/'.$year,
             ];
         }
         app('EntityCommon')->insertData('so_dien', $data, true);
