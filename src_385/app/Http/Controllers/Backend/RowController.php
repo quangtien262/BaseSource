@@ -356,9 +356,10 @@ class RowController extends BackendController
         $tmpData['tien_phong_chua_thu'] = app('EntityCommon')->getTotalByCondition('tien_phong', 'total', ['status_tien_phong_id' => 2]);
         //von dau tu
         $tienlq = app('EntityCommon')->getTotalByCondition('von_dau_tu', 'tienlq');
-        $anhht = app('EntityCommon')->getTotalByCondition('von_dau_tu', 'anhht');
+        $thont = app('EntityCommon')->getTotalByCondition('von_dau_tu', 'thont');
+        $sunk = app('EntityCommon')->getTotalByCondition('von_dau_tu', 'sunk');
         $thuongn = app('EntityCommon')->getTotalByCondition('von_dau_tu', 'thuongn');
-        $tmpData['tong_von_dau_tu'] = $tienlq + $anhht + $thuongn;
+        $tmpData['tong_von_dau_tu'] = $tienlq + $thont + $sunk + $thuongn;
         //total
         $tmpData['total'] = $tmpData['tong_thu'] + $tmpData['tien_phong_da_thu'] - $tmpData['tong_chi'];
         // dd($tmpData);
