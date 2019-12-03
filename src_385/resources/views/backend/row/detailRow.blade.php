@@ -14,19 +14,40 @@
                             <div class="row">
                                 @foreach($columns as $col)
                                     @if($col->edit == 1)
-                                        <div class="col-md-6 item-detail">
-                                            <br/>
-                                            <label>{{ $col->display_name or $col->name }}: </label>
                                             @if($col->type_edit == 'number')
-                                                {{ !empty($data[$col->name]) ? number_format($data[$col->name]):0 }}
+                                                @if(!empty($data[$col->name]) && !empty($data[$col->name]))
+                                                    <div class="col-md-6 item-detail">
+                                                        <br/>
+                                                        <label>{{ $col->display_name or $col->name }}: </label>
+                                                        {{ !empty($data[$col->name]) ? number_format($data[$col->name]):0 }}
+                                                    </div>
+                                                @endif
                                             @elseif($col->type_edit == 'textarea')
-                                                <p>{{ !empty($data[$col->name]) ? nl2br($data[$col->name]):'' }}</p>
+                                                <div class="col-md-6 item-detail">
+                                                    <br/>
+                                                    <label>{{ $col->display_name or $col->name }}: </label>
+                                                    <p>{{ !empty($data[$col->name]) ? nl2br($data[$col->name]):'' }}</p>
+                                                </div>
                                             @elseif($col->type_edit == 'summoner')
-                                                <p>{!! $data[$col->name] !!}</p>
+                                                <div class="col-md-6 item-detail">
+                                                    <br/>
+                                                    <label>{{ $col->display_name or $col->name }}: </label>
+                                                    <p>{!! $data[$col->name] !!}</p>
+                                                </div>
+                                            @elseif($col->type_edit == 'select')
+                                                <div class="col-md-6 item-detail">
+                                                    <br/>
+                                                    <label>{{ $col->display_name or $col->name }}: </label>
+                                                    @php $tbl = app('EntityCommon')->getCurrentTableDataByTablesId($col->select_table_id, $data[$col->name]) @endphp
+                                                    {{ $tbl->name or '' }}
+                                                </div>
                                             @else
-                                                {{ $data[$col->name] or '' }}
+                                                <div class="col-md-6 item-detail">
+                                                    <br/>
+                                                    <label>{{ $col->display_name or $col->name }}: </label>
+                                                    {{ $data[$col->name] or '' }}
+                                                </div>
                                             @endif
-                                        </div>
                                     @endif
                                 @endforeach
                             </div>

@@ -302,17 +302,18 @@ class RowController extends BackendController
 
         foreach ($data as $d) {
             //add to data insert
-            if ($d->type_business_id == CHO_THUE_CHDV) {
-                $dataInsert = app('ClassCommon')->tienPhongCHDV($d, $request->month, $request->year, $date);
-            } elseif ($d->type_business_id == CHO_THUE_SAN_KINH_DOANH) {
-                $conditionsTienNuoc = [
-                    'motel_room_id' => $d->motel_room_id,
-                    'month' => $preMonth,
-                    'year' => $d->year,
-                ];
-                $h2o = app('EntityCommon')->findDataLatestByCondition('so_nuoc', $conditionsTienNuoc);
-                $dataInsert = app('ClassCommon')->tienPhongKinhDoanh($d, $request->month, $d->year, $date, $h2o);
-            }
+            // if ($d->type_business_id == CHO_THUE_CHDV) {
+            //     $dataInsert = app('ClassCommon')->tienPhongCHDV($d, $request->month, $request->year, $date);
+            // } elseif ($d->type_business_id == CHO_THUE_SAN_KINH_DOANH) {
+            //     $conditionsTienNuoc = [
+            //         'motel_room_id' => $d->motel_room_id,
+            //         'month' => $preMonth,
+            //         'year' => $d->year,
+            //     ];
+            //     $h2o = app('EntityCommon')->findDataLatestByCondition('so_nuoc', $conditionsTienNuoc);
+            //     $dataInsert = app('ClassCommon')->tienPhongKinhDoanh($d, $request->month, $d->year, $date, $h2o);
+            // }
+            $dataInsert = app('ClassCommon')->tienPhongCHDV($d, $request->month, $request->year, $date);
             app('EntityCommon')->insertData('tien_phong', $dataInsert);
         }
 
@@ -322,24 +323,27 @@ class RowController extends BackendController
     public function generateCurrenTienPhong($id)
     {
         $data = app('EntityCommon')->getDataById('tien_phong', $id);
-        $month = ($data->month - 1);
-        $d = app('EntityCommon')->getCurrentMoneyMotelRoom($month, $data->year, $data->motel_room_id);
+        $month = $data->month;
+        $d = app('EntityCommon')->getCurrentMoneyMotelRoom(($month - 1), $data->year, $data->motel_room_id);
+        // dd($d);
         //get today
         $date = date('Y-m-d h:i:s');
         //format data
-        if ($d->type_business_id == CHO_THUE_CHDV) {
-            $tmpData = app('ClassCommon')->tienPhongCHDV($d, $month, $d->year, $date);
-        } elseif ($d->type_business_id == CHO_THUE_SAN_KINH_DOANH) {
-            $conditionsTienNuoc = [
-                'motel_room_id' => $d->motel_room_id,
-                'month' => ($data->month - 1),
-                'year' => $d->year,
-            ];
-            $h2o = app('EntityCommon')->findDataLatestByCondition('so_nuoc', $conditionsTienNuoc);
-            $tmpData = app('ClassCommon')->tienPhongKinhDoanh($d, $data->month, $d->year, $date, $h2o);
-        }
+        // if ($d->type_business_id == CHO_THUE_CHDV) {
+        //     $tmpData = app('ClassCommon')->tienPhongCHDV($d, $month, $d->year, $date);
+        // } elseif ($d->type_business_id == CHO_THUE_SAN_KINH_DOANH) {
+        //     $conditionsTienNuoc = [
+        //         'motel_room_id' => $d->motel_room_id,
+        //         'month' => ($data->month - 1),
+        //         'year' => $d->year,
+        //     ];
+        //     $h2o = app('EntityCommon')->findDataLatestByCondition('so_nuoc', $conditionsTienNuoc);
+        //     $tmpData = app('ClassCommon')->tienPhongKinhDoanh($d, $data->month, $d->year, $date, $h2o);
+        // }
+        // echo $data->year;die;
+        $tmpData = app('ClassCommon')->tienPhongCHDV($d, $data->month, $data->year, $date);
         //insert to db
-        app('EntityCommon')->updateData('tien_phong', $id, $tmpData);
+        app('EntityCommon')->updateData('tien_phong', $id, $tmpData);  
 
         return back()->withInput();
     }
