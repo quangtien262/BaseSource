@@ -29,7 +29,7 @@
                                                     <p>{{ !empty($data[$col->name]) ? nl2br($data[$col->name]):'' }}</p>
                                                 </div>
                                             @elseif($col->type_edit == 'summoner')
-                                                <div class="col-md-6 item-detail">
+                                                <div class="col-xs-9">
                                                     <br/>
                                                     <label>{{ $col->display_name or $col->name }}: </label>
                                                     <p>{!! $data[$col->name] !!}</p>

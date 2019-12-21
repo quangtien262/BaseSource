@@ -405,8 +405,8 @@ class EntityCommon
         ->leftJoin('so_dien', 'motel_room.id', 'so_dien.motel_room_id')
         ->leftJoin('so_nuoc', 'motel_room.id', 'so_nuoc.motel_room_id')
         ->leftJoin('hop_dong', 'motel_room.id', 'hop_dong.motel_room_id')
-        ->where('so_dien.month',  $month)
-        ->where('so_dien.year',  $year)
+        ->where('so_dien.month', $month)
+        ->where('so_dien.year', $year)
         ->where('hop_dong.status_hop_dong_id', 1)
         ->get();
         // echo '<pre>';
@@ -414,7 +414,7 @@ class EntityCommon
         return $result;
     }
 
-     /**
+    /**
      * get thông tin phòng theo tiền điênk.
      *
      * @param [type] $month
@@ -450,19 +450,20 @@ class EntityCommon
         $result = 0;
         $data = DB::table($table)
         ->select($column);
-        if(!empty($condition)) {
-            foreach($condition as $key => $val) {
+        if (!empty($condition)) {
+            foreach ($condition as $key => $val) {
                 $data = $data->where($key, $val);
             }
         }
         $data = $data->get();
         $data = json_decode(json_encode($data), true);
         // dd($data);
-        if(!empty($data)) {
-            foreach($data as $d) {
+        if (!empty($data)) {
+            foreach ($data as $d) {
                 $result = $result + $d[$column];
             }
         }
+
         return $result;
     }
 }

@@ -328,22 +328,9 @@ class RowController extends BackendController
         // dd($d);
         //get today
         $date = date('Y-m-d h:i:s');
-        //format data
-        // if ($d->type_business_id == CHO_THUE_CHDV) {
-        //     $tmpData = app('ClassCommon')->tienPhongCHDV($d, $month, $d->year, $date);
-        // } elseif ($d->type_business_id == CHO_THUE_SAN_KINH_DOANH) {
-        //     $conditionsTienNuoc = [
-        //         'motel_room_id' => $d->motel_room_id,
-        //         'month' => ($data->month - 1),
-        //         'year' => $d->year,
-        //     ];
-        //     $h2o = app('EntityCommon')->findDataLatestByCondition('so_nuoc', $conditionsTienNuoc);
-        //     $tmpData = app('ClassCommon')->tienPhongKinhDoanh($d, $data->month, $d->year, $date, $h2o);
-        // }
-        // echo $data->year;die;
         $tmpData = app('ClassCommon')->tienPhongCHDV($d, $data->month, $data->year, $date);
         //insert to db
-        app('EntityCommon')->updateData('tien_phong', $id, $tmpData);  
+        app('EntityCommon')->updateData('tien_phong', $id, $tmpData);
 
         return back()->withInput();
     }
@@ -354,18 +341,24 @@ class RowController extends BackendController
         // dd($data);
         $tmpData = [];
         $tmpData['name'] = 'Thống kê dữ liệu ngày '.$date;
-        $tmpData['tong_chi'] = app('EntityCommon')->getTotalByCondition('tien_chi_tieu', 'money');
-        $tmpData['tong_thu'] = app('EntityCommon')->getTotalByCondition('khoan_thu_khac', 'money');
+        $tmpData['tien_chi_tieu'] = app('EntityCommon')->getTotalByCondition('tien_chi_tieu', 'money');
+        $tmpData['khoan_thu_khac'] = app('EntityCommon')->getTotalByCondition('khoan_thu_khac', 'money');
         $tmpData['tien_phong_da_thu'] = app('EntityCommon')->getTotalByCondition('tien_phong', 'total', ['status_tien_phong_id' => 1]);
         $tmpData['tien_phong_chua_thu'] = app('EntityCommon')->getTotalByCondition('tien_phong', 'total', ['status_tien_phong_id' => 2]);
-        //von dau tu
-        $tienlq = app('EntityCommon')->getTotalByCondition('von_dau_tu', 'tienlq');
-        $thont = app('EntityCommon')->getTotalByCondition('von_dau_tu', 'thont');
-        $sunk = app('EntityCommon')->getTotalByCondition('von_dau_tu', 'sunk');
-        $thuongn = app('EntityCommon')->getTotalByCondition('von_dau_tu', 'thuongn');
-        $tmpData['tong_von_dau_tu'] = $tienlq + $thont + $sunk + $thuongn;
-        //total
-        $tmpData['total'] = $tmpData['tong_thu'] + $tmpData['tien_phong_da_thu'] - $tmpData['tong_chi'];
+        $tmpData['tong_von_dau_tu'] = app('EntityCommon')->getTotalByCondition('von_dau_tu', 'money');
+        $tmpData['tien_moi_gioi'] = app('EntityCommon')->getTotalByCondition('apartment', 'tien_moi_gioi');
+        $tmpData['tien_chuyen_nhuong'] = app('EntityCommon')->getTotalByCondition('apartment', 'gia_nhuong');
+        $tmpData['tien_coc_chu_nha'] = app('EntityCommon')->getTotalByCondition('apartment', 'tien_coc');
+
+        $tmpData['total'] = $tmpData['tong_von_dau_tu'] +
+            $tmpData['khoan_thu_khac'] +
+            $tmpData['tien_phong_da_thu'] -
+            $tmpData['tien_chi_tieu'] -
+            $tmpData['tien_moi_gioi'] -
+            $tmpData['tien_chuyen_nhuong'] -
+            $tmpData['tien_coc_chu_nha'];
+        $tmpData['note'] = app('ClassCommon')->generateDongTien($tmpData['total']);
+        // echo $tmpData['note']; die;
         // dd($tmpData);
         app('EntityCommon')->insertData('thong_ke', $tmpData);
 
@@ -384,9 +377,6 @@ class RowController extends BackendController
 
         $data = [];
         foreach ($preSodien as $sd) {
-            // tính tổng lại tất cả số điện
-            // $tmpData['tong_so_dien'] = $sd->so_cuoi - $sd->so_dau;
-            // app('EntityCommon')->updateData('so_dien', $sd->id, $tmpData);
             $data[] = [
                 'month' => $month,
                 'motel_room_id' => $sd->motel_room_id,
