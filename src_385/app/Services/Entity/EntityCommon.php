@@ -400,13 +400,12 @@ class EntityCommon
      */
     public function getMoneyMotelRoomWithMonth($month, $year)
     {
-        echo $month;
+        // echo $month;
         $result = DB::table('motel_room')
-        ->leftJoin('so_dien', 'motel_room.id', 'so_dien.motel_room_id')
-        ->leftJoin('so_nuoc', 'motel_room.id', 'so_nuoc.motel_room_id')
+        ->leftJoin('so_dien_nuoc', 'motel_room.id', 'so_dien_nuoc.motel_room_id')
         ->leftJoin('hop_dong', 'motel_room.id', 'hop_dong.motel_room_id')
-        ->where('so_dien.month', $month)
-        ->where('so_dien.year', $year)
+        ->where('so_dien_nuoc.month', $month)
+        ->where('so_dien_nuoc.year', $year)
         ->where('hop_dong.status_hop_dong_id', 1)
         ->get();
         // echo '<pre>';
@@ -427,11 +426,11 @@ class EntityCommon
         // print_r($motelRoomId);
         // die;
         $result = DB::table('motel_room')
-        ->leftJoin('so_dien', 'motel_room.id', '=', 'so_dien.motel_room_id')
-        ->leftJoin('so_nuoc', 'motel_room.id', '=', 'so_nuoc.motel_room_id')
+        ->leftJoin('so_dien_nuoc', 'motel_room.id', '=', 'so_dien_nuoc.motel_room_id')
+        // ->leftJoin('so_nuoc', 'motel_room.id', '=', 'so_nuoc.motel_room_id')
         ->leftJoin('hop_dong', 'motel_room.id', '=', 'hop_dong.motel_room_id')
-        ->where('so_dien.month', '=', $month)
-        ->where('so_dien.year', '=', $year)
+        ->where('so_dien_nuoc.month', '=', $month)
+        ->where('so_dien_nuoc.year', '=', $year)
         // ->where('hop_dong.status_hop_dong_id', '=', 1)
         ->where('hop_dong.motel_room_id', '=', $motelRoomId)
         ->first();

@@ -104,10 +104,14 @@ class ClassCommon
     {
         $tmpData = [];
         $totalDichVu = $d->gia_thue;
+        $preMonth = $month - 1;
+        if($month == 1) {
+            $preMonth = 12;
+        }
         $tmpData['month'] = $month;
         $tmpData['year'] = $year;
         $tmpData['motel_room_id'] = $d->motel_room_id;
-        $tmpData['name'] = 'Tiền dịch vụ tháng '.($month - 1).' và tiền phòng tháng '.$month;
+        $tmpData['name'] = 'Tiền dịch vụ tháng '.$preMonth.' và tiền phòng tháng '.$month;
         $tmpData['tien_phong'] = $d->gia_thue;
 
         $tmpData['apartment_id'] = $d->apartment_id;
@@ -117,9 +121,22 @@ class ClassCommon
         $tmpData['status_tien_phong_id'] = 2;
         $typeBusiness = app('EntityCommon')->getDataById('type_business', $d->type_business_id);
         //check so dien
-        $tmpData['tien_dien'] = ($d->so_cuoi - $d->so_dau) * $typeBusiness->tien_dien;
+        // dd($d);
+        $tienDienBussiness = 0;
+        if(!empty($typeBusiness->tien_dien)) {
+            $tienDienBussiness = $typeBusiness->tien_dien;
+        }
+        $tmpData['tien_dien'] = 0;
+        echo $tmpData['tien_dien'] . '---';
+        if(!empty($d->so_dien_cuoi) && !empty($tienDienBussiness)) {
+            echo $d->so_dien_cuoi.'-';
+            echo $d->so_dien_dau.'-';
+            echo $d->id.'<br>';
+            $tmpData['tien_dien'] = ($d->so_dien_cuoi - $d->so_dien_dau) * $tienDienBussiness;
+        }
+        
         $totalDichVu += $tmpData['tien_dien'];
-        $tmpData['tong_so_dien'] = $d->so_cuoi - $d->so_dau;
+        $tmpData['tong_so_dien'] = intval($d->so_dien_cuoi) - intval($d->so_dien_dau);
         //check so nuoc
         $noteTienNuoc = '';
         if (!empty($typeBusiness->have_cong_to_nuoc)) {
@@ -131,11 +148,11 @@ class ClassCommon
         }
         //note
         $tmpData['note'] = $noteTienNuoc.
-                           'Số điện đầu: '.$d->so_dau.
-                           ', Số điện cuối: '.$d->so_cuoi.
-                           ',<br/> Tổng số điện xử dụng là: '.($d->so_cuoi - $d->so_dau).' Số (Giá điện: '.number_format($typeBusiness->tien_dien).'/Số<br/>';
-        // dd($typeBusiness);
-        //dich vu khac
+                           'Số điện đầu: '.$d->so_dien_dau.
+                           ', Số điện cuối: '.$d->so_dien_cuoi.
+                           ',<br/> Tổng số điện xử dụng là: '.$tmpData['tien_dien'].
+                           ' Số (Giá điện: '. number_format($tienDienBussiness) .'/Số<br/>';
+        
         $tienDichVu = app('EntityCommon')->getRowsByConditions(TBL_LOAI_TIEN_PHONG, ['type_business_id' => $d->type_business_id]);
 
         foreach ($tienDichVu as $dv) {
@@ -178,12 +195,12 @@ class ClassCommon
 
         $totalDichVu = $tmpData['tien_phong'];
         //tien dien
-        $tmpData['tien_dien'] = ($d->so_cuoi - $d->so_dau) * 4000;
+        $tmpData['tien_dien'] = ($d->so_dien_cuoi - $d->so_dien_dau) * 4000;
         $totalDichVu += $tmpData['tien_dien'];
-        $tmpData['tong_so_dien'] = $d->so_cuoi - $d->so_dau;
-        $note = 'Số điện đầu: '.$d->so_dau.
-                ',<br/> Số điện cuối: '.$d->so_cuoi.
-                ',<br/> <b>Tổng số điện xử dụng là</b>: '.($d->so_cuoi - $d->so_dau).' (Số)';
+        $tmpData['tong_so_dien'] = $d->so_dien_cuoi - $d->so_dien_dau;
+        $note = 'Số điện đầu: '.$d->so_dien_dau.
+                ',<br/> Số điện cuối: '.$d->so_dien_cuoi.
+                ',<br/> <b>Tổng số điện xử dụng là</b>: '.($d->so_dien_cuoi - $d->so_dien_dau).' (Số)';
         //Tiền nước
         if (!empty($h2o)) {
             $soNuoc = $h2o->so_nuoc_cuoi - $h2o->so_nuoc_dau;
@@ -253,7 +270,7 @@ class ClassCommon
     private function getDetailPlanByMonth($month, $year, $apms, $total) {
         $month = str_pad($month, 2, 0, STR_PAD_LEFT);
         $html = '<tr>';
-        $html .= '<td>'.$month.'/'.$year.'</td>';
+        $html .= '<td><b>'.$month.'/'.$year.'</b></td>';
         $ngayDongTien = $this->getListKyThanhToanTienNha($apms);
         // dd($ngayDongTien);
         $thuTotal = 0;
@@ -266,7 +283,8 @@ class ClassCommon
             $chi = 0;
             if(in_array($currentDate, $ngayDongTien[$apm->id])) {
                 $chi = $apm->gia_thue * $apm->ky_thanh_toan;
-                $strChi = '<p><em class="_red">Tiền nhà: '. number_format($chi).'</em></p>';
+                $strChi = '<p><em class="_red">Tiền nhà: '. number_format($chi).'</em></p>
+                           <p><em style="font-size:11px">('. $currentDate.')</em></p>';
             }
             $thu = app('EntityCommon')->getTotalByCondition('hop_dong', 'gia_thue', ['apartment_id' => $apm->id]);
             
@@ -275,14 +293,18 @@ class ClassCommon
             
             $html .= "<td>
                             <p>TiềnPhòng: <b>".number_format($thu)."</b></p>
-                            <b>".$strChi."</b>
+                            ".$strChi."
                         </td>";
         }
         $total = $total + $thuTotal - $chiTotal;
+        $htmlChi = '';
+        if(!empty($chiTotal)) {
+            $htmlChi = '<p class="_red"><b>TổngChi: '. number_format($chiTotal).'</b></p>';
+        }
         $html .= '<td>
-                        <p><b>Tổng Thu</b>: '. number_format($thuTotal).'</p>
-                        <p><b>Tổng Chi</b>: '. number_format($chiTotal).'</p>
-                        <p><b>Còn lại</b>: '. number_format($total).'</p>
+                        <p><b>TổngThu:</b> '. number_format($thuTotal).'</p>
+                        '.$htmlChi.'
+                        <p><b>TổngCònLại:</b> '. number_format($total).'</p>
                     </td>';
    
         $html .= '</tr>';

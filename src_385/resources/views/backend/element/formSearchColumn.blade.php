@@ -5,6 +5,12 @@
             <label>{{ $col->display_name or $col->name }}</label>
             <input name="{{ $col->name or '' }}" value="{{ $_GET[$col->name] or '' }}" class="form-control" type="text" placeholder=""/>
         </div>
+    @elseif($col->type_edit == 'number')
+        <div class="col-xs-6 col-sm-3">
+            <br/>
+            <label>{{ $col->display_name or $col->name }}</label>
+            <input name="{{ $col->name or '' }}" value="{{ $_GET[$col->name] or '' }}" class="form-control" type="number" placeholder=""/>
+        </div>
     @elseif($col->type_edit == 'textarea')
         <div class="col-xs-6 col-sm-3">
             <br/>

@@ -295,24 +295,17 @@ class RowController extends BackendController
 
     public function generateTienPhong(Request $request)
     {
-        $preMonth = (intval($request->month) - 1);
-        $data = app('EntityCommon')->getMoneyMotelRoomWithMonth($preMonth, $request->year);
+        $preMonth = intval($request->month) - 1;
+        $year = $request->year;
+        if($request->month == 1) {
+            $preMonth = 12;
+            $year--;
+        }
+        $data = app('EntityCommon')->getMoneyMotelRoomWithMonth($preMonth, $year);
         // dd($data);
         $date = date('Y-m-d h:i:s');
 
         foreach ($data as $d) {
-            //add to data insert
-            // if ($d->type_business_id == CHO_THUE_CHDV) {
-            //     $dataInsert = app('ClassCommon')->tienPhongCHDV($d, $request->month, $request->year, $date);
-            // } elseif ($d->type_business_id == CHO_THUE_SAN_KINH_DOANH) {
-            //     $conditionsTienNuoc = [
-            //         'motel_room_id' => $d->motel_room_id,
-            //         'month' => $preMonth,
-            //         'year' => $d->year,
-            //     ];
-            //     $h2o = app('EntityCommon')->findDataLatestByCondition('so_nuoc', $conditionsTienNuoc);
-            //     $dataInsert = app('ClassCommon')->tienPhongKinhDoanh($d, $request->month, $d->year, $date, $h2o);
-            // }
             $dataInsert = app('ClassCommon')->tienPhongCHDV($d, $request->month, $request->year, $date);
             app('EntityCommon')->insertData('tien_phong', $dataInsert);
         }
@@ -324,11 +317,17 @@ class RowController extends BackendController
     {
         $data = app('EntityCommon')->getDataById('tien_phong', $id);
         $month = $data->month;
-        $d = app('EntityCommon')->getCurrentMoneyMotelRoom(($month - 1), $data->year, $data->motel_room_id);
+        $year = $data->year;
+        $preMonth = $month - 1;
+        if($month == 1) {
+            $year--;
+            $preMonth = 12;
+        }
+        // echo $year;
+        $d = app('EntityCommon')->getCurrentMoneyMotelRoom($preMonth, $year, $data->motel_room_id);
         // dd($d);
-        //get today
         $date = date('Y-m-d h:i:s');
-        $tmpData = app('ClassCommon')->tienPhongCHDV($d, $data->month, $data->year, $date);
+        $tmpData = app('ClassCommon')->tienPhongCHDV($d, $data->month, $year, $date);
         //insert to db
         app('EntityCommon')->updateData('tien_phong', $id, $tmpData);
 
@@ -385,7 +384,7 @@ class RowController extends BackendController
                 'name' => 'Số điện tháng '.$month.'/'.$year,
             ];
         }
-        app('EntityCommon')->insertData('so_dien', $data, true);
+        app('EntityCommon')->insertData('so_dien_nuoc', $data, true);
 
         return back()->withInput();
     }

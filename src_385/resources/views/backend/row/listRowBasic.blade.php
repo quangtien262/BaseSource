@@ -49,13 +49,13 @@
                                 {{-- <i class="ion-arrow-down-a"></i> --}}
                                 Tính tiền phòng
                             </button> 
-                            <input type="hidden" name="year" value="{{ date('Y') }}"/>
                             <select name="month">
-                                <option>Chọn thời gian</option>
+                                <option>Tháng</option>
                                 @for($i = 1; $i <= 12; $i++)
-                                    <option {{ $i == date('m') ? 'selected':'' }} value="{{ $i }}"> {{ $i . '/' . date('Y') }} </option>
+                                    <option {{ $i == date('m') ? 'selected':'' }} value="{{ $i }}"> {{ $i }} </option>
                                 @endfor
                             </select>
+                            <input type="number" name="year" value="{{ date('Y') }}"/>
                         </form>
                     @endif
 
