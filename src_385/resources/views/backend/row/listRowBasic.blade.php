@@ -45,7 +45,7 @@
                     @if($table->name == TIEN_PHONG)
                         <form action="{{ route('generateTienPhong') }}" method="POST">
                             {{ csrf_field()}}
-                            <button class="btn btn-success">
+                            <button class="btn btn-success" onclick="return checkConfirm('Xác nhận tính tiền phòng')">
                                 {{-- <i class="ion-arrow-down-a"></i> --}}
                                 Tính tiền phòng
                             </button> 

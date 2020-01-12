@@ -421,7 +421,6 @@ class EntityCommon
      */
     public function getCurrentMoneyMotelRoom($month, $year, $motelRoomId)
     {
-        // print_r($month);
         // print_r($year);
         // print_r($motelRoomId);
         // die;

@@ -569,7 +569,9 @@ class ClassTables
                                 &nbsp;
                                 '.$edit.'
                                 &nbsp;
-                                <a href="'.route('deleteRow', [$table->id, $td->id]).'"><i class="ion-trash-a"></i></a>
+                                <a onclick="return checkConfirm(\'Xác nhận Xóa\')" href="'.route('deleteRow', [$table->id, $td->id]).'">
+                                    <i class="ion-trash-a"></i>
+                                </a>
                             </div>';
                 // check sub data
                 $subData = DB::table($table->name)->where('parent_id', $td->id)->count();
@@ -617,7 +619,7 @@ class ClassTables
                                 &nbsp;
                                 <a href="'.route('configTbl_edit', [$td->id]).'"><i class="ion-edit"></i></a>
                                 &nbsp;
-                                <a href="'.route('deleteTable', ['table' => $td->id]).'"><i class="ion-trash-a"></i></a>
+                                <a onclick="return checkConfirm(\'Xác nhận Xóa\')" href="'.route('deleteTable', ['table' => $td->id]).'"><i class="ion-trash-a"></i></a>
                             </div>';
                 // check sub data
                 $subData = DB::table('tables')->where('parent_id', $td->id)->count();
@@ -665,7 +667,7 @@ class ClassTables
                                 &nbsp;
                                 <a href="'.route('configTbl_edit', [$tableId, 'column' => $td->id]).'"><i class="ion-edit"></i></a>
                                 &nbsp;
-                                <a href="'.route('deleteColumn', ['table' => $tableId, 'column' => $td->id]).'"><i class="ion-trash-a"></i></a>
+                                <a onclick="return checkConfirm(\'Xác nhận Xóa\')" href="'.route('deleteColumn', ['table' => $tableId, 'column' => $td->id]).'"><i class="ion-trash-a"></i></a>
                             </div>';
                 // check sub data
                 $subData = DB::table('table_column')

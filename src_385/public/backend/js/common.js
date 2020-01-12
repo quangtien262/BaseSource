@@ -446,3 +446,9 @@ function checkFastEdit(e) {
       $('.editable').show();
   }
 }
+
+function checkConfirm(msg) {
+	if (!confirm(msg)) {
+    return false;
+  }
+}

@@ -103,9 +103,8 @@
                                     <i class="ion-edit"></i> Sửa
                                 </a>
                             @endif
-                            
                         @endif
-                        {{-- <a href="{{ route('deleteRow', [$tableId, $data['id']]) }}" class="btn btn-sm btn-default">
+                        {{-- <a onclick="return checkConfirm('Xác nhận Xóa')" href="{{ route('deleteRow', [$tableId, $data['id']]) }}" class="btn btn-sm btn-default">
                             <i class="ion-trash-a"></i>
                             Xoá
                         </a> --}}

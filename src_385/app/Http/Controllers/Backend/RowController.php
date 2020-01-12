@@ -299,9 +299,9 @@ class RowController extends BackendController
         $year = $request->year;
         if($request->month == 1) {
             $preMonth = 12;
-            $year--;
+            $preYear = $year - 1;
         }
-        $data = app('EntityCommon')->getMoneyMotelRoomWithMonth($preMonth, $year);
+        $data = app('EntityCommon')->getMoneyMotelRoomWithMonth($preMonth, $preYear);
         // dd($data);
         $date = date('Y-m-d h:i:s');
 
@@ -318,13 +318,14 @@ class RowController extends BackendController
         $data = app('EntityCommon')->getDataById('tien_phong', $id);
         $month = $data->month;
         $year = $data->year;
-        $preMonth = $month - 1;
+        $preMonth = $month;
+        $preYear = $year;
         if($month == 1) {
-            $year--;
+            $preYear = $year - 1;
             $preMonth = 12;
         }
-        // echo $year;
-        $d = app('EntityCommon')->getCurrentMoneyMotelRoom($preMonth, $year, $data->motel_room_id);
+        // echo $preYear;die;
+        $d = app('EntityCommon')->getCurrentMoneyMotelRoom($preMonth, $preYear, $data->motel_room_id);
         // dd($d);
         $date = date('Y-m-d h:i:s');
         $tmpData = app('ClassCommon')->tienPhongCHDV($d, $data->month, $year, $date);

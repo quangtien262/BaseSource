@@ -121,17 +121,17 @@ class ClassCommon
         $tmpData['status_tien_phong_id'] = 2;
         $typeBusiness = app('EntityCommon')->getDataById('type_business', $d->type_business_id);
         //check so dien
-        // dd($d);
+        // dd($typeBusiness);
         $tienDienBussiness = 0;
         if(!empty($typeBusiness->tien_dien)) {
             $tienDienBussiness = $typeBusiness->tien_dien;
         }
         $tmpData['tien_dien'] = 0;
-        echo $tmpData['tien_dien'] . '---';
+        // echo $tmpData['tien_dien'] . '---';
         if(!empty($d->so_dien_cuoi) && !empty($tienDienBussiness)) {
-            echo $d->so_dien_cuoi.'-';
-            echo $d->so_dien_dau.'-';
-            echo $d->id.'<br>';
+            // echo $d->so_dien_cuoi.'-';
+            // echo $d->so_dien_dau.'-';
+            // echo $d->id.'<br>';
             $tmpData['tien_dien'] = ($d->so_dien_cuoi - $d->so_dien_dau) * $tienDienBussiness;
         }
         
@@ -139,19 +139,21 @@ class ClassCommon
         $tmpData['tong_so_dien'] = intval($d->so_dien_cuoi) - intval($d->so_dien_dau);
         //check so nuoc
         $noteTienNuoc = '';
+        // echo $typeBusiness->have_cong_to_nuoc;die;
         if (!empty($typeBusiness->have_cong_to_nuoc)) {
             $tmpData['tien_nuoc'] = ($d->so_nuoc_cuoi - $d->so_nuoc_dau) * $typeBusiness->tien_nuoc;
             $totalDichVu += $tmpData['tien_nuoc'];
+            // echo $totalDichVu;die;
             $noteTienNuoc = 'Số nước đầu: '.$d->so_nuoc_dau.
                                ', Số nước cuối: '.$d->so_nuoc_cuoi.
-                               ',<br/> Tổng số nước xử dụng là: '.($d->so_nuoc_cuoi - $d->so_nuoc_dau).' Số (Giá nước: '.number_format($typeBusiness->tien_nuoc).'/Số<br/>';
+                               ',<br/> Tổng số nước xử dụng là: '.($d->so_nuoc_cuoi - $d->so_nuoc_dau).' Số (Giá nước: '.number_format($typeBusiness->tien_nuoc).'/Số)<br/>';
         }
         //note
         $tmpData['note'] = $noteTienNuoc.
                            'Số điện đầu: '.$d->so_dien_dau.
                            ', Số điện cuối: '.$d->so_dien_cuoi.
                            ',<br/> Tổng số điện xử dụng là: '.$tmpData['tien_dien'].
-                           ' Số (Giá điện: '. number_format($tienDienBussiness) .'/Số<br/>';
+                           ' Số (Giá điện: '. number_format($tienDienBussiness) .'/Số)<br/>';
         
         $tienDichVu = app('EntityCommon')->getRowsByConditions(TBL_LOAI_TIEN_PHONG, ['type_business_id' => $d->type_business_id]);
 
