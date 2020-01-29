@@ -379,8 +379,11 @@ class RowController extends BackendController
         foreach ($preSodien as $sd) {
             $data[] = [
                 'month' => $month,
+                'apartment_id' => $sd->apartment_id,
+                'so_nuoc_dau' => $sd->so_nuoc_cuoi,
                 'motel_room_id' => $sd->motel_room_id,
-                'so_dau' => $sd->so_cuoi,
+                'so_dien_dau' => $sd->so_dien_cuoi,
+                'so_nuoc_dau' => $sd->so_nuoc_cuoi,
                 'year' => $year,
                 'name' => 'Số điện tháng '.$month.'/'.$year,
             ];
