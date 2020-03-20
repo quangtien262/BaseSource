@@ -18,7 +18,10 @@
 /**
  * Bootstrap Reset
  */
-
+.width_10{
+    width: 10px; 
+    float: left;
+}
 *:focus {
     outline: 0 !important;
 }

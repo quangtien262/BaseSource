@@ -29,7 +29,7 @@
                             @else
                                 {{-- sub column --}}
                                 @if(!empty($col->table_link))
-                                    <td class="{{ $col->class or '' }}">
+                                    <td>
                                         {!! app('EntityCommon')->getHtmlTblLink($col->table_link, $col->sub_column_name, $data['id']) !!}
                                     </td>
                                 @else
@@ -42,7 +42,7 @@
                                         }
                                     @endphp
 
-                                    <td class="{{ $col->class or '' }} {{ !empty($background) ? 'background':'' }}" style="background:{{ $background }}">
+                                    <td class="{{ !empty($background) ? 'background':'' }}" style="background:{{ $background }}">
                                         
                                         @if(empty($col->add_column_in_list))
                                             {{-- show name --}}

@@ -295,9 +295,11 @@ class RowController extends BackendController
 
     public function generateTienPhong(Request $request)
     {
-        $preMonth = intval($request->month) - 1;
+        $preMonth = intval($request->month)-1;
         $year = $request->year;
+        $preYear = $year;
         if($request->month == 1) {
+            echo 'case 2';die;
             $preMonth = 12;
             $preYear = $year - 1;
         }
@@ -318,7 +320,7 @@ class RowController extends BackendController
         $data = app('EntityCommon')->getDataById('tien_phong', $id);
         $month = $data->month;
         $year = $data->year;
-        $preMonth = $month;
+        $preMonth = $month-1;
         $preYear = $year;
         if($month == 1) {
             $preYear = $year - 1;
@@ -328,7 +330,9 @@ class RowController extends BackendController
         $d = app('EntityCommon')->getCurrentMoneyMotelRoom($preMonth, $preYear, $data->motel_room_id);
         // dd($d);
         $date = date('Y-m-d h:i:s');
+        // echo $data->month;die;
         $tmpData = app('ClassCommon')->tienPhongCHDV($d, $data->month, $year, $date);
+        // dd($tmpData);
         //insert to db
         app('EntityCommon')->updateData('tien_phong', $id, $tmpData);
 
@@ -351,14 +355,14 @@ class RowController extends BackendController
         $tmpData['tien_coc_chu_nha'] = app('EntityCommon')->getTotalByCondition('apartment', 'tien_coc');
 
         $tmpData['total'] = $tmpData['tong_von_dau_tu'] +
-            $tmpData['khoan_thu_khac'] +
-            $tmpData['tien_phong_da_thu'] -
-            $tmpData['tien_chi_tieu'] -
-            $tmpData['tien_moi_gioi'] -
-            $tmpData['tien_chuyen_nhuong'] -
-            $tmpData['tien_coc_chu_nha'];
+        $tmpData['khoan_thu_khac'] +
+        $tmpData['tien_phong_da_thu'] -
+        $tmpData['tien_chi_tieu'] -
+        $tmpData['tien_moi_gioi'] -
+        $tmpData['tien_chuyen_nhuong'] -
+        $tmpData['tien_coc_chu_nha'];
         $tmpData['note'] = app('ClassCommon')->generateDongTien($tmpData['total']);
-        // echo $tmpData['note']; die;
+
         // dd($tmpData);
         app('EntityCommon')->insertData('thong_ke', $tmpData);
 

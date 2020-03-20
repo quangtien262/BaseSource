@@ -102,6 +102,7 @@ class ClassCommon
 
     public function tienPhongCHDV($d, $month, $year, $date)
     {
+        // dd($d);
         $tmpData = [];
         $totalDichVu = $d->gia_thue;
         $preMonth = $month - 1;
@@ -118,9 +119,10 @@ class ClassCommon
         //fix data
         $tmpData['created_at'] = $date;
         $tmpData['updated_at'] = $date;
-        $tmpData['status_tien_phong_id'] = 2;
+        $tmpData['staus_hd_id'] = 1; // 1: chua gửi hđ cho khách
+        $tmpData['status_tien_phong_id'] = 2; // 2: chưa thanh toán
         $typeBusiness = app('EntityCommon')->getDataById('type_business', $d->type_business_id);
-        //check so dien
+        // check so dien
         // dd($typeBusiness);
         $tienDienBussiness = 0;
         if(!empty($typeBusiness->tien_dien)) {
@@ -129,9 +131,6 @@ class ClassCommon
         $tmpData['tien_dien'] = 0;
         // echo $tmpData['tien_dien'] . '---';
         if(!empty($d->so_dien_cuoi) && !empty($tienDienBussiness)) {
-            // echo $d->so_dien_cuoi.'-';
-            // echo $d->so_dien_dau.'-';
-            // echo $d->id.'<br>';
             $tmpData['tien_dien'] = ($d->so_dien_cuoi - $d->so_dien_dau) * $tienDienBussiness;
         }
         
@@ -152,27 +151,18 @@ class ClassCommon
         $tmpData['note'] = $noteTienNuoc.
                            'Số điện đầu: '.$d->so_dien_dau.
                            ', Số điện cuối: '.$d->so_dien_cuoi.
-                           ',<br/> Tổng số điện xử dụng là: '.$tmpData['tien_dien'].
+                           ',<br/> Tổng số điện xử dụng là: '. ($d->so_dien_cuoi - $d->so_dien_dau) .
                            ' Số (Giá điện: '. number_format($tienDienBussiness) .'/Số)<br/>';
         
         $tienDichVu = app('EntityCommon')->getRowsByConditions(TBL_LOAI_TIEN_PHONG, ['type_business_id' => $d->type_business_id]);
 
         foreach ($tienDichVu as $dv) {
-            if ($dv->name == 'may_giat') {
-                if ($d->is_may_giat == 1) {
-                    $tmpData[$dv->name] = $dv->price;
-                    $totalDichVu += $dv->price;
-                } else {
-                    $tmpData[$dv->name] = 0;
-                }
-            } else {
-                $price = $dv->price;
-                if (!empty($dv->tinh_theo_so_nguoi)) {
-                    $price = $d->so_nguoi * $dv->price;
-                }
-                $totalDichVu += $price;
-                $tmpData[$dv->name] = $price;
-            }
+            $price = $dv->price;
+            if (!empty($dv->tinh_theo_so_nguoi)) {
+                $price = $d->so_nguoi * $dv->price;
+            } 
+            $totalDichVu += $price;
+            $tmpData[$dv->name] = $price;
         }
 
         //total

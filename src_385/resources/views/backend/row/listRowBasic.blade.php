@@ -19,6 +19,7 @@
         <div class="card">
             <div class="card-body table-responsive">
                 <div class="panel-heading ">
+                    <h4>{{$table->display_name}}</h4>
                     <form action="" method="get" class="form-search ">
                         <div class="row">
                             @php $isSearch = false; @endphp
@@ -43,7 +44,8 @@
                     </form>
                     {{-- tien_phong --}}
                     @if($table->name == TIEN_PHONG)
-                        <form action="{{ route('generateTienPhong') }}" method="POST">
+                        <form action="{{ route('generateTienPhong') }}" method="POST" class="_right">
+                            &nbsp;
                             {{ csrf_field()}}
                             <button class="btn btn-success" onclick="return checkConfirm('Xác nhận tính tiền phòng')">
                                 {{-- <i class="ion-arrow-down-a"></i> --}}
@@ -56,6 +58,7 @@
                                 @endfor
                             </select>
                             <input type="number" name="year" value="{{ date('Y') }}"/>
+
                         </form>
                     @endif
 
