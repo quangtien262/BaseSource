@@ -239,7 +239,7 @@ class ClassCommon
         $currentMonth = date('m');
         $currentYear = date('Y');
         $x = 1;
-        $this->getListKyThanhToanTienNha ($apms);
+        // $this->getListKyThanhToanTienNha ($apms);
         while ($x <= 12) {
             ++$x;
             if ($currentMonth == 12) {
