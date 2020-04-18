@@ -1,5 +1,5 @@
         {{-- content --}}
-        
+            
             @foreach($datas as $index => $data)
             <tr class="gradeX">
                 <td>
@@ -64,12 +64,14 @@
                                             {{-- Hiển thị nhiều column trên 1 hàng --}}
                                             <ul class="sub-col">    
                                                 @foreach(json_decode($col->add_column_in_list, true) as $k => $v)
-                                                    @php $currenColumn = app('ClassTables')->getCurrentColumnByTableIdAndName($tableId, $k) @endphp  
-                                                    <li>
-                                                        <span>{{ $v }}:</span>
-                                                        {!! $col->fast_edit == '1' ? app('UtilsCommon')->xEditTable( $tableId, $currenColumn, $data) : $data[$k] !!}
-                                                        {!! app('UtilsCommon')->inputFastEdit($currenColumn, $data[$currenColumn->name],$tableId, $data['id']) !!}
-                                                    </li>
+                                                    @php $currenColumn = app('ClassTables')->getCurrentColumnByTableIdAndName($tableId, $v); @endphp  
+                                                    @if(!empty($currenColumn))
+                                                        <li>
+                                                            <span>{{ $currenColumn->display_name }}:</span>
+                                                            {!! $col->fast_edit == '1' ? app('UtilsCommon')->xEditTable( $tableId, $currenColumn, $data) : $data[$k] !!}
+                                                            {!! app('UtilsCommon')->inputFastEdit($currenColumn, $data[$currenColumn->name],$tableId, $data['id']) !!}
+                                                        </li>
+                                                    @endif
                                                 @endforeach
                                             </ul>
                                         @endif

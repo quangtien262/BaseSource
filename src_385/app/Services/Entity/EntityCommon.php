@@ -149,7 +149,7 @@ class EntityCommon
         return $result;
     }
 
-    public function getCountByConditions($tblName, $conditions)
+    public function getCountByConditions($tblName, $conditions=[])
     {
         $result = DB::table($tblName);
 
@@ -440,10 +440,11 @@ class EntityCommon
     /**
      * get thông tin phòng theo tiền điênk.
      *
-     * @param [type] $month
-     * @param [type] $year
+     * @param [type] $condition = ['collumn' => value]
+     * @param [type] $between = ['column' => [$start, $end]]
+     * @param [type] $notBetween = ['column' => [$start, $end]]
      */
-    public function getTotalByCondition($table, $column, $condition = [])
+    public function getTotalByCondition($table, $column, $condition = [], $between = [], $notBetween = [])
     {
         $result = 0;
         $data = DB::table($table)
@@ -453,6 +454,16 @@ class EntityCommon
                 $data = $data->where($key, $val);
             }
         }
+        if (!empty($between)) {
+            foreach ($between as $key => $val) {
+                $data = $data->whereBetween($key, $val);
+            }
+        }
+        if (!empty($notBetween)) {
+            foreach ($notBetween as $key => $val) {
+                $data = $data->whereNotBetween($key, $val);
+            }
+        }
         $data = $data->get();
         $data = json_decode(json_encode($data), true);
         // dd($data);
@@ -460,6 +471,29 @@ class EntityCommon
             foreach ($data as $d) {
                 $result = $result + $d[$column];
             }
+        }
+
+        return $result;
+    }
+
+    public function thongKeTienChiTieu()
+    {
+        $result = '';
+        $total = 0;
+        $tienChiTieu = self::getRowsByConditions('tien_chi_tieu');
+        foreach($tienChiTieu as $p) {
+            $total += $p->money;
+        }
+        $result .= '<li class="tong-tien-chi-tieu">Tổng tiền chi tiêu: '.number_format($total).'</li>';
+        $tienChiTieu = self::getRowsByConditions('status_phan_loai_chi_tieu');
+        foreach($tienChiTieu as $tien) {
+            $tienChiTieuByStatus = self::getRowsByConditions('tien_chi_tieu', ['phan_loai_chi_tieu_id' => $tien->id]);
+            $money = 0;
+            foreach($tienChiTieuByStatus as $p) {
+                $money += $p->money;
+            }
+            $percent = ($money * 100)/$total;
+            $result .= '<li>'.$tien->name.': '. number_format($money) .' <b>('.round($percent,2).'%)</b></li>';
         }
 
         return $result;

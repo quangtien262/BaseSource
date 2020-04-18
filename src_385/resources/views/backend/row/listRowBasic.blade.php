@@ -42,6 +42,12 @@
                             @endif
                         </div>
                     </form>
+                    {{-- tien_chi_tieu --}}
+                    @if($table->name == 'tien_chi_tieu')
+                        <a class="btn btn-success" href="{{ route('generateHoaDon') }}" onclick="return checkConfirm('Xác nhận thanh toán hoá đơn')">
+                            Thanh toán hoá đơn
+                        </a>
+                    @endif
                     {{-- tien_phong --}}
                     @if($table->name == TIEN_PHONG)
                         <form action="{{ route('generateTienPhong') }}" method="POST" class="_right">
@@ -121,6 +127,17 @@
                         <div id="myTabContent" class="tab-content text-center">
                             <div id="home" role="tabpanel" aria-labelledby="home-tab" class="tab-pane fade active in">
                                 <div id="output"></div>
+                                @if($table->name == "tien_chi_tieu")
+                                    <a href="?isShow=1">Xem thống kê chi tiết</a>
+                                    @if(!empty($_GET['isShow']))
+                                        <div class="thongke">
+                                            <ul>
+                                                {!! app('EntityCommon')->thongKeTienChiTieu() !!}
+                                                <li><a href="?isShow=0">Ẩn thống kê chi tiết</a></li>
+                                            </ul>
+                                        </div>
+                                    @endif
+                                @endif
                                 <table class="table-datatable table table-striped table table-bordered mv-lg fix-tbl-basic">
                                     @if($table->is_add_express == 1)
                                         @include('backend.row.addExpress')

@@ -240,7 +240,7 @@ class ClassCommon
         $currentYear = date('Y');
         $x = 1;
         // $this->getListKyThanhToanTienNha ($apms);
-        while ($x <= 12) {
+        while ($x <= 10) {
             ++$x;
             if ($currentMonth == 12) {
                 $currentMonth = 1;
@@ -254,9 +254,6 @@ class ClassCommon
         }
 
         $result .= '</table>';
-        // echo $result;
-        // die();
-
         return $result;
     }
     private function getDetailPlanByMonth($month, $year, $apms, $total) {
@@ -267,6 +264,7 @@ class ClassCommon
         // dd($ngayDongTien);
         $thuTotal = 0;
         $chiTotal = 0;
+        $tienNhaTotal=0;
         foreach ($apms as $apm) {
             $explodecreateDate = explode('-' ,$apm->start_date);
             $currentDate = $year . '-' . $month . '-' . $explodecreateDate[2];
@@ -282,10 +280,13 @@ class ClassCommon
             
             $thuTotal = $thuTotal + $thu;
             $chiTotal = $chiTotal + $chi;
+            $tienNhaTotal = $tienNhaTotal + $apm->gia_thue;
             
             $html .= "<td>
                             <p>TiềnPhòng: <b>".number_format($thu)."</b></p>
-                            ".$strChi."
+                            <p>".$strChi."</p>
+                            <p>TiềnNhà: ".number_format($apm->gia_thue)."</p>
+                            <p><b>Lợi Nhuận:</b> ". number_format(($thu-$apm->gia_thue))."</p>
                         </td>";
         }
         $total = $total + $thuTotal - $chiTotal;
@@ -295,8 +296,99 @@ class ClassCommon
         }
         $html .= '<td>
                         <p><b>TổngThu:</b> '. number_format($thuTotal).'</p>
-                        '.$htmlChi.'
+                        <p><b>Tổng Tiền Nhà Đã Đóng:</b> '. number_format($tienNhaTotal).'</p>
+                        <p><b>Lợi Nhuận:</b> '. number_format(($thuTotal-$tienNhaTotal)).'</p>
+                        <p><hr/></p>
+                        <p>'.$htmlChi.'</p>
                         <p><b>TổngCònLại:</b> '. number_format($total).'</p>
+                    </td>';
+   
+        $html .= '</tr>';
+        return ['total' => $total, 'html' => $html];
+    }
+
+    public function generateHistory() {
+        $result = '<table class="table-datatable table table-striped table table-bordered mv-lg fix-tbl-basic">';
+        $result .= '<tr>';
+        $result .= '<th> Tháng </th>';
+        $apms = app('EntityCommon')->getRowsByConditions('apartment', [],  0);
+        foreach($apms as $apm) {
+            $result .= '<th>'.$apm->name.'</th>';
+        }
+        $result .= '<th>Tổng thu</th>';
+        $result .= '</tr>';
+
+        
+        $currentMonth = date('m');
+        $currentYear = date('Y');
+        $month = 0;
+        while ($month <= intval($currentMonth)) {
+            $detailPlan = $this->getDetailHistoryByMonth($month, $currentYear, $apms);
+            $result .= $detailPlan['html'];
+            $total = $detailPlan['total'];
+            ++$month;   
+        }
+
+        $result .= '</table>';
+        return $result;
+    }
+
+    private function getDetailHistoryByMonth($month, $year, $apms) {
+        $month = str_pad($month, 2, 0, STR_PAD_LEFT);
+        $html = '<tr>';
+        $html .= '<td><b>'.$month.'/'.$year.'</b></td>';
+        $ngayDongTien = $this->getListKyThanhToanTienNha($apms);
+        // dd($ngayDongTien);
+        $thuTotal = 0;
+        $chiTotal = 0;
+        $tienNhaTotal=0;
+        foreach ($apms as $apm) {
+            $explodecreateDate = explode('-' ,$apm->start_date);
+            $currentDate = $year . '-' . $month . '-' . $explodecreateDate[2];
+            // echo $currentDate;die;
+            $strKyThanhToan = '';
+            $kyThanhToan = 0;
+            if(in_array($currentDate, $ngayDongTien[$apm->id])) {
+                $kyThanhToan = $apm->gia_thue * $apm->ky_thanh_toan;
+                $strKyThanhToan = '<p><em class="_red">Tiền nhà: '. number_format($kyThanhToan).'</em></p>
+                           <p><em style="font-size:11px">('. $currentDate.')</em></p>';
+            }
+            $conditions = [
+                'apartment_id' => $apm->id,
+                'year' => $year,
+                'month' => $month,
+            ];
+            $thu = app('EntityCommon')->getTotalByCondition('tien_phong', 'total', $conditions);
+            
+            $conditionsChi = ['apartment_id' => $apm->id];
+            $between = [
+                'ngay_chi' => [($year . '-' . $month . '-01'), ($year . '-' . $month . '-30')]
+            ];
+            $chi = app('EntityCommon')->getTotalByCondition('tien_chi_tieu', 'money', $conditionsChi, $between);
+            // dd($chi);
+            $thuTotal = $thuTotal + $thu;
+            $chiTotal = $chiTotal + $chi;
+            $tienNhaTotal = $tienNhaTotal + $apm->gia_thue;
+            
+            $html .= "<td>
+                            <p>TiềnPhòng: <b>".number_format($thu)."</b></p>
+                            <p>TiềnNhà: ".number_format($apm->gia_thue)."</p>
+                            <p><b>Chi:</b> ". number_format($chi)."</p>
+                            <p><b>LợiNhuận:</b> ". number_format(($thu - $chi - $apm->gia_thue))."</p>
+                            <p>".$strKyThanhToan."</p>
+                        </td>";
+        }
+        $total = $thuTotal - $chiTotal;
+        $htmlChi = '';
+        if(!empty($chiTotal)) {
+            $htmlChi = '<p class="_red"><b>TổngChi: '. number_format($chiTotal).'</b></p>';
+        }
+        $html .= '<td>
+                        <p><b>TổngThu:</b> '. number_format($thuTotal).'</p>
+                        <p><b>Tổng Tiền Nhà Đã Đóng:</b> '. number_format($tienNhaTotal).'</p>
+                        <p><b>Lợi Nhuận:</b> '. number_format(($thuTotal-$tienNhaTotal)).'</p>
+                        <p><hr/></p>
+                        <p>'.$htmlChi.'</p>
                     </td>';
    
         $html .= '</tr>';

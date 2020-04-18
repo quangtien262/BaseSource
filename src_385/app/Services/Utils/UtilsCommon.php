@@ -288,10 +288,10 @@ class UtilsCommon
         if ($checkColumnInList && !empty($col->add_column_in_list)) {
             $result .= '<ul class="sub-col">';
             foreach (json_decode($col->add_column_in_list, true) as $k => $v) {
-                $currenColumn = app('ClassTables')->getCurrentColumnByTableIdAndName($col->table_id, $k);
-                $result .= '<li>';
-                $result .= self::showColumnInput($currenColumn, false, false);
-                $result .= '</li>';
+                // $currenColumn = app('ClassTables')->getCurrentColumnByTableIdAndName($col->table_id, $k);
+                // $result .= '<li>';
+                // $result .= self::showColumnInput($currenColumn, false, false);
+                // $result .= '</li>';
             }
             $result .= '</ul>';
 

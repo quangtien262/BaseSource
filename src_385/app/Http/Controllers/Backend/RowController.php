@@ -295,11 +295,12 @@ class RowController extends BackendController
 
     public function generateTienPhong(Request $request)
     {
-        $preMonth = intval($request->month)-1;
+        $preMonth = intval($request->month) - 1;
         $year = $request->year;
         $preYear = $year;
-        if($request->month == 1) {
-            echo 'case 2';die;
+        if ($request->month == 1) {
+            echo 'case 2';
+            die;
             $preMonth = 12;
             $preYear = $year - 1;
         }
@@ -320,9 +321,9 @@ class RowController extends BackendController
         $data = app('EntityCommon')->getDataById('tien_phong', $id);
         $month = $data->month;
         $year = $data->year;
-        $preMonth = $month-1;
+        $preMonth = $month - 1;
         $preYear = $year;
-        if($month == 1) {
+        if ($month == 1) {
             $preYear = $year - 1;
             $preMonth = 12;
         }
@@ -361,6 +362,7 @@ class RowController extends BackendController
         $tmpData['tien_moi_gioi'] -
         $tmpData['tien_chuyen_nhuong'] -
         $tmpData['tien_coc_chu_nha'];
+        $tmpData['history'] = app('ClassCommon')->generateHistory();
         $tmpData['note'] = app('ClassCommon')->generateDongTien($tmpData['total']);
 
         // dd($tmpData);
@@ -393,6 +395,26 @@ class RowController extends BackendController
             ];
         }
         app('EntityCommon')->insertData('so_dien_nuoc', $data, true);
+
+        return back()->withInput();
+    }
+
+    public function generateHoaDon()
+    {
+        $hoadon = app('EntityCommon')->getRowsByConditions('hoa_don_dich_vu');
+        $date = date('Y-m-d');
+        $data = [];
+        foreach ($hoadon as $hd) {
+            $data[] = [
+                'apartment_id' => $hd->apartment_id,
+                'name' => $hd->name.'-'.$hd->ma_khach_hang,
+                'ngay_chi' => $date,
+                'user_id' => 1,
+                'status_tien_chi_tieu_id' => 2,
+                'phan_loai_chi_tieu_id' => 1,
+            ];
+        }
+        app('EntityCommon')->insertData('tien_chi_tieu', $data, true);
 
         return back()->withInput();
     }

@@ -74,7 +74,9 @@ Route::group(['middleware' => \App\Http\Middleware\Language::class], function ()
         Route::get('/generate/so-dien', 'Backend\RowController@generateSodien')->name('generateSodien');
         //thong ke
         Route::get('/auto-generate/thong-ke', 'Backend\RowController@thongKe')->name('thongKe');
-        
+        //hoa don
+        Route::get('/auto-generate/hoa-don', 'Backend\RowController@generateHoaDon')->name('generateHoaDon');
+
         //upload file
         Route::post('file/upload', 'Backend\UploadController@uploadFile');
         Route::post('file/delete', 'Backend\UploadController@fileDestroy');
