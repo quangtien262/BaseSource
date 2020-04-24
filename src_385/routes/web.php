@@ -80,5 +80,8 @@ Route::group(['middleware' => \App\Http\Middleware\Language::class], function ()
         //upload file
         Route::post('file/upload', 'Backend\UploadController@uploadFile');
         Route::post('file/delete', 'Backend\UploadController@fileDestroy');
+
+        //
+        Route::post('file/delete', 'Backend\SettingController@changeSetting')->name('changeSetting');
     });
 // });
