@@ -45,7 +45,7 @@
     "jquery.browser": "0.1.0",
     "jquery.flot.tooltip": "github:krzysu/flot.tooltip",
     "loaders.css": "0.1.2",
-    "lodash": "4.17.4",
+    "lodash": "4.17.15",
     "material-colors": "1.2.5",
     "modernizr": "3.5.0",
     "ng-material-floating-button": "0.6.2",
