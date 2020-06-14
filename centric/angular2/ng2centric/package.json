@@ -33,7 +33,7 @@
     "@agm/core": "1.0.0-beta.0",
     "angular-tree-component": "3.3.0",
     "blueimp-gallery": "2.25.0",
-    "bootstrap": "3.3.7",
+    "bootstrap": "3.4.1",
     "core-js": "2.4.1",
     "easy-pie-chart": "2.1.7",
     "flot": "0.8.0-alpha",
