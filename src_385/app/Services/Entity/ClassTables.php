@@ -71,6 +71,7 @@ class ClassTables
         $tables->export = $export;
         $tables->import = $import;
         $tables->count_item_of_page = $request['count_item_of_page'];
+        $tables->search_params_default = $request['search_params_default'];
         $tables->display_name = $request['display_name'];
         $tables->model_name = $request['model_name'];
         $tables->type_show = $request['table_type_show'];
@@ -121,7 +122,9 @@ class ClassTables
         $block->column_name_map_to_comment = $request['column_name_map_to_comment'];
         $block->is_show_total = isset($request['is_show_total']) ? $request['is_show_total'] : 0;
         $block->is_view_detail = isset($request['is_view_detail']) ? $request['is_view_detail'] : 0;
-        
+        $block->is_show_id = isset($request['is_show_id']) ? $request['is_show_id'] : 0;
+        $block->search_type = isset($request['search_type']) ? $request['search_type'] : 1;
+
         $block->save();
 
         return $block;
@@ -425,7 +428,7 @@ class ClassTables
                     $icon = '<span class="nav-icon"><em class="ion-arrow-right-b" style="font-size: 12px;line-height: 25px;"></em></span>';
                 }
                 $html .= '<li>
-                        <a class="ripple" href="'.route('listDataTbl', [$table->id]).'">
+                        <a class="ripple" href="'.route('listDataTbl', [$table->id]).$table->search_params_default.'">
                             <span class="pull-right nav-label">
                                 <span class="badge bg-success">'.$countData.'</span>
                             </span>
@@ -685,11 +688,13 @@ class ClassTables
         return $html;
     }
 
-    public function getTotal($data, $colName) {
+    public function getTotal($data, $colName)
+    {
         $result = 0;
-        foreach($data as $d) {
+        foreach ($data as $d) {
             $result += $d[$colName];
         }
+
         return number_format($result);
     }
 }

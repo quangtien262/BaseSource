@@ -305,9 +305,7 @@ class RowController extends BackendController
             $preYear = $year - 1;
         }
         $data = app('EntityCommon')->getMoneyMotelRoomWithMonth($preMonth, $preYear);
-        // dd($data);
         $date = date('Y-m-d h:i:s');
-
         foreach ($data as $d) {
             $dataInsert = app('ClassCommon')->tienPhongCHDV($d, $request->month, $request->year, $date);
             app('EntityCommon')->insertData('tien_phong', $dataInsert);
@@ -340,6 +338,18 @@ class RowController extends BackendController
         return back()->withInput();
     }
 
+    public function updateTienPhongDiscount(Request $request, $id)
+    {
+        $tienphong = app('EntityCommon')->getDataById('tien_phong', $id);
+        $dataUpdate = [
+            'giam_gia' => $request->discount,
+            'total' => $tienphong->total + $tienphong->giam_gia - $request->discount,
+        ];
+        app('EntityCommon')->updateData('tien_phong', $id, $dataUpdate);
+
+        return back()->withInput();
+    }
+
     public function thongKe()
     {
         $date = date('d/m/Y h:i:s');
@@ -351,17 +361,17 @@ class RowController extends BackendController
         $tmpData['tien_phong_da_thu'] = app('EntityCommon')->getTotalByCondition('tien_phong', 'total', ['status_tien_phong_id' => 1]);
         $tmpData['tien_phong_chua_thu'] = app('EntityCommon')->getTotalByCondition('tien_phong', 'total', ['status_tien_phong_id' => 2]);
         $tmpData['tong_von_dau_tu'] = app('EntityCommon')->getTotalByCondition('von_dau_tu', 'money');
-        $tmpData['tien_moi_gioi'] = app('EntityCommon')->getTotalByCondition('apartment', 'tien_moi_gioi');
-        $tmpData['tien_chuyen_nhuong'] = app('EntityCommon')->getTotalByCondition('apartment', 'gia_nhuong');
-        $tmpData['tien_coc_chu_nha'] = app('EntityCommon')->getTotalByCondition('apartment', 'tien_coc');
+        // $tmpData['tien_moi_gioi'] = app('EntityCommon')->getTotalByCondition('apartment', 'tien_moi_gioi');
+        // $tmpData['tien_chuyen_nhuong'] = app('EntityCommon')->getTotalByCondition('apartment', 'gia_nhuong');
+        // $tmpData['tien_coc_chu_nha'] = app('EntityCommon')->getTotalByCondition('apartment', 'tien_coc');
 
         $tmpData['total'] = $tmpData['tong_von_dau_tu'] +
         $tmpData['khoan_thu_khac'] +
         $tmpData['tien_phong_da_thu'] -
-        $tmpData['tien_chi_tieu'] -
-        $tmpData['tien_moi_gioi'] -
-        $tmpData['tien_chuyen_nhuong'] -
-        $tmpData['tien_coc_chu_nha'];
+        $tmpData['tien_chi_tieu'];
+        // $tmpData['tien_moi_gioi'] -
+        // $tmpData['tien_chuyen_nhuong'] -
+        // $tmpData['tien_coc_chu_nha'];
         $tmpData['history'] = app('ClassCommon')->generateHistory();
         $tmpData['note'] = app('ClassCommon')->generateDongTien($tmpData['total']);
 

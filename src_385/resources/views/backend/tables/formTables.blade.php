@@ -70,6 +70,10 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                    <div class="col-xs-6 col-sm-3">
+                                        <label>search_params_default</label>
+                                        <textarea name="search_params_default" placeholder="search_params_default">{{ $table->search_params_default or '' }}</textarea>
+                                    </div>
                                     
                                     <div class="col-xs-6 col-sm-3">
                                         <br/>
@@ -304,6 +308,12 @@
                                             <input {{ isset($column->is_view_detail) && $column->is_view_detail == 1 ? 'checked="checked"':'' }}
                                                  value="1" type="checkbox" name="is_view_detail" />
                                                  is_view_detail
+                                        </label>
+                                        <br/>
+                                        <label>
+                                            <input {{ isset($column->is_show_id) && $column->is_show_id == 1 ? 'checked="checked"':'' }}
+                                                 value="1" type="checkbox" name="is_show_id" />
+                                                 is_show_id
                                         </label>
                                     </div>
                                 </div>

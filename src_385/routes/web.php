@@ -72,6 +72,7 @@ Route::group(['middleware' => \App\Http\Middleware\Language::class], function ()
         Route::post('/auto-generate/tien-phong', 'Backend\RowController@generateTienPhong')->name('generateTienPhong');
         Route::get('/generate/tien-phong/{id}', 'Backend\RowController@generateCurrenTienPhong')->name('generateCurrenTienPhong');
         Route::get('/generate/so-dien', 'Backend\RowController@generateSodien')->name('generateSodien');
+        Route::post('/update/tien-phong-discount/{id}', 'Backend\RowController@updateTienPhongDiscount')->name('updateTienPhongDiscount');
         //thong ke
         Route::get('/auto-generate/thong-ke', 'Backend\RowController@thongKe')->name('thongKe');
         //hoa don
@@ -83,5 +84,7 @@ Route::group(['middleware' => \App\Http\Middleware\Language::class], function ()
 
         //
         Route::post('file/delete', 'Backend\SettingController@changeSetting')->name('changeSetting');
+
+        Route::get('update', 'Backend\TblController@update')->name('update');
     });
 // });

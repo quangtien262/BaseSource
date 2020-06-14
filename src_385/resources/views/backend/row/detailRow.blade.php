@@ -7,6 +7,27 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12" style="text-align: right">
+                        @if($table->is_edit == 1)
+                            <a target="new" href="{{ route('formRow', [$tableId, $data['id']]) }}" class="btn btn-sm btn-success">
+                                <i class="ion-edit"></i> Sửa
+                            </a>
+                        @endif
+
+                        @if($table->name == TIEN_PHONG)
+                            <a class="btn btn-success" href="{{ route('generateCurrenTienPhong', [$data['id']]) }}">
+                                <i class="ion-social-usd"></i>
+                                Tính lại tiền phòng
+                            </a> 
+                            <form method="POST" action="{{ route('updateTienPhongDiscount', [$data['id']]) }}">
+                                {{ csrf_field()}}
+                                <input class="btn btn-primary" type="submit" value="Discount" />
+                                <input type="number" name="discount" value="0" />
+                            </form>
+                        @endif
+                    </div>
+                </div>
                 <!-- START row-->
                 <div class="row">
                     <div class="col-md-12">

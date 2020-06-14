@@ -24,12 +24,14 @@
                             {{-- type comment --}}
                             @elseif($col->type_edit == 'comment')
                                 <td>
+                                    <span class="_gray">{{ !empty($col->is_show_id) ? '['.$data['id'].']':'' }}</span>
                                     {!! app('UtilsCommon')->getHtmlComment($col->select_table_id, $col->column_name_map_to_comment , $data['id']) !!}
                                 </td>
                             @else
                                 {{-- sub column --}}
                                 @if(!empty($col->table_link))
                                     <td>
+                                        <span class="_gray">{{ !empty($col->is_show_id) ? '['.$data['id'].']':'' }}</span>
                                         {!! app('EntityCommon')->getHtmlTblLink($col->table_link, $col->sub_column_name, $data['id']) !!}
                                     </td>
                                 @else
@@ -48,12 +50,15 @@
                                             {{-- show name --}}
                                             <div class="{{ $col->class or '' }}">
                                                 @if($col->fast_edit == '1')
+                                                    <span class="_gray">{{ !empty($col->is_show_id) ? '['.$data['id'].']':'' }}</span>
                                                     {!! app('UtilsCommon')->xEditTable( $tableId, $col, $data) !!}
                                                 @elseif($col->is_view_detail == '1')
+                                                    <span class="_gray">{{ !empty($col->is_show_id) ? '['.$data['id'].']':'' }}</span>
                                                     <a href="{{ route('detailRow', [$tableId, $data['id']]) }}">
                                                         {{ $col->type == "INT" ? number_format($data[$col->name]) : $data[$col->name] }}
                                                     </a>
                                                 @else
+                                                    <span class="_gray">{{ !empty($col->is_show_id) ? '['.$data['id'].']':'' }}</span>
                                                     {{ $col->type == "INT" ? number_format($data[$col->name]) : $data[$col->name] }}
                                                 @endif
                                             </div>

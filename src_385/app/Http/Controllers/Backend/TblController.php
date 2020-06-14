@@ -9,19 +9,22 @@ use Illuminate\Support\Facades\Schema;
 
 class TblController extends BackendController
 {
-
     public function index()
     {
+        //showdata
         $htmlList = app('ClassTables')->getHtmlListTable();
+
         return view('backend.tables.index', compact('htmlList'));
     }
     
+
     public function sortOrderTable(Request $request)
     {
         $ids = json_decode($request->ids, true);
-        if(!empty($ids)) {
+        if (!empty($ids)) {
             app('EntityCommon')->updateSortOrder('tables', $ids);
         }
+
         return response()->json([RETURN_SUCCESS, MSG_UPDATE_SORT_ORDER_SUCCESS]);
     }
 
@@ -36,12 +39,13 @@ class TblController extends BackendController
             'tables' => $tables,
             'columns' => $columns,
             'htmlList' => $htmlList,
-            'tableId' => $tableId
+            'tableId' => $tableId,
         ];
         if (!empty($request->input('column'))) {
             $column = app('ClassTables')->getColumn($request->input('column'));
             $viewsParam['column'] = $column;
         }
+
         return view('backend.tables.formTables', $viewsParam);
     }
 
@@ -78,9 +82,11 @@ class TblController extends BackendController
                 }
             }
             \DB::commit();
+
             return redirect(route('configTbl_edit', [$tables->id]));
         } catch (\Exception $e) {
             \DB::rollback();
+
             return $e->getMessage();
         }
     }
@@ -117,9 +123,11 @@ class TblController extends BackendController
                 }
             }
             \DB::commit();
+
             return redirect(route('configTbl_edit', [$request->input('table_id')]));
         } catch (\Exception $e) {
             \DB::rollback();
+
             return $e->getMessage();
         }
     }
@@ -133,6 +141,7 @@ class TblController extends BackendController
                 app('ClassTables')->deleteTable($request->input('table'));
             }
         }
+
         return redirect(route('configTbl'));
     }
 
@@ -149,6 +158,7 @@ class TblController extends BackendController
         if (!empty($request->input('table'))) {
             return redirect(route('configTbl_edit', [$request->input('table')]));
         }
+
         return redirect(route('configTbl'));
     }
 
@@ -159,6 +169,7 @@ class TblController extends BackendController
             // echo $table->name;die;
             app('EntityCommon')->deleteTable($table->name, $dataId);
         }
+
         return back();
     }
 
@@ -170,9 +181,11 @@ class TblController extends BackendController
             $dataQuery = app('ClassTables')->getRowsByConditions($table, $columns, $request);
             //convert object 2 array
             $datas = json_decode(json_encode($dataQuery), true)['data'];
+
             return view('backend.tables.listRowBasic', compact('tableId', 'table', 'columns', 'datas', 'dataQuery'));
         } elseif ($table->type_show == 1 || $table->type_show == 2) {
             $htmlListDragDrop = app('ClassTables')->getHtmlListDragDrop($table);
+
             return view('backend.tables.listRowDragDrop', compact('tableId', 'table', 'columns', 'datas', 'htmlListDragDrop'));
         }
     }
@@ -182,9 +195,10 @@ class TblController extends BackendController
         $table = app('ClassTables')->getTable($tableId);
         $columns = app('ClassTables')->getColumnByTableId($tableId);
         $ids = json_decode($request->ids, true);
-        if(!empty($table) && !empty($columns) && !empty($ids)) {
+        if (!empty($table) && !empty($columns) && !empty($ids)) {
             app('EntityCommon')->updateSortOrder($table->name, $ids, $parentId = 0);
         }
+
         return response()->json([RETURN_SUCCESS, MSG_UPDATE_SORT_ORDER_SUCCESS]);
     }
 
@@ -193,6 +207,7 @@ class TblController extends BackendController
         $table = app('ClassTables')->getTable($tableId);
         $columns = app('ClassTables')->getColumnByTableId($tableId);
         $data = json_decode(json_encode(app('EntityCommon')->getDataById($table->name, $dataId)), true);
+
         return view('backend.tables.editDataTbl', compact('tableId', 'dataId', 'table', 'columns', 'data'));
     }
 
@@ -211,6 +226,7 @@ class TblController extends BackendController
         } else {
             $data = app('EntityCommon')->insertData($table->name, $data);
         }
+
         return redirect(route('listDataTbl', [$tableId]));
     }
 
@@ -219,57 +235,129 @@ class TblController extends BackendController
         $table = app('ClassTables')->getTable($tableId);
         $columns = app('ClassTables')->getColumnByTableId($tableId);
         $data = app('EntityCommon')->getDataById($table->name, $dataId);
+
         return view('backend.tables.editDataTbl', compact('tableId', 'table', 'columns', 'data'));
     }
 
     private function setTypeForField($table, $fieldName, $type, $maxlength, $default, $isNull = 1)
     {
         switch ($type) {
-            case "INT":
+            case 'INT':
                 $table->integer($fieldName)->nullable()->default($default);
                 break;
-            case "VARCHAR":
+            case 'VARCHAR':
                 $table->string($fieldName)->nullable()->default($default);
                 break;
-            case "TEXT":
+            case 'TEXT':
                 $table->text($fieldName)->nullable()->default($default);
                 break;
-            case "LONGTEXT":
+            case 'LONGTEXT':
                 $table->longText($fieldName)->nullable();
                 break;
-            case "DATE":
+            case 'DATE':
                 $table->date($fieldName)->nullable()->default($default);
                 break;
-            case "DATETIME":
+            case 'DATETIME':
                 $table->dateTime($fieldName)->nullable();
                 break;
         }
+
         return $table;
     }
 
     private function changeTypeForColumn($table, $fieldName, $type, $maxlength, $default, $isNull = 1)
     {
         switch ($type) {
-            case "INT":
+            case 'INT':
                 $table->integer($fieldName)->nullable()->default($default)->change();
                 break;
-            case "VARCHAR":
+            case 'VARCHAR':
                 $table->string($fieldName)->nullable()->default($default)->change();
                 break;
-            case "TEXT":
+            case 'TEXT':
                 $table->text($fieldName)->nullable()->default($default)->change();
                 break;
-            case "LONGTEXT":
+            case 'LONGTEXT':
                 $table->longText($fieldName)->nullable()->default($default)->change();
                 break;
-            case "DATE":
+            case 'DATE':
                 $table->date($fieldName)->nullable()->change();
                 break;
-            case "DATETIME":
+            case 'DATETIME':
                 $table->dateTime($fieldName)->nullable()->change();
                 break;
         }
+
         return $table;
     }
 
+    
+
+    public function update()
+    {
+        //showdata
+        // $phanLoaiDo = app('EntityCommon')->getRowsByConditions('phan_loai_do');
+        // dd($phanLoaiDo);
+        // foreach ($phanLoaiDo as $loai) {
+        //     $data = [];
+        //     app('EntityCommon')->insertData('quan_ly_do', $data);
+        // }
+
+        //update type_business_id
+        // $motel_room = app('EntityCommon')->getRowsByConditions('motel_room');
+        // foreach ($motel_room as $room) {
+        //     $data = [
+        //         'type_business_id' => $room->type_business_id
+        //     ];
+        //     $result = \DB::table('hop_dong')->where('motel_room_id', $room->id)->update($data);
+        // }
+
+
+        //update Quản lý đồ
+        $rooms = app('EntityCommon')->getRowsByConditions('motel_room');
+        $phanLoaiDo = app('EntityCommon')->getRowsByConditions('phan_loai_do');
+        // dd($rooms);
+        foreach ($rooms as $room) {
+            $data = [];
+            foreach($phanLoaiDo as $p) {
+                if($p->id == 6 || $p->id == 5 ) {
+                    continue;
+                }
+                $chu_so_huu_id = 0;
+                if($p->id == 7 ) {
+                    if($room->apartment_id == 5){
+                        $chu_so_huu_id = 2;
+                    } else {
+                        continue;
+                    }
+                }
+
+                if($room->apartment_id == 3 || $room->apartment_id == 4){
+                    if($p->id == 1 || $p->id == 2 || $p->id == 3 ) {
+                        $chu_so_huu_id = 2;
+                    }
+                }
+
+                if($room->apartment_id == 1){
+                    $chu_so_huu_id = 2;
+                }
+                
+                $data[] = [
+                    'apartment_id' => $room->apartment_id,
+                    'motel_room_id' => $room->id,
+                    'chu_so_huu_id' => $chu_so_huu_id,
+                    'phan_loai_do_id' => $p->id,
+                    'price' => 0,
+                    'time_bao_hanh' => 0,
+                    'hang_san_xuat_id' => 0,
+                    'nha_cung_cap_id' => 0,
+                    'khau_hao' => 0
+                ];
+            }
+
+            
+            $result = app('EntityCommon')->insertData('quan_ly_do', $data, true);
+        }
+        die('ok');
+    }
 }
