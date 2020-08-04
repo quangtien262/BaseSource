@@ -37,7 +37,7 @@
                                     @if($col->edit == 1)
                                             @if($col->type_edit == 'number')
                                                 @if(!empty($data[$col->name]) && !empty($data[$col->name]))
-                                                    <div class="col-md-6 item-detail">
+                                                    <div class="col-md-6 item-detail {{ $col->name == 'total' ? '_red text-bold':'' }}">
                                                         <br/>
                                                         <label>{{ $col->display_name or $col->name }}: </label>
                                                         {{ !empty($data[$col->name]) ? number_format($data[$col->name]):0 }}

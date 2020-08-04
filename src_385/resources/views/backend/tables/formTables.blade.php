@@ -131,6 +131,12 @@
                                                 is_show_btn_auto_get_total
                                         </label>
                                         
+                                        <br/>
+                                        <label>
+                                            <input {{ isset($table->have_insert_all) && $table->have_insert_all == 1 ? 'checked="checked"':'' }} 
+                                                value="1" type="checkbox" name="have_insert_all" />
+                                                have_insert_all
+                                        </label>
                                     </div>
                                 </div>
 

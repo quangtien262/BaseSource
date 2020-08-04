@@ -7,12 +7,12 @@ use Illuminate\Http\Request;
 
 class SettingController extends BackendController
 {
-    public function changeSetting($tableId, $dataId)
+    public function changeSetting()
     {
-        $table = app('ClassTables')->getTable($tableId);
-        if (!empty($table)) {
-            app('EntityCommon')->deleteTable($table->name, $dataId);
-        }
+        // $table = app('ClassTables')->getTable($tableId);
+        // if (!empty($table)) {
+        //     app('EntityCommon')->deleteTable($table->name, $dataId);
+        // }
 
         return back();
     }

@@ -452,3 +452,15 @@ function checkConfirm(msg) {
     return false;
   }
 }
+
+// load-value-type
+function loadValueType(_this) {
+  checkLoading();
+	$.ajax({
+    url: "/admin/load-input-by-col/" + $(_this).val(),
+    success: function(data) {
+      checkLoading();
+      $('.load-value-type').html(data);
+    }
+  });
+}

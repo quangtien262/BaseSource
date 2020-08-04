@@ -16,7 +16,7 @@
     <!-- Styles -->
     @include('backend.element.stylesheet')
 </head>
-<body class="theme-1">
+<body class="{{ $adminConfig->theme or '' }}">
 
     
       @if(!empty($adminConfig->banner))

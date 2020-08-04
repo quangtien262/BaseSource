@@ -150,6 +150,7 @@ class AuthController extends Controller
             if (intval($checkUser->userType) == 0) {
                 $message = 'username or password is incorrect';
             }
+            die;
 
             Auth::login(\Auth::user(), true);
 

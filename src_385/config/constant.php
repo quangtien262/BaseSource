@@ -4,7 +4,8 @@ define('LAYOUT_BACKEND_02', 'Layouts.backend');
 define('LAYOUT_POPUP', 'Layouts.popup');
 
 //table đặc biệt
-define('THONG_KE', 'thong_ke');
+define('THONG_KE_DONG_TIEN', 'thong_ke_dong_tien');
+define('THONG_KE_KHAU_HAO', 'thong_ke_khau_hao');
 define('TIEN_PHONG', 'tien_phong');
 define('SO_DIEN', 'so_dien_nuoc');
 define('TBL_LOAI_TIEN_PHONG', 'loai_tien_phong');

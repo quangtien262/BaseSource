@@ -19,5 +19,4 @@ class UploadController extends BackendController
         }
         return $result;
     }
-
 }

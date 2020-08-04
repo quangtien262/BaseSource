@@ -66,7 +66,7 @@ Route::group(['middleware' => \App\Http\Middleware\Language::class], function ()
         //blockType
         Route::get('/tbl/list-block/{landingPageId?}', 'Backend\BlockController@index')->name('adminListBlock');
         Route::get('/tbl/edit-block/{landingPageId}/{blockId}/{landingPageItemId?}', 'Backend\BlockController@formBlock')->name('adminEditBlock');
-        Route::post('/tbl/edit-block/{landingPageId}/{blockId}/{landingPageItemId?}', 'Backend\BlockController@submitFormBlock');
+        Route::post('/tbl/edit-block/{landingPageId}/{blockId}/{landingPageItemId?}', 'Backend\BlockController@submitFormBlock');   
 
         //so dien
         Route::post('/auto-generate/tien-phong', 'Backend\RowController@generateTienPhong')->name('generateTienPhong');
@@ -74,7 +74,9 @@ Route::group(['middleware' => \App\Http\Middleware\Language::class], function ()
         Route::get('/generate/so-dien', 'Backend\RowController@generateSodien')->name('generateSodien');
         Route::post('/update/tien-phong-discount/{id}', 'Backend\RowController@updateTienPhongDiscount')->name('updateTienPhongDiscount');
         //thong ke
-        Route::get('/auto-generate/thong-ke', 'Backend\RowController@thongKe')->name('thongKe');
+        Route::get('/auto-generate/thong-ke-dong-tien', 'Backend\RowController@thongKeDongTien')->name('thongKeDongTien');
+        Route::post('/auto-generate/thong-ke-khau-hao', 'Backend\RowController@thongKeKhauHao')->name('thongKeKhauHao');
+        
         //hoa don
         Route::get('/auto-generate/hoa-don', 'Backend\RowController@generateHoaDon')->name('generateHoaDon');
 
@@ -83,8 +85,12 @@ Route::group(['middleware' => \App\Http\Middleware\Language::class], function ()
         Route::post('file/delete', 'Backend\UploadController@fileDestroy');
 
         //
-        Route::post('file/delete', 'Backend\SettingController@changeSetting')->name('changeSetting');
+        Route::post('app/change-setting', 'Backend\SettingController@changeSetting')->name('changeSetting');
+        //load input type by column
+        Route::get('load-input-by-col/{columnId}', 'Backend\RowController@loadInputTypeByColumn')->name('loadInputTypeByColumn');
+        Route::post('update-multiple-data/', 'Backend\RowController@updateMultipleData')->name('updateMultipleData');
 
+        //update tool
         Route::get('update', 'Backend\TblController@update')->name('update');
     });
 // });

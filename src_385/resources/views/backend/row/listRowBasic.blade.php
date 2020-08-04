@@ -31,17 +31,55 @@
                                     @endif
                                 @endforeach
                             @endif
-                        </div>
-                        <div class="clean"><hr/></div>
-                        <div class="he">
-                            @if($isSearch)
-                                <button type="submit" class="btn btn-primary btn-left">
-                                    <i class="ion-ios-search-strong"></i>
-                                    Tìm kiếm
-                                </button>
-                            @endif
+
+                            <div class="col-xs-6 col-sm-3">
+                                @if($isSearch)
+                                    <br/>
+                                    <br/>
+                                    <button type="submit" class="btn btn-primary btn-left">
+                                        <i class="ion-ios-search-strong"></i>
+                                        Tìm kiếm
+                                    </button>
+                                @endif
+                            </div>
                         </div>
                     </form>
+                   
+                    @if($table->have_insert_all == 1)
+                        <div class="clean">
+                            <br/>
+                            <br/>
+                            <hr/>
+                        </div>
+                        <div class="row">
+                            <form action="{{ route('updateMultipleData') }}" method="POST" class="_left">
+                                {{ csrf_field()}}
+                                <button type="submit" class="btn btn-warning" title="Cập nhật tất cả theo Điều Kiện search hiện tại">
+                                    Cập nhật tất cả theo ĐK search hiện tại
+                                </button> 
+                                <button type="bottom" class="btn btn-primary">
+                                    Cập nhật data đã chọn
+                                </button> 
+                                <input type="hidden" name="tbl" value="{{ $table->name }}"/>
+                                @if(!empty($_GET)) 
+                                    @foreach ($_GET as $key => $val)
+                                        <input type="hidden" name="{{ $key }}" value="{{ $val }}"/>
+                                    @endforeach
+                                @endif
+                                <select id="collumn-id" name="collumn" onchange="loadValueType(this)" required>
+                                    <option value=""> Chọn column cần update </option>
+                                    @foreach($columns as $col)
+                                        @if($col->edit == 1)
+                                            <option value="{{ $col->id }}">{{ $col->display_name }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                                <span class="load-value-type"></span>
+                            </form>
+                        </div>
+                    @endif
+
+                    <div class="clean"><hr/></div>
                     {{-- tien_chi_tieu --}}
                     @if($table->name == 'tien_chi_tieu')
                         <a class="btn btn-success" href="{{ route('generateHoaDon') }}" onclick="return checkConfirm('Xác nhận thanh toán hoá đơn')">
@@ -69,10 +107,21 @@
                     @endif
 
                     {{-- thống kê --}}
-                    @if($table->name == THONG_KE)
-                        <a class="btn btn-success" href="{{ route('thongKe') }}">
+                    @if($table->name == THONG_KE_DONG_TIEN)
+                        <a class="btn btn-success" href="{{ route('thongKeDongTien') }}">
                             Thống kê
                         </a>
+                    @endif
+                    
+                    @if($table->name == THONG_KE_KHAU_HAO)
+                    <form action="{{ route('thongKeKhauHao') }}" method="post">
+                        {{ csrf_field()}}
+                        <button type="submit" class="btn btn-success">
+                            Thống kê
+                        </button>
+                        <input name="khau_hao_do" type="number" placeholder="TG Khấu hao đồ"/>
+                        <input name="khau_hao_other" type="number" placeholder="TG Khấu hao khác"/>
+                    </form>
                     @endif
 
                     @if($table->have_add_new == 1)
@@ -117,6 +166,7 @@
                             Tự động tạo số điện theo dữ liệu của tháng trước
                         </a> 
                     @endif
+
                     </div>
                 </div>
                 <div>

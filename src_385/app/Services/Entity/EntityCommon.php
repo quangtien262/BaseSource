@@ -15,10 +15,11 @@ class EntityCommon
      * get data of table
      * $tblName: table name
      * $conditions: array condition, ex: ['id' => 1,]
-     * $limit:  $limit = 0: get all item
+     * $limit:  $limit = 0: get    item
      *          $limit = 1: get first item
      *          $limit > 1: get by $limit
      * $order: sort order
+     * $whereInConditions: in array condition, ex: ['id' => [1,2,3]]
      */
 
     public function getRowsByConditions($tblName, $conditions = [], $limit = 0, $order = ['sort_order', 'asc'], $whereInConditions = [])
@@ -193,11 +194,33 @@ class EntityCommon
         return DB::getPdo()->lastInsertId();
     }
 
+    /*
+     * insert
+     * $tblName: table name
+     * $data: data insert, ex: ['column_name' => 'value insert',]
+     */
     public function updateData($tblName, $dataId, $data)
     {
         $data['updated_at'] = date('Y-m-d h:i:s');
         $result = DB::table($tblName)->where('id', $dataId)->update($data);
+        return $result;
+    }
 
+    /*
+     * insert
+     * $tblName: table name
+     * $data: data insert, ex: ['column_name' => 'value insert',]
+     * $conditions: ex: ['column_name' => 'value',]
+     */
+    public function updateDataByCondition($tblName, $data, $conditions)
+    {
+        $data['updated_at'] = date('Y-m-d h:i:s');
+        $result = DB::table($tblName);
+        foreach($conditions as $key => $val) {
+            $result = $result->where($key, $val);
+        }
+        // dd($data);
+        $result = $result->update($data);
         return $result;
     }
 
@@ -444,7 +467,7 @@ class EntityCommon
      * @param [type] $between = ['column' => [$start, $end]]
      * @param [type] $notBetween = ['column' => [$start, $end]]
      */
-    public function getTotalByCondition($table, $column, $condition = [], $between = [], $notBetween = [])
+    public function getTotalByCondition($table, $column, $condition = [], $between = [], $notBetween = [], $whereInConditions = [])
     {
         $result = 0;
         $data = DB::table($table)
@@ -464,6 +487,13 @@ class EntityCommon
                 $data = $data->whereNotBetween($key, $val);
             }
         }
+
+        if (!empty($whereInConditions)) {
+            foreach ($whereInConditions as $key => $val) {
+                $data = $data->whereIn($key, $val);
+            }
+        }
+
         $data = $data->get();
         $data = json_decode(json_encode($data), true);
         // dd($data);
@@ -489,13 +519,132 @@ class EntityCommon
         foreach($tienChiTieu as $tien) {
             $tienChiTieuByStatus = self::getRowsByConditions('tien_chi_tieu', ['phan_loai_chi_tieu_id' => $tien->id]);
             $money = 0;
-            foreach($tienChiTieuByStatus as $p) {
+            foreach($tienChiTieuByStatus as $p) {   
                 $money += $p->money;
             }
             $percent = ($money * 100)/$total;
             $result .= '<li>'.$tien->name.': '. number_format($money) .' <b>('.round($percent,2).'%)</b></li>';
         }
+        return $result;
+    } 
 
+    public function tinhKhauHao($thoiGianKhauHaoDo, $thoiGianKhauHaoOther)
+    {
+        $result = '<p><b>Tính Khấu hao chi tiết:</b> Tiền đồ: '.$thoiGianKhauHaoDo.' tháng; chi phí khác: '.$thoiGianKhauHaoOther.' tháng</p>
+                    <em><p><b>Chi phí khác là bao gồm:</b></p>
+                    <p>
+                        <ul>
+                            <li>Công cho thợ</li>
+                            <li>Thay thế thiết bị</li>
+                            <li>Tiền chuyển nhượng</li>
+                            <li>Chi phí cho sửa chữa, nâng cấp</li>
+                        </ul>
+                    </p></em>
+                <table class="table-datatable table table-striped table table-bordered mv-lg fix-tbl-basic">';
+        $total = 0;
+
+        //header
+        $htmlApm = '<tr>';
+        $htmlApm .= '<th>thời gian</th>';
+        $apartment = self::getRowsByConditions('apartment');
+        $tienDo = [];
+        $tienKhac = [];
+        $total = [
+            'all' => 0,
+            'tien_do' => 0,
+            'other' => 0,
+        ];
+        foreach($apartment as $apm) {
+            //khau hao
+            $khauHaoTotal['do'][$apm->id] = $this->getTotalByCondition('quan_ly_do', 'price', ['apartment_id' => $apm->id, 'chu_so_huu_id' =>1]);
+            $chitieuConditions = [
+                'apartment_id' => $apm->id,
+            ];
+            //15: tiền đặt cọc thuê nhà
+            //10: Công cho thợ
+            //9: Thay thế thiết bị
+            //8: Tiền chuyển nhượng
+            //4: Chi phí cho sửa chữa, nâng cấp
+            $whereInConditions = [
+                'phan_loai_chi_tieu_id' => [10,9,8,4]
+            ];
+            $khauHaoTotal['other'][$apm->id] = $this->getTotalByCondition('tien_chi_tieu', 'money', $chitieuConditions, [], [], $whereInConditions);
+            $total['tien_do'] = $total['tien_do'] + $khauHaoTotal['do'][$apm->id];
+            $total['other'] = $total['other'] + $khauHaoTotal['other'][$apm->id];
+            //nha 65
+            if($apm->id == 7) {
+                $khauHaoTotal['other'][$apm->id] = $khauHaoTotal['other'][$apm->id] - 60000000;
+            }
+            // nha 85
+            if($apm->id == 8) {
+                $khauHaoTotal['other'][$apm->id] = $khauHaoTotal['other'][$apm->id] - 100000000;
+            }
+            $total['all'] = $total['all'] + $khauHaoTotal['do'][$apm->id] + $khauHaoTotal['other'][$apm->id];
+            //show data
+            $htmlApm .= '<th>'.$apm->name. 
+                            '<br/>Đồ: ' . number_format($khauHaoTotal['do'][$apm->id]) . 
+                            '<br/>Khác:' . number_format($khauHaoTotal['other'][$apm->id]) .
+                            '<br/>Tổng:' . number_format(($khauHaoTotal['do'][$apm->id] + $khauHaoTotal['other'][$apm->id])) .
+                        '</th>';
+        }
+        //all
+        $htmlApm .= '<th>Tổng'.
+                        '<br/>Đồ: ' . number_format($total['tien_do']) .
+                        '<br/>Khác:' . number_format($total['other']) .
+                        '<br/>Tổng:' . number_format(($total['tien_do'] + $total['other'])) .
+                    '</th>';
+        $htmlApm .= '</tr>';
+
+        //content
+        $tmpData = '';
+        $current = date('2019-11');
+        for($i = 1; $i <= 120; $i++) {
+            $tongKhauHaoHangThang = 0;
+            $current = strtotime(date("Y-m", strtotime($current)) . " +1 month");
+            $current = strftime("%Y-%m", $current);
+            // $current
+            $tmpData .= '<tr>';
+            $tmpData .= '<td><b style="color:#cccccc">['.$i.']</b>' . $current . '</td>';
+            $tongKhauHaoHangThang = 0;
+            foreach($apartment as $apm) {
+                if( date("Y-m-d", strtotime($current.'-01')) < date("Y-m-d", strtotime($apm->start_date)) ) {
+                    $tmpData .= '<td><b style="color:#cccccc">['.$apm->ma_apm.']</b></td>';
+                    continue;
+                }
+
+                if( date("Y-m-d", strtotime($current.'-01')) > date("Y-m-d", strtotime($apm->end_date)) ) {
+                    $tmpData .= '<td><b style="color:#cccccc">['.$apm->ma_apm.']</b></td>';
+                    continue;
+                }
+
+                $khDo = 0;
+                if( strtotime(date("Y-m-d", strtotime($current.'-01'))) <= strtotime(date("Y-m-d", strtotime($apm->start_date)) . " +{$thoiGianKhauHaoDo} month")) {
+                    $khDo = $khauHaoTotal['do'][$apm->id]/$thoiGianKhauHaoDo;
+                }
+
+                $khOther = 0;
+                if( strtotime(date("Y-m-d", strtotime($current.'-01'))) <= strtotime(date("Y-m-d", strtotime($apm->start_date)) . " +{$thoiGianKhauHaoOther} month")) {
+                    $khOther = $khauHaoTotal['other'][$apm->id]/$thoiGianKhauHaoOther;
+                }
+
+                $tongKhauHaoNha = $khDo + $khOther;
+                $tongKhauHaoHangThang = $tongKhauHaoHangThang + $tongKhauHaoNha;
+                //show data
+                $tmpData .= '<td><b style="color:#cccccc">['.$apm->ma_apm.']</b>'.
+                                number_format($tongKhauHaoNha) .
+                            '</td>';
+            }
+            $tmpData .= '<td>' . number_format($tongKhauHaoHangThang) . '</td>';
+            $tmpData .= '</tr>';
+        }
+        
+        
+
+
+        $result .= $htmlApm . $tmpData;
+        $result .= '</table>';
+        // echo $result;die('123');
         return $result;
     }
 }
+  

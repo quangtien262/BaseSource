@@ -320,19 +320,48 @@ class TblController extends BackendController
         foreach ($rooms as $room) {
             $data = [];
             foreach($phanLoaiDo as $p) {
+                $price = 0;
+                //set nhà ĐC, AS đồ là của Aitilen hết
+                $chu_so_huu_id = 0;
+                if (in_array($room->apartment_id, [5,6,7,8,9,12])) {
+                    $chu_so_huu_id = 1;
+                }
+
                 if($p->id == 6 || $p->id == 5 ) {
                     continue;
                 }
-                $chu_so_huu_id = 0;
-                if($p->id == 7 ) {
-                    if($room->apartment_id == 5){
-                        $chu_so_huu_id = 2;
-                    } else {
-                        continue;
+
+                // bàn bếp 
+                if($p->id == 7) {
+                    if($room->apartment_id == 5) {
+                        if($room->id != 45) {
+                            $chu_so_huu_id = 2;
+                            $price = 2590000;
+                        }
                     }
                 }
+                
+                //nhà 122
+                if($room->apartment_id == 5) {
+                    if($room->id != 45 && $p->id == 7) {
+                        $price = 2590000;
+                    }
 
-                if($room->apartment_id == 3 || $room->apartment_id == 4){
+                     //chuồng cọp
+                    if($p->id == 9 ) {
+                        if($room->id != 45 || $room->id != 51) {
+                            $price = 1650000;
+                        }
+                    }
+
+                    //điều hòa:
+                   if($p->id == 2 ) {
+                        $price = 6400000;
+                   }
+                }
+
+                // nhà pk, update tất cả đồ đều của chủ nhà
+                if($room->apartment_id == 3 || $room->apartment_id == 4) {
                     if($p->id == 1 || $p->id == 2 || $p->id == 3 ) {
                         $chu_so_huu_id = 2;
                     }
@@ -347,7 +376,7 @@ class TblController extends BackendController
                     'motel_room_id' => $room->id,
                     'chu_so_huu_id' => $chu_so_huu_id,
                     'phan_loai_do_id' => $p->id,
-                    'price' => 0,
+                    'price' => $price,
                     'time_bao_hanh' => 0,
                     'hang_san_xuat_id' => 0,
                     'nha_cung_cap_id' => 0,

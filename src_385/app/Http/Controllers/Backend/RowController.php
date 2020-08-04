@@ -350,7 +350,7 @@ class RowController extends BackendController
         return back()->withInput();
     }
 
-    public function thongKe()
+    public function thongKeDongTien()
     {
         $date = date('d/m/Y h:i:s');
         // dd($data);
@@ -372,11 +372,30 @@ class RowController extends BackendController
         // $tmpData['tien_moi_gioi'] -
         // $tmpData['tien_chuyen_nhuong'] -
         // $tmpData['tien_coc_chu_nha'];
-        $tmpData['history'] = app('ClassCommon')->generateHistory();
+        $tmpData['history'] = app('ClassCommon')->generateHistoryDongTien();
         $tmpData['note'] = app('ClassCommon')->generateDongTien($tmpData['total']);
 
         // dd($tmpData);
-        app('EntityCommon')->insertData('thong_ke', $tmpData);
+        app('EntityCommon')->insertData(THONG_KE_DONG_TIEN, $tmpData);
+
+        return back()->withInput();
+    }
+
+    public function thongKeKhauHao(Request $request)
+    {
+        if(empty($request->khau_hao_do) || empty($request->khau_hao_other)) {
+            return back()->withInput();
+        }
+        $date = date('d/m/Y h:i:s');
+        // dd($data);
+        $tmpData = [];
+        $tmpData['name'] = 'Thống kê dữ liệu ngày '.$date;
+        $tmpData['content'] = app('EntityCommon')->tinhKhauHao($request->khau_hao_do, $request->khau_hao_other);
+        $tmpData['thong_ke_chi_tieu'] = app('EntityCommon')->thongKeTienChiTieu();
+        
+        
+        // dd($tmpData);
+        app('EntityCommon')->insertData(THONG_KE_KHAU_HAO, $tmpData);
 
         return back()->withInput();
     }
@@ -428,4 +447,57 @@ class RowController extends BackendController
 
         return back()->withInput();
     }
+
+    
+    public function loadInputTypeByColumn($columnId) {
+        $column = app('EntityCommon')->getDataById('table_column', $columnId);
+        // dd($column);
+        $html = '';
+        $typeEdit = $column->type_edit;
+        switch ($typeEdit) {
+            case 'select':
+                $tableSelect = app('EntityCommon')->getDataById('tables', $column->select_table_id);
+                $tableData = app('EntityCommon')->getRowsByConditions($tableSelect->name);
+                // dd($tableData);
+                $html = '<select name="value">';
+                foreach($tableData as $data) {
+                    $html .= '<option value="'.$data->id.'">'.$data->name.'</option>';
+                }
+                $html .= '</select>';
+                break;
+            case 'number':
+                $html = '<input name="value" type="number"/>';
+                break;
+            case 'date':
+                $html = '<input name="value" type="text"/>';
+                break;
+            case 'date':
+                $html = '<textarea name="value"></textarea>';
+                break;
+            
+            default:
+            $html = '<input name="value" type="text"/>';
+                break;
+        }
+        return $html;
+    }
+
+    public function updateMultipleData(Request $request) {
+        if(!isset($request->value) || empty($request->collumn)) {
+            return back()->withInput();
+        }
+        $column = app('EntityCommon')->getDataById('table_column', $request->collumn);
+        $conditions = [];
+        foreach($_POST as $key => $val) {
+            if(empty($val) || in_array($key, ['tbl', 'collumn', 'value', '_token'])) {
+                continue;
+            }
+            $conditions[$key] = $val;
+        }
+        $data = [$column->name => $request->value];
+        // dd($data);
+        $updateResult = app('EntityCommon')->updateDataByCondition($request->tbl, $data, $conditions);
+        return back()->withInput();
+    }
 }
+
