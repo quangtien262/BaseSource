@@ -375,6 +375,10 @@ class ClassCommon
         $chiTotal = 0;
         $tienNhaTotal = 0;
         foreach ($apms as $apm) {
+            if (strtotime($startMonth) > strtotime($apm->end_date)) { 
+                $html .= '<td></td>';
+                continue;
+            }
             $explodecreateDate = explode('-', $apm->start_date);
             $currentDate = $year.'-'.$month.'-'.$explodecreateDate[2];
             // echo $currentDate;die;

@@ -50,8 +50,17 @@
                                             {{-- show name --}}
                                             <div class="{{ $col->class or '' }}">
                                                 @if($col->fast_edit == '1')
-                                                    <span class="_gray">{{ !empty($col->is_show_id) ? '['.$data['id'].']':'' }}</span>
-                                                    {!! app('UtilsCommon')->xEditTable( $tableId, $col, $data) !!}
+                                                    @if($col->is_view_detail == '1')
+                                                        <span class="_gray">{{ !empty($col->is_show_id) ? '['.$data['id'].']':'' }}</span>
+                                                        {!! app('UtilsCommon')->xEditTable( $tableId, $col, $data) !!}
+                                                        <p>
+                                                            <a class="_red" href="{{ route('detailRow', [$tableId, $data['id']]) }}">>>Chi tiết</a>
+                                                        </p>
+                                                    @else
+                                                        <span class="_gray">{{ !empty($col->is_show_id) ? '['.$data['id'].']':'' }}</span>
+                                                        {!! app('UtilsCommon')->xEditTable( $tableId, $col, $data) !!}
+                                                    @endif
+                                                    
                                                 @elseif($col->is_view_detail == '1')
                                                     <span class="_gray">{{ !empty($col->is_show_id) ? '['.$data['id'].']':'' }}</span>
                                                     <a href="{{ route('detailRow', [$tableId, $data['id']]) }}">
