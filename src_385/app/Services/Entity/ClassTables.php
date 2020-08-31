@@ -86,6 +86,7 @@ class ClassTables
         $tables->is_add_express = isset($request['is_add_express']) ? $request['is_add_express'] : 0;
         $tables->is_edit_express = isset($request['is_edit_express']) ? $request['is_edit_express'] : 0;
         $tables->have_insert_all = isset($request['have_insert_all']) ? $request['have_insert_all'] : 0;
+        $tables->order_by = $request['order_by'];
         
         $tables->save();
 
@@ -341,8 +342,12 @@ class ClassTables
         }
 
         //where condition if exist conditions
-        foreach ($columns as $col) {
+        foreach ($columns as $col) { 
             if ($col['add2search'] == 1 && !empty($request[$col->name])) {
+            // if ($col['add2search'] == 1 && isset($request[$col->name]) && $request[$col->name] != '') {
+            //     if($request[$col->name] == 0 && $col->name != 'apartment_id') {
+            //         continue;
+            //     }
                 // $conditions[$col->name] = $request[$col->name];
                 switch ($col->search_type) {
                     case '2':
@@ -368,7 +373,15 @@ class ClassTables
             }
         }
         //The count of data
-        $data = $data->orderBy('id', 'desc');
+        if(empty($table->order_by)) {
+            $data = $data->orderBy('id', 'desc');
+        } else {
+            $order = json_decode($table->order_by, true);
+            // print_r($order);die;
+            $data = $data->orderBy($order[0], $order[1]);
+        }
+        
+
         if ($unlimit) {
             $data = $data->get();
         } else {
@@ -477,6 +490,35 @@ class ClassTables
         return $html;
     }
 
+    public function getHtmlSelect2MultipleForTable($name, $tblRowId, $selectedId = 0, $multiple = false, $conditionsJson = '')
+    {
+        if ($multiple) {
+            $html = '<select class="select2-3 form-control" multiple name="'.$name.'">';
+        } else {
+            $html = '<select class="select2-2 form-control" name="'.$name.'">';
+        }
+        $conditions = [];
+        if (!empty($conditionsJson)) {
+            $conditions = json_decode($conditionsJson);
+        }
+        // dd( $conditions);
+        $table = self::getTable($tblRowId);
+        if (!empty($table)) {
+            $html .= '<option value="0">Chọn '.$table->display_name.'</option>';
+            $tableData = app('EntityCommon')->getRowsByConditions($table->name, $conditions, 0, $order = ['sort_order', 'asc']);
+            foreach ($tableData as $data) {
+                $selected = '';
+                if ($data->id == $selectedId) {
+                    $selected = 'selected="selected"';
+                }
+                $html .= '<option '.$selected.' value="'.$data->id.'">'.$data->name.'</option>';
+            }
+        }
+        $html .= '</select>';
+
+        return $html;
+    }
+
     public function getHtmlSelectTableFastEdit($name, $tblRowId, $selectedId = 0, $dataId, $tableId)
     {
         $html = '<select class="_hidden input-fast-edit"
@@ -492,6 +534,7 @@ class ClassTables
         if (!empty($table)) {
             $html .= '<option value="0">Chọn '.$table->display_name.'</option>';
             $tableData = app('EntityCommon')->getRowsByConditions($table->name, $conditions, 0, $order = ['sort_order', 'asc']);
+            // dd($tableData);
             foreach ($tableData as $data) {
                 $selected = '';
                 if ($data->id == $selectedId) {

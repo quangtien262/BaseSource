@@ -38,7 +38,7 @@
                                     {{-- background --}}
                                     @php
                                         $background = '';
-                                        if(!empty($col->bg_in_list) && $col->type_edit == 'select' && !empty($col->select_table_id)) {
+                                        if(!empty($col->bg_in_list) && ($col->type_edit == 'select' || $col->type_edit == 'select2') && !empty($col->select_table_id)) {
                                             $tblColor = app('EntityCommon')->getCurrentTableDataByTablesId($col->select_table_id, $data[$col->name]);
                                             $background = !empty($tblColor->color) ? $tblColor->color : '';
                                         }

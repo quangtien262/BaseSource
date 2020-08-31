@@ -1606,6 +1606,21 @@ $( function() {
             return;
 
         // Select 2
+        $('.select2-1').select2();
+        $('.select2-2').select2();
+        $('.select2-3').select2({
+            placeholder: 'Click để chọn',
+            // allowClear: true,
+            language: {
+                noResults: function () {
+                     return "Không tìm thấy kết quả nào phù hợp";
+                }
+            }
+        });
+        $('.select2-4').select2({
+            placeholder: 'Vui lòng chọn',
+            allowClear: true
+        });
 
         $('#select2-1').select2();
         $('#select2-2').select2();
@@ -2028,7 +2043,25 @@ $( function() {
                 console.log(e);
             }
         });
-
+        $('.editable-select2').editable({
+            prepend: 'Select',
+            showbuttons: false,
+            mode: 'popup', //inline, popup
+            // source: [],
+            ajaxOptions: {
+                dataType: 'text',
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+            },
+            success: function(response, newValue) {
+                console.log('response', response);
+                // reload('', '#main-sub-content', false);
+            },
+            error: function(e) {
+                console.log(e);
+            }
+        });
         $('.editable-date').editable({
             format: 'yyyy-mm-dd',    
             showbuttons: false,

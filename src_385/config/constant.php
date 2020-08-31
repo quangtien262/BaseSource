@@ -27,7 +27,7 @@ define('MSG_UPDATE_COLUMN_DATA_FAIL', 'Cập nhật dữ liệu Thất bại');
 define('LANDING_PAGE_ITEM_ID', 33);
 
 //form config
-define('COLUMN_TYPE', serialize(['INT', 'VARCHAR', 'TEXT', 'LONGTEXT', 'DATE', 'DATETIME', 'FLOAT']));
+define('COLUMN_TYPE', serialize(['INT', 'VARCHAR', 'TEXT', 'LONGTEXT', 'DATE', 'DATETIME', 'FLOAT', 'TIMESTAMP']));
 define('IS_REQUIRE', serialize([
     0 => 'NOT REQUIRE',
     1 => 'REQUIRE',
@@ -65,6 +65,7 @@ define('TYPE_EDIT', serialize([
     'password' => 'Password',
     'encryption' => 'Password <Encryption>',
     'date' => 'Date',
+    
     'input' => 'Select Input',
     'block' => 'Block (Cần tạo sẵn 2 bảng:block_type & block_item)',
     'color' => 'Màu sắc',

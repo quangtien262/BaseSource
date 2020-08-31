@@ -17,14 +17,6 @@
             <label>{{ $col->display_name or $col->name }}</label>
             <textarea name="{{ $col->name or '' }}" class="form-control">{{ $data[$col->name] or '' }}</textarea>
         </div>
-    @elseif($col->type_edit == 'select')
-        @if(empty($_GET[$col->name]))
-            <div class="col-md-6">
-                <br/>
-                <label>{{ $col->display_name or $col->name }}</label>
-                {!! app('ClassTables')->getHtmlSelectForTable($col->name, $col->select_table_id, $data[$col->name], false, $col->conditions ) !!}
-            </div>            
-        @endif
     @elseif($col->type_edit == 'summoner')
     </div>
         <div class="row">
@@ -33,6 +25,14 @@
             <textarea name="{{ $col->name or '' }}" id="ckeditor">{{ $data[$col->name] or '' }}</textarea>
         </div>
     <div class="row">
+    @elseif($col->type_edit == 'select')
+        @if(empty($_GET[$col->name]))
+            <div class="col-md-6">
+                <br/>
+                <label>{{ $col->display_name or $col->name }}</label>
+                {!! app('ClassTables')->getHtmlSelectForTable($col->name, $col->select_table_id, $data[$col->name], false, $col->conditions ) !!}
+            </div>            
+        @endif
     @elseif($col->type_edit == 'selects')
         <div class="col-md-6">
             <br/>
@@ -40,9 +40,17 @@
             {!! app('ClassTables')->getHtmlSelectForTable($col->name, $col->select_table_id, $data[$col->name] ? $data[$col->name]:0, true, $col->conditions) !!}
         </div>
     @elseif($col->type_edit == 'select2')
-        <span>select2</span>
+        <div class="col-md-6">
+            <br/>
+            <label>{{ $col->display_name or $col->name }}</label>
+            {!! app('ClassTables')->getHtmlSelect2MultipleForTable($col->name, $col->select_table_id, $data[$col->name] ? $data[$col->name]:0, false, $col->conditions) !!}
+        </div>
     @elseif($col->type_edit == 'selects2')
-        <span>selects2</span>
+        <div class="col-md-6">
+            <br/>
+            <label>{{ $col->display_name or $col->name }}</label>
+            {!! app('ClassTables')->getHtmlSelect2MultipleForTable($col->name, $col->select_table_id, $data[$col->name] ? $data[$col->name]:0, true, $col->conditions) !!}
+        </div>
     @elseif($col->type_edit == 'ckeditor')
         <span>ckeditor</span>
     @elseif($col->type_edit == 'image_laravel')

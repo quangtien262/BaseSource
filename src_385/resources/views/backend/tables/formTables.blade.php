@@ -76,6 +76,11 @@
                                     </div>
                                     
                                     <div class="col-xs-6 col-sm-3">
+                                        <label>order_by</label>
+                                        <textarea name="order_by" placeholder='{"column":"column_name", "order":"desc"}'>{{ $table->order_by or '' }}</textarea>
+                                    </div>
+
+                                    <div class="col-xs-6 col-sm-3">
                                         <br/>
                                         <label>
                                             <input {{ isset($table->is_edit) && $table->is_edit == 1 ? 'checked="checked"':'' }} 

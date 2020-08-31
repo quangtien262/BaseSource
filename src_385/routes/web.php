@@ -60,9 +60,14 @@ Route::group(['middleware' => \App\Http\Middleware\Language::class], function ()
         Route::post('/sort-order-Column/{tableId}', 'Backend\RowController@sortOrderColumn')->name('sortOrderColumn');
         Route::post('/update-current-row/{columnName}/{tableId}/{dataId}', 'Backend\RowController@editCurrentRow')->name('editCurrentColumn');
 
+        //export excel
         Route::get('/tbl/import/{tableId}/', 'Backend\RowController@import2Excel')->name('import2Excel');
         Route::post('/tbl/import/{tableId}/', 'Backend\RowController@postImport2Excel');
         Route::get('/tbl/export/{tableId}/', 'Backend\RowController@export2Excel')->name('export2Excel');
+
+        //export word
+        Route::get('/tbl/import-word', 'Backend\RowController@import2Word')->name('import2Excel');
+
         //blockType
         Route::get('/tbl/list-block/{landingPageId?}', 'Backend\BlockController@index')->name('adminListBlock');
         Route::get('/tbl/edit-block/{landingPageId}/{blockId}/{landingPageItemId?}', 'Backend\BlockController@formBlock')->name('adminEditBlock');

@@ -499,5 +499,32 @@ class RowController extends BackendController
         $updateResult = app('EntityCommon')->updateDataByCondition($request->tbl, $data, $conditions);
         return back()->withInput();
     }
+
+    public function import2Word(Request $request)
+    {
+        $phpWord = new \PhpOffice\PhpWord\PhpWord();
+        $section = $phpWord->addSection();
+
+        // Define styles
+        $fontStyle12 = array('spaceAfter' => 60, 'size' => 12);
+        $fontStyle10 = array('size' => 10);
+        $phpWord->addTitleStyle(null, array('size' => 22, 'bold' => true));
+        $phpWord->addTitleStyle(1, array('size' => 20, 'color' => '333333', 'bold' => true));
+        $phpWord->addTitleStyle(2, array('size' => 16, 'color' => '666666'));
+        $phpWord->addTitleStyle(3, array('size' => 14, 'italic' => true));
+        $phpWord->addTitleStyle(4, array('size' => 12));
+
+        $section->addTitle('PHỤ LỤC GIA HẠN HỢP ĐỒNG', 0);
+        $section->addTextBreak(2);
+
+        $text = $section->addText("PHỤ LỤC GIA HẠN HỢP ĐỒNG");
+        $text = $section->addText(456);
+        // $text = $section->addText($request->get('number'),array('name'=>'Arial','size' => 20,'bold' => true));
+        // $section->addImage("./images/Krunal.jpg");  
+        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+        $objWriter->save('Appdividend.docx');
+        return response()->download(public_path('Appdividend.docx'));
+    }
 }
+
 

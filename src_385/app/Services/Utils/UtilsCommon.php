@@ -149,7 +149,9 @@ class UtilsCommon
         $link = route('editCurrentColumn', [$col->name, $tableId, $data['id']]);
         $prepend = '';
         $source = '';
-        if ($type == 'select') {
+        $dataType = $type;
+        if ($type == 'select' || $type == 'select2') {
+            $dataType = 'select';
             $prepend = $col->display_name;
             $source = app('ClassTables')->getObjectJavascriptFromTable($col->select_table_id, $col->conditions);
         }
@@ -157,11 +159,11 @@ class UtilsCommon
             case 'select':
                 $value = app('EntityCommon')->getColNameById($col->select_table_id, $data[$col->name]);
                 break;
-
-            case 'date':
-                $value = !empty($data[$col->name]) ? date('d/m/Y', strtotime($data[$col->name])) : '';
+            case 'select2':
+                $value = app('EntityCommon')->getColNameById($col->select_table_id, $data[$col->name]);
                 break;
 
+            case 'date':
                 $value = !empty($data[$col->name]) ? date('d/m/Y', strtotime($data[$col->name])) : '';
                 break;
 
@@ -173,9 +175,9 @@ class UtilsCommon
         $htmlResult = '
             <a id="'.$col->name.$data['id'].'"
                 data-pk="1" 
-                class="editable editable-'.$type.'"
+                class="editable editable-'.$dataType.'"
                 data-url="'.$link.'"
-                data-type="'.$type.'" 
+                data-type="'.$dataType.'" 
                 data-prepend="'.$prepend.'"
                 data-source="'.$source.'"
                 data-title="'.$col->name.'">'.
@@ -420,7 +422,7 @@ class UtilsCommon
                         value="'.$value.'" 
                         table-id="'.$tableId.'" 
                         data-id="'.$dataId.'">'.$value.'</textarea>';
-        } elseif (in_array($col->type_edit, ['select'])) {
+        } elseif (in_array($col->type_edit, ['select', 'select2'])) {
             //todo: add class update
             $html .= app('ClassTables')->getHtmlSelectTableFastEdit($col->name, $col->select_table_id, $value, $dataId, $tableId);
         } elseif (in_array($col->type_edit, ['date'])) {

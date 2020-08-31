@@ -1606,14 +1606,22 @@ $( function() {
             return;
 
         // Select 2
-
-        $('#select2-1').select2();
-        $('#select2-2').select2();
-        $('#select2-3').select2();
-        $('#select2-4').select2({
+        $('.select2-1').select2();
+        $('.select2-2').select2();
+        $('.select2-3').select2();
+        $('.select2-4').select2({
             placeholder: 'Select a state',
             allowClear: true
         });
+
+        // id
+        // $('#select2-1').select2();
+        // $('#select2-2').select2();
+        // $('#select2-3').select2();
+        // $('#select2-4').select2({
+        //     placeholder: 'Select a state',
+        //     allowClear: true
+        // });
 
         // Datepicker
 

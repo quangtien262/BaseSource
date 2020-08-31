@@ -16,7 +16,8 @@
     <!-- Styles -->
     @include('backend.element.stylesheet')
 </head>
-<body class="{{ $adminConfig->theme or '' }}">
+
+<body class="{{ \Auth::user()->theme }}">
 
     
       @if(!empty($adminConfig->banner))
