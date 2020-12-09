@@ -377,8 +377,10 @@ class ClassTables
             $data = $data->orderBy('id', 'desc');
         } else {
             $order = json_decode($table->order_by, true);
-            // print_r($order);die;
-            $data = $data->orderBy($order[0], $order[1]);
+            // dd($order);
+            foreach($order as $o) {
+                $data = $data->orderBy($o['column'], $o['order']);
+            }
         }
         
 

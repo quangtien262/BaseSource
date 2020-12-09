@@ -77,7 +77,12 @@
                                     
                                     <div class="col-xs-6 col-sm-3">
                                         <label>order_by</label>
-                                        <textarea name="order_by" placeholder='{"column":"column_name", "order":"desc"}'>{{ $table->order_by or '' }}</textarea>
+                                        <textarea name="order_by" placeholder='{
+                                            "0": {
+                                                "column": "id",
+                                                "order":"desc"
+                                            }
+                                        }'>{{ $table->order_by or '' }}</textarea>
                                     </div>
 
                                     <div class="col-xs-6 col-sm-3">

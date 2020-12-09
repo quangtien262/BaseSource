@@ -325,11 +325,11 @@ class RowController extends BackendController
             $preYear = $year - 1;
             $preMonth = 12;
         }
-        // echo $preYear;die;
+        // echo $preMonth;die;
         $d = app('EntityCommon')->getCurrentMoneyMotelRoom($preMonth, $preYear, $data->motel_room_id);
         // dd($d);
         $date = date('Y-m-d h:i:s');
-        // echo $data->month;die;
+        // echo $date;die;
         $tmpData = app('ClassCommon')->tienPhongCHDV($d, $data->month, $year, $date);
         // dd($tmpData);
         //insert to db
@@ -500,8 +500,11 @@ class RowController extends BackendController
         return back()->withInput();
     }
 
-    public function import2Word(Request $request)
+    public function exportPLGHHD2Word(Request $request, $hopDongId)
     {
+        $hopDong = app('EntityCommon')->getDataById('hop_dong', $hopDongId);
+        $room = app('EntityCommon')->getDataById('motel_room', $hopDong->motel_room_id);
+
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
         $section = $phpWord->addSection();
 
@@ -514,11 +517,54 @@ class RowController extends BackendController
         $phpWord->addTitleStyle(3, array('size' => 14, 'italic' => true));
         $phpWord->addTitleStyle(4, array('size' => 12));
 
-        $section->addTitle('PHỤ LỤC GIA HẠN HỢP ĐỒNG', 0);
-        $section->addTextBreak(2);
+        $phpWord->addFontStyle('italic', array('bold'=>false, 'italic'=>true, 'size'=>12, 'name' => 'Arial'));
+        $phpWord->addFontStyle('bold', array('bold'=>true, 'italic'=>false, 'size'=>12, 'name' => 'Arial'));
+        $phpWord->addParagraphStyle('center', array('align'=>'center', 'spaceAfter'=>100, 'name' => 'Arial'));
+        $phpWord->addFontStyle('title01', array('bold'=>true, 'italic'=>false, 'size'=>13, 'name' => 'Arial'));
+        $phpWord->addFontStyle('default', array('bold'=>false, 'italic'=>false, 'size'=>13, 'name' => 'Arial'));
 
-        $text = $section->addText("PHỤ LỤC GIA HẠN HỢP ĐỒNG");
-        $text = $section->addText(456);
+        $section->addTitle('PHỤ LỤC GIA HẠN HỢP ĐỒNG', 0);
+        $section->addText('(Số: PLGH'.$hopDong->ma_hd.')', 'italic', 'center');
+
+        $section->addText('Căn cứ vào hợp đồng số '.$hopDong->ma_hd.' đã ký ngày '.date('d/m/Y', strtotime($hopDong->start_date)).', Phòng ' . $room->name, 'italic');
+        $section->addText('Căn cứ vào nhu cầu thực tế của các bên.', 'italic');
+        $section->addText('Chúng tôi gồm có:', 'italic');
+
+        $section->addText('BÊN A ( BÊN CHO THUÊ): ', 'title01');
+        $section->addText('Đại diện: ông Lưu Quang Tiến', 'bold');
+        $section->addText('   - CCCD Số: 001088009640,  cấp ngày: 27/01/2016, Tại Cục Trưởng cục cảnh sát DKQL cư trú và DLQG về dân cư.', 'default');
+        $section->addText('   - HKTT: Số 7/68 đường Nguyễn Khuyến, Văn Quán, Hà Đông, Hà Nội.', 'default');
+        $section->addText('   - Số điện thoại: 0166 365 1500', 'default');
+        if($request->addA=='vu'){
+            $section->addText('Và ông Nguyễn Đình Vũ đồng quản lý tòa nhà', 'bold');
+            $section->addText('   - CCCD Số: 038092015809,  cấp ngày: 01/08/2019, Tại Cục Trưởng cục cảnh sát DKQL về trật tự xã hội.', 'default');
+            $section->addText('   - HKTT: Số 7/68 đường Nguyễn Khuyến, Văn Quán, Hà Đông, Hà Nội.', 'default');
+            $section->addText('   - Số điện thoại: 098 55 66 360', 'default');
+        }
+
+        if($request->addA=='minh'){
+            $section->addText('Và ông Hoàng Nhật Minh đồng quản lý tòa nhà', 'bold');
+            $section->addText('   - CCCD Số: 038099015233', 'default');
+            $section->addText('   - HKTT: 48 Ỷ Lan 3, Đông Thọ, Thanh Hóa.', 'default');
+            $section->addText('   - Số điện thoại: 0367566495', 'default');
+        }
+        
+
+        $section->addText('BÊN B ( BÊN THUÊ): ', 'title01');
+        $section->addText('   - Đại diện : '.$hopDong->customer_name, 'default');
+        $section->addText('   - CMDN (Hoặc CCCD): '.$hopDong->customer_cmtnd, 'default');
+        $section->addText('   - HKTT: '.$hopDong->hktt, 'default');
+        $section->addText('   - Số điện thoại: '.$hopDong->customer_phone, 'default');
+
+        $section->addText('Sau khi xem xét, thỏa thuân hai bên đã đi đến thống nhất ký phụ lục hợp đồng về gia hạn hợp đồng cụ thể như sau:', 'italic');
+        $section->addText('- Tiền phòng cho thuê:………………………………………………………………
+        …………………………………………………………………………………………        
+        ', 'default');
+        $section->addText('- Thời gian: gia hạn tính từ ngày…………………… đến ………………………..', 'default');
+        $section->addText('- Các điều khoản trong hợp đồng cũ vẫn giữ nguyên', 'default');
+        // $section->addText('- Điều khoản bổ xung (nếu có): ............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................', 'default');
+        $section->addText('BÊN A (BÊN CHO THUÊ)                                   BÊN B (BÊN THUÊ)', 'bold');
+
         // $text = $section->addText($request->get('number'),array('name'=>'Arial','size' => 20,'bold' => true));
         // $section->addImage("./images/Krunal.jpg");  
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');

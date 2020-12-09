@@ -108,6 +108,15 @@
 
                 @if($table->is_show_btn_edit == 1) 
                     <td>
+                        @if($table->name == 'hop_dong') 
+                        <a target="_blank" href="{{ route('exportPLGHHD2Word', [$data['id']]) }}?addA=vu" class="btn btn-sm btn-info">
+                            <i class="ion-android-arrow-up"></i> GH by Vu
+                        </a>
+                        <a target="_blank" href="{{ route('exportPLGHHD2Word', [$data['id']]) }}?addA=minh" class="btn btn-sm btn-info">
+                            <i class="ion-android-arrow-up"></i> GH by Minh
+                        </a>
+                        @endif
+
                         @if($table->is_edit == 1)
                             
                             @if($table->form_data_type == 1)
@@ -128,7 +137,13 @@
                                 <a class="btn btn-success" href="{{ route('generateCurrenTienPhong', [$data['id']]) }}">
                                     <i class="ion-social-usd"></i>
                                     Tính lại tiền phòng
-                                </a> 
+                                </a>
+                        @endif
+
+                        @if($table->name == TIEN_PHONG)
+                                <textarea readonly="" style="color:#000000">Tiền phòng tháng {{ $data['month'] }} phòng em hết {{ number_format($data['total']) }} nhé,
+Chi tiết xem tại http://aitilen.com/kiem-tra-hoa-don.html
+                                </textarea>
                         @endif
                     </td>
                 @endif

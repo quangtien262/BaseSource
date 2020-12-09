@@ -35,6 +35,9 @@ Route::group(['middleware' => \App\Http\Middleware\Language::class], function ()
     Route::get('admin/login', 'Auth\AuthController@showLoginForm')->name('loginAdmin');
     Route::post('admin/login', 'Auth\AuthController@login');
     Route::get('logout', 'Auth\AuthController@logout')->name('logout');
+
+    //API
+
 });
 //backend
 // Route::group(['middleware' => 'auth'], function () {
@@ -49,6 +52,7 @@ Route::group(['middleware' => \App\Http\Middleware\Language::class], function ()
         Route::get('/configtbl/delete-table/', 'Backend\TblController@deleteTable')->name('deleteTable');
         Route::get('/configtbl/delete-column', 'Backend\TblController@deleteColumn')->name('deleteColumn');
         Route::post('/configtbl/sort-order-table/', 'Backend\TblController@sortOrderTable')->name('sortOrderTable');
+        
         //table
         Route::get('/list-data/{tableId}', 'Backend\RowController@listRow')->name('listDataTbl');
         Route::get('/detail/{tableId}/{dataId}', 'Backend\RowController@detailRow')->name('detailRow');
@@ -66,7 +70,7 @@ Route::group(['middleware' => \App\Http\Middleware\Language::class], function ()
         Route::get('/tbl/export/{tableId}/', 'Backend\RowController@export2Excel')->name('export2Excel');
 
         //export word
-        Route::get('/tbl/import-word', 'Backend\RowController@import2Word')->name('import2Excel');
+        Route::get('/tbl/export-ppghhd-word/{hopdongId}/', 'Backend\RowController@exportPLGHHD2Word')->name('exportPLGHHD2Word');
 
         //blockType
         Route::get('/tbl/list-block/{landingPageId?}', 'Backend\BlockController@index')->name('adminListBlock');
