@@ -46,6 +46,7 @@
                                         @endif
                                     @endforeach
                                 </div>
+
                                 <div class="row">
                                     <div class="col-xs-6 col-sm-3 center-block">
                                         <br/>

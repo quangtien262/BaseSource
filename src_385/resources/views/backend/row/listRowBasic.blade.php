@@ -13,12 +13,11 @@
 
 @section('content')
 
-<section>
         
     <div class="container-fluid">
         <div class="card">
-            <div class="card-body table-responsive">
-                <div class="panel-heading ">
+            <div class="table-responsive">
+                <div class="card-heading">
                     <h4>{{$table->display_name}}</h4>
                     <form action="" method="get" class="form-search ">
                         <div class="row">
@@ -168,14 +167,13 @@
                     @endif
 
                     </div>
-                </div>
-                <div>
-                    <section>
+                
+                  
                         @if(!empty($table->table_tab))
                             @include('backend.row.tabName')
                         @endif
-                        <div id="myTabContent" class="tab-content text-center">
-                            <div id="home" role="tabpanel" aria-labelledby="home-tab" class="tab-pane fade active in">
+                        {{--  <div id="myTabContent" class="tab-content text-center">
+                            <div id="home" role="tabpanel" aria-labelledby="home-tab" class="tab-pane fade active in">  --}}
                                 <div id="output"></div>
                                 @if($table->name == "tien_chi_tieu")
                                     <a href="?isShow=1">Xem thống kê chi tiết</a>
@@ -188,7 +186,7 @@
                                         </div>
                                     @endif
                                 @endif
-                                <table class="table-datatable table table-striped table table-bordered mv-lg fix-tbl-basic">
+                                <table class="table table-striped">
                                     @if($table->is_add_express == 1)
                                         @include('backend.row.addExpress')
                                     @endif
@@ -200,11 +198,11 @@
                                         </tbody>
                                     </form>
                                 </table>
-                            </div>
-                        </div>
-                    </section>
+                            {{--  </div>
+                        </div>  --}}
+        
                 </div>
-                <table class="table-datatable table table-striped table-hover mv-lg">
+                <table class="table table-striped">
                     <tr>
                         <td>{!! $dataQuery->render() !!}</td>
                     </tr>
@@ -212,7 +210,7 @@
             </div>
         </div>
     </div>
-</section>
+
 @if(isset($_GET['reload']) && $_GET['reload'] == 1)
     <script src="/backend/js/choose-multiple-checkbox.js"></script>
     @include('backend.element.scriptReload') 

@@ -13,10 +13,11 @@
 
 
 
+           
+            @if(\Auth::user()->id == 1)
+                <li><a class="ripple" href="{{ route('configTbl') }}"><span class="nav-icon"><em class="ion-gear-b"></em></span><span>Config Table</span></a></li>
+            @endif
             {!! app('ClassTables')->getHtmlMenuAdminLeft(0) !!}
-
-            <li><a class="ripple" href="{{ route('configTbl') }}"><span class="nav-icon"><em class="ion-gear-b"></em></span><span>Config Table</span></a></li>
-
             <!--            <li>
                                 <a class="ripple" href="#"><span class="pull-right nav-caret"><em class="ion-ios-arrow-right"></em></span><span class="pull-right nav-label"></span><span class="nav-icon"><img class="hidden" src="" data-svg-replace="img/icons/navicon.svg" alt="MenuItem"></span><span>Tables</span></a>
                                 <ul class="sidebar-subnav" id="tables">

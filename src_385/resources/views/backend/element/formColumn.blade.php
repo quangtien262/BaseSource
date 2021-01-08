@@ -167,13 +167,6 @@
                 @endforeach
             </select>
         </div>
-    @elseif($col->type_edit == 'block')
-        <div class="col-md-8">
-            <br/>
-            <label>{{ $col->display_name or $col->name }}</label>
-            <em> (Vui lòng khởi tạo landingpage trước khi tạo các block con tương ứng) </em>
-            @include('backend.element.listBlockLandingPage')
-        </div>
     @elseif($col->type_edit == 'encryption')
         <div class="col-md-6">
             <br/>
@@ -186,4 +179,17 @@
             <label>{{ $col->display_name or $col->name }}</label>
             <input style="background:{{ $data[$col->name] or '' }}" name="{{ $col->name or '' }}" value="{{ $data[$col->name] or '' }}" autocomplete="off" class="form-control cp-basic" type="text" data-format="hex"/>
         </div>
+    @elseif($col->type_edit == 'block')
+        <div class="col-md-8">
+            <br/>
+            <label>{{ $col->display_name or $col->name }}</label>
+            <em> (Vui lòng khởi tạo landingpage trước khi tạo các block con tương ứng) </em>
+            @include('backend.element.listBlockLandingPage')
+        </div>
+    @elseif($col->type_edit == 'permission_list')
+        <div class="col-md-8">
+            <h5>{{ $col->display_name or $col->name }}:</h5>
+            <hr/>
+        </div>
+        {!! app('ClassCommon')->getHtmlPermissions($col->name, $data[$col->name]) !!}
     @endif

@@ -70,6 +70,7 @@ define('TYPE_EDIT', serialize([
     'block' => 'Block (Cần tạo sẵn 2 bảng:block_type & block_item)',
     'color' => 'Màu sắc',
     'comment' => 'comment ("Tên cột" phải là "comment")',
+    'permission_list' => 'Danh sách quyền',
 ]));
 
 define('TABLE_TYPE_SHOW', serialize([

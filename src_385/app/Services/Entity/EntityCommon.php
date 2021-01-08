@@ -540,7 +540,7 @@ class EntityCommon
                             <li>Chi phí cho sửa chữa, nâng cấp</li>
                         </ul>
                     </p></em>
-                <table class="table-datatable table table-striped table table-bordered mv-lg fix-tbl-basic">';
+                <table class="table table-striped">';
         $total = 0;
 
         //header

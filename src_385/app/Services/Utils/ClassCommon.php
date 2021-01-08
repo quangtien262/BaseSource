@@ -246,7 +246,7 @@ class ClassCommon
 
     public function generateDongTien($total)
     {
-        $result = '<table class="table-datatable table table-striped table table-bordered mv-lg fix-tbl-basic">';
+        $result = '<table class="table table-striped">';
         $result .= '<tr>';
         $result .= '<th> Tháng </th>';
         $apms = app('EntityCommon')->getRowsByConditions('apartment', [], 0);
@@ -337,7 +337,7 @@ class ClassCommon
 
     public function generateHistoryDongTien()
     {
-        $result = '<table class="table-datatable table table-striped table table-bordered mv-lg fix-tbl-basic">';
+        $result = '<table class="table table-striped">';
         $result .= '<tr>';
         $result .= '<th> Tháng </th>';
         $apms = app('EntityCommon')->getRowsByConditions('apartment', [], 0);
@@ -493,6 +493,42 @@ class ClassCommon
             $result[$apm->id] = $ngayDenHan;
         }
 
+        return $result;
+    }
+
+    public function getHtmlPermissions($columnName, $columnValue)
+    {
+        $perData = [];
+        if(!empty($columnValue)) {
+            $perData = json_decode($columnValue);
+        }
+        $result = '';
+        $tblParent = app('EntityCommon')->getRowsByConditions('tables', ['parent_id' => 0]);
+        foreach($tblParent as $p) {
+            $checked = '';
+            if(in_array($p->id, $perData)) {
+                $checked = 'checked="checked"';
+            }
+            $result .= '<div class="col-md-6">
+                            <div class="mda-list-item-text">
+                                <label class="_point"><input '.$checked.' name="'.$columnName.'[]" type="checkbox" value="'.$p->id.'"> '.$p->display_name.'</label>
+                            </div>';
+            
+            $tblSub = app('EntityCommon')->getRowsByConditions('tables', ['parent_id' => $p->id]);
+            if (!empty($tblSub)) {
+                $result .= '</ul>';
+                foreach ($tblSub as $s) {
+                    $checked = '';
+                    if(in_array($s->id, $perData)) {
+                        $checked = 'checked="checked"';
+                    }
+                    $result .= '<li><label class="_point"><input '.$checked.' name="'.$columnName.'[]" type="checkbox" value="'.$s->id.'"> '. $s->display_name. '</label></li>';
+                }
+                $result .= '</ul>';
+            }
+
+            $result .= '</div>';
+        }
         return $result;
     }
 }

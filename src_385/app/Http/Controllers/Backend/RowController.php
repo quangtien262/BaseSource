@@ -133,6 +133,15 @@ class RowController extends BackendController
                 $data[$column->name] = bcrypt($request->input($column->name));
                 continue;
             }
+            
+            if ($column->type_edit == 'permission_list') {
+                
+                // dd($data);
+                if(!empty($request->input($column->name))) {
+                    $data[$column->name] = json_encode($request->input($column->name));
+                }
+                continue;
+            }
             if ($column->type == 'INT') {
                 $data[$column->name] = intval($request->input($column->name));
                 continue;
@@ -299,8 +308,8 @@ class RowController extends BackendController
         $year = $request->year;
         $preYear = $year;
         if ($request->month == 1) {
-            echo 'case 2';
-            die;
+            // echo 'case 2';
+            // die;
             $preMonth = 12;
             $preYear = $year - 1;
         }

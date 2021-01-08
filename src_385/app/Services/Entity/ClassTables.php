@@ -427,6 +427,7 @@ class ClassTables
 
     public function getHtmlMenuAdminLeft($parentId = 0)
     {
+        $permissionList = json_decode(\Auth::user()->permission_list);
         $html = '';
         $conditions = [
             'is_edit' => 1,
@@ -437,6 +438,9 @@ class ClassTables
         if (count($tables) > 0) {
             $html .= '<ul>';
             foreach ($tables as $table) {
+                if(\Auth::user()->user_permission_id == 2 && !in_array($table->id, $permissionList)) {
+                    continue;
+                }
                 $countData = app('EntityCommon')->getCountData($table->name);
                 $subdata = self::getHtmlMenuAdminLeft($table->id);
                 if ($subdata != '') {
