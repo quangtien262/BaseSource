@@ -26,6 +26,15 @@ define('MSG_UPDATE_COLUMN_DATA_FAIL', 'Cập nhật dữ liệu Thất bại');
 
 define('LANDING_PAGE_ITEM_ID', 33);
 
+//service keyword
+define('THEO_CONG_TO', 'theo_cong_to');
+define('THEO_PHONG', 'theo_phong');
+define('THEO_SO_NGUOI', 'theo_so_nguoi');
+define('TIEN_NUOC', 'tien_nuoc');
+define('TIEN_DIEN', 'tien_dien');
+define('PRICE', 'gia');
+define('TONG_SO_DIEN', 'tong_so_dien');
+
 //form config
 define('COLUMN_TYPE', serialize(['INT', 'VARCHAR', 'TEXT', 'LONGTEXT', 'DATE', 'DATETIME', 'FLOAT', 'TIMESTAMP']));
 define('IS_REQUIRE', serialize([
@@ -67,10 +76,11 @@ define('TYPE_EDIT', serialize([
     'date' => 'Date',
     
     'input' => 'Select Input',
-    'block' => 'Block (Cần tạo sẵn 2 bảng:block_type & block_item)',
+    'block' => 'Block (Cần tạo sẵn 2 bảng:block & block_item)',
     'color' => 'Màu sắc',
     'comment' => 'comment ("Tên cột" phải là "comment")',
     'permission_list' => 'Danh sách quyền',
+    'service' => 'Gía dịch vụ',
 ]));
 
 define('TABLE_TYPE_SHOW', serialize([

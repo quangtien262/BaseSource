@@ -134,6 +134,18 @@ class RowController extends BackendController
                 continue;
             }
             
+            
+            if ($column->type_edit == 'service') {
+                $serviceJson = json_encode($request->input($column->name));
+                $data[$column->name] = $serviceJson;
+                continue;
+                // echo $serviceJson;
+                // $jsonArr = json_decode($serviceJson, true);
+                // dd($jsonArr);
+                // echo '----' . $jsonArr['quan_ly_chung']['gia'];
+                // die;
+            }
+
             if ($column->type_edit == 'permission_list') {
                 
                 // dd($data);

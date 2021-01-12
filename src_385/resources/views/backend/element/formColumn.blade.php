@@ -192,4 +192,60 @@
             <hr/>
         </div>
         {!! app('ClassCommon')->getHtmlPermissions($col->name, $data[$col->name]) !!}
+
+    @elseif($col->type_edit == 'service')
+        @php
+        $serviceData = json_decode($data[$col->name], true);
+        $loaiTienDV = app('EntityCommon')->getRowsByConditions('service');
+        $idx = 0;
+        @endphp
+        <div class="col-md-8">
+            <h5>{{ $col->display_name or $col->name }}:</h5>
+            <hr/>
+        </div>
+        
+        <table class="table table-striped">
+            <tr>
+                <th>NO.</th>
+                <th>Loại Tiền</th>
+                <th>Giá</th>
+                <th>Theo số người</th>
+                <th>Theo phòng</th>
+                <th>Theo công tơ</th>
+            </tr>
+            @foreach($loaiTienDV as $dv)
+                @php $idx++ @endphp
+                <tr>
+                    <td>{{ $idx }}</td>
+                    <td>{{ $dv->display_name }}</td>
+                    <td>
+                        <input class="form-control" 
+                                value="{{ $serviceData[$dv->name]['gia'] or '' }}" 
+                                type="number" 
+                                name="{{ $col->name or '' }}[{{ $dv->name }}][gia]">
+                    </td>
+                    <td>
+                        <input class="form-control" 
+                                value="1" 
+                                type="checkbox" 
+                                {{ !empty($serviceData[$dv->name][THEO_SO_NGUOI]) ? 'checked':'' }} 
+                                name="{{ $col->name or '' }}[{{ $dv->name }}][{{ THEO_SO_NGUOI }}]">
+                    </td>
+                    <td>
+                        <input class="form-control"  
+                                value="1" 
+                                type="checkbox" 
+                                {{ !empty($serviceData[$dv->name][THEO_PHONG]) ? 'checked':'' }} 
+                                name="{{ $col->name or '' }}[{{ $dv->name }}][{{THEO_PHONG}}]">
+                    </td>
+                    <td>
+                        <input class="form-control" 
+                                value="1" 
+                                type="checkbox" 
+                                {{ !empty($serviceData[$dv->name][THEO_CONG_TO]) ? 'checked':'' }} 
+                                name="{{ $col->name or '' }}[{{ $dv->name }}][{{THEO_CONG_TO}}]">
+                    </td>
+                </tr>
+            @endforeach
+        </table>
     @endif

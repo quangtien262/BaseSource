@@ -291,9 +291,52 @@ class TblController extends BackendController
         return $table;
     }
 
-    
+    public function update() {
+        $hopDong = app('EntityCommon')->getRowsByConditions('hop_dong');
+        foreach($hopDong as $hd) {
+            $typeBusiness = app('EntityCommon')->getDataById('type_business', $hd->type_business_id);
+            if(empty($typeBusiness)) {
+                continue;
+            }
+            $loaiTP = app('EntityCommon')->getRowsByConditions('loai_tien_phong', ['type_business_id' => $hd->type_business_id]);
+            // echo $hd->id;
+            // print_r($hd->service_price);
+            // $service = json_decode($hd->service_price, true);
+            $service = [];
+            foreach($loaiTP as $loai) {
+                //tien nuoc
+                // echo $loai->name;
+                $service[$loai->name][PRICE] = $loai->price;
+                if($loai->tinh_theo_so_nguoi == 1) {
+                    $service[$loai->name][THEO_SO_NGUOI] = $loai->tinh_theo_so_nguoi;
+                } else {
+                    $service[$loai->name][THEO_PHONG] = 1;
+                }
+                $service[$loai->name][PRICE] = $loai->price;
+            }
+            if($typeBusiness->have_cong_to_nuoc == 1) {
+                $service[TIEN_NUOC][THEO_CONG_TO] = $typeBusiness->have_cong_to_nuoc;
+                $service[TIEN_NUOC][PRICE] = $typeBusiness->tien_nuoc;
+            }
+            
 
-    public function update()
+            //tien dien
+            // dd($typeBusiness);
+            
+            $service[TIEN_DIEN][PRICE] = $typeBusiness->tien_dien;
+            $service[TIEN_DIEN][THEO_CONG_TO] = 1;
+            
+            // dd($service);
+
+            //update
+            \DB::table('hop_dong')->where('id',$hd->id)->update(['service_price' => json_encode($service)]);
+            
+        }
+        echo "successfully";
+    }
+
+    //umdate ql do
+    public function update1()
     {
         //showdata
         // $phanLoaiDo = app('EntityCommon')->getRowsByConditions('phan_loai_do');

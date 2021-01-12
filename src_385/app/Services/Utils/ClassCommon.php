@@ -126,54 +126,67 @@ class ClassCommon
         $tmpData['updated_at'] = $date;
         $tmpData['staus_hd_id'] = 1; // 1: chua gửi hđ cho khách
         $tmpData['status_tien_phong_id'] = 2; // 2: chưa thanh toán
-        $typeBusiness = app('EntityCommon')->getDataById('type_business', $d->type_business_id);
+        $service = json_decode($d->service_price, true);
+
+        // $typeBusiness = app('EntityCommon')->getDataById('type_business', $d->type_business_id);
         // check so dien
         // dd($typeBusiness);
         $tienDienBussiness = 0;
-        if (!empty($typeBusiness->tien_dien)) {
-            $tienDienBussiness = $typeBusiness->tien_dien;
+        if (!empty($service[TIEN_DIEN][PRICE])) {
+            $tienDienBussiness = $service[TIEN_DIEN][PRICE];
         }
-        $tmpData['tien_dien'] = 0;
-        $tmpData['tong_so_dien'] = intval($d->so_dien_cuoi) - intval($d->so_dien_dau);
+        $tmpData[TIEN_DIEN] = 0;
+        $tmpData[TONG_SO_DIEN] = intval($d->so_dien_cuoi) - intval($d->so_dien_dau);
         // echo $tmpData['tien_dien'] . '---';
         if (!empty($d->so_dien_cuoi) && !empty($tienDienBussiness)) {
-            $tmpData['tien_dien'] = ($d->so_dien_cuoi - $d->so_dien_dau) * $tienDienBussiness;
+            $tmpData[TIEN_DIEN] = ($d->so_dien_cuoi - $d->so_dien_dau) * $tienDienBussiness;
             if (!empty($d->may_bom_dau) && !empty($d->may_bom_cuoi)) { 
-                $tmpData['tien_dien'] = $tmpData['tien_dien'] - (($d->may_bom_cuoi - $d->may_bom_dau) * $tienDienBussiness);
-                $tmpData['tong_so_dien'] = $tmpData['tong_so_dien'] - ($d->may_bom_cuoi - $d->may_bom_dau);
+                $tmpData[TIEN_DIEN] = $tmpData[TIEN_DIEN] - (($d->may_bom_cuoi - $d->may_bom_dau) * $tienDienBussiness);
+                $tmpData[TONG_SO_DIEN] = $tmpData[TONG_SO_DIEN] - ($d->may_bom_cuoi - $d->may_bom_dau);
             }
         }
-        $totalDichVu += $tmpData['tien_dien'];
+        $totalDichVu += $tmpData[TIEN_DIEN];
 
         
         //check so nuoc
         $noteTienNuoc = '';
         // echo $typeBusiness->have_cong_to_nuoc;die;
-        if (!empty($typeBusiness->have_cong_to_nuoc)) {
-            $tmpData['tien_nuoc'] = ($d->so_nuoc_cuoi - $d->so_nuoc_dau) * $typeBusiness->tien_nuoc;
-            $totalDichVu += $tmpData['tien_nuoc'];
+        // echo $service[TIEN_NUOC][THEO_CONG_TO];die;
+        if (!empty($service[TIEN_NUOC]) && !empty($service[TIEN_NUOC][THEO_CONG_TO]) && $service[TIEN_NUOC][THEO_CONG_TO] == 1) {
+            $tmpData[TIEN_NUOC] = ($d->so_nuoc_cuoi - $d->so_nuoc_dau) * $service[TIEN_NUOC][PRICE];
+            $totalDichVu += $tmpData[TIEN_NUOC];
             // echo $totalDichVu;die;
-            $noteTienNuoc = 'Số nước: '.$d->so_nuoc_dau.
-                               ' -> '.$d->so_nuoc_cuoi.
-                               ',<br/>=> <em>Tổng số nước xử dụng là: '.($d->so_nuoc_cuoi - $d->so_nuoc_dau).' Số (Giá nước: '.number_format($typeBusiness->tien_nuoc).'/Số)</em><br/>';
+            $noteTienNuoc = 'Số nước: '.$d->so_nuoc_dau.' - '.$d->so_nuoc_cuoi.' = '.($d->so_nuoc_cuoi - $d->so_nuoc_dau).
+                               '<em> (Giá nước: '.number_format($service[TIEN_NUOC][PRICE]).'/Số)</em><br/>';
         }
 
-        $tienDichVu = app('EntityCommon')->getRowsByConditions(TBL_LOAI_TIEN_PHONG, ['type_business_id' => $d->type_business_id]);
+        // $tienDichVu = app('EntityCommon')->getRowsByConditions(TBL_LOAI_TIEN_PHONG, ['type_business_id' => $d->type_business_id]);
 
         $noteDV = '<b>Các phí dv khác:</b> <br/>';
-        foreach ($tienDichVu as $dv) {
-            $loaiTienDV = app('EntityCommon')->findDataLatestByCondition('loai_tien_dv', ['name' => $dv->name]);
-            $price = $dv->price;
+        foreach ($service as $key => $dv) {
+            if($key == TIEN_DIEN) {
+                continue;
+            }
+            if($key == TIEN_NUOC && !empty($dv[THEO_CONG_TO])) {
+                continue;
+            }
+
+            if(empty($dv[PRICE])) {
+                continue;
+            }
+
+            $loaiTienDV = app('EntityCommon')->findDataLatestByCondition('loai_tien_dv', ['name' => $key]);
+            $price = $dv[PRICE];
             //note tmp
-            $tmpNote = '&nbsp;&nbsp;&nbsp; - ' . $loaiTienDV->display_name . ':' . number_format($dv->price) . '/1Phòng <br/>';
-            if (!empty($dv->tinh_theo_so_nguoi)) {
-                $price = $d->so_nguoi * $dv->price;
+            $tmpNote = '&nbsp;&nbsp;&nbsp; - ' . $loaiTienDV->display_name . ':' . number_format($dv[PRICE]) . '/1Phòng <br/>';
+            if (!empty($dv[THEO_SO_NGUOI])) {
+                $price = $d->so_nguoi * $dv[PRICE];
                 //note tmp
-                $tmpNote = '&nbsp;&nbsp;&nbsp; - ' . $loaiTienDV->display_name . ':' . number_format($dv->price) . '/1Người <br/>';
+                $tmpNote = '&nbsp;&nbsp;&nbsp; - ' . $loaiTienDV->display_name . ':' . number_format($dv[PRICE]) . '/1Người <br/>';
             }
             $noteDV .= $tmpNote;
             $totalDichVu += $price;
-            $tmpData[$dv->name] = $price;
+            $tmpData[$key] = $price;
         }
         //note
         $soMayBom = '';
@@ -183,7 +196,7 @@ class ClassCommon
         $tmpData['note'] = $noteTienNuoc.
                            'Số điện: '.$d->so_dien_cuoi. ' - '.$d->so_dien_dau. ' = '.($d->so_dien_cuoi - $d->so_dien_dau).
                            $soMayBom .
-                           '<br/><em>(Giá điện: '.number_format($tienDienBussiness).'/Số) </em><br/>' . 
+                           '<em> (Giá điện: '.number_format($tienDienBussiness).'/Số) </em><br/>' . 
                            $noteDV;
 
         //total
@@ -210,7 +223,7 @@ class ClassCommon
         //tien dien
         $tmpData['tien_dien'] = ($d->so_dien_cuoi - $d->so_dien_dau) * 4000;
         $totalDichVu += $tmpData['tien_dien'];
-        $tmpData['tong_so_dien'] = $d->so_dien_cuoi - $d->so_dien_dau;
+        $tmpData[TONG_SO_DIEN] = $d->so_dien_cuoi - $d->so_dien_dau;
         $note = 'Số điện đầu: '.$d->so_dien_dau.
                 ',<br/> Số điện cuối: '.$d->so_dien_cuoi.
                 ',<br/> <b>Tổng số điện xử dụng là</b>: '.($d->so_dien_cuoi - $d->so_dien_dau).' (Số)';
